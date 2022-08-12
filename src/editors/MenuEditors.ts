@@ -111,7 +111,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         },
         {
             variable: "--topbar-button-hover-background",
-            label: "Button Hover Background",
+            label: "Button Hover Bgd",
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyPriority('--topbar-button-hover-background'),
