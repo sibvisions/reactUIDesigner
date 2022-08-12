@@ -1,0 +1,188 @@
+%ellipsis-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin menuTransitions() {
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+@mixin styledScrollbarPanelDefault() {
+    &::-webkit-scrollbar {
+        width: 7px;
+    }
+    &::-webkit-scrollbar-button:start:decrement {
+        height: 70px;
+    }
+    &::-webkit-scrollbar-track {
+        background: white; 
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgb(230, 230, 230);
+        border-radius: 10px;
+        &:hover {
+            background: rgb(202, 202, 202);
+        }
+    }
+}
+
+.std-menu {
+    height: 100%;
+    width: 100%;
+
+    :focus {
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+    }
+}
+
+.menu-header {
+    display: flex;
+    z-index: 20;
+    align-items: center;
+    width: 100%;
+}
+
+.menu-logo-wrapper {
+    @include menuTransitions();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.menu-logo {
+    @include menuTransitions();
+    align-self: center;
+    object-fit: contain;
+}
+
+.menu-topbar {
+    @include menuTransitions();
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-topbar-left, .menu-topbar-right {
+    display: flex;
+}
+
+.menu-topbar-left {
+    align-items: center;
+}
+
+.menu-topbar-right {
+    align-items: center;
+}
+
+.menu-topbar-buttons.p-button.p-button-icon-only {
+    flex: 1;
+    border: 0;
+    margin-right: 0.5rem;
+    .pi, .fas {
+        font-size: 1.5rem;
+    }
+}
+
+.menu-screen-title {
+    @extend %ellipsis-overflow;
+    font-weight: bold;
+    caret-color: transparent;
+}
+
+.profile-menu {
+    margin-left: 0.5rem;
+    margin-right: 10px;
+
+    .p-menubar  {
+        .p-menubar-root-list >.p-menuitem >.p-menuitem-link {
+            .p-menuitem-text {
+                @extend %ellipsis-overflow;
+                max-width: 140px;
+                transition: max-width 0.5s, opacity 0.5s ease-out;
+            }
+            .p-submenu-icon {
+                opacity: 1;
+                max-width: 16px;
+                transition: max-width 0.5s, opacity 0.5s ease-out;
+            }
+        }
+
+        .p-menuitem-text {
+            line-height: unset;
+        }
+    }
+}
+
+.p-menubar {
+    /// Removes default primereact menubar style
+    padding: 0;
+    border: none;
+
+    .p-submenu-list {
+        z-index: 10;
+    }
+}
+
+.profile-image-null {
+    width: 40px;
+    height: 40px;
+    border-radius: 25%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+        font-size: 38px;
+    }
+}
+
+.menu-panelmenu-wrapper {
+    @include menuTransitions();
+    @include styledScrollbarPanelDefault();
+    z-index: 10;
+    height: calc(100% - var(--std-header-height));
+    overflow-x: hidden;
+
+    .p-panelmenu {
+        .p-panelmenu-header {
+            > a {
+                padding: 1rem 1rem 1rem 10px;
+
+                .p-panelmenu-icon {
+                    position: absolute;
+                    margin-right: 0;
+                }
+            }
+            .p-panelmenu-header-link {
+                border: none;
+                .p-menuitem-text {
+                    white-space: nowrap;
+                }
+            }
+        }
+        .p-panelmenu-content {
+            border: none;
+
+            .p-menuitem {
+                .p-menuitem-link:not(.p-disabled) {
+                    padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+
+                    .p-menuitem-icon {
+                        margin-right: 0.5rem;
+                    }
+
+                    .p-menuitem-text {
+                        @extend %ellipsis-overflow;
+                    }
+                }
+            }
+        }
+    }
+}

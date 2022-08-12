@@ -1,0 +1,49 @@
+.style-editor-group {
+    width: 100%;
+    padding: 0.5rem;
+
+    .style-editor-group-header {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .style-editor-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0.5rem;
+
+        .style-editor-label {
+            padding-left: 0.25rem;
+        }
+
+        .style-editor-colorpicker {
+            height: 1.875rem;
+            width: 1.875rem;
+        }
+
+        .style-editor-color-textinput {
+            width: 64px;
+            height: 1.875rem;
+            padding: 0.2rem 0.2rem;
+            text-align: right;
+        }
+    
+        .style-editor-textinput {
+            width: 98px;
+            height: 1.875rem;
+            padding: 0.2rem 0.2rem;
+            text-align: right;
+        }
+
+        .style-editor-button {
+            width: 1.875rem;
+            padding: 0.25rem 0;
+            height: 1.875rem;
+            margin-left: 0.25rem;
+        }
+    }
+}
+

@@ -1,0 +1,72 @@
+.designer-main {
+  height: 100vh;
+  display: flex;
+}
+
+.designer-topbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  padding: 0 1rem;
+  background: #7a7f85;
+}
+
+.designer-topbar-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.designer-panel-wrapper {
+  :focus {
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+  }
+
+  position: fixed;
+  width: 300px;
+  height: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  background: #fafafa;
+  border-right: 1px solid rgba(120,130,140,.13);
+  border-top: 1px solid rgba(120,130,140,.13);
+  overflow: auto;
+
+  .designer-panel-options {
+    width: 100%;
+    display: flex;
+    //flex-direction: column;
+    flex-wrap: wrap;
+
+    .designer-panel-options-inputs {
+      display: flex;
+      align-items: center;
+      margin: 0.25rem 0.5rem;
+    }
+
+    .designer-panel-options-inputtext {
+      max-width: 75px;
+      margin-left: 0.25rem;
+    }
+
+    .designer-panel-options-download-button {
+      align-self: flex-start;
+      margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+      width: 100%;
+    }
+  }
+
+}
+
+.designer-content {
+  position: relative;
+  margin-top: 70px;
+  margin-left: 300px;
+  flex: 1 1;
+}
