@@ -76,6 +76,7 @@ const Menu: FC = () => {
                         <Button icon="fas fa-home" className="menu-topbar-buttons" />
                         <Button icon="fas fa-save" className="menu-topbar-buttons" />
                         <Button icon="fas fa-sync" className="menu-topbar-buttons" />
+                        <div className="vl" />
                         <div className="profile-menu">
                             <Menubar className="profile-menubar" model={profileModel}/>
                         </div>

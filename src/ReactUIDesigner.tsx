@@ -1,6 +1,7 @@
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { EditorItem } from './editors/EditorCreator';
 import EditorManager from './editors/EditorManager';
 import './ReactUIDesigner.scss';
 import TabSelection from './TabSelection';
@@ -19,18 +20,101 @@ const ReactUIDesigner: FC = () => {
 
   const previousThemeName = useRef<string>(context.themeName);
 
-  const handleDownload = () => {
-    const text = `Hello World!\nThis is my string\n${context.defaultValues.get('--login-mask-background')}`;
-    const filename = "Test.txt";
+  const generateCSS = (type: "scheme"|"theme") => {
+    const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
+    const selectorMap960: Map<string, string[]> = new Map<string, string[]>();
+    const selectorMap530: Map<string, string[]> = new Map<string, string[]>();
 
-    // const element = document.createElement('a');
-    // element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    // element.setAttribute('download', filename);
-    // element.style.display = 'none';
-    // document.body.appendChild(element);
-    // element.click();
-    // document.body.removeChild(element);
-    console.log(context)
+    const fillSelectorMap = (editorItem: EditorItem, size:"full"|"960"|"530") => {
+      let selectorMap = new Map();
+      let usageMap: Map<string, string[]> | undefined={} = new Map();
+
+      switch (size) {
+        case "960":
+          selectorMap = selectorMap960;
+          usageMap = editorItem.usage960;
+          break;
+        case "530":
+          selectorMap = selectorMap530;
+          usageMap = editorItem.usage530;
+          break;
+        case "full":
+        default:
+          selectorMap = selectorMapFull;
+          usageMap = editorItem.usage;
+      }
+
+      if (usageMap) {
+        usageMap.forEach((value, selector) => {
+          if (selectorMap.has(selector)) {
+            selectorMap.set(selector, [...(selectorMap.get(selector) as string[]), ...value]);
+          }
+          else {
+            selectorMap.set(selector, value);
+          }
+        })
+      }
+    }
+
+    let cssString = ":root {\n";
+
+    context.variables.forEach((tabGroup) => {
+      tabGroup.forEach(editorItems => {
+        editorItems.forEach(editorItem => {
+          if (editorItem.cssType === type) {
+            cssString += "\t" + editorItem.variable + ":" + editorItem.value + ";\n";
+            fillSelectorMap(editorItem, "full");
+            fillSelectorMap(editorItem, "960");
+            fillSelectorMap(editorItem, "530");
+          }
+        })
+      })
+    });
+
+    cssString += "}\n\n"
+
+    const generateCSSRules = (size:"full"|"960"|"530") => {
+      let selectorMap = size === "full" ? selectorMapFull : size === "960" ? selectorMap960 : selectorMap530;
+      selectorMap.forEach((values, selector) => {
+        cssString += (size !== "full" ? "\t" : "") + selector + " {\n";
+        values.forEach(value => {
+          cssString += (size !== "full" ? "\t\t" : "\t") + value + "\n";
+        })
+        cssString += (size !== "full" ? "\t" : "") + "}\n\n";
+      });
+
+      if (size !== "full") {
+        cssString += "}\n\n";
+      }
+    }
+
+    generateCSSRules("full");
+
+    cssString += "@media screen and (max-width: 960px) {\n";
+
+    generateCSSRules("960");
+
+    cssString += "@media screen and (max-width: 530px) {\n";
+
+    generateCSSRules("530");
+
+    return cssString
+  }
+
+  const handleDownload = () => {
+    const fileNameScheme = context.schemeName + "-scheme.css";
+    const fileNameTheme = context.themeName + ".css"
+
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(generateCSS("theme")));
+    element.setAttribute('download', fileNameTheme);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(generateCSS("scheme")));
+    element.setAttribute('download', fileNameScheme);
+    element.click();
+    document.body.removeChild(element);
   }
 
   useEffect(() => {

@@ -22,4 +22,9 @@
     min-width: 48px;
     position: relative;
     overflow: hidden;
+
+    &:not(.p-disabled):focus {
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+    }
 }
