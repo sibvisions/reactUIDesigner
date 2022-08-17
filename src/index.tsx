@@ -7,6 +7,7 @@ import 'primeicons/primeicons.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './styles/default-scheme.scss';
 import './styles/basti.scss';
+//import '@sibvisions/reactui/dist/main.css'
 import ReactUIDesigner from './ReactUIDesigner';
 
 export default ReactDOM.render(

@@ -1,13 +1,13 @@
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import React, { FC, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { EditorItem } from './editors/EditorCreator';
 import EditorManager from './editors/EditorManager';
 import './ReactUIDesigner.scss';
 import TabSelection from './TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
 
-const ReactUIDesigner: FC = () => {
+const ReactUIDesigner: FC = (props) => {
   const context = useContext(variableContext);
 
   const [themeName, setThemeName] = useState<string>(context.themeName);
@@ -19,6 +19,8 @@ const ReactUIDesigner: FC = () => {
   const tabChangeCallBack = useCallback((index: number) => setActiveTabIndex(index), []);
 
   const previousThemeName = useRef<string>(context.themeName);
+
+  const isPreviewMode = useMemo(() => props.children !== undefined, [props.children]);
 
   const generateCSS = (type: "scheme"|"theme") => {
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
@@ -125,6 +127,8 @@ const ReactUIDesigner: FC = () => {
     context.schemeName = schemeName;
   }, [schemeName]);
 
+  console.log(props.children)
+
   return (
     <VariableProvider>
       <div className='designer-main'>
@@ -176,12 +180,11 @@ const ReactUIDesigner: FC = () => {
               </div>
               <Button className='designer-panel-options-download-button' icon='fas fa-file-download' onClick={handleDownload} />
             </div>
-
-            <EditorManager activeIndex={activeTabIndex} />
+            <EditorManager isPreviewMode={isPreviewMode} activeIndex={activeTabIndex} />
           </div>
         </div>
         <div className='designer-content basti'>
-          <TabSelection tabChangedCallback={tabChangeCallBack} />
+          {isPreviewMode ? props.children : <TabSelection tabChangedCallback={tabChangeCallBack} />}
         </div>
       </div>
     </VariableProvider>

@@ -1,3 +1,4 @@
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { FC, useContext, useEffect, useState } from "react";
@@ -122,7 +123,7 @@ function createEditors(editors: Map<string, EditorItem[]>, setCallback: React.Di
                 </div>
             )
         })
-        let groupElement = (<div key={key} className="style-editor-group"><span className="style-editor-group-header">{key}</span>{editorElements}</div>);
+        let groupElement = (<AccordionTab header={key}><div key={key} className="style-editor-group">{editorElements}</div></AccordionTab>);
         groupElements.push(groupElement)
     });
     return groupElements
@@ -138,9 +139,9 @@ const EditorCreator:FC<IEditorCreator> = (props) => {
     }, [props.editors])
 
     return (
-        <>
+        <Accordion>
             {createEditors(editors, setEditors, context.defaultValues)}
-        </>
+        </Accordion> 
     )
 }
 export default EditorCreator

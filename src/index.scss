@@ -5,6 +5,10 @@
   src: url('../public/fonts/roboto/Roboto-Regular.ttf');
 }
 
+:root {
+  --designer-text-color: #495057;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto';

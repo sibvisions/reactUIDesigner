@@ -1,8 +1,10 @@
 import { FC, useContext, useMemo } from "react";
 import { variableContext } from "../VariableProvider";
 import EditorCreator, { EditorItem } from "./EditorCreator";
+import { generalEditors } from "./GeneralEditors";
 
 interface IEditorManager {
+    isPreviewMode: boolean
     activeIndex: number
 }
 
@@ -15,18 +17,28 @@ const EditorManager: FC<IEditorManager> = (props) => {
     const context = useContext(variableContext)
 
     const editors = useMemo(() => {
-        switch (props.activeIndex) {
-            case EDITOR_INDICES.LOGIN_EDITORS:
-                return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS.toString()) as Map<string, EditorItem[]>;
-            case EDITOR_INDICES.MENU_EDITORS:
-                return context.variables.get(EDITOR_INDICES.MENU_EDITORS.toString()) as Map<string, EditorItem[]>;
-            default:
-                return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS.toString()) as Map<string, EditorItem[]>;
+        if (props.isPreviewMode) {
+            let newVariableMap = new Map<string, EditorItem[]>();
+            context.variables.forEach((variableMap) => {
+                newVariableMap = new Map<string, EditorItem[]>([...newVariableMap, ...variableMap]);
+            });
+            return newVariableMap;
         }
-    }, [props.activeIndex])
+        else {
+            switch (props.activeIndex) {
+                case EDITOR_INDICES.LOGIN_EDITORS:
+                    return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS.toString()) as Map<string, EditorItem[]>;
+                case EDITOR_INDICES.MENU_EDITORS:
+                    return context.variables.get(EDITOR_INDICES.MENU_EDITORS.toString()) as Map<string, EditorItem[]>;
+                default:
+                    return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS.toString()) as Map<string, EditorItem[]>;
+            }
+        }
+    }, [props.activeIndex, props.isPreviewMode])
 
     return (
         <>
+            <EditorCreator editors={generalEditors} />
             <EditorCreator editors={editors} />
         </>
     )

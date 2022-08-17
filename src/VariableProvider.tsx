@@ -6,6 +6,7 @@ import { menuEditors } from "./editors/MenuEditors";
 export type VariableContextType = {
     schemeName: string,
     themeName: string,
+    isPreviewMode: boolean,
     variables: Map<string, Map<string, EditorItem[]>>,
     defaultValues: Map<string, string>,
 }
@@ -36,6 +37,7 @@ const initValue: VariableContextType = {
     .set("0", new Map<string, EditorItem[]>(loginEditors))
     .set("1", new Map<string, EditorItem[]>(menuEditors)),
     defaultValues: getDefaultValues(),
+    isPreviewMode: false
 }
 
 export const variableContext = createContext<VariableContextType>(initValue);
