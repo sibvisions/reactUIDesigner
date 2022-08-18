@@ -1,4 +1,4 @@
-import { FC, useContext, useMemo } from "react";
+import React, { FC, useContext, useMemo } from "react";
 import { variableContext } from "../VariableProvider";
 import EditorCreator, { EditorItem } from "./EditorCreator";
 import { generalEditors } from "./GeneralEditors";

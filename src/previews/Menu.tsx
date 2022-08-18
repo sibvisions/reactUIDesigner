@@ -1,11 +1,11 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { PanelMenu } from 'primereact/panelmenu';
 import { Menubar } from 'primereact/menubar';
 import { Button } from "primereact/button";
 import { MenuItem } from "primereact/menuitem";
 import "./Menu.scss";
 
-const Menu: FC = () => {
+const Menu: FC<any> = () => {
     const profileModel:MenuItem [] = [
         {
             label: "John Doe",
@@ -59,7 +59,7 @@ const Menu: FC = () => {
     ]
 
     return (
-        <div className="std-menu">
+        <div className="design-std-menu">
             <div className="menu-header">
                 <div className="menu-logo-wrapper">
                     <img alt="logo" draggable="false" className="menu-logo" src={process.env.PUBLIC_URL + '/assets/sib-logo.png'}/>

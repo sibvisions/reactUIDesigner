@@ -6,9 +6,9 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 module.exports = () => {
     return {
         mode: 'production',
-        entry: './src/index.tsx',
+        entry: './src/moduleIndex.ts',
         output: {
-            filename: 'index.js',
+            filename: 'moduleIndex.js',
             library: '@sibvisions/reactui-designer',
             libraryTarget: 'umd'
         },

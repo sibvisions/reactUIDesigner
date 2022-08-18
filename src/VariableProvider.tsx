@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react"
+import React, { createContext, FC, useState } from "react"
 import { EditorItem } from "./editors/EditorCreator"
 import { loginEditors } from "./editors/LoginEditors";
 import { menuEditors } from "./editors/MenuEditors";
@@ -42,7 +42,7 @@ const initValue: VariableContextType = {
 
 export const variableContext = createContext<VariableContextType>(initValue);
 
-const VariableProvider: FC = (props) => {
+const VariableProvider: FC<any> = (props) => {
     const [contextState, setContextState] = useState<VariableContextType>(initValue);
 
     return (

@@ -1,13 +1,13 @@
+import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { EditorItem } from './editors/EditorCreator';
 import EditorManager from './editors/EditorManager';
 import './ReactUIDesigner.scss';
 import TabSelection from './TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
 
-const ReactUIDesigner: FC = (props) => {
+const ReactUIDesigner: FC<any> = (props) => {
   const context = useContext(variableContext);
 
   const [themeName, setThemeName] = useState<string>(context.themeName);
@@ -21,6 +21,8 @@ const ReactUIDesigner: FC = (props) => {
   const previousThemeName = useRef<string>(context.themeName);
 
   const isPreviewMode = useMemo(() => props.children !== undefined, [props.children]);
+
+  const [previewValuesChanged, setPreviewValuesChanges] = useState<boolean>(false);
 
   const generateCSS = (type: "scheme"|"theme") => {
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
@@ -127,7 +129,24 @@ const ReactUIDesigner: FC = (props) => {
     context.schemeName = schemeName;
   }, [schemeName]);
 
-  console.log(props.children)
+  useEffect(() => {
+    const docStyle = window.getComputedStyle(document.documentElement);
+    console.log(isPreviewMode);
+    if (isPreviewMode) {
+      context.defaultValues.forEach((value, key) => {
+        context.defaultValues.set(key, docStyle.getPropertyValue(key))
+      })
+
+      context.variables.forEach((variableMap) => {
+        variableMap.forEach((editorItems) => {
+          editorItems.forEach(editorItem => {
+            editorItem.value = docStyle.getPropertyValue(editorItem.variable)
+          })
+        })
+      })
+      setPreviewValuesChanges(true);
+    }
+  }, [isPreviewMode])
 
   return (
     <VariableProvider>
@@ -135,7 +154,7 @@ const ReactUIDesigner: FC = (props) => {
         <div className='designer-frame'>
           <div className='designer-topbar'>
             <span className='designer-topbar-header'>ReactUI-Designer</span>
-            <img className='designer-topbar-logo' alt='company logo' src={process.env.PUBLIC_URL + '/assets/sib-logo.png'} />
+            <img className='designer-topbar-logo' alt='company logo' src={process.env.PUBLIC_URL + '/assets/logo_big.png'} />
           </div>
           <div className='designer-panel-wrapper'>
             <div className='designer-panel-options'>

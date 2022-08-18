@@ -28,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 70px;
+  height: var(--designer-topbar-height);
   padding: 0 1rem;
   background: #7a7f85;
 }
@@ -46,7 +46,7 @@
   }
 
   position: fixed;
-  width: 300px;
+  width: var(--designer-panel-wrapper-width);
   height: calc(100% - 70px);
   display: flex;
   flex-direction: column;
@@ -94,7 +94,8 @@
 
 .designer-content {
   position: relative;
-  margin-top: 70px;
-  margin-left: 300px;
+  margin-top: var(--designer-topbar-height);
+  margin-left: var(--designer-panel-wrapper-width);
+  padding: var(--designer-content-padding);
   flex: 1 1;
 }

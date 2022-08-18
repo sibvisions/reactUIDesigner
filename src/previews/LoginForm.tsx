@@ -1,12 +1,12 @@
+import React, { CSSProperties, FC, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import tinycolor from "tinycolor2";
-import { CSSProperties, FC, useState } from "react";
 import './Login.scss';
 import './UIButton.scss';
 
-const LoginForm:FC = () => {
+const LoginForm:FC<any> = () => {
     const [username, setUsername] = useState<string>();
 
     const [password, setPassword] = useState<string>();
@@ -19,7 +19,7 @@ const LoginForm:FC = () => {
         <div className="login-container">
             <form className="login-form">
                 <div className="login-logo-wrapper">
-                    <img className="login-logo" src={process.env.PUBLIC_URL + '/assets/sib-logo.png'} alt="logo" />
+                    <img className="login-logo" src={process.env.PUBLIC_URL + '/assets/logo_login.png'} alt="logo" />
                 </div>
                 <div className="p-fluid">
                         <div className="p-field p-float-label p-input-icon-left">

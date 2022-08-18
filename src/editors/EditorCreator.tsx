@@ -1,7 +1,7 @@
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import { FC, useContext, useEffect, useState } from "react";
 import { variableContext } from "../VariableProvider";
 import './Editor.scss'
 
