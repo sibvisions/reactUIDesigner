@@ -1,4 +1,4 @@
-import { EditorItem } from "./EditorCreator";
+import { EditorItem } from "./management/EditorCreator";
 
 const docStyle = window.getComputedStyle(document.documentElement);
 

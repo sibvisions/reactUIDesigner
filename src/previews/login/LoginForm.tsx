@@ -4,7 +4,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import tinycolor from "tinycolor2";
 import './Login.scss';
-import './UIButton.scss';
+import '../UIButton.scss';
 
 const LoginForm:FC<any> = () => {
     const [username, setUsername] = useState<string>();

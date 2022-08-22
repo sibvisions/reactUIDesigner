@@ -22,6 +22,10 @@
   display: flex;
 }
 
+.designer-frame {
+  font-size: var(--designer-font-size);
+}
+
 .designer-topbar {
   position: fixed;
   display: flex;
@@ -93,6 +97,7 @@
 }
 
 .designer-content {
+  background: repeating-linear-gradient(-55deg, #dbdbdb, #dbdbdb 10px, #aaa 10px, #aaa 20px);
   position: relative;
   margin-top: var(--designer-topbar-height);
   margin-left: var(--designer-panel-wrapper-width);

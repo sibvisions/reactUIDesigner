@@ -22,6 +22,7 @@
     min-width: 48px;
     position: relative;
     overflow: hidden;
+    font-size: var(--designer-font-size);
 
     &:not(.p-disabled):focus {
         box-shadow: none !important;

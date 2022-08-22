@@ -1,10 +1,10 @@
 import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { EditorItem } from './editors/EditorCreator';
-import EditorManager from './editors/EditorManager';
+import { EditorItem } from './editors/management/EditorCreator';
+import EditorManager from './editors/management/EditorManager';
 import './ReactUIDesigner.scss';
-import TabSelection from './TabSelection';
+import TabSelection from './editors/management/TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
 
 const ReactUIDesigner: FC<any> = (props) => {
@@ -131,7 +131,6 @@ const ReactUIDesigner: FC<any> = (props) => {
 
   useEffect(() => {
     const docStyle = window.getComputedStyle(document.documentElement);
-    console.log(isPreviewMode);
     if (isPreviewMode) {
       context.defaultValues.forEach((value, key) => {
         context.defaultValues.set(key, docStyle.getPropertyValue(key))

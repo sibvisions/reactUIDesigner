@@ -5,64 +5,66 @@ import { Button } from "primereact/button";
 import { MenuItem } from "primereact/menuitem";
 import "./Menu.scss";
 
-const Menu: FC<any> = () => {
-    const profileModel:MenuItem [] = [
-        {
-            label: "John Doe",
-            icon: "profile-image-null fas fa-user",
-            items: [
-                {
-                    label: "Change password",
-                    icon: "pi pi-lock-open"
-                },
-                {
-                    label: "Logout",
-                    icon: "pi pi-power-off"
-                },
-                {
-                    label: "Info",
-                    icon: "pi pi-info-circle"
-                }
-            ] 
-        }
-    ];
+export const profileModel:MenuItem [] = [
+    {
+        label: "John Doe",
+        icon: "profile-image-null fas fa-user",
+        items: [
+            {
+                label: "Change password",
+                icon: "pi pi-lock-open"
+            },
+            {
+                label: "Logout",
+                icon: "pi pi-power-off"
+            },
+            {
+                label: "Info",
+                icon: "pi pi-info-circle"
+            }
+        ] 
+    }
+];
 
-    const panelModel: MenuItem[] = [
-        {
-            label: "Example #1",
-            icon: "fas fa-cloud",
-            items: [
-                {
-                    label: "Sub-Item #1",
-                    icon: "fas fa-plus"
-                },
-                {
-                    label: "Sub-Item #2",
-                    icon: "fas fa-minus"
-                }
-            ]
-        },
-        {
-            label: "Example #2",
-            icon: "fas fa-arrow-right",
-            items: [
-                {
-                    label: "Sub-Item #3",
-                    icon: "fas fa-table",
-                },
-                {
-                    label: "Sub-Item #4",
-                    icon: "fas fa-coffee"
-                }
-            ]
-        }
-    ]
+export const menuModel: MenuItem[] = [
+    {
+        label: "Example #1",
+        icon: "fas fa-cloud",
+        //expanded: true,
+        items: [
+            {
+                label: "Sub-Item #1",
+                icon: "fas fa-plus",
+                className: "p-menuitem--active"
+            },
+            {
+                label: "Sub-Item #2",
+                icon: "fas fa-minus"
+            }
+        ]
+    },
+    {
+        label: "Example #2",
+        icon: "fas fa-arrow-right",
+        items: [
+            {
+                label: "Sub-Item #3",
+                icon: "fas fa-table",
+            },
+            {
+                label: "Sub-Item #4",
+                icon: "fas fa-coffee"
+            }
+        ]
+    }
+]
 
+const Menu: FC = () => {
     return (
         <div className="design-std-menu">
             <div className="menu-header">
                 <div className="menu-logo-wrapper">
-                    <img alt="logo" draggable="false" className="menu-logo" src={process.env.PUBLIC_URL + '/assets/sib-logo.png'}/>
+                    <img alt="logo" draggable="false" className="menu-logo" src={process.env.PUBLIC_URL + '/assets/logo_big.png'}/>
                 </div>
                 <div className="menu-topbar">
                     <div className="menu-topbar-left">
@@ -84,7 +86,7 @@ const Menu: FC<any> = () => {
                 </div>
             </div>
             <div className="menu-panelmenu-wrapper">
-                <PanelMenu model={panelModel}/>
+                <PanelMenu model={menuModel}/>
             </div>
         </div>
     )

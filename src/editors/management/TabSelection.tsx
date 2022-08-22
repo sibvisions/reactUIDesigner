@@ -1,8 +1,9 @@
 import React, { FC, useState } from "react"
 import { TabView, TabPanel } from 'primereact/tabview';
-import Menu from "./previews/Menu";
+import Menu from "../../previews/menu/Menu";
 import './TabSelection.scss'
-import LoginForm from "./previews/LoginForm";
+import LoginForm from "../../previews/login/LoginForm";
+import CorporateMenu from "../../previews/menu/CorporateMenu";
 
 interface ITabSelection {
     tabChangedCallback: Function
@@ -23,6 +24,9 @@ const TabSelection: FC<ITabSelection> = (props) => {
             </TabPanel>
             <TabPanel header="Menu">
                 <Menu />
+            </TabPanel>
+            <TabPanel header="Corporation Menu">
+                <CorporateMenu />
             </TabPanel>
         </TabView>
     )

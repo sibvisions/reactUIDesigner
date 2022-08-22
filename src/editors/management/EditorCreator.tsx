@@ -2,8 +2,8 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import { variableContext } from "../VariableProvider";
-import './Editor.scss'
+import { variableContext } from "../../VariableProvider";
+import '../Editor.scss'
 
 export type EditorItem = {
     variable: string,
@@ -105,27 +105,30 @@ function createEditors(editors: Map<string, EditorItem[]>, setCallback: React.Di
     }
 
     let groupElements:JSX.Element[] = []
-    editors.forEach((editorArray, key) => {
-        let editorElements = editorArray.map(editorItem => {
-            return (
-                <div key={editorItem.label} className="style-editor-wrapper">
-                    <span className="style-editor-label">{editorItem.label}</span>
-                    <div className="style-editor">
-                        {getInputElements(editorItem, key)}
-                        <Button 
-                            className="style-editor-button" 
-                            icon="fas fa-undo" 
-                            onClick={() => {
-                                setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
-                                document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string)
-                            }} />
+    if (editors.size) {
+        editors.forEach((editorArray, key) => {
+            let editorElements = editorArray.map(editorItem => {
+                return (
+                    <div key={editorItem.label} className="style-editor-wrapper">
+                        <span className="style-editor-label">{editorItem.label}</span>
+                        <div className="style-editor">
+                            {getInputElements(editorItem, key)}
+                            <Button 
+                                className="style-editor-button" 
+                                icon="fas fa-undo" 
+                                onClick={() => {
+                                    setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
+                                    document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string)
+                                }} />
+                        </div>
                     </div>
-                </div>
-            )
-        })
-        let groupElement = (<AccordionTab header={key}><div key={key} className="style-editor-group">{editorElements}</div></AccordionTab>);
-        groupElements.push(groupElement)
-    });
+                )
+            })
+            let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={key}><div key={key} className="style-editor-group">{editorElements}</div></AccordionTab>);
+            groupElements.push(groupElement)
+        });
+    }
+
     return groupElements
 }
 

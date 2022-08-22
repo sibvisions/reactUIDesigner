@@ -1,4 +1,4 @@
-import { EditorItem } from "./EditorCreator";
+import { EditorItem } from "./management/EditorCreator";
 
 const docStyle = window.getComputedStyle(document.documentElement);
 
@@ -26,6 +26,18 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             usage: new Map<string, string[]>().set(".menu-logo-wrapper", ["background:var(--topbar-logo-background);"])
         },
         {
+            variable: "--std-logo-height",
+            label: "Logo Max Height",
+            type: "text",
+            cssType: "theme",
+            value: docStyle.getPropertyValue('--std-logo-height'),
+            usage: new Map<string, string[]>()
+            .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["max-height: var(--std-logo-height);"]),
+            usage530: new Map<string, string[]>()
+            .set(".basti .std-menu .menu-logo-mini-wrapper", ["height: var(--std-logo-height);"])
+            .set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["max-height: var(--std-logo-height);"])
+        },
+        {
             variable: "--std-logo-width",
             label: "Logo Width",
             type: "text",
@@ -35,6 +47,16 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["width:var(--std-logo-width);"])
             .set(".basti .std-menu .menu-logo-mini", ["width:var(--std-logo-width);"]),
             usage530: new Map<string, string[]>().set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["width:var(--std-logo-width);"])
+        },
+        {
+            variable: "--std-logo-collapsed-width",
+            label: "Logo Collapsed Width",
+            type: "text",
+            cssType: "theme",
+            value: docStyle.getPropertyValue('--std-logo-collapsed-width'),
+            usage: new Map<string, string[]>()
+            .set(".basti .std-menu.menu-collapsed .menu-logo-wrapper .menu-logo", ["width: var(--std-logo-collapsed-width);"])
+            .set(".basti .std-menu.menu-collapsed .menu-logo-mini", ["width: var(--std-logo-collapsed-width);"])
         },
         {
             variable: "--topbar-background",
@@ -213,7 +235,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         {
             variable: "--profile-submenu-background",
             label: "Sub-Menu Background",
-            type: "text",
+            type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-submenu-background'),
             usage: new Map<string, string[]>()
@@ -251,5 +273,116 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             .set(".basti .std-menu .menu-logo-wrapper", ["width:var(--std-menu-width);"])
             .set(".basti .std-menu .menu-panelmenu-wrapper", ["width:var(--std-menu-width);"])
             .set(".basti .std-menu .p-panelmenu .p-panelmenu-icon", ["left:calc(var(--std-menu-width) - 30px);"])
+        },
+        {
+            variable: "--std-menu-collapsed-width",
+            label: "Menu Collapsed Width",
+            type: "text",
+            cssType: "theme",
+            value: docStyle.getPropertyValue('--std-menu-collapsed-width'),
+            usage: new Map<string, string[]>()
+            .set(".basti .std-menu.menu-collapsed .menu-logo-wrapper", ["width: var(--std-menu-collapsed-width);"])
+            .set(".basti .std-menu.menu-collapsed .menu-panelmenu-wrapper", ["width: var(--std-menu-collapsed-width);"])
+            .set(".basti .std-menu.menu-collapsed .menu-topbar", ["margin-left: var(--std-menu-collapsed-width);"])
+        },
+        {
+            variable: "--std-menu-background",
+            label: "Background",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--std-menu-background'),
+            usage: new Map<string, string[]>()
+            .set(".menu-panelmenu-wrapper", ["background: var(--std-menu-background);"])
+            .set(".p-panelmenu .p-panelmenu-header > a", ["background: var(--std-menu-background);", "border-color: var(--std-menu-background);"])
+            .set(".p-panelmenu .p-panelmenu-header.p-highlight > a, .p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["background: var(--std-menu-background);"])
+            .set(".p-panelmenu .p-panelmenu-content", ["background: var(--std-menu-background);"])
+            .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link", ["background: var(--std-menu-background);"])
+        },
+        {
+            variable: "--std-menu-item-hover-background",
+            label: "Item Hover Background",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--std-menu-item-hover-background'),
+            usage: new Map<string, string[]>()
+            .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover", ["background: var(--std-menu-item-hover-background);", "border-color: var(--std-menu-item-hover-background);"])
+            .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover", ["background: var(--std-menu-item-hover-background);"])
+        },
+        {
+            variable: "--std-menu-text-color",
+            label: "Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--std-menu-text-color'),
+            usage: new Map<string, string[]>()
+            .set(".p-panelmenu .p-panelmenu-header > a", ["color: var(--std-menu-text-color);"])
+            .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-icon, .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text", ["color: var(--std-menu-text-color);"])
+        },
+        {
+            variable: "--std-menu-item-hover-text-color",
+            label: "Hover Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--std-menu-item-hover-text-color'),
+            usage: new Map<string, string[]>()
+            .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover", ["color: var(--std-menu-item-hover-text-color);"])
+            .set(".p-panelmenu .p-panelmenu-header.p-highlight > a, .p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["color: var(--std-menu-item-hover-text-color);"])
+            .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon, .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text", ["color: var(--std-menu-item-hover-text-color);"])
+        },
+        {
+            variable: "--std-menu-activeitem-color",
+            label: "Active Item Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--std-menu-activeitem-color'),
+            usage: new Map<string, string[]>()
+            .set(".p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link .p-menuitem-text, .p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link .p-menuitem-icon", ["color: var(--std-menu-activeitem-color);"])
+        },
+        {
+            variable: "--std-menu-header-padding",
+            label: "Header-Item Padding",
+            type: "text",
+            cssType: "theme",
+            value: docStyle.getPropertyValue('--std-menu-header-padding'),
+            usage: new Map<string, string[]>()
+            .set(".basti .std-menu .p-panelmenu .p-panelmenu-header > a", ["padding: var(--std-menu-header-padding);"])
+        },
+        {
+            variable: "--std-menu-item-padding",
+            label: "Sub-Item Padding",
+            type: "text",
+            cssType: "theme",
+            value: docStyle.getPropertyValue('--std-menu-item-padding'),
+            usage: new Map<string, string[]>()
+            .set(".basti .std-menu .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled)", ["padding: var(--std-menu-item-padding);"])
+        },
+        {
+            variable: "--std-menu-border",
+            label: "Border",
+            type: "text",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--std-menu-border'),
+            usage: new Map<string, string[]>()
+            .set(".menu-logo-wrapper", ["border-bottom: var(--std-menu-border);"])
+            .set(".menu-panelmenu-wrapper", ["border-right: var(--std-menu-border);"])
+        },
+        {
+            variable: "--std-fadeout-width",
+            label: "Fadeout Width",
+            type: "text",
+            cssType: "theme",
+            value: docStyle.getPropertyValue('--std-fadeout-width'),
+            usage: new Map<string, string[]>()
+            .set(".basti .std-menu .fadeout", ["width: var(--std-fadeout-width);"])
+        },
+        {
+            variable: "--std-menu-fadeout-background",
+            label: "Fadeout Background",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--std-menu-fadeout-background'),
+            usage: new Map<string, string[]>()
+            .set(".fadeout", ["background-image: var(--std-menu-fadeout-background);"])
+
         }
     ])

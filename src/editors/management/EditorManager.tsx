@@ -1,7 +1,7 @@
 import React, { FC, useContext, useMemo } from "react";
-import { variableContext } from "../VariableProvider";
+import { variableContext } from "../../VariableProvider";
 import EditorCreator, { EditorItem } from "./EditorCreator";
-import { generalEditors } from "./GeneralEditors";
+import { generalEditors } from "../GeneralEditors";
 
 interface IEditorManager {
     isPreviewMode: boolean
@@ -10,7 +10,8 @@ interface IEditorManager {
 
 enum EDITOR_INDICES {
     LOGIN_EDITORS = 0,
-    MENU_EDITORS = 1
+    MENU_EDITORS = 1,
+    COPORATE_EDITORS = 2
 }
 
 const EditorManager: FC<IEditorManager> = (props) => {
@@ -30,6 +31,8 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS.toString()) as Map<string, EditorItem[]>;
                 case EDITOR_INDICES.MENU_EDITORS:
                     return context.variables.get(EDITOR_INDICES.MENU_EDITORS.toString()) as Map<string, EditorItem[]>;
+                case EDITOR_INDICES.COPORATE_EDITORS:
+                    return context.variables.get(EDITOR_INDICES.COPORATE_EDITORS.toString()) as Map<string, EditorItem[]>;
                 default:
                     return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS.toString()) as Map<string, EditorItem[]>;
             }

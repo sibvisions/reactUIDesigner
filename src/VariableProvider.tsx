@@ -1,7 +1,9 @@
 import React, { createContext, FC, useState } from "react"
-import { EditorItem } from "./editors/EditorCreator"
+import { EditorItem } from "./editors/management/EditorCreator"
+import { generalEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
 import { menuEditors } from "./editors/MenuEditors";
+import { corporateEditors } from "./editors/CorporateEditors";
 
 export type VariableContextType = {
     schemeName: string,
@@ -14,7 +16,7 @@ export type VariableContextType = {
 function getDefaultValues() {
     const docStyle = window.getComputedStyle(document.documentElement);
 
-    const mergedMap = new Map([...loginEditors, ...menuEditors]);
+    const mergedMap = new Map([...generalEditors, ...loginEditors, ...menuEditors]);
     const componentEntries = mergedMap.entries();
     const defaultValues = new Map<string, string>();
     let entry = componentEntries.next();
@@ -35,7 +37,8 @@ const initValue: VariableContextType = {
     themeName: "basti",
     variables: new Map<string, Map<string, EditorItem[]>>()
     .set("0", new Map<string, EditorItem[]>(loginEditors))
-    .set("1", new Map<string, EditorItem[]>(menuEditors)),
+    .set("1", new Map<string, EditorItem[]>(menuEditors))
+    .set("2", new Map<string, EditorItem[]>(corporateEditors)),
     defaultValues: getDefaultValues(),
     isPreviewMode: false
 }
