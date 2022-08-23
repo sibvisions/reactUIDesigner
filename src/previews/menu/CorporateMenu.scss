@@ -47,11 +47,6 @@
     align-items: center;
 }
 
-.corp-menu-profile {
-    display: flex;
-    align-items: center;
-}
-
 .p-menubar {
     border-radius: 0;
 
@@ -114,9 +109,6 @@
         .corp-menu-logo-wrapper {
             max-width: 0px !important;
             transition: max-width 0.5s ease-out;
-        }
-        .corp-menu-profile {
-            margin-left: auto;
         }
     }
 }

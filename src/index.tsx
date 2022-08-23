@@ -11,7 +11,7 @@ import ReactUIDesigner from './ReactUIDesigner';
 
 export default ReactDOM.render(
   // <React.StrictMode>
-  <ReactUIDesigner/>,
+  <ReactUIDesigner isCorporation={false} />,
   // </React.StrictMode>,
   document.getElementById('root')
 )

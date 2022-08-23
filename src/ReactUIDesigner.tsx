@@ -1,13 +1,19 @@
 import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { confirmDialog } from 'primereact/confirmdialog';
 import { EditorItem } from './editors/management/EditorCreator';
 import EditorManager from './editors/management/EditorManager';
 import './ReactUIDesigner.scss';
 import TabSelection from './editors/management/TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
+import { sendRequest } from './RequestService';
 
-const ReactUIDesigner: FC<any> = (props) => {
+interface IReactUIDesigner {
+  isCorporation: boolean
+}
+
+const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const context = useContext(variableContext);
 
   const [themeName, setThemeName] = useState<string>(context.themeName);
@@ -23,6 +29,8 @@ const ReactUIDesigner: FC<any> = (props) => {
   const isPreviewMode = useMemo(() => props.children !== undefined, [props.children]);
 
   const [previewValuesChanged, setPreviewValuesChanges] = useState<boolean>(false);
+
+  const [, setResetFlag] = useState<boolean>(false);
 
   const generateCSS = (type: "scheme"|"theme") => {
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
@@ -107,18 +115,31 @@ const ReactUIDesigner: FC<any> = (props) => {
 
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + "-scheme.css";
-    const fileNameTheme = context.themeName + ".css"
+    const schemeCSS = generateCSS("scheme");
+
+    const fileNameTheme = context.themeName + ".css";
+    const themeCSS = generateCSS("theme")
+
+    
+    
 
     const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(generateCSS("theme")));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(themeCSS));
     element.setAttribute('download', fileNameTheme);
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(generateCSS("scheme")));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(schemeCSS));
     element.setAttribute('download', fileNameScheme);
     element.click();
     document.body.removeChild(element);
+
+    const formData = new FormData();
+
+    formData.set(fileNameTheme, themeCSS)
+    formData.set(fileNameScheme, schemeCSS)
+
+    //sendRequest({ formData: formData }, "url-placeholder")
   }
 
   useEffect(() => {
@@ -145,14 +166,41 @@ const ReactUIDesigner: FC<any> = (props) => {
       })
       setPreviewValuesChanges(true);
     }
-  }, [isPreviewMode])
+  }, [isPreviewMode]);
+
+  const confirm = () => {
+    const acceptFunc = () => {
+      context.variables.forEach((variableMap) => {
+        variableMap.forEach((editorItems) => {
+          editorItems.forEach((editorItem) => {
+            const foundDefaultValue = context.defaultValues.get(editorItem.variable);
+            if (foundDefaultValue) {
+              editorItem.value = foundDefaultValue;
+              document.documentElement.style.setProperty(editorItem.variable, foundDefaultValue)
+            }
+          });
+        });
+      });
+      setResetFlag(prevState => !prevState)
+    }
+
+    confirmDialog({
+      message: "Are you sure you want to reset to default?",
+      header: "Resetting Variables",
+      icon: "pi pi-question-circle",
+      accept: () => acceptFunc(),
+    })
+  }
 
   return (
     <VariableProvider>
       <div className='designer-main'>
         <div className='designer-frame'>
           <div className='designer-topbar'>
-            <span className='designer-topbar-header'>ReactUI-Designer</span>
+            <div className='designer-topbar-left'>
+              <span className='designer-topbar-header'>ReactUI-Designer</span>
+              <Button className='designer-topbar-reset-button' icon='fas fa-undo' onClick={confirm} />
+            </div>
             <img className='designer-topbar-logo' alt='company logo' src={process.env.PUBLIC_URL + '/assets/logo_big.png'} />
           </div>
           <div className='designer-panel-wrapper'>
@@ -198,7 +246,10 @@ const ReactUIDesigner: FC<any> = (props) => {
               </div>
               <Button className='designer-panel-options-download-button' icon='fas fa-file-download' onClick={handleDownload} />
             </div>
-            <EditorManager isPreviewMode={isPreviewMode} activeIndex={activeTabIndex} />
+            <EditorManager
+              isPreviewMode={isPreviewMode} 
+              isCorporation={props.isCorporation}
+              activeIndex={activeTabIndex} />
           </div>
         </div>
         <div className='designer-content basti'>

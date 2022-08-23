@@ -65,9 +65,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             cssType: "scheme",
             value: docStyle.getPropertyValue('--topbar-background'),
             usage: new Map<string, string[]>()
-            .set(".menu-header", ["background:var(--topbar-background);"])
-            .set(".corp-menu-header", ["background:var(--topbar-background);"])
-            .set(".corp-menubar", ["background:var(--topbar-background);"]),
+            .set(".menu-header", ["background:var(--topbar-background);"]),
             usage960: new Map<string, string[]>()
             .set(".p-menubar .p-menubar-root-list", ["background:var(--topbar-background);"])
             .set(".p-menubar .p-menubar-root-list > .p-menuitem", ["background:var(--topbar-background);"])
@@ -97,23 +95,23 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             usage: new Map<string, string[]>().set(".basti .std-menu .menu-topbar .menu-screen-title", ["margin-left:var(--std-screen-title-margin);"])
         },
         {
-            variable: "--topbar-button-size",
+            variable: "--std-topbar-button-size",
             label: "Button Size",
             type: "text",
             cssType: "theme",
-            value: docStyle.getPropertyValue('--topbar-button-size'),
+            value: docStyle.getPropertyValue('--std-topbar-button-size'),
             usage: new Map<string, string[]>()
-            .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--topbar-button-size);", "height:var(--topbar-button-size);"])
+            .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--std-topbar-button-size);", "height:var(--std-topbar-button-size);"])
         },
         {
-            variable: "--topbar-button-size-small",
+            variable: "--std-topbar-button-size-small",
             label: "Button Size (Small)",
             type: "text",
             cssType: "theme",
-            value: docStyle.getPropertyValue('--topbar-button-size-small'),
+            value: docStyle.getPropertyValue('--std-topbar-button-size-small'),
             usage: new Map<string, string[]>(),
             usage530: new Map<string, string[]>()
-            .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--topbar-button-size-small);", "height:var(--topbar-button-size-small);"])
+            .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--std-topbar-button-size-small);", "height:var(--std-topbar-button-size-small);"])
         },
         {
             variable: "--topbar-button-background",
@@ -259,7 +257,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             value: docStyle.getPropertyValue('--profile-item-hover-text-color'),
             usage: new Map<string, string[]>()
             .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon", ["color:var(--profile-item-hover-text-color);"])
-        },
+        }
     ])
     .set("Panel-Menu", [
         {

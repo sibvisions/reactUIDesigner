@@ -4,6 +4,7 @@ import { SpeedDial } from "primereact/speeddial";
 import { menuModel, profileModel } from "./Menu";
 import { MenuItem } from "primereact/menuitem";
 import './CorporateMenu.scss';
+import { Button } from "primereact/button";
 
 const CorporateMenu: FC = () => {
     const toolbarItems:MenuItem[] = [
@@ -28,8 +29,14 @@ const CorporateMenu: FC = () => {
                             src={process.env.PUBLIC_URL + '/assets/logo_big.png'} alt="logo" />
                     </div>
                     <span className="menu-screen-title">Designer-Menu-Mock</span>
-                    <div className="corp-menu-profile">
-                        <Menubar className="profile-menubar" model={profileModel}/>
+                    <div className="menu-topbar-right">
+                        <Button icon="fas fa-home" className="menu-topbar-buttons" />
+                        <Button icon="fas fa-save" className="menu-topbar-buttons" />
+                        <Button icon="fas fa-sync" className="menu-topbar-buttons" />
+                        <div className="vl" />
+                        <div className="profile-menu">
+                            <Menubar className="profile-menubar" model={profileModel}/>
+                        </div>
                     </div>
                 </div>
                 <div className="corp-menu-menubar">

@@ -16,7 +16,7 @@ export type VariableContextType = {
 function getDefaultValues() {
     const docStyle = window.getComputedStyle(document.documentElement);
 
-    const mergedMap = new Map([...generalEditors, ...loginEditors, ...menuEditors]);
+    const mergedMap = new Map([...generalEditors, ...loginEditors, ...menuEditors, ...corporateEditors]);
     const componentEntries = mergedMap.entries();
     const defaultValues = new Map<string, string>();
     let entry = componentEntries.next();
