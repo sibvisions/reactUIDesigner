@@ -95,10 +95,14 @@
       margin-left: 0.25rem;
     }
 
-    .designer-panel-options-download-button {
-      align-self: flex-start;
-      margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    .designer-panel-options-button {
+      width: calc(50% - 10px);
+      margin: 5px;
+    }
+
+    .designer-panel-options-button-solo {
       width: 100%;
+      margin: 5px;
     }
   }
 

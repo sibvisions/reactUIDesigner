@@ -11,6 +11,7 @@ import { sendRequest } from './RequestService';
 
 interface IReactUIDesigner {
   isCorporation: boolean
+  uploadUrl?: string
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -31,6 +32,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const [previewValuesChanged, setPreviewValuesChanges] = useState<boolean>(false);
 
   const [, setResetFlag] = useState<boolean>(false);
+
+  const uploadUrl = useMemo(() => props.uploadUrl || "PASTE URL HERE", [props.uploadUrl]);
 
   const generateCSS = (type: "scheme"|"theme") => {
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
@@ -118,10 +121,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     const schemeCSS = generateCSS("scheme");
 
     const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme")
-
-    
-    
+    const themeCSS = generateCSS("theme");
 
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(themeCSS));
@@ -133,13 +133,19 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     element.setAttribute('download', fileNameScheme);
     element.click();
     document.body.removeChild(element);
+  }
+
+  const handleUpload = (uploadUrl:string) => {
+    const fileNameScheme = context.schemeName + "-scheme.css";
+    const schemeCSS = generateCSS("scheme");
+
+    const fileNameTheme = context.themeName + ".css";
+    const themeCSS = generateCSS("theme");
 
     const formData = new FormData();
-
     formData.set(fileNameTheme, themeCSS)
     formData.set(fileNameScheme, schemeCSS)
-
-    //sendRequest({ formData: formData }, "url-placeholder")
+    sendRequest({ formData: formData }, uploadUrl);
   }
 
   useEffect(() => {
@@ -244,7 +250,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                 <span className='designer-panel-options-header'>Scheme:</span>
                 <InputText value={schemeName} onChange={event => setSchemeName(event.target.value)} className='designer-panel-options-inputtext' />
               </div>
-              <Button className='designer-panel-options-download-button' icon='fas fa-file-download' onClick={handleDownload} />
+              <Button className={props.uploadUrl ? 'designer-panel-options-button' : 'designer-panel-options-button-solo'} icon='fas fa-file-download' onClick={handleDownload} />
+              {uploadUrl && <Button className='designer-panel-options-button' icon='fas fa-cloud-upload-alt' onClick={() => handleUpload(uploadUrl)} />}
             </div>
             <EditorManager
               isPreviewMode={isPreviewMode} 
