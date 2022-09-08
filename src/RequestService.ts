@@ -40,9 +40,13 @@ function timeoutRequest(promise: Promise<any>, ms: number) {
  * @returns - a request to send to the server
  */
 function buildReqOpts(request:any):RequestInit {
+    const requestHeaders: HeadersInit = new Headers();
+    requestHeaders.set('Content-Type', 'application/octet-stream');
+
     return {
         method: 'POST',
         body: request.formData,
+        headers: requestHeaders,
         credentials:"include",
     };
 }
@@ -53,8 +57,19 @@ function buildReqOpts(request:any):RequestInit {
  * @param url - the url to send the request to
  */
 export function sendRequest(request: any, url: string) {
-    let promise = new Promise<any>((resolve) => {
-        timeoutRequest(fetch(url, buildReqOpts(request)), 10000).then((response:any) => resolve(response.json()))
+    let promise = new Promise<any>((resolve, reject) => {
+        timeoutRequest(fetch(url, buildReqOpts(request)), 10000)
+        .then((response:any) => {
+            if (response.status === 204) {
+                resolve({});
+            }
+            else if (response.status < 400) {
+                resolve(response.json())
+            }
+            else {
+                reject()
+            }
+        })
     });
     return promise
 }

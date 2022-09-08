@@ -145,7 +145,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     const formData = new FormData();
     formData.set(fileNameTheme, themeCSS)
     formData.set(fileNameScheme, schemeCSS)
-    sendRequest({ formData: formData }, uploadUrl);
+    sendRequest({ formData: formData }, uploadUrl).catch((error) => console.error(error));
   }
 
   useEffect(() => {
