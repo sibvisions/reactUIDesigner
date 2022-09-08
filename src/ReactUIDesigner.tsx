@@ -8,6 +8,7 @@ import './ReactUIDesigner.scss';
 import TabSelection from './editors/management/TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
 import { sendRequest } from './RequestService';
+import { Toast } from 'primereact/toast';
 
 interface IReactUIDesigner {
   isCorporation: boolean
@@ -34,6 +35,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const [, setResetFlag] = useState<boolean>(false);
 
   const uploadUrl = useMemo(() => props.uploadUrl || "PASTE URL HERE", [props.uploadUrl]);
+
+  const toastRef = useRef<Toast>(null);
 
   const generateCSS = (type: "scheme"|"theme") => {
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
@@ -143,9 +146,25 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     const themeCSS = generateCSS("theme");
 
     const formData = new FormData();
-    formData.set(fileNameTheme, themeCSS)
-    formData.set(fileNameScheme, schemeCSS)
-    sendRequest({ formData: formData }, uploadUrl).catch((error) => console.error(error));
+
+    formData.set("theme-file-name", fileNameTheme);
+    formData.set("theme-css", themeCSS);
+
+    formData.set("scheme-file-name", fileNameScheme);
+    formData.set("scheme-css", schemeCSS);
+
+    sendRequest({ formData: formData }, uploadUrl)
+    .then(() => {
+      if (toastRef.current) {
+        toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The CSS Files have been uploaded to the server." })
+      }
+    })
+    .catch((error) => {
+      if (toastRef.current) {
+        toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The CSS Files could not be uploaded. " + error })
+      }
+      console.error(error)
+    });
   }
 
   useEffect(() => {
@@ -200,6 +219,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   return (
     <VariableProvider>
+      <Toast ref={toastRef} />
       <div className='designer-main'>
         <div className='designer-frame'>
           <div className='designer-topbar'>

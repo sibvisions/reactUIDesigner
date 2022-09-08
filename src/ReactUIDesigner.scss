@@ -48,7 +48,7 @@
   color: #fff;
 }
 
-.designer-topbar-reset-button {
+.designer-topbar-reset-button.p-button {
   margin-left: 0.5rem;
   border-radius: 50%;
   background: #4d5a69;
@@ -95,7 +95,7 @@
       margin-left: 0.25rem;
     }
 
-    .designer-panel-options-button.p-button {
+    .designer-panel-options-button {
       width: calc(50% - 10px);
       margin: 5px;
     }

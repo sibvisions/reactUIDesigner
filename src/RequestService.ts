@@ -41,7 +41,7 @@ function timeoutRequest(promise: Promise<any>, ms: number) {
  */
 function buildReqOpts(request:any):RequestInit {
     const requestHeaders: HeadersInit = new Headers();
-    requestHeaders.set('Content-Type', 'application/octet-stream');
+    //requestHeaders.set('Content-Type', 'multipart/form-data');
 
     return {
         method: 'POST',
