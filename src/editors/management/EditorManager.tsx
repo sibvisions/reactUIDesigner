@@ -1,5 +1,5 @@
 import React, { FC, useContext, useMemo } from "react";
-import { variableContext } from "../../VariableProvider";
+import { variableContext, VariableContextType } from "../../VariableProvider";
 import EditorCreator, { EditorItem } from "./EditorCreator";
 import { generalEditors } from "../GeneralEditors";
 
@@ -15,21 +15,25 @@ enum EDITOR_INDICES {
     COPORATE_EDITORS = "2"
 }
 
+export function getPreviewVariableMap(context: VariableContextType, isCorporation: boolean) {
+    let newVariableMap = new Map<string, EditorItem[]>();
+    const variableEntries = context.variables.entries();
+    let entry = variableEntries.next();
+    while (!entry.done) {
+        if ((isCorporation && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS) || (!isCorporation && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS)) {
+            newVariableMap = new Map<string, EditorItem[]>([...newVariableMap, ...entry.value[1]]);
+        }
+        entry = variableEntries.next();
+    }
+    return newVariableMap;
+}
+
 const EditorManager: FC<IEditorManager> = (props) => {
     const context = useContext(variableContext)
 
     const editors = useMemo(() => {
         if (props.isPreviewMode) {
-            let newVariableMap = new Map<string, EditorItem[]>();
-            const variableEntries = context.variables.entries();
-            let entry = variableEntries.next();
-            while (!entry.done) {
-                if ((props.isCorporation && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS) || (!props.isCorporation && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS)) {
-                    newVariableMap = new Map<string, EditorItem[]>([...newVariableMap, ...entry.value[1]]);
-                }
-                entry = variableEntries.next();
-            }
-            return newVariableMap;
+            return getPreviewVariableMap(context, props.isCorporation);
         }
         else {
             switch (props.activeIndex) {

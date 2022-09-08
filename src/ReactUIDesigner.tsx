@@ -3,7 +3,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { EditorItem } from './editors/management/EditorCreator';
-import EditorManager from './editors/management/EditorManager';
+import EditorManager, { getPreviewVariableMap } from './editors/management/EditorManager';
 import './ReactUIDesigner.scss';
 import TabSelection from './editors/management/TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
@@ -38,7 +38,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const toastRef = useRef<Toast>(null);
 
-  const generateCSS = (type: "scheme"|"theme") => {
+  const generateCSS = (type: "scheme"|"theme", isPreviewMode: boolean) => {
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
     const selectorMap960: Map<string, string[]> = new Map<string, string[]>();
     const selectorMap530: Map<string, string[]> = new Map<string, string[]>();
@@ -76,8 +76,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
     let cssString = ":root {\n";
 
-    context.variables.forEach((tabGroup) => {
-      tabGroup.forEach(editorItems => {
+    const printRules = (map: Map<string, EditorItem[]>) => {
+      map.forEach(editorItems => {
         editorItems.forEach(editorItem => {
           if (editorItem.cssType === type) {
             cssString += "\t" + editorItem.variable + ":" + editorItem.value + ";\n";
@@ -87,7 +87,16 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           }
         })
       })
-    });
+    }
+
+    if (isPreviewMode) {
+      printRules(getPreviewVariableMap(context, props.isCorporation))
+    }
+    else {
+      context.variables.forEach((tabGroup) => {
+        printRules(tabGroup);
+      });
+    }
 
     cssString += "}\n\n"
 
@@ -121,10 +130,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme");
+    const schemeCSS = generateCSS("scheme", isPreviewMode);
 
     const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme");
+    const themeCSS = generateCSS("theme", isPreviewMode);
 
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(themeCSS));
@@ -140,10 +149,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const handleUpload = (uploadUrl:string) => {
     const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme");
+    const schemeCSS = generateCSS("scheme", isPreviewMode);
 
     const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme");
+    const themeCSS = generateCSS("theme", isPreviewMode);
 
     const formData = new FormData();
 
