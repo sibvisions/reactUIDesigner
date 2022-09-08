@@ -47,8 +47,8 @@ const EditorManager: FC<IEditorManager> = (props) => {
 
     return (
         <>
-            <EditorCreator editors={generalEditors} />
-            <EditorCreator editors={editors} />
+            <EditorCreator index={props.activeIndex} isPreviewMode={props.isPreviewMode} editors={generalEditors} />
+            <EditorCreator index={props.activeIndex} isPreviewMode={props.isPreviewMode} editors={editors} />
         </>
     )
 }
