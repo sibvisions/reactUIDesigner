@@ -120,7 +120,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   }
 
   const handleDownload = () => {
-    const fileNameScheme = context.schemeName + "-scheme.css";
+    const fileNameScheme = context.schemeName + ".css";
     const schemeCSS = generateCSS("scheme");
 
     const fileNameTheme = context.themeName + ".css";
@@ -139,7 +139,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   }
 
   const handleUpload = (uploadUrl:string) => {
-    const fileNameScheme = context.schemeName + "-scheme.css";
+    const fileNameScheme = context.schemeName + ".css";
     const schemeCSS = generateCSS("scheme");
 
     const fileNameTheme = context.themeName + ".css";

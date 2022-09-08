@@ -4,7 +4,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeicons/primeicons.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import './styles/default-scheme.scss';
+import './styles/default.scss';
 import './styles/basti.scss';
 import './index.scss';
 import ReactUIDesigner from './ReactUIDesigner';
