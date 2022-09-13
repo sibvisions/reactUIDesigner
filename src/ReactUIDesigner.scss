@@ -50,12 +50,12 @@
 
 .designer-topbar-reset-button.p-button {
   border-radius: 50%;
-  background: #0a80e0;
-  border-color: #0a80e0;
+  background: #1169b0;
+  border-color: #1169b0;
 
   &:enabled:hover {
-    background: #0477d4;
-    border-color: #0477d4;
+    background: #085594;
+    border-color: #065697;
   }
 }
 
@@ -80,7 +80,7 @@
   .designer-panel-options {
     width: 100%;
     display: flex;
-    //flex-direction: column;
+    flex-direction: column;
     flex-wrap: wrap;
 
     .designer-panel-options-inputs {
@@ -89,14 +89,31 @@
       margin: 0.25rem 0.5rem;
     }
 
+    .designer-panel-options-header {
+      width: 20%;
+    }
+
     .designer-panel-options-inputtext {
-      max-width: 75px;
       margin-left: 0.25rem;
+      flex: 1;
     }
 
     .designer-panel-options-button {
-      width: calc(50% - 10px);
-      margin: 5px;
+      width: calc(50% - 5px);
+      
+    }
+
+    .download-button:not(.designer-panel-options-button-solo) {
+      margin: 5px 0px 5px 5px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-right: 2px solid #0e72c1;
+    }
+
+    .upload-button {
+      margin: 5px 5px 5px 0px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
     }
 
     .designer-panel-options-button-solo {

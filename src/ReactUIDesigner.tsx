@@ -150,47 +150,51 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           </div>
           <div className='designer-panel-wrapper'>
             <div className='designer-panel-options'>
-              <div className='designer-panel-options-inputs'>
-                <span className='designer-panel-options-header'>Theme:</span>
-                <InputText
-                  value={themeName}
-                  onChange={event => setThemeName(event.target.value)}
-                  onBlur={() => {
-                    context.variables.forEach(varTab => {
-                      varTab.forEach(varGroup => {
-                        varGroup.forEach(varItem => {
-                          if (varItem.cssType === "theme") {
-                            const getNewSelectorMap = (usageMap?: Map<string, string[]>) => {
-                              if (usageMap && usageMap.size) {
-                                const newMap = new Map<string, string[]>();
-                                const variableEntries = usageMap.entries();
-                                let entry = variableEntries.next();
-                                while (!entry.done) {
-                                  entry.value[0] = entry.value[0].replaceAll(previousThemeName.current, themeName);
-                                  newMap.set(entry.value[0], entry.value[1]);
-                                  entry = variableEntries.next();
+              <div>
+                <div className='designer-panel-options-inputs'>
+                  <span className='designer-panel-options-header'>Theme:</span>
+                  <InputText
+                    value={themeName}
+                    onChange={event => setThemeName(event.target.value)}
+                    onBlur={() => {
+                      context.variables.forEach(varTab => {
+                        varTab.forEach(varGroup => {
+                          varGroup.forEach(varItem => {
+                            if (varItem.cssType === "theme") {
+                              const getNewSelectorMap = (usageMap?: Map<string, string[]>) => {
+                                if (usageMap && usageMap.size) {
+                                  const newMap = new Map<string, string[]>();
+                                  const variableEntries = usageMap.entries();
+                                  let entry = variableEntries.next();
+                                  while (!entry.done) {
+                                    entry.value[0] = entry.value[0].replaceAll(previousThemeName.current, themeName);
+                                    newMap.set(entry.value[0], entry.value[1]);
+                                    entry = variableEntries.next();
+                                  }
+                                  return newMap;
                                 }
-                                return newMap;
+                                return usageMap;
                               }
-                              return usageMap;
+                              varItem.usage = getNewSelectorMap(varItem.usage) as Map<string, string[]>;
+                              varItem.usage960 = getNewSelectorMap(varItem.usage960);
+                              varItem.usage530 = getNewSelectorMap(varItem.usage530);
                             }
-                            varItem.usage = getNewSelectorMap(varItem.usage) as Map<string, string[]>;
-                            varItem.usage960 = getNewSelectorMap(varItem.usage960);
-                            varItem.usage530 = getNewSelectorMap(varItem.usage530);
-                          }
+                          })
                         })
-                      })
-                    });
-                    previousThemeName.current = themeName;
-                  }}
-                  className='designer-panel-options-inputtext' />
+                      });
+                      previousThemeName.current = themeName;
+                    }}
+                    className='designer-panel-options-inputtext' />
+                </div>
+                <div className='designer-panel-options-inputs'>
+                  <span className='designer-panel-options-header'>Scheme:</span>
+                  <InputText value={schemeName} onChange={event => setSchemeName(event.target.value)} className='designer-panel-options-inputtext' />
+                </div>
               </div>
-              <div className='designer-panel-options-inputs'>
-                <span className='designer-panel-options-header'>Scheme:</span>
-                <InputText value={schemeName} onChange={event => setSchemeName(event.target.value)} className='designer-panel-options-inputtext' />
+              <div>
+                <Button className={uploadUrl ? 'designer-panel-options-button download-button' : 'designer-panel-options-button-solo'} icon='fas fa-file-download' onClick={handleDownload} />
+                {uploadUrl && <Button className='designer-panel-options-button upload-button' icon='fas fa-cloud-upload-alt' onClick={() => handleUpload(uploadUrl)} />}
               </div>
-              <Button className={uploadUrl ? 'designer-panel-options-button' : 'designer-panel-options-button-solo'} icon='fas fa-file-download' onClick={handleDownload} />
-              {uploadUrl && <Button className='designer-panel-options-button' icon='fas fa-cloud-upload-alt' onClick={() => handleUpload(uploadUrl)} />}
             </div>
             <EditorManager
               isPreviewMode={isPreviewMode} 
