@@ -1,7 +1,9 @@
 {
   "name": "@sibvisions/reactui-designer",
   "version": "0.1.0",
-  "private": true,
+  "main": "moduleIndex.js",
+  "types": "moduleIndex.d.ts",
+  "license": "Apache-2.0 license",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@testing-library/jest-dom": "^5.16.4",
@@ -14,6 +16,7 @@
     "@types/tinycolor2": "^1.4.3",
     "circular-dependency-plugin": "^5.2.2",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "node-sass": "^7.0.0",
     "primeicons": "^5.0.0",
     "primereact": "^7.2.1",
@@ -29,6 +32,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "clean": "if exist dist rmdir /S /Q dist",
+    "pre-package": "npm run build && npm run clean && npm run bundle && node dist/SetupPackage.js",
+    "build-patch": "npm run pre-package && npm version patch && cd dist && npm version patch && npm publish",
+    "build-minor": "npm run pre-package && npm version minor && cd dist && npm version minor && npm publish",
+    "build-major": "npm run pre-package && npm version major && cd dist && npm version major && npm publish",
     "bundle": "webpack -c ./webpack.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

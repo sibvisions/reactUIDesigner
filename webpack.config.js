@@ -2,6 +2,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = () => {
     return {
@@ -26,6 +27,15 @@ module.exports = () => {
                 cwd: process.cwd(),
             }),
             new CleanWebpackPlugin(),
+            new CopyPlugin({
+                patterns: [
+                    {
+                        from: "SetupPackage.js",
+                        context: path.resolve(__dirname, "src"),
+                        to: "./"
+                    }
+                ]
+            })
         ],
         module: {
             rules: [
