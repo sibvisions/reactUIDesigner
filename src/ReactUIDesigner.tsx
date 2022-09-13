@@ -3,12 +3,13 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { EditorItem } from './editors/management/EditorCreator';
-import EditorManager, { getPreviewVariableMap } from './editors/management/EditorManager';
+import EditorManager from './editors/management/EditorManager';
 import './ReactUIDesigner.scss';
 import TabSelection from './editors/management/TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
 import { sendRequest } from './RequestService';
 import { Toast } from 'primereact/toast';
+import { generateCSS } from './util/GenerateCSS';
 
 interface IReactUIDesigner {
   isCorporation: boolean
@@ -38,102 +39,12 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const toastRef = useRef<Toast>(null);
 
-  const generateCSS = (type: "scheme"|"theme", isPreviewMode: boolean) => {
-    const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
-    const selectorMap960: Map<string, string[]> = new Map<string, string[]>();
-    const selectorMap530: Map<string, string[]> = new Map<string, string[]>();
-
-    const fillSelectorMap = (editorItem: EditorItem, size:"full"|"960"|"530") => {
-      let selectorMap = new Map();
-      let usageMap: Map<string, string[]> | undefined={} = new Map();
-
-      switch (size) {
-        case "960":
-          selectorMap = selectorMap960;
-          usageMap = editorItem.usage960;
-          break;
-        case "530":
-          selectorMap = selectorMap530;
-          usageMap = editorItem.usage530;
-          break;
-        case "full":
-        default:
-          selectorMap = selectorMapFull;
-          usageMap = editorItem.usage;
-      }
-
-      if (usageMap) {
-        usageMap.forEach((value, selector) => {
-          if (selectorMap.has(selector)) {
-            selectorMap.set(selector, [...(selectorMap.get(selector) as string[]), ...value]);
-          }
-          else {
-            selectorMap.set(selector, value);
-          }
-        })
-      }
-    }
-
-    let cssString = ":root {\n";
-
-    const printRules = (map: Map<string, EditorItem[]>) => {
-      map.forEach(editorItems => {
-        editorItems.forEach(editorItem => {
-          if (editorItem.cssType === type) {
-            cssString += "\t" + editorItem.variable + ":" + editorItem.value + ";\n";
-            fillSelectorMap(editorItem, "full");
-            fillSelectorMap(editorItem, "960");
-            fillSelectorMap(editorItem, "530");
-          }
-        })
-      })
-    }
-
-    if (isPreviewMode) {
-      printRules(getPreviewVariableMap(context, props.isCorporation))
-    }
-    else {
-      context.variables.forEach((tabGroup) => {
-        printRules(tabGroup);
-      });
-    }
-
-    cssString += "}\n\n"
-
-    const generateCSSRules = (size:"full"|"960"|"530") => {
-      let selectorMap = size === "full" ? selectorMapFull : size === "960" ? selectorMap960 : selectorMap530;
-      selectorMap.forEach((values, selector) => {
-        cssString += (size !== "full" ? "\t" : "") + selector + " {\n";
-        values.forEach(value => {
-          cssString += (size !== "full" ? "\t\t" : "\t") + value + "\n";
-        })
-        cssString += (size !== "full" ? "\t" : "") + "}\n\n";
-      });
-
-      if (size !== "full") {
-        cssString += "}\n\n";
-      }
-    }
-
-    generateCSSRules("full");
-
-    cssString += "@media screen and (max-width: 960px) {\n";
-
-    generateCSSRules("960");
-
-    cssString += "@media screen and (max-width: 530px) {\n";
-
-    generateCSSRules("530");
-
-    return cssString
-  }
-
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme", isPreviewMode);
+    const schemeCSS = generateCSS("scheme", isPreviewMode, props.isCorporation, context);
 
     const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme", isPreviewMode);
+    const themeCSS = generateCSS("theme", isPreviewMode, props.isCorporation, context);
 
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(themeCSS));
@@ -149,10 +60,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const handleUpload = (uploadUrl:string) => {
     const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme", isPreviewMode);
+    const schemeCSS = generateCSS("scheme", isPreviewMode, props.isCorporation, context);
 
     const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme", isPreviewMode);
+    const themeCSS = generateCSS("theme", isPreviewMode, props.isCorporation, context);
 
     const formData = new FormData();
 

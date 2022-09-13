@@ -4,6 +4,7 @@ import { generalEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
 import { menuEditors } from "./editors/MenuEditors";
 import { corporateEditors } from "./editors/CorporateEditors";
+import { buttonEditors } from "./editors/ButtonEditor";
 
 export type VariableContextType = {
     schemeName: string,
@@ -16,7 +17,7 @@ export type VariableContextType = {
 function getDefaultValues() {
     const docStyle = window.getComputedStyle(document.documentElement);
 
-    const mergedMap = new Map([...generalEditors, ...loginEditors, ...menuEditors, ...corporateEditors]);
+    const mergedMap = new Map([...generalEditors, ...loginEditors, ...menuEditors, ...corporateEditors, ...buttonEditors]);
     const componentEntries = mergedMap.entries();
     const defaultValues = new Map<string, string>();
     let entry = componentEntries.next();
@@ -36,9 +37,11 @@ const initValue: VariableContextType = {
     schemeName: "default",
     themeName: "basti",
     variables: new Map<string, Map<string, EditorItem[]>>()
+    .set("-1", new Map<string, EditorItem[]>(generalEditors))
     .set("0", new Map<string, EditorItem[]>(loginEditors))
     .set("1", new Map<string, EditorItem[]>(menuEditors))
-    .set("2", new Map<string, EditorItem[]>(corporateEditors)),
+    .set("2", new Map<string, EditorItem[]>(corporateEditors))
+    .set("3", new Map<string, EditorItem[]>(buttonEditors)),
     defaultValues: getDefaultValues(),
     isPreviewMode: false
 }
