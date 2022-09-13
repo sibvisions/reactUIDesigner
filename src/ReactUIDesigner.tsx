@@ -144,10 +144,9 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         <div className='designer-frame'>
           <div className='designer-topbar'>
             <div className='designer-topbar-left'>
-              <span className='designer-topbar-header'>ReactUI-Designer</span>
               <Button className='designer-topbar-reset-button' icon='fas fa-undo' onClick={confirm} />
             </div>
-            <img className='designer-topbar-logo' alt='company logo' src={process.env.PUBLIC_URL + '/assets/logo_big.png'} />
+            <span className='designer-topbar-header'>App-Designer</span>
           </div>
           <div className='designer-panel-wrapper'>
             <div className='designer-panel-options'>
