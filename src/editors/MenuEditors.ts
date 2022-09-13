@@ -3,7 +3,7 @@ import { EditorItem } from "./management/EditorCreator";
 const docStyle = window.getComputedStyle(document.documentElement);
 
 export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
-    .set("Topbar", [
+    .set("Standard-Topbar", [
         {
             variable: "--std-header-height",
             label: "Height",

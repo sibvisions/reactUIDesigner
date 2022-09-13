@@ -33,7 +33,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const [previewValuesChanged, setPreviewValuesChanges] = useState<boolean>(false);
 
-  const [, setResetFlag] = useState<boolean>(false);
+  const [reset, setReset] = useState<boolean>(false);
 
   const uploadUrl = useMemo(() => props.uploadUrl || "PASTE URL HERE", [props.uploadUrl]);
 
@@ -126,7 +126,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           });
         });
       });
-      setResetFlag(prevState => !prevState)
+      setReset(prevState => !prevState)
     }
 
     confirmDialog({
