@@ -34,7 +34,7 @@
   width: 100%;
   height: var(--designer-topbar-height);
   padding: 0 1rem;
-  background: #7a7f85;
+  background: #2196F3;
 }
 
 .designer-topbar-left {
@@ -49,14 +49,13 @@
 }
 
 .designer-topbar-reset-button.p-button {
-  margin-left: 0.5rem;
   border-radius: 50%;
-  background: #4d5a69;
-  border-color: #4d5a69;
+  background: #0a80e0;
+  border-color: #0a80e0;
 
   &:enabled:hover {
-    background: #34465a;
-    border-color: #34465a;
+    background: #0477d4;
+    border-color: #0477d4;
   }
 }
 
@@ -124,4 +123,19 @@
   margin-left: var(--designer-panel-wrapper-width);
   padding: var(--designer-content-padding);
   flex: 1 1;
+
+  .menu-logo-wrapper, .menu-logo, .menu-topbar, .menu-panelmenu-wrapper,
+  .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text, 
+  .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-submenu-icon,
+  .menu-logo-mini-wrapper, .menu-logo-mini, .fadeout, .main.menu-transition:not(.main--with-corp-menu) {
+      transition: none;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+    .p-menuitem-text, .p-submenu-icon {
+      transition: none
+    }
+  }
 }
