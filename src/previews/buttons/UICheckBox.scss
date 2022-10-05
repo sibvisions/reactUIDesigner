@@ -1,0 +1,71 @@
+/* Copyright 2022 SIB Visions GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+/// Inline-flex for alignment
+.rc-checkbox {
+    --checkJustify: flex-start;
+    --checkAlign: center;
+    --checkPadding: 0;
+
+    display: flex;
+
+    justify-content: var(--checkJustify);
+    align-items: var(--checkAlign);
+    padding: var(--checkPadding);
+
+    .p-checkbox {
+        //width: 20px;
+        //height: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.gap-top {
+    .p-checkbox {
+        margin-top: var(--iconTextGap);
+    }
+}
+
+.gap-left {
+    .p-checkbox {
+        margin-left: var(--iconTextGap);
+    }
+}
+
+.gap-right {
+    .p-checkbox {
+        margin-right: var(--iconTextGap);
+    }
+}
+
+.gap-bottom {
+    .p-checkbox {
+        margin-bottom: var(--iconTextGap);
+    }
+}
+
+.icon-center-left {
+    .p-checkbox {
+        margin-left: var(--iconCenterGap);
+    }
+}
+
+.icon-center-right {
+    .p-checkbox {
+        margin-right: var(--iconCenterGap);
+    }
+}
+
