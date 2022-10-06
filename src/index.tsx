@@ -26,7 +26,13 @@ import ReactUIDesigner from './ReactUIDesigner';
 
 export default ReactDOM.render(
   // <React.StrictMode>
-  <ReactUIDesigner isCorporation={false} reloadImages={() => {}} />,
+  <ReactUIDesigner 
+    isCorporation={false} 
+    changeImages={() => {}} 
+    isLogin={false} 
+    logoLogin={process.env.PUBLIC_URL + '/assets/logo_login.png'} 
+    logoBig={process.env.PUBLIC_URL + '/assets/logo_big.png'}
+    logoSmall={process.env.PUBLIC_URL + '/assets/logo_small.png'} />,
   // </React.StrictMode>,
   document.getElementById('root')
 )
