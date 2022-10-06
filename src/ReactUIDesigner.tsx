@@ -28,6 +28,7 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 
 interface IReactUIDesigner {
   isCorporation: boolean
+  reloadImages: () => void
   uploadUrl?: string
 }
 
@@ -179,6 +180,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
       sendRequest({ formData: formData }, uploadUrl)
       .then(() => {
+        props.reloadImages();
         if (toastRef.current) {
           toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The image has been uploaded to the server." })
         }
