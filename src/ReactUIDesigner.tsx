@@ -54,12 +54,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const toastRef = useRef<Toast>(null);
 
-  const loginImage = useRef(null);
-
-  const menuImage = useRef(null);
-
-  const smallImage = useRef(null)
-
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + ".css";
     const schemeCSS = generateCSS("scheme", isPreviewMode, props.isCorporation, context);
@@ -93,18 +87,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
     formData.set("scheme-file-name", fileNameScheme);
     formData.set("scheme-css", schemeCSS);
-
-    if (loginImage.current) {
-      formData.set("login-image", loginImage.current);
-    }
-
-    if (menuImage.current) {
-      formData.set("menu-image-full", menuImage.current);
-    }
-
-    if (smallImage.current) {
-      formData.set("menu-image-small", smallImage.current);
-    }
 
     sendRequest({ formData: formData }, uploadUrl)
       .then(() => {
@@ -170,7 +152,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     })
   }
 
-  const setUploadImage = (type: "login" | "menu" | "small") => {
+  const uploadImage = (type: "login" | "menu" | "small") => {
     const inputElem = document.createElement('input');
     inputElem.type = 'file';
     inputElem.click()
@@ -179,20 +161,34 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       const tmppath = URL.createObjectURL(e.target.files[0]);
       const imgElem = document.getElementById(type + "-image") as HTMLImageElement;
       imgElem.src = tmppath;
+      const formData = new FormData();
       switch (type) {
         case "login":
           // @ts-ignore
-          loginImage.current = e.target.files[0];
+          formData.set("login-image", e.target.files[0]);
           break;
         case "menu":
           // @ts-ignore
-          menuImage.current = e.target.files[0];
+          formData.set("menu-image", e.target.files[0]);
           break;
         case "small":
           // @ts-ignore
-          smallImage.current = e.target.files[0];
+          formData.set("menu-image-small", e.target.files[0]);
           break;
       }
+
+      sendRequest({ formData: formData }, uploadUrl)
+      .then(() => {
+        if (toastRef.current) {
+          toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The image has been uploaded to the server." })
+        }
+      })
+      .catch((error) => {
+        if (toastRef.current) {
+          toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The image could not be uploaded. " + error })
+        }
+        console.error(error)
+      });
     }
   }
 
@@ -260,17 +256,17 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                     <div className='designer-panel-row designer-panel-image-upload'>
                       <span className='designer-panel-header'>Login:</span>
                       <img alt='login' id='login-image' className='designer-panel-image' src={process.env.PUBLIC_URL + '/assets/logo_login.png'} />
-                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => setUploadImage("login")} />
+                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("login")} />
                     </div>
                     <div className='designer-panel-row designer-panel-image-upload'>
                       <span className='designer-panel-header'>Menu:</span>
                       <img alt='menu' id='menu-image' className='designer-panel-image' src={process.env.PUBLIC_URL + '/assets/logo_big.png'} />
-                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => setUploadImage("menu")} />
+                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("menu")} />
                     </div>
                     <div className='designer-panel-row designer-panel-image-upload'>
                       <span className='designer-panel-header'>Collapsed Menu:</span>
                       <img alt='collapsed' id='small-image' className='designer-panel-image' src={process.env.PUBLIC_URL + '/assets/logo_small.png'} />
-                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => setUploadImage("small")} />
+                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("small")} />
                     </div>
                   </div>
                 </div>
