@@ -26,7 +26,7 @@ import ReactUIDesigner from './ReactUIDesigner';
 
 export default ReactDOM.render(
   // <React.StrictMode>
-  <ReactUIDesigner isCorporation={false} />,
+  <ReactUIDesigner isCorporation={false} reloadImages={() => {}} />,
   // </React.StrictMode>,
   document.getElementById('root')
 )
