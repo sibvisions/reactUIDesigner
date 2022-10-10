@@ -16,10 +16,10 @@
 import React, { FC, useState } from "react"
 import { TabView, TabPanel } from 'primereact/tabview';
 import Menu from "./menu/Menu";
-import './TabSelection.scss'
 import LoginForm from "./login/LoginForm";
 import CorporateMenu from "./menu/CorporateMenu";
 import Buttons from "./buttons/Buttons";
+import Inputs from "./inputs/Inputs";
 
 interface ITabSelection {
     tabChangedCallback: Function
@@ -46,6 +46,9 @@ const TabSelection: FC<ITabSelection> = (props) => {
             </TabPanel>
             <TabPanel header="Buttons">
                 <Buttons />
+            </TabPanel>
+            <TabPanel header="Inputs">
+                <Inputs />
             </TabPanel>
         </TabView>
     )

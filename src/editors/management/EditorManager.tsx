@@ -14,7 +14,7 @@
  */
 
 import React, { FC, useContext, useMemo } from "react";
-import { variableContext, VariableContextType } from "../../VariableProvider";
+import { variableContext } from "../../VariableProvider";
 import EditorCreator, { EditorItem } from "./EditorCreator";
 import { generalEditors } from "../GeneralEditors";
 import { getPreviewVariableMap } from "../../util/GetPreviewVariableMap";
@@ -29,7 +29,8 @@ export enum EDITOR_INDICES {
     LOGIN_EDITORS = "0",
     MENU_EDITORS = "1",
     COPORATE_EDITORS = "2",
-    BUTTON_EDITORS = "3"
+    BUTTON_EDITORS = "3",
+    INPUT_EDITORS = "4"
 }
 
 const EditorManager: FC<IEditorManager> = (props) => {
@@ -47,11 +48,15 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     return context.variables.get(EDITOR_INDICES.MENU_EDITORS) as Map<string, EditorItem[]>;
                 case parseInt(EDITOR_INDICES.COPORATE_EDITORS):
                     return context.variables.get(EDITOR_INDICES.COPORATE_EDITORS) as Map<string, EditorItem[]>;
+                case parseInt(EDITOR_INDICES.BUTTON_EDITORS):
+                    return context.variables.get(EDITOR_INDICES.BUTTON_EDITORS) as Map<string, EditorItem[]>;
+                case parseInt(EDITOR_INDICES.INPUT_EDITORS):
+                    return context.variables.get(EDITOR_INDICES.INPUT_EDITORS) as Map<string, EditorItem[]>;
                 default:
                     return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS) as Map<string, EditorItem[]>;
             }
         }
-    }, [props.activeIndex, props.isPreviewMode])
+    }, [props.activeIndex, props.isPreviewMode, props.isCorporation, context])
 
     return (
         <>

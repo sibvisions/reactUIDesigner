@@ -18,7 +18,6 @@ import { Menubar } from 'primereact/menubar';
 import { SpeedDial } from "primereact/speeddial";
 import { menuModel, profileModel } from "./Menu";
 import { MenuItem } from "primereact/menuitem";
-import './CorporateMenu.scss';
 import { Button } from "primereact/button";
 
 const CorporateMenu: FC = () => {

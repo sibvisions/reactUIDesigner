@@ -27,6 +27,7 @@ export type VariableContextType = {
     isPreviewMode: boolean,
     variables: Map<string, Map<string, EditorItem[]>>,
     defaultValues: Map<string, string>,
+    updateButtonBackground: () => void
 }
 
 function getDefaultValues() {
@@ -58,7 +59,8 @@ const initValue: VariableContextType = {
     .set("2", new Map<string, EditorItem[]>(corporateEditors))
     .set("3", new Map<string, EditorItem[]>(buttonEditors)),
     defaultValues: getDefaultValues(),
-    isPreviewMode: false
+    isPreviewMode: false,
+    updateButtonBackground: () => {}
 }
 
 export const variableContext = createContext<VariableContextType>(initValue);

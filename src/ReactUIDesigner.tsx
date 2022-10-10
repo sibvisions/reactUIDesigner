@@ -18,7 +18,6 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { confirmDialog } from 'primereact/confirmdialog';
 import EditorManager from './editors/management/EditorManager';
-import './ReactUIDesigner.scss';
 import TabSelection from './previews/TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
 import { sendRequest } from './RequestService';

@@ -13,27 +13,37 @@
  * the License.
  */
 
-import React, { FC, useState, CSSProperties, useRef } from "react";
+import React, { FC, useState, CSSProperties, useRef, useMemo, useEffect, useContext } from "react";
 import { Button } from "primereact/button";
 import { SplitButton } from "primereact/splitbutton";
 import { Checkbox } from "primereact/checkbox";
 import { RadioButton } from "primereact/radiobutton";
 import { ToggleButton } from "primereact/togglebutton";
-import './Buttons.scss';
-import './UIMenuButton.scss';
-import './UICheckBox.scss';
-import './UIRadioButton.scss';
-import './UIToggleButton.scss';
 import tinycolor from "tinycolor2";
 import { concatClassnames } from "../../util/ConcatClassNames";
+import { variableContext } from "../../VariableProvider";
 
 const Buttons: FC = () => {
     /** Reference for the button element */
     const menuButtonRef = useRef<SplitButton>(null);
 
+    const context = useContext(variableContext);
+
     const [cbChecked, setCbChecked] = useState<boolean>(false);
     const [rbChecked, setRbChecked] = useState<boolean>(false);
     const [tbChecked, setTbChecked] = useState<boolean>(false);
+
+    const [buttonUpdate, setButtonUpdate] = useState<boolean>(false);
+
+    const btnBgd = useMemo(() => window.getComputedStyle(document.documentElement).getPropertyValue("--primary-color"), [buttonUpdate]);
+
+    useEffect(() => {
+        context.updateButtonBackground = () => setButtonUpdate(prevState => !prevState);
+
+        return () => {
+            context.updateButtonBackground = () => { }
+        }
+    }, [])
 
     const menuButtonModel = [
         {
@@ -46,19 +56,28 @@ const Buttons: FC = () => {
         }
     ]
 
-    const btnBgd = window.getComputedStyle(document.documentElement).getPropertyValue("--primary-color");
-
     return (
         <div className="preview-buttons-container">
             <span style={{ marginBottom: "0.5rem" }}>
                 <Button
                     label="Preview Button"
-                    icon="fas fa-check"
+                    icon={concatClassnames("fas fa-check", "rc-button-icon")}
                     className={concatClassnames(
                         "rc-button",
-                        tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button"
+                        tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
+                        'gap-right'
                     )}
-                    style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString() } as CSSProperties} />
+                    style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties} />
+            </span>
+            <span style={{ marginBottom: "0.5rem" }}>
+                <Button
+                    icon={concatClassnames("fas fa-upload", "rc-button-icon")}
+                    className={concatClassnames(
+                        "rc-button",
+                        tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
+                        'gap-right'
+                    )}
+                    style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties} />
             </span>
             <span className="rc-popupmenubutton-wrapper" style={{ marginBottom: "0.5rem" }}>
                 <SplitButton 
@@ -93,7 +112,7 @@ const Buttons: FC = () => {
                     style={{ 
                         "--background": btnBgd,
                         '--selectedBackground': tinycolor(btnBgd.toString()).darken(10).toString(),
-                        "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString() 
+                        '--hoverBackground': tinycolor(btnBgd.toString()).darken(5).toString(),
                     } as CSSProperties} />
             </span>
         </div>

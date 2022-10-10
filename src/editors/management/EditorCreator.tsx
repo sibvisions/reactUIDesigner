@@ -18,7 +18,6 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { variableContext, VariableContextType } from "../../VariableProvider";
-import '../Editor.scss'
 
 export type EditorItem = {
     variable: string,
@@ -104,6 +103,10 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             onChange={event => {
                                 setVariableState(key, editorItem, event.target.value);
                                 document.documentElement.style.setProperty(editorItem.variable, event.target.value);
+                                // Need to update the buttons seperately because the way they set the color is different
+                                if (editorItem.variable === "--primary-color") {
+                                    context.updateButtonBackground();
+                                } 
                             }} />
                         <Button
                             className="style-editor-button"
@@ -115,6 +118,10 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
                                 document.documentElement.style.setProperty(editorItem.variable, "transparent")
+                                // Need to update the buttons seperately because the way they set the color is different
+                                if (editorItem.variable === "--primary-color") {
+                                    context.updateButtonBackground();
+                                }
                             }} />
                     </>
                 )
@@ -125,7 +132,13 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             className="style-editor-color-textinput"
                             value={editorItem.value}
                             onChange={(event) => setVariableState(key, editorItem, event.target.value)} 
-                            onBlur={() => document.documentElement.style.setProperty(editorItem.variable, editorItem.value)} />
+                            onBlur={() => {
+                                document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
+                                // Need to update the buttons seperately because the way they set the color is different
+                                if (editorItem.variable === "--primary-color") {
+                                    context.updateButtonBackground();
+                                }
+                            }} />
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
@@ -139,7 +152,13 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         className="style-editor-textinput"
                         value={editorItem.value}
                         onChange={(event) => setVariableState(key, editorItem, event.target.value)} 
-                        onBlur={() => document.documentElement.style.setProperty(editorItem.variable, editorItem.value)} />
+                        onBlur={() => {
+                            document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
+                            // Need to update the buttons seperately because the way they set the color is different
+                            if (editorItem.variable === "--primary-color") {
+                                context.updateButtonBackground();
+                            } 
+                        }} />
                 )
         }
     }
@@ -158,7 +177,11 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                 icon="fas fa-undo" 
                                 onClick={() => {
                                     setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
-                                    document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string)
+                                    document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
+                                    // Need to update the buttons seperately because the way they set the color is different
+                                    if (editorItem.variable === "--primary-color") {
+                                        context.updateButtonBackground();
+                                    } 
                                 }} />
                         </div>
                     </div>

@@ -18,7 +18,6 @@ import { PanelMenu } from 'primereact/panelmenu';
 import { Menubar } from 'primereact/menubar';
 import { Button } from "primereact/button";
 import { MenuItem } from "primereact/menuitem";
-import "./Menu.scss";
 
 export const profileModel:MenuItem [] = [
     {
