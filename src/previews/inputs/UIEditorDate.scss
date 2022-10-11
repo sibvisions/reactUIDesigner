@@ -1,0 +1,68 @@
+/* Copyright 2022 SIB Visions GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+.rc-editor-date.p-calendar {
+    width: inherit;
+    height: inherit;
+
+    .p-inputtext, .p-button {
+        &:focus {
+            box-shadow: unset;
+            -webkit-box-shadow: unset;
+        }
+    }
+}
+
+.rc-editor-date-panel.p-datepicker {
+    min-width: 0 !important;
+    padding-bottom: 0;
+
+    table td {
+        padding: 0;
+
+        & > span {
+            width: 2rem;
+            height: 2rem;
+            padding: .5rem
+        }
+    }
+    .p-datepicker-header {
+        .p-datepicker-title {
+            display: flex;
+            align-items: center;
+
+            select {
+                cursor: pointer;
+                appearance: none;
+                font-family: var(--standard-font-family);
+                font-size: 1rem;
+                border: 0;
+                padding-right: 1.25rem;
+                background-size: 1rem;
+                background-repeat: no-repeat;
+                background-position: right 0 center;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:none;stroke:%23999;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px;%7D%3C/style%3E%3C/defs%3E%3Cline class='cls-1' x1='16' x2='7' y1='20.5' y2='11.5'/%3E%3Cline class='cls-1' x1='25' x2='16' y1='11.5' y2='20.5'/%3E%3C/svg%3E");
+            }
+    
+            .p-datepicker-month {
+                margin-right: 1rem;
+            }
+        }
+    }
+    .p-timepicker {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}

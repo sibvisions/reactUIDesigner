@@ -1,0 +1,16 @@
+.input-container {
+    width: 200px;
+    
+    > input {
+        width: 100%;
+    }
+}
+
+.input-container-html {
+    width: 800px;
+    height: 100px;
+
+    > div {
+        height: 100%;
+    }
+}

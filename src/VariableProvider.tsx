@@ -19,7 +19,8 @@ import { generalEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
 import { menuEditors } from "./editors/MenuEditors";
 import { corporateEditors } from "./editors/CorporateEditors";
-import { buttonEditors } from "./editors/ButtonEditor";
+import { buttonEditors } from "./editors/ButtonEditors";
+import { inputEditors } from "./editors/InputEditors";
 
 export type VariableContextType = {
     schemeName: string,
@@ -30,10 +31,12 @@ export type VariableContextType = {
     updateButtonBackground: () => void
 }
 
+const editorArray = [generalEditors, loginEditors, menuEditors, corporateEditors, buttonEditors, inputEditors];
+
 function getDefaultValues() {
     const docStyle = window.getComputedStyle(document.documentElement);
-
-    const mergedMap = new Map([...generalEditors, ...loginEditors, ...menuEditors, ...corporateEditors, ...buttonEditors]);
+    const mergedMap = new Map<string, EditorItem[]>();
+    editorArray.forEach(map => map.forEach((val, key) => mergedMap.set(key, val)))
     const componentEntries = mergedMap.entries();
     const defaultValues = new Map<string, string>();
     let entry = componentEntries.next();
@@ -49,15 +52,18 @@ function getDefaultValues() {
     return defaultValues;
 }
 
+function getVariables() {
+    const variableMap = new Map<string, Map<string, EditorItem[]>>();
+    editorArray.forEach((map, i) => variableMap.set((i - 1).toString(), map));
+    return variableMap;
+}
+
+getVariables()
+
 const initValue: VariableContextType = {
     schemeName: "default",
     themeName: "basti",
-    variables: new Map<string, Map<string, EditorItem[]>>()
-    .set("-1", new Map<string, EditorItem[]>(generalEditors))
-    .set("0", new Map<string, EditorItem[]>(loginEditors))
-    .set("1", new Map<string, EditorItem[]>(menuEditors))
-    .set("2", new Map<string, EditorItem[]>(corporateEditors))
-    .set("3", new Map<string, EditorItem[]>(buttonEditors)),
+    variables: getVariables(),
     defaultValues: getDefaultValues(),
     isPreviewMode: false,
     updateButtonBackground: () => {}
@@ -66,7 +72,7 @@ const initValue: VariableContextType = {
 export const variableContext = createContext<VariableContextType>(initValue);
 
 const VariableProvider: FC<any> = (props) => {
-    const [contextState, setContextState] = useState<VariableContextType>(initValue);
+    const [contextState] = useState<VariableContextType>(initValue);
 
     return (
         <variableContext.Provider value={contextState}>

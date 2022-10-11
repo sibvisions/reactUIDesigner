@@ -1,0 +1,90 @@
+/* Copyright 2022 SIB Visions GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+.rc-editor-linked {
+    .p-inputtext {
+        text-align: left;
+    }
+    /// When either of the children is focused, display a blue shadow to show the button is focused
+    &:focus-within {
+        border-radius: 3px;
+    }
+    /// Unset focus shadow because not the whole editor is focused but only either inputfield or button
+    .p-inputtext, .p-button {
+        &:focus {
+            box-shadow: unset;
+            -webkit-box-shadow: unset;
+        }
+    }
+}
+
+.rc-editor-linked-dropdown .p-virtualscroller {
+    contain: unset;
+    max-width: 400px;
+}
+
+.rc-editor-linked-dropdown:not(.linked-min-width) .p-virtualscroller {
+    max-width: 100%;
+}
+
+.rc-editor-linked-dropdown .p-virtualscroller-content {
+    position: relative;
+}
+
+
+/// Lazyloading loading animation
+.rc-editor-linked-dropdown.p-autocomplete-panel {
+    &.linked-min-width {
+        min-width: 120px !important;
+    }
+
+    &.dropdown-table.no-table-header .p-autocomplete-item-group {
+        display: none
+    }
+
+    .p-autocomplete-items {
+        max-height: none !important;
+        padding: 0;
+    }
+
+    &.dropdown-table {
+        .p-autocomplete-items {
+            display: table;
+        }
+
+        .p-autocomplete-item-group {
+            display: table-row;
+            padding: 0;
+
+            & > * {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        .p-autocomplete-item {
+            display: table-row;
+            padding: 0;
+
+            & > * {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 0.5rem 1rem;
+            }
+        }
+    }
+}
+

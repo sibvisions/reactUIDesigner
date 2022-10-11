@@ -286,7 +286,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
               activeIndex={activeTabIndex} />
           </div>
         </div>
-        <div className='designer-content basti'>
+        <div className='designer-content reactUI basti'>
           {isPreviewMode ? props.children : <TabSelection tabChangedCallback={tabChangeCallBack} />}
         </div>
       </div>

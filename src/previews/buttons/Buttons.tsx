@@ -57,8 +57,8 @@ const Buttons: FC = () => {
     ]
 
     return (
-        <div className="preview-buttons-container">
-            <span style={{ marginBottom: "0.5rem" }}>
+        <div className="preview-container">
+            <span className="comp-container">
                 <Button
                     label="Preview Button"
                     icon={concatClassnames("fas fa-check", "rc-button-icon")}
@@ -69,7 +69,7 @@ const Buttons: FC = () => {
                     )}
                     style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties} />
             </span>
-            <span style={{ marginBottom: "0.5rem" }}>
+            <span className="comp-container">
                 <Button
                     icon={concatClassnames("fas fa-upload", "rc-button-icon")}
                     className={concatClassnames(
@@ -79,7 +79,7 @@ const Buttons: FC = () => {
                     )}
                     style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties} />
             </span>
-            <span className="rc-popupmenubutton-wrapper" style={{ marginBottom: "0.5rem" }}>
+            <span className="rc-popupmenubutton-wrapper comp-container">
                 <SplitButton 
                     ref={menuButtonRef}
                     label="Preview MenuButton"
@@ -88,21 +88,21 @@ const Buttons: FC = () => {
                     style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString() } as CSSProperties}
                     onClick={() => menuButtonRef.current?.show()} />
             </span>
-            <span className={concatClassnames("rc-checkbox", "gap-right")} style={{ '--iconTextGap': '4px', marginBottom: "0.5rem" } as CSSProperties}>
+            <span className={concatClassnames("rc-checkbox", "gap-right", "comp-container")} style={{ '--iconTextGap': '4px' } as CSSProperties}>
                 <Checkbox
                     inputId="preview-checkbox"
                     checked={cbChecked}
                     onChange={e => setCbChecked(e.checked)} />
                 <label className="p-radiobutton-label" htmlFor="preview-checkbox">Preview Checkbox</label>
             </span>
-            <span className={concatClassnames("rc-radiobutton", "gap-right")} style={{ '--iconTextGap': '4px', marginBottom: "0.5rem" } as CSSProperties} >
+            <span className={concatClassnames("rc-radiobutton", "gap-right", "comp-container")} style={{ '--iconTextGap': '4px' } as CSSProperties} >
                 <RadioButton 
                     inputId="preview-radiobutton"
                     checked={rbChecked}
                     onChange={e => setRbChecked(e.checked)} />
                 <label className="p-radiobutton-label" htmlFor="preview-radiobutton">Preview Radiobutton</label>
             </span>
-            <span>
+            <span className="comp-container">
                 <ToggleButton
                     offLabel="Preview ToggleButton"
                     onLabel="Preview ToggleButton"
