@@ -185,6 +185,9 @@
 
     --toolbar-separator-color:#bbbbbb;
 
+    /// table unselected border
+    --table-border:1px solid #ced4da;
+
     /// Default table-header background
     --table-header-background:#ffffff;
 
@@ -233,6 +236,8 @@
     /// Default LinkedCellEditor panel background
     --linked-panel-background:#ffffff;
 
+    --linked-item-color:var(--text-color);
+
     /// Default LinkedCellEditor item hover background
     --linked-item-hover-background:#e9ecef;
 
@@ -254,6 +259,8 @@
 
     /// Default DateCellEditor panel background
     --date-panel-background:#ffffff;
+
+    --date-panel-color:var(--text-color);
 
     /// Default DateCellEditor header border
     --date-panel-header-border:1px solid #dee2e6;
@@ -785,9 +792,14 @@ body {
 }
 
 /// Checkbox & Radiobutton
-.p-checkbox .p-checkbox-box, .p-radiobutton .p-radiobutton-box {
-    background: var(--input-background);
-    border: var(--input-border);
+.p-checkbox .p-checkbox-box {
+    background: var(--checkbox-background);
+    border: var(--checkbox-border);
+}
+
+.p-radiobutton .p-radiobutton-box {
+    background: var(--radiobutton-background);
+    border: var(--radiobutton-border);
 }
 
 .p-checkbox {
@@ -956,7 +968,7 @@ body {
     &:not(.p-datepicker-inline) {
         &, .p-datepicker-header {
             background: var(--date-panel-background);
-            color: var(--text-color);
+            color: var(--date-panel-color);
         }
     }
 
@@ -965,7 +977,7 @@ body {
         .p-datepicker-title {
             .p-datepicker-month, .p-datepicker-year {
                 background-color: var(--date-panel-background);
-                color: var(--text-color);
+                color: var(--date-panel-color);
             }
 
             select:focus {
@@ -1021,7 +1033,7 @@ body {
     .p-autocomplete-items {
         .p-autocomplete-item {
             background: var(--linked-panel-background);
-            color: var(--text-color);
+            color: var(--linked-item-color);
 
             &:hover {
                 background: var(--linked-item-hover-background);
@@ -1041,7 +1053,7 @@ body {
 
                 &.p-highlight {
                     background: var(--linked-highlighted-color);
-                    color: var(--text-color);
+                    color: var(--linked-item-color);
 
                     &:hover {
                         background: var(--table-row-hover-background);
@@ -1057,7 +1069,7 @@ body {
 
                 &.p-highlight {
                     background: var(--linked-highlighted-color);
-                    color: var(--text-color);
+                    color: var(--linked-item-color);
 
                     &:hover {
                         background: var(--table-row-hover-background);
@@ -1067,7 +1079,7 @@ body {
         }
         .p-autocomplete-item-group > * {
             background: var(--table-header-background);
-            color: var(--text-color);
+            color: var(--linked-item-color);
             border-bottom: var(--table-header-border);
         }
 
@@ -1167,7 +1179,7 @@ body {
 
 /// Table
 .rc-table {
-    border: var(--input-border);
+    border: var(--table-border);
 
     table {
         border-style: hidden;

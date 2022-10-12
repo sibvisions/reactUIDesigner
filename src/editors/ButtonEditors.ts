@@ -103,6 +103,24 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
 ])
 .set("Checkbox/Radiobutton", [
     {
+        variable: "--checkbox-background",
+        label: "Checkbox Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--checkbox-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-checkbox .p-checkbox-box", ["background: var(--checkbox-background);"])
+    },
+    {
+        variable: "--checkbox-border",
+        label: "Checkbox Border",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--checkbox-border'),
+        usage: new Map<string, string[]>()
+        .set(".p-checkbox .p-checkbox-box", ["border: var(--checkbox-border);"])
+    },
+    {
         variable: "--checkbox-selected-background",
         label: "Checkbox Selected Background",
         type: "color",
@@ -140,6 +158,24 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         .set(".basti .p-checkbox", ["width: var(--checkbox-size);", "height: var(--checkbox-size);"])
         .set(".basti .p-checkbox .p-checkbox-box", ["width: var(--checkbox-size);", "height: var(--checkbox-size);"])
         .set(".basti .p-checkbox .p-checkbox-box .p-checkbox-icon", ["font-size: calc(var(--checkbox-size) * 0.7);"])
+    },
+    {
+        variable: "--radiobutton-background",
+        label: "Radiobutton Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--radiobutton-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-radiobutton .p-radiobutton-box", ["background: var(--radiobutton-background);"])
+    },
+    {
+        variable: "--radiobutton-border",
+        label: "Radiobutton Border",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--radiobutton-border'),
+        usage: new Map<string, string[]>()
+        .set(".p-radiobutton .p-radiobutton-box", ["border: var(--radiobutton-border);"])
     },
     {
         variable: "--radiobutton-selected-outer-background",

@@ -56,7 +56,7 @@ class DividerToolbar extends Module {
 Quill.register('modules/divider', DividerToolbar)
 
 const Inputs: FC = () => {
-    const [text, setText] = useState<string>("Some Text");
+    const [text, setText] = useState<string>("");
     const [htmlText, setHtmlText] = useState<string|null>("<b>Some HTML Text</b>")
 
     const [dateValue, setDateValue] = useState<Date|undefined>(new Date());
@@ -152,7 +152,8 @@ const Inputs: FC = () => {
         <div className="preview-container">
             <span className="input-container comp-container">
                 <InputText 
-                    value={text} 
+                    value={text}
+                    placeholder="Some Placeholder"
                     className="rc-editor-text"
                     onChange={(event) => setText(event.currentTarget.value)} />
             </span>
