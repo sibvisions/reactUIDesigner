@@ -71,7 +71,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "theme",
         value: docStyle.getPropertyValue('--input-button-padding'),
         usage: new Map<string, string[]>()
-        .set(".basti .p-button.p-button-icon-only.p-autocomplete-dropdown, .basti .p-button.p-button-icon-only.p-datepicker-trigger", ["padding: var(--input-button-padding);"])
+        .set(".basti .p-button.p-button-icon-only:not(.rc-toolbar-button):not(.p-speeddial-button):not(.p-splitbutton-menubutton).p-autocomplete-dropdown, .basti .p-button.p-button-icon-only:not(.rc-toolbar-button):not(.p-speeddial-button):not(.p-splitbutton-menubutton).p-datepicker-trigger", ["padding: var(--input-button-padding);"])
     },
     {
         variable: "--input-button-icon-size",
@@ -176,7 +176,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         usage: new Map<string, string[]>().set(".p-datepicker table td > span.p-highlight", ["background: var(--date-selected-background);"])
     }
 ])
-.set("HTMLeditor", [
+.set("HTMLEditor", [
     {
         variable: "--html-toolbar-background",
         label: "Toolbar Background",
@@ -217,12 +217,28 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--html-picker-expanded-background",
-        label: "Expanded Picker Background",
+        label: "Picker Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--html-picker-expanded-background'),
         usage: new Map<string, string[]>()
         .set(".p-editor-container .p-editor-toolbar.ql-snow .ql-formats .ql-picker.ql-expanded .ql-picker-options", ["background: var(--html-picker-expanded-background);"])
+    },
+    {
+        variable: "--html-picker-item-color",
+        label: "Picker Item Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--html-picker-item-color'),
+        usage: new Map<string, string[]>().set(".p-editor-container .p-editor-toolbar.ql-snow .ql-formats .ql-picker.ql-expanded .ql-picker-options .ql-picker-item", ["color: var(--html-picker-item-color);"])
+    },
+    {
+        variable: "--html-picker-item-hover-color",
+        label: "Picker Item Hover Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--html-picker-item-hover-color'),
+        usage: new Map<string, string[]>().set(".p-editor-container .p-editor-toolbar.ql-snow .ql-formats .ql-picker.ql-expanded .ql-picker-options .ql-picker-item:hover", ["color: var(--html-picker-item-hover-color);"])
     },
     {
         variable: "--html-picker-item-hover-background",

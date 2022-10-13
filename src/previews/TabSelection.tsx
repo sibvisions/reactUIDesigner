@@ -20,6 +20,7 @@ import LoginForm from "./login/LoginForm";
 import CorporateMenu from "./menu/CorporateMenu";
 import Buttons from "./buttons/Buttons";
 import Inputs from "./inputs/Inputs";
+import TableTree from "./tabletree/TableTree";
 
 interface ITabSelection {
     tabChangedCallback: Function
@@ -49,6 +50,9 @@ const TabSelection: FC<ITabSelection> = (props) => {
             </TabPanel>
             <TabPanel header="Inputs">
                 <Inputs />
+            </TabPanel>
+            <TabPanel header="Table/Tree">
+                <TableTree />
             </TabPanel>
         </TabView>
     )

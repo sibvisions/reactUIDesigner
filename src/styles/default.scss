@@ -321,6 +321,8 @@
     /// Default HTMLEditor toolbar border
     --html-toolbar-border:1px solid #dee2e6;
 
+    --html-toolbar-button-background:var(--text-color);
+
     /// Default HTMLEditor button hover colors
     --html-toolbar-button-hover-background:#000000;
 
@@ -329,6 +331,10 @@
 
     /// Default HTMLEditor picker item hover background
     --html-picker-item-hover-background:#e9ecef;
+
+    --html-picker-item-color:var(--text-color);
+
+    --html-picker-item-hover-color:#000000;
 
     /// Default Message info background
     --message-info-header-background:var(--primary-color);
@@ -1102,11 +1108,11 @@ body {
         border-top-right-radius: var(--editor-border-radius);
 
         &.ql-snow {
-            border: var(--input-border);
+            border: var(--html-toolbar-border);
 
             .ql-formats {
                 .ql-picker .ql-picker-label, button {
-                    color: var(--text-color);
+                    color: var(--html-toolbar-button-background);
 
                     &:hover {
                         color: var(--html-toolbar-button-hover-background);
@@ -1120,13 +1126,13 @@ body {
     
                     svg {
                         polygon, path, line, rect, polyline {
-                            stroke: var(--text-color);
+                            stroke: var(--html-toolbar-button-background);
                         }
                     }
 
                     &.ql-source {
                         svg path {
-                            fill: var(--text-color);
+                            fill: var(--html-toolbar-button-background);
                         }
 
                         &:hover {
@@ -1141,10 +1147,11 @@ body {
                     background: var(--html-picker-expanded-background);
 
                     .ql-picker-item {
-                        color: var(--text-color);
+                        color: var(--html-picker-item-color);
 
                         &:hover {
                             background: var(--html-picker-item-hover-background);
+                            color: var(--html-picker-item-hover-color);
                         }
                     }
                 }

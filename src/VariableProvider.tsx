@@ -21,6 +21,7 @@ import { menuEditors } from "./editors/MenuEditors";
 import { corporateEditors } from "./editors/CorporateEditors";
 import { buttonEditors } from "./editors/ButtonEditors";
 import { inputEditors } from "./editors/InputEditors";
+import { tableEditors } from "./editors/TableEditors";
 
 export type VariableContextType = {
     schemeName: string,
@@ -31,7 +32,7 @@ export type VariableContextType = {
     updateButtonBackground: () => void
 }
 
-const editorArray = [generalEditors, loginEditors, menuEditors, corporateEditors, buttonEditors, inputEditors];
+const editorArray = [generalEditors, loginEditors, menuEditors, corporateEditors, buttonEditors, inputEditors, tableEditors];
 
 function getDefaultValues() {
     const docStyle = window.getComputedStyle(document.documentElement);
