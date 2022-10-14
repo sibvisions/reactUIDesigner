@@ -1,0 +1,13 @@
+.tree-container {
+    width: 100%
+}
+
+.table-container {
+    display: flex;
+
+    .rc-toolbar {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+}
