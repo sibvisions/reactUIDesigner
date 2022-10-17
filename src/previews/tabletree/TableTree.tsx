@@ -190,10 +190,10 @@ const TableTree:FC = () => {
                         }
                         return cn
                     }}>
-                        <Column field="firstName" header="Firstname"></Column>
-                        <Column field="lastName" header="Lastname"></Column>
-                        <Column field="age" header="Age"></Column>
-                        <Column field="city" header="City"></Column>
+                        <Column field="firstName" header="Firstname" sortable bodyClassName='cell-readonly'></Column>
+                        <Column field="lastName" header="Lastname" sortable bodyClassName='cell-required'></Column>
+                        <Column field="age" header="Age" sortable></Column>
+                        <Column field="city" header="City" sortable></Column>
                     </DataTable>
             </div>
             <div className='comp-container tree-container'>

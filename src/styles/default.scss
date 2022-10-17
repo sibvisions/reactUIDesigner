@@ -192,13 +192,19 @@
     --table-header-background:#ffffff;
 
     /// Default table-header border
-    --table-header-border:1px solid #e9ecef;
+    --table-header-border-color:#e9ecef;
+
+    --table-header-border-width:0px 1px 1px 1px;
 
     /// Background when hovering a table header column
     --table-header-hover-background:#e9ecef;
 
+    --table-header-color:var(--text-color);
+
+    --table-header-hover-color:#000000;
+
     /// Default table selected row background
-    --table-selected-row-background:linear-gradient(to bottom, rgba(27, 135, 227, 0.5) 2%, rgba(22, 110, 213, 0.5) 98%) !important;
+    --table-selected-row-background:linear-gradient(to bottom, rgba(27, 135, 227, 0.5) 2%, rgba(22, 110, 213, 0.5) 98%);
 
     /// Default table-row background for odd rows
     --table-row-odd-background:#fafafa;
@@ -210,7 +216,11 @@
     --table-row-hover-background:#e9ecef;
 
     /// Default table-row border
-    --table-row-border:1px solid #e9ecef;
+    --table-row-border-color:#e9ecef;
+
+    --table-row-border-width:0px 0px 1px 0px;
+
+    --table-text-color:var(--text-color);
 
     /// Default cell hover color
     --table-cell-hover-color:rgb(131, 131, 131);
@@ -229,6 +239,8 @@
 
     /// Default cell background for readonly fields on odd rows
     --table-readonly-odd-background:rgb(239, 239, 239);
+
+    --table-readonly-color:var(--text-color);
 
     /// Default table-header sort color
     --table-sort-color:#2196F3;
@@ -1086,14 +1098,17 @@ body {
         .p-autocomplete-item-group > * {
             background: var(--table-header-background);
             color: var(--linked-item-color);
-            border-bottom: var(--table-header-border);
+            border-color: var(--table-header-border-color);
+            border-width: 0px 0px 1px 0px;
         }
 
         .p-autocomplete-item > * {
-            border-bottom: var(--table-row-border);
+            border-color: var(--table-row-border-color);
+            border-width: 0px 0px 1px 0px;
 
             &:not(:first-child) {
-                border-left: var(--table-row-border);
+                border-color: var(--table-row-border-color);
+                border-width: 0px 1px 0px 0px;
             }
         }
     }
@@ -1283,9 +1298,11 @@ body {
         }
     }
 
-    .p-datatable-thead > tr > th {
+    &.p-datatable-selectable-cell .p-datatable-thead > tr > th {
         background: var(--table-header-background);
-        border: var(--table-header-border);
+        border-color: var(--table-header-border-color);
+        border-width: var(--table-header-border-width);
+        color: var(--table-header-color);
 
         &.sort-asc, &.sort-des {
             color: var(--table-sort-color);
@@ -1298,7 +1315,7 @@ body {
 
     .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover {
         background: var(--table-header-hover-background);
-        color: var(--text-color);
+        color: var(--table-header-hover-color);
 
         &.sort-asc, &.sort-des {
             color: var(--table-sort-color);
@@ -1311,13 +1328,14 @@ body {
 
     .p-datatable-tbody > tr {
         background: var(--table-row-even-background);
-        color: var(--text-color);
+        color: var(--table-text-color);
 
         > td {
-            border: var(--table-row-border);
+            border-color: var(--table-row-border-color);
+            border-width: var(--table-row-border-width);
 
             &.p-highlight {
-                color: var(--text-color);
+                color: var(--table-text-color);
             }
 
             &.cell-required {
@@ -1327,17 +1345,18 @@ body {
 
             &.cell-readonly {
                 background: var(--table-readonly-even-background);
+                color: var(--table-readonly-color);
             }
         }
 
         &.p-highlight {
-            color: var(--text-color);
+            color: var(--table-text-color);
             background: var(--table-selected-row-background) !important;
 
             > td {
                 .open-cell-editor {
                     box-shadow: none;
-                    color: var(--text-color);
+                    color: var(--table-text-color);
 
                     .p-inputtext:enabled:focus {
                         box-shadow: none;
@@ -1386,9 +1405,9 @@ body {
         }
     }
 
-    &.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover {
+    &.p-datatable-selectable-cell .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover {
         background: var(--table-row-hover-background);
-        color: var(--text-color);
+        color: var(--table-text-color);
     }
 } 
 
@@ -1527,7 +1546,8 @@ body {
     .p-listbox {
         .p-listbox-list {
             .p-listbox-item {
-                border: var(--table-row-border);
+                border-color: var(--table-row-border-color);
+                border-width: var(--table-row-border-width);
 
                 &:nth-child(odd) {
                     background: var(--table-row-odd-background);
