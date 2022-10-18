@@ -3,7 +3,7 @@ import { EditorItem } from "./management/EditorCreator";
 const docStyle = window.getComputedStyle(document.documentElement);
 
 export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
-.set("Table", [
+.set("Table General", [
     {
         variable: "--table-border",
         label: "Table Border",
@@ -12,6 +12,47 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         value: docStyle.getPropertyValue('--table-border'),
         usage: new Map<string, string[]>().set(".rc-table", ["border: var(--table-border);"])
     },
+    {
+        variable: "--table-text-color",
+        label: "Table Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--table-text-color'),
+        usage: new Map<string, string[]>()
+        .set(".rc-table .p-datatable-tbody > tr", ["color: var(--table-text-color);"])
+        .set(".rc-table .p-datatable-tbody > tr > td.p-highlight", ["color: var(--table-text-color);"])
+        .set(".rc-table .p-datatable-tbody > tr.p-highlight", ["color: var(--table-text-color);"])
+        .set(".rc-table .p-datatable-tbody > tr.p-highlight > td .open-cell-editor", ["color: var(--table-text-color);"])
+        .set(".rc-table.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["color: var(--table-text-color);"])
+    },
+    {
+        variable: "--table-cell-hover-color",
+        label: "Table Hover Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--table-cell-hover-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight):hover", ["color: var(--table-cell-hover-color);"])
+        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight).cell-required:hover", ["color: var(--table-cell-hover-color);"])
+        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight).cell-readonly:hover", ["color: var(--table-cell-hover-color);"])
+        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight):hover", ["color: var(--table-cell-hover-color);"])
+        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-required:hover", ["color: var(--table-cell-hover-color);"])
+        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-readonly:hover", ["color: var(--table-cell-hover-color);"])
+    },
+    {
+        variable: "--table-sort-color",
+        label: "Sort Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--table-sort-color'),
+        usage: new Map<string, string[]>()
+        .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th.sort-asc, .rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th.sort-des", ["color: var(--table-sort-color);"])
+        .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th .p-sortable-column-icon", ["color: var(--table-sort-color);"])
+        .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des", ["color: var(--table-sort-color);"])
+        .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc .p-sortable-column-icon, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des .p-sortable-column-icon", ["color: var(--table-sort-color);"])
+    },
+])
+.set("Table Header", [
     {
         variable: "--table-header-background",
         label: "Header Background",
@@ -25,7 +66,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     {
         variable: "--table-header-border-color",
         label: "Header Border Color",
-        type: "text",
+        type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-header-border-color'),
         usage: new Map<string, string[]>()
@@ -76,10 +117,12 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         usage: new Map<string, string[]>()
         .set(".basti .rc-table .p-datatable-thead > tr > th", ["padding: var(--table-header-padding);"])
     },
+])
+.set("Table Rows", [
     {
         variable: "--table-row-border-color",
         label: "Row Border Color",
-        type: "text",
+        type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-row-border-color'),
         usage: new Map<string, string[]>()
@@ -97,33 +140,6 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         usage: new Map<string, string[]>()
         .set(".rc-table .p-datatable-tbody > tr > td", ["border-width: var(--table-row-border-width);"])
         .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item", ["border-width: var(--table-row-border-width);"])
-    },
-    {
-        variable: "--table-text-color",
-        label: "Table Color",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--table-text-color'),
-        usage: new Map<string, string[]>()
-        .set(".rc-table .p-datatable-tbody > tr", ["color: var(--table-text-color);"])
-        .set(".rc-table .p-datatable-tbody > tr > td.p-highlight", ["color: var(--table-text-color);"])
-        .set(".rc-table .p-datatable-tbody > tr.p-highlight", ["color: var(--table-text-color);"])
-        .set(".rc-table .p-datatable-tbody > tr.p-highlight > td .open-cell-editor", ["color: var(--table-text-color);"])
-        .set(".rc-table.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["color: var(--table-text-color);"])
-    },
-    {
-        variable: "--table-cell-hover-color",
-        label: "Table Hover Color",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--table-cell-hover-color'),
-        usage: new Map<string, string[]>()
-        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight):hover", ["color: var(--table-cell-hover-color);"])
-        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight).cell-required:hover", ["color: var(--table-cell-hover-color);"])
-        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight).cell-readonly:hover", ["color: var(--table-cell-hover-color);"])
-        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight):hover", ["color: var(--table-cell-hover-color);"])
-        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-required:hover", ["color: var(--table-cell-hover-color);"])
-        .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-readonly:hover", ["color: var(--table-cell-hover-color);"])
     },
     {
         variable: "--table-selected-row-background",
@@ -236,18 +252,6 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".rc-table .p-datatable-tbody > tr > td.cell-readonly", ["color: var(--table-readonly-color);"])
     },
     {
-        variable: "--table-sort-color",
-        label: "Sort Color",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--table-sort-color'),
-        usage: new Map<string, string[]>()
-        .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th.sort-asc, .rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th.sort-des", ["color: var(--table-sort-color);"])
-        .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th .p-sortable-column-icon", ["color: var(--table-sort-color);"])
-        .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des", ["color: var(--table-sort-color);"])
-        .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc .p-sortable-column-icon, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des .p-sortable-column-icon", ["color: var(--table-sort-color);"])
-    },
-    {
         variable: "--table-data-height",
         label: "Row Height",
         type: "text",
@@ -257,5 +261,58 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".basti .rc-table .p-datatable-tbody > tr > td", ["height: calc(8px + var(--table-data-height));"])
         .set(".error-dialog .error-dialog-listbox .p-listbox-item", ["height: calc(8px + var(--table-data-height));", "line-height: var(--table-data-height);"])
         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item", ["height: calc(8px + var(--table-data-height));"])
+    }
+])
+.set("Toolbar", [
+    {
+        variable: "--toolbar-background",
+        label: "Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--toolbar-background'),
+        usage: new Map<string, string[]>().set(".rc-toolbar", ["background: var(--toolbar-background);"])
+    },
+    {
+        variable: "--toolbar-border-color",
+        label: "Border Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--toolbar-border-color'),
+        usage: new Map<string, string[]>().set(".rc-toolbar", ["border-color: var(--toolbar-border-color);"])
+    },
+    {
+        variable: "--toolbar-color",
+        label: "Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--toolbar-color'),
+        usage: new Map<string, string[]>().set(".rc-toolbar .rc-button.mouse-border", ["color: var(--toolbar-color);"])
+    },
+    {
+        variable: "--toolbar-separator",
+        label: "Seperator",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--toolbar-separator'),
+        usage: new Map<string, string[]>()
+        .set(".rc-toolbar .rc-toolbar-border-right", ["border-right: var(--toolbar-separator);"])
+        .set(".rc-toolbar .rc-toolbar-border-bottom", ["border-bottom: var(--toolbar-separator);"])
+        .set(".mobile-launcher-menu .rc-frame-toolbar .rc-toolbar-border-right", ["border-right: var(--toolbar-separator);"])
+        .set(".mobile-launcher-menu .rc-frame-toolbar .rc-toolbar-border-bottom", ["border-bottom: var(--toolbar-separator);"])
+        .set(".rc-frame .rc-frame-toolbar .rc-toolbar-border-right", ["border-right: var(--toolbar-separator);"])
+        .set(".rc-frame .rc-frame-toolbar .rc-toolbar-border-bottom", ["border-bottom: var(--toolbar-separator);"])
+    }
+])
+.set("Tree", [
+    {
+        variable: "--tree-background",
+        label: "Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree", ["background: var(--tree-background);"])
+        .set(".p-tree .p-tree-container > .p-treenode:nth-child(odd)", ["background: var(--tree-background);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(odd)", ["background: var(--tree-background);"])
     }
 ])

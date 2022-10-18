@@ -138,42 +138,58 @@ const TableTree:FC = () => {
         <div className="preview-container">
             <div className='comp-container table-container'>
                 <div className='rc-toolbar navbar-west'>
-                    <Button
-                        className={concatClassnames(
-                            "rc-button",
-                            tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
-                            "mouse-border",
-                            "gap-right",
-                            "rc-toolbar-button",
-                            "no-focus-rect"
-                        )}
-                        icon="pi pi-plus-circle"
-                        style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties}
-                    />
-                    <Button
-                        className={concatClassnames(
-                            "rc-button",
-                            tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
-                            "mouse-border",
-                            "gap-right",
-                            "rc-toolbar-button",
-                            "no-focus-rect"
-                        )}
-                        icon="pi pi-times-circle"
-                        style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties}
-                    />
-                    <Button
-                        className={concatClassnames(
-                            "rc-button",
-                            tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
-                            "mouse-border",
-                            "gap-right",
-                            "rc-toolbar-button",
-                            "no-focus-rect"
-                        )}
-                        icon="pi pi-pencil"
-                        style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties}
-                    />
+                    <div className='toolbar-buttons rc-toolbar-border-bottom'>
+                        <Button
+                            className={concatClassnames(
+                                "rc-button",
+                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
+                                "mouse-border",
+                                "gap-right",
+                                "rc-toolbar-button",
+                                "no-focus-rect"
+                            )}
+                            icon="pi pi-plus-circle"
+                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties}
+                        />
+                        <Button
+                            className={concatClassnames(
+                                "rc-button",
+                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
+                                "mouse-border",
+                                "gap-right",
+                                "rc-toolbar-button",
+                                "no-focus-rect"
+                            )}
+                            icon="pi pi-times-circle"
+                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties}
+                        />
+                        <Button
+                            className={concatClassnames(
+                                "rc-button",
+                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
+                                "mouse-border",
+                                "gap-right",
+                                "rc-toolbar-button",
+                                "no-focus-rect"
+                            )}
+                            icon="pi pi-pencil"
+                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px', marginBottom: '4px' } as CSSProperties}
+                        />
+                    </div>
+                    <div className='toolbar-buttons'>
+                        <Button
+                            className={concatClassnames(
+                                "rc-button",
+                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
+                                "mouse-border",
+                                "gap-right",
+                                "rc-toolbar-button",
+                                "no-focus-rect"
+                            )}
+                            icon="pi pi-sort-alt"
+                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px', marginTop: '4px' } as CSSProperties}
+                        />
+                    </div>
                 </div>
                 <DataTable
                     className='rc-table'
