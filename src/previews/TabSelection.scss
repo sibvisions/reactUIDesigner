@@ -13,34 +13,34 @@
  * the License.
  */
 
-.p-tabview {
+.designer-tab-view.p-tabview {
     height: 100%;
     width: 100%;
-}
 
-.p-tabview-panels {
-    height: calc(100% - 50px);
-    width: 100%;
-}
+    > .p-tabview-panels {
+        height: calc(100% - 50px);
+        width: 100%;
 
-.p-tabview-panel {
-    height: 100%;
-    width: 100%;
-}
+        > .p-tabview-panel {
+            height: 100%;
+            width: 100%;
+        }
+    }
 
-.p-tabview .p-tabview-nav li .p-tabview-nav-link {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 16px;
-    height: 48px;
-    min-width: 48px;
-    position: relative;
-    overflow: hidden;
-    font-size: var(--designer-font-size);
-
-    &:not(.p-disabled):focus {
-        box-shadow: none !important;
-        -webkit-box-shadow: none !important;
+    > .p-tabview-nav-container .p-tabview-nav li .p-tabview-nav-link {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 16px;
+        height: 48px;
+        min-width: 48px;
+        position: relative;
+        overflow: hidden;
+        font-size: var(--designer-font-size);
+    
+        &:not(.p-disabled):focus {
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+        }
     }
 }

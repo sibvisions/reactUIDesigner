@@ -314,5 +314,85 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".p-tree", ["background: var(--tree-background);"])
         .set(".p-tree .p-tree-container > .p-treenode:nth-child(odd)", ["background: var(--tree-background);"])
         .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(odd)", ["background: var(--tree-background);"])
+    },
+    {
+        variable: "--tree-border",
+        label: "Border",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-border'),
+        usage: new Map<string, string[]>().set(".p-tree", ["border: var(--tree-border);"])
+    },
+    {
+        variable: "--tree-color",
+        label: "Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree", ["color: var(--tree-color);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler", ["color: var(--tree-color);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled", ["color: var(--tree-color);"])
+    },
+    {
+        variable: "--tree-item-hover-background",
+        label: "Hover Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-item-hover-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover", ["background: var(--tree-item-hover-background);"])
+    },
+    {
+        variable: "--tree-item-hover-color",
+        label: "Hover Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-item-hover-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover", ["color: var(--tree-item-hover-color);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover .p-tree-toggler, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover .p-tree-toggler:enabled, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover .p-treenode-icon", ["color: var(--tree-item-hover-color);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover", ["color: var(--tree-item-hover-color);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover .p-tree-toggler, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover .p-tree-toggler:enabled, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover .p-treenode-icon", ["color: var(--tree-item-hover-color);"])
+    },
+    {
+        variable: "--tree-selected-item-background",
+        label: "Selected Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-selected-item-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled:hover", ["background: var(--tree-selected-item-background);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight", ["background: var(--tree-selected-item-background);"])
+    },
+    {
+        variable: "--tree-selected-item-color",
+        label: "Selected Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-selected-item-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight", ["color: var(--tree-selected-item-color);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-tree-toggler, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-tree-toggler:enabled, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-treenode-icon", ["color: var(--tree-selected-item-color);"])
+    },
+    {
+        variable: "--tree-odd-background",
+        label: "Odd Nodes Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-odd-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree .p-tree-container > .p-treenode:nth-child(odd)", ["background: var(--tree-odd-background);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(odd)", ["background: var(--tree-odd-background);"])
+    },
+    {
+        variable: "--tree-even-background",
+        label: "Even Nodes Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tree-even-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-tree .p-tree-container > .p-treenode:nth-child(even)", ["background: var(--tree-even-background);"])
+        .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(even)", ["background: var(--tree-even-background);"])
     }
 ])

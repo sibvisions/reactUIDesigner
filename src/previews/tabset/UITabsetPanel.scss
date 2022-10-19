@@ -1,0 +1,75 @@
+/* Copyright 2022 SIB Visions GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+.rc-tabset {
+    .p-tabview {
+        .p-tabview-panels {
+            height: calc(100% - 48px);
+            padding: 0;
+            background: unset;
+            color: unset;
+            border: none;
+            border-bottom-right-radius: unset;
+            border-bottom-left-radius: unset;
+            .p-tabview-panel {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    
+        .p-tabview-nav {
+            li {
+                .p-tabview-nav-link {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0px 16px;
+                    height: 48px;
+                    min-width: 48px;
+                    position: relative;
+                    overflow: hidden;
+
+                    .p-tabview-close {
+                        font-size: 12px;
+                    }
+                }
+                .rc-tabset-tabicon {
+                    display: inline-block;
+                    margin-right: 4px;
+                }
+    
+                .p-tabview-nav-link:not(.p-disabled):focus {
+                    box-shadow: none !important;
+                    -webkit-box-shadow: none !important;
+                }
+    
+                &.p-highlight {
+                    .p-tabview-nav-link {
+                        background: transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    .p-tabview-title {
+        position: relative;
+        line-height: unset;
+    }
+}
+
+.black .p-ink {
+    background: rgba(0,0,0,.2);
+}

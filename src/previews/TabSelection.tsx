@@ -21,6 +21,7 @@ import CorporateMenu from "./menu/CorporateMenu";
 import Buttons from "./buttons/Buttons";
 import Inputs from "./inputs/Inputs";
 import TableTree from "./tabletree/TableTree";
+import Tabset from "./tabset/Tabset";
 
 interface ITabSelection {
     tabChangedCallback: Function
@@ -30,7 +31,8 @@ const TabSelection: FC<ITabSelection> = (props) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
     return (
-        <TabView 
+        <TabView
+            className="designer-tab-view"
             activeIndex={activeIndex} 
             onTabChange={event => {
                 setActiveIndex(event.index);
@@ -53,6 +55,9 @@ const TabSelection: FC<ITabSelection> = (props) => {
             </TabPanel>
             <TabPanel header="Table/Tree">
                 <TableTree />
+            </TabPanel>
+            <TabPanel header="Tabset">
+                <Tabset />
             </TabPanel>
         </TabView>
     )
