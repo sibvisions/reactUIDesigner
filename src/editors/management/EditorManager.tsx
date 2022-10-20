@@ -32,7 +32,9 @@ export enum EDITOR_INDICES {
     BUTTON_EDITORS = "3",
     INPUT_EDITORS = "4",
     TABLE_EDITORS = "5",
-    TABSET_EDITORS = "6"
+    TABSET_EDITORS = "6",
+    POPUP_EDITORS = "7",
+    MESSAGES_EDITORS = "8"
 }
 
 const EditorManager: FC<IEditorManager> = (props) => {
@@ -58,6 +60,10 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     return context.variables.get(EDITOR_INDICES.TABLE_EDITORS) as Map<string, EditorItem[]>;
                 case parseInt(EDITOR_INDICES.TABSET_EDITORS):
                     return context.variables.get(EDITOR_INDICES.TABSET_EDITORS) as Map<string, EditorItem[]>;
+                case parseInt(EDITOR_INDICES.POPUP_EDITORS):
+                    return context.variables.get(EDITOR_INDICES.POPUP_EDITORS) as Map<string, EditorItem[]>;
+                case parseInt(EDITOR_INDICES.MESSAGES_EDITORS):
+                    return context.variables.get(EDITOR_INDICES.MESSAGES_EDITORS) as Map<string, EditorItem[]>;
                 default:
                     return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS) as Map<string, EditorItem[]>;
             }

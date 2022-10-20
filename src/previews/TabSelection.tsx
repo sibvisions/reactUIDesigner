@@ -22,6 +22,8 @@ import Buttons from "./buttons/Buttons";
 import Inputs from "./inputs/Inputs";
 import TableTree from "./tabletree/TableTree";
 import Tabset from "./tabset/Tabset";
+import Popup from "./popup/Popup";
+import Messages from "./messages/Messages";
 
 interface ITabSelection {
     tabChangedCallback: Function
@@ -58,6 +60,12 @@ const TabSelection: FC<ITabSelection> = (props) => {
             </TabPanel>
             <TabPanel header="Tabset">
                 <Tabset />
+            </TabPanel>
+            <TabPanel header="Popup">
+                <Popup />
+            </TabPanel>
+            <TabPanel header="Messages">
+                <Messages />
             </TabPanel>
         </TabView>
     )

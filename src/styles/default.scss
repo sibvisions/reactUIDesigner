@@ -291,6 +291,10 @@
     /// Dialog header text-color
     --dialog-header-text-color:var(--text-color);
 
+    --dialog-header-close-hover-background:#e9ecef;
+
+    --dialog-header-close-hover-color:#000000;
+
     /// Default 'x' color when hovering
     --dialog-icon-hover-color:var(--text-color);
 
@@ -302,9 +306,6 @@
 
     /// Default TabSet navbar background
     --tab-navbar-background:#ffffff;
-
-    /// Default TabSet navbar border
-    --tab-navbar-border-color:#dee2e6;
 
     /// Default border and color of a selected tab
     --tab-selected-color:#2196fe;
@@ -1537,6 +1538,17 @@ body {
     }
 }
 
+.rc-popup {
+    .p-dialog-header .p-dialog-header-icon {
+        color: var(--dialog-header-text-color);
+
+        &:enabled:hover {
+            background: var(--dialog-header-close-hover-background);
+            color: var(--dialog-header-close-hover-color);
+        }
+    }
+}
+
 .error-dialog {
     .p-dialog-header {
         background: var(--message-error-header-background);
@@ -1722,7 +1734,6 @@ body {
 .p-tabview .p-tabview-nav {
     background: var(--tab-navbar-background);
     color: var(--text-color);
-    border-color: var(--tab-navbar-border-color);
     border-radius: var(--tab-border-radius);
     padding: 0 var(--tab-border-radius);
 
