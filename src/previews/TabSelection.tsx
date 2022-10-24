@@ -24,6 +24,8 @@ import TableTree from "./tabletree/TableTree";
 import Tabset from "./tabset/Tabset";
 import Popup from "./popup/Popup";
 import Messages from "./messages/Messages";
+import LoadingPreview from "./loading/LoadingPreview";
+import ErrorBar from "./error-bar/ErrorBar";
 
 interface ITabSelection {
     tabChangedCallback: Function
@@ -66,6 +68,12 @@ const TabSelection: FC<ITabSelection> = (props) => {
             </TabPanel>
             <TabPanel header="Messages">
                 <Messages />
+            </TabPanel>
+            <TabPanel header="Loading-Screen">
+                <LoadingPreview />
+            </TabPanel>
+            <TabPanel header="Error-Bar">
+                <ErrorBar />
             </TabPanel>
         </TabView>
     )

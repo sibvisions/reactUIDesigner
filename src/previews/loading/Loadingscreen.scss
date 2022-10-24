@@ -1,0 +1,72 @@
+/* Copyright 2022 SIB Visions GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+.loading-preview {
+    height: 100%;
+    width: 100%;
+}
+
+.loading-screen {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    background: -webkit-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);
+    background: -o-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);
+    background: -moz-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);
+    background: radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);
+}
+
+.loading-screen-spinner {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    top: calc(50% - 15px);
+    left: calc(50% - 30px);
+}
+
+.show-debug {
+    .loading-screen-spinner {
+        top: calc(50% - 23px);
+    }
+}
+
+.loading-screen-text {
+    color: #a5a5a5
+}
+
+.loading-screen-spinner {
+    animation: progress-spinner-color 3s;
+}
+
+@keyframes p-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #b3ec23;;
+    }
+    40% {
+        stroke: #95c41f;
+    }
+    66% {
+        stroke: #8bb61d;
+    }
+    80%,
+    90% {
+        stroke: #80a818;
+    }
+}
