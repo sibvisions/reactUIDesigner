@@ -27,6 +27,7 @@ import { popupEditors } from "./editors/PopupEditors";
 import { messagesEditors } from "./editors/MessagesEditors";
 import { loadingEditors } from "./editors/LoadingEditors";
 import { errorbarEditors } from "./editors/ErrorBarEditors";
+import { miscEditors } from "./editors/MiscEditors";
 
 export type VariableContextType = {
     schemeName: string,
@@ -50,7 +51,8 @@ const editorArray = [
     popupEditors,
     messagesEditors,
     loadingEditors,
-    errorbarEditors
+    errorbarEditors,
+    miscEditors
 ];
 
 function getDefaultValues() {
