@@ -20,7 +20,7 @@ import { loginEditors } from "./editors/LoginEditors";
 import { menuEditors } from "./editors/MenuEditors";
 import { corporateEditors } from "./editors/CorporateEditors";
 import { buttonEditors } from "./editors/ButtonEditors";
-import { inputEditors } from "./editors/InputEditors";
+import { inputEditors, labelEditors } from "./editors/InputEditors";
 import { tableEditors } from "./editors/TableEditors";
 import { tabsetEditors } from "./editors/TabsetEditors";
 import { popupEditors } from "./editors/PopupEditors";
@@ -44,6 +44,7 @@ const editorArray = [
     corporateEditors, 
     buttonEditors, 
     inputEditors, 
+    labelEditors,
     tableEditors, 
     tabsetEditors, 
     popupEditors,

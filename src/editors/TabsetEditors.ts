@@ -61,5 +61,13 @@ export const tabsetEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         cssType: "scheme",
         value: docStyle.getPropertyValue('--tab-close-hover-color'),
         usage: new Map<string, string[]>().set(".p-tabview-close:hover", ["color: var(--tab-close-hover-color);"])
+    },
+    {
+        variable: "--tab-border-radius",
+        label: "Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--tab-border-radius'),
+        usage: new Map<string, string[]>().set(".p-tabview .p-tabview-nav", ["border-radius: var(--tab-border-radius);", "padding: 0 var(--tab-border-radius);"])
     }
 ])

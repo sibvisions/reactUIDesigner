@@ -51,6 +51,37 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des", ["color: var(--table-sort-color);"])
         .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc .p-sortable-column-icon, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des .p-sortable-column-icon", ["color: var(--table-sort-color);"])
     },
+    {
+        variable: "--table-border-radius",
+        label: "Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--table-border-radius'),
+        usage: new Map<string, string[]>()
+        .set(".rc-table.navtable-north", ["border-bottom-left-radius: var(--table-border-radius);", "border-bottom-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-west", ["border-top-right-radius: var(--table-border-radius);", "border-bottom-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-west:not(.p-datatable-scrollable) .p-datatable-thead > tr > th:last-child", ["border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-west:not(.p-datatable-scrollable) .p-datatable-thead > tr > th:only-child", ["border-top-left-radius: var(--table-border-radius);", "border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-west .p-datatable-scrollable-header", ["border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-east", ["border-top-left-radius: var(--table-border-radius);", "border-bottom-left-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-east:not(.p-datatable-scrollable) .p-datatable-thead > tr > th:first-child", ["border-top-left-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-east:not(.p-datatable-scrollable) .p-datatable-thead > tr > th:only-child", ["border-top-left-radius: var(--table-border-radius);", "border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-east .p-datatable-scrollable-header", ["border-top-left-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-south", ["border-top-left-radius: var(--table-border-radius);", "border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-south:not(.p-datatable-scrollable) .p-datatable-thead > tr > th:first-child", ["border-top-left-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-south:not(.p-datatable-scrollable) .p-datatable-thead > tr > th:last-child", ["border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-south:not(.p-datatable-scrollable) .p-datatable-thead > tr > th:only-child", ["border-top-left-radius: var(--table-border-radius);", "border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table.navtable-south .p-datatable-scrollable-header", ["border-top-left-radius: var(--table-border-radius);", "border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table:not(.navtable-north):not(.navtable-west):not(.navtable-east):not(.navtable-south)", ["border-radius: var(--table-border-radius);"])
+        .set(".rc-table:not(.navtable-north):not(.navtable-west):not(.navtable-east):not(.navtable-south):not(.p-datatable-scrollable) .p-datatable-thead > tr > th:first-child", ["border-top-left-radius: var(--table-border-radius);"])
+        .set(".rc-table:not(.navtable-north):not(.navtable-west):not(.navtable-east):not(.navtable-south):not(.p-datatable-scrollable) .p-datatable-thead > tr > th:last-child", ["border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-table:not(.navtable-north):not(.navtable-west):not(.navtable-east):not(.navtable-south):not(.p-datatable-scrollable) .p-datatable-thead > tr > th:only-child", ["border-top-left-radius: var(--table-border-radius);", "border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-toolbar.navbar-north", ["border-top-left-radius: var(--table-border-radius);", "border-top-right-radius: var(--table-border-radius);"])
+        .set(".rc-toolbar.navbar-west", ["border-top-left-radius: var(--table-border-radius);", "border-bottom-left-radius: var(--table-border-radius);"])
+        .set(".rc-toolbar.navbar-east", ["border-top-right-radius: var(--table-border-radius);", "border-bottom-right-radius: var(--table-border-radius);"])
+        .set(".rc-toolbar.navbar-south", ["border-bottom-left-radius: var(--table-border-radius);", "border-bottom-right-radius: var(--table-border-radius);"])
+        .set(".p-tree", ["border-radius: var(--table-border-radius);"])
+    }
 ])
 .set("Table Header", [
     {
@@ -301,6 +332,18 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".mobile-launcher-menu .rc-frame-toolbar .rc-toolbar-border-bottom", ["border-bottom: var(--toolbar-separator);"])
         .set(".rc-frame .rc-frame-toolbar .rc-toolbar-border-right", ["border-right: var(--toolbar-separator);"])
         .set(".rc-frame .rc-frame-toolbar .rc-toolbar-border-bottom", ["border-bottom: var(--toolbar-separator);"])
+    },
+    {
+        variable: "--toolbar-border-radius",
+        label: "Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--toolbar-border-radius'),
+        usage: new Map<string, string[]>()
+        .set(".rc-toolbar.toolbar-north", ["border-top-left-radius: var(--toolbar-border-radius);", "border-top-right-radius: var(--toolbar-border-radius);"])
+        .set(".rc-toolbar.toolbar-west", ["border-top-left-radius: var(--toolbar-border-radius);", "border-bottom-left-radius: var(--toolbar-border-radius);"])
+        .set(".rc-toolbar.toolbar-east", ["border-top-right-radius: var(--toolbar-border-radius);", "border-bottom-right-radius: var(--toolbar-border-radius);"])
+        .set(".rc-toolbar.toolbar-south", ["border-bottom-left-radius: var(--toolbar-border-radius);", "border-bottom-right-radius: var(--toolbar-border-radius);"])
     }
 ])
 .set("Tree", [

@@ -65,6 +65,20 @@ export const popupEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".error-dialog .p-dialog-footer", ["background: var(--dialog-content-background);"])
         .set(".rc-message-dialog .p-dialog-content, .rc-message-dialog .p-dialog-footer", ["background: var(--dialog-content-background);"])
         .set("#toast-info .p-toast-message", ["background: var(--dialog-content-background);"])
+    },
+    {
+        variable: "--dialog-border-radius",
+        label: "Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--dialog-border-radius'),
+        usage: new Map<string, string[]>()
+        .set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["border-top-left-radius: var(--dialog-border-radius);", "border-top-right-radius: var(--dialog-border-radius);"])
+        .set(".rc-popup .p-dialog-content, .error-dialog .p-dialog-content", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
+        .set(".error-dialog .p-dialog-footer", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
+        .set(".rc-message-dialog .p-dialog-header", ["border-top-left-radius: var(--dialog-border-radius);", "border-top-right-radius: var(--dialog-border-radius);"])
+        .set(".rc-message-dialog .p-dialog-footer", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
+        .set(".rc-message-dialog.message-dialog-no-footer .p-dialog-content", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
     }
 ])
 .set("Error-Popup", [

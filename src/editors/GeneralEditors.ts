@@ -83,5 +83,24 @@ export const generalEditors: Map<string, EditorItem[]> = new Map<string, EditorI
             .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight", ["color: var(--text-color);"])
             .set(".rc-frame .rc-frame-header .rc-frame-header-close-button", ["color: var(--text-color);"])
             .set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon", ["color: var(--text-color);"])
+        },
+        {
+            variable: "--focus-box-shadow",
+            label: "Focus Border",
+            type: "text",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--focus-box-shadow'),
+            usage: new Map<string, string[]>()
+            .set(".rc-button:focus", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".p-radiobutton .p-radiobutton-box:not(.p-disabled) .p-focus", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".rc-popupmenubutton:focus-within", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".rc-togglebutton:focus", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".rc-editor-choice:focus img", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".p-inputtext:enabled:focus", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".p-calendar:focus-within", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".p-datepicker .p-datepicker-header .p-datepicker-title select:focus", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".rc-editor-image:focus img, .rc-icon:focus img, .rc-validator:focus img", ["box-shadow: var(--focus-box-shadow);"])
+            .set(".rc-editor-linked:focus-within", ["box-shadow: var(--focus-box-shadow);"])
         }
     ])

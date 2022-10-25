@@ -21,7 +21,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
 .set("Texteditor", [
     {
         variable: "--input-background",
-        label: "Textfield Background",
+        label: "Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--input-background'),
@@ -30,18 +30,37 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".p-editor-container .p-editor-content .ql-editor", ["background: var(--input-background);"])
     },
     {
-        variable: "--input-border",
-        label: "Textfield Border",
+        variable: "--input-border-width",
+        label: "Border Width",
         type: "text",
         cssType: "scheme",
-        value: docStyle.getPropertyValue('--input-border'),
+        value: docStyle.getPropertyValue('--input-border-width'),
         usage: new Map<string, string[]>()
-        .set(".p-inputtext", ["border: var(--input-border);"])
-        .set(".p-editor-container .p-editor-toolbar.ql-snow", ["border: var(--input-border);"])
-        .set(".p-editor-container .p-editor-content", ["border: var(--input-border);"])
-        .set(".p-editor-container .p-editor-content.ql-snow", ["border: var(--input-border);"])
-        .set(".rc-editor-html textarea.p-inputtext", ["border: var(--input-border) !important;"])
-        .set(".rc-panel-group-caption", ["border: var(--input-border)"])
+        .set(".p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color);"])
+        .set(".p-editor-container .p-editor-toolbar.ql-snow", ["border: var(--input-border-width) solid var(--input-border-color);"])
+        .set(".p-editor-container .p-editor-content", ["border: var(--input-border-width) solid var(--input-border-color);"])
+        .set(".p-editor-container .p-editor-content.ql-snow", ["border: var(--input-border-width) solid var(--input-border-color);"])
+        .set(".rc-editor-html textarea.p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color); !important"])
+        .set(".rc-panel-group-caption", ["border-bottom: var(--input-border-width) solid var(--input-border-color);"])
+    },
+    {
+        variable: "--input-border-color",
+        label: "Border Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--input-border-color'),
+        usage: new Map<string, string[]>()
+    },
+    {
+        variable: "--input-border-hover-color",
+        label: "Border Hover Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--input-border-hover-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-inputtext:enabled:focus", ["border-color: var(--input-border-hover-color);"])
+        .set(".p-inputtext:enabled:hover", ["border-color: var(--input-border-hover-color);"])
+        .set(".p-datepicker .p-datepicker-header .p-datepicker-title select:focus", ["border-color: var(--input-border-hover-color);"])
     },
     {
         variable: "--input-placeholder-color",
@@ -54,14 +73,35 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".p-float-label > label", ["color: var(--input-placeholder-color);"])
     },
     {
-        variable: "--input-padding",
-        label: "Textfield Padding",
+        variable: "--input-padding-tb",
+        label: "Padding Top Bottom",
         type: "text",
         cssType: "theme",
-        value: docStyle.getPropertyValue('--input-padding'),
+        value: docStyle.getPropertyValue('--input-padding-tb'),
         usage: new Map<string, string[]>()
-        .set(".basti .p-inputtext", ["var(--input-padding);"])
+        .set(".basti .p-inputtext", ["padding: var(--input-padding-tb) var(--input-padding-lr);"])
     },
+    {
+        variable: "--input-padding-lr",
+        label: "Padding Left Right",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--input-padding-lr'),
+        usage: new Map<string, string[]>()
+    },
+    {
+        variable: "--editor-border-radius",
+        label: "Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--editor-border-radius'),
+        usage: new Map<string, string[]>()
+        .set(".p-inputtext", ["border-radius: var(--editor-border-radius);"])
+        .set(".p-calendar:focus-within", ["border-radius: var(--editor-border-radius);"])
+        .set(".p-editor-container .p-editor-toolbar", ["border-top-left-radius: var(--editor-border-radius);", "border-top-right-radius: var(--editor-border-radius);"])
+        .set(".p-editor-container .p-editor-content", ["border-bottom-left-radius: var(--editor-border-radius);", "border-bottom-right-radius: var(--editor-border-radius);"])
+        .set(".p-editor-container .p-editor-content .ql-editor", ["border-bottom-left-radius: var(--editor-border-radius);", "border-bottom-right-radius: var(--editor-border-radius);"])
+    }
 ])
 .set("Dateeditor/Linkededitor", [
     {
@@ -131,6 +171,14 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-items li:nth-child(even).p-highlight", ["background: var(--linked-highlighted-color);"])
     },
     {
+        variable: "--linked-border-radius",
+        label: "Linked Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--linked-border-radius'),
+        usage: new Map<string, string[]>().set(".p-autocomplete-panel", ["border-radius: var(--linked-border-radius);"])
+    },
+    {
         variable: "--date-panel-background",
         label: "Date Panel Background",
         type: "color",
@@ -174,6 +222,14 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--date-selected-background'),
         usage: new Map<string, string[]>().set(".p-datepicker table td > span.p-highlight", ["background: var(--date-selected-background);"])
+    },
+    {
+        variable: "--date-border-radius",
+        label: "DatePicker Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--date-border-radius'),
+        usage: new Map<string, string[]>().set(".p-datepicker", ["border-radius: var(--date-border-radius);"])
     }
 ])
 .set("HTMLEditor", [
@@ -248,5 +304,17 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         value: docStyle.getPropertyValue('--html-picker-item-hover-background'),
         usage: new Map<string, string[]>()
         .set(".p-editor-container .p-editor-toolbar.ql-snow .ql-formats .ql-picker.ql-expanded .ql-picker-options .ql-picker-item:hover", ["background: var(--html-picker-item-hover-background);"])
+    }
+])
+
+export const labelEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
+.set("Label", [
+    {
+        variable: "--label-padding",
+        label: "Label Padding",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--label-padding'),
+        usage: new Map<string, string[]>().set(".basti .rc-label > span", ["padding: var(--label-padding) 0px;"])
     }
 ])

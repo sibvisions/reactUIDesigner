@@ -23,6 +23,8 @@ interface IEditorManager {
     isPreviewMode: boolean
     isCorporation: boolean
     activeIndex: number
+    buttonCallback: Function
+    topbarCallback: Function
 }
 
 export enum EDITOR_INDICES {
@@ -78,8 +80,20 @@ const EditorManager: FC<IEditorManager> = (props) => {
 
     return (
         <>
-            {!props.isPreviewMode && <EditorCreator index={props.activeIndex} isPreviewMode={props.isPreviewMode} editors={generalEditors} />}
-            <EditorCreator index={props.activeIndex} isPreviewMode={props.isPreviewMode} editors={editors} />
+            {!props.isPreviewMode && 
+                <EditorCreator 
+                    index={props.activeIndex} 
+                    isPreviewMode={props.isPreviewMode} 
+                    editors={generalEditors}
+                    buttonCallback={props.buttonCallback}
+                    topbarCallback={props.topbarCallback} />
+            }
+            <EditorCreator 
+                index={props.activeIndex} 
+                isPreviewMode={props.isPreviewMode} 
+                editors={editors}
+                buttonCallback={props.buttonCallback}
+                topbarCallback={props.topbarCallback} />
         </>
     )
 }

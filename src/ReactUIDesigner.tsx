@@ -33,6 +33,8 @@ interface IReactUIDesigner {
   logoBig: string
   logoSmall: string
   logoLogin: string
+  buttonCallback: Function
+  topbarCallback:Function
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -283,7 +285,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             <EditorManager
               isPreviewMode={isPreviewMode}
               isCorporation={props.isCorporation}
-              activeIndex={activeTabIndex} />
+              activeIndex={activeTabIndex}
+              buttonCallback={props.buttonCallback}
+              topbarCallback={props.topbarCallback}
+               />
           </div>
         </div>
         <div className='designer-content reactUI basti'>

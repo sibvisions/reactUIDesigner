@@ -34,6 +34,8 @@ interface IEditorCreator {
     index: number,
     isPreviewMode: boolean,
     editors: Map<string, EditorItem[]>
+    buttonCallback: Function
+    topbarCallback: Function
 }
 
 function createEditors(editors: Map<string, EditorItem[]>, 
@@ -41,7 +43,9 @@ function createEditors(editors: Map<string, EditorItem[]>,
     defaultValues: Map<string, string>, 
     context: VariableContextType,
     index: number,
-    isPreviewMode: boolean
+    isPreviewMode: boolean,
+    buttonCallback: Function,
+    topbarCallback: Function
     ) {
     const setVariableState = (key: string , pItem: EditorItem, value: string) => {
         setCallback(prevState => {
@@ -106,7 +110,11 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                 // Need to update the buttons seperately because the way they set the color is different
                                 if (editorItem.variable === "--primary-color") {
                                     context.updateButtonBackground();
-                                } 
+                                    buttonCallback();
+                                }
+                                else if (editorItem.variable === "--topbar-color") {
+                                    topbarCallback();
+                                }
                             }} />
                         <Button
                             className="style-editor-button"
@@ -121,6 +129,10 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                 // Need to update the buttons seperately because the way they set the color is different
                                 if (editorItem.variable === "--primary-color") {
                                     context.updateButtonBackground();
+                                    buttonCallback();
+                                }
+                                else if (editorItem.variable === "--topbar-color") {
+                                    topbarCallback();
                                 }
                             }} />
                     </>
@@ -137,6 +149,10 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                 // Need to update the buttons seperately because the way they set the color is different
                                 if (editorItem.variable === "--primary-color") {
                                     context.updateButtonBackground();
+                                    buttonCallback();
+                                }
+                                else if (editorItem.variable === "--topbar-color") {
+                                    topbarCallback();
                                 }
                             }} />
                         <Button
@@ -157,7 +173,11 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             // Need to update the buttons seperately because the way they set the color is different
                             if (editorItem.variable === "--primary-color") {
                                 context.updateButtonBackground();
-                            } 
+                                buttonCallback();
+                            }
+                            else if (editorItem.variable === "--topbar-color") {
+                                topbarCallback();
+                            }
                         }} />
                 )
         }
@@ -206,7 +226,7 @@ const EditorCreator:FC<IEditorCreator> = (props) => {
 
     return (
         <Accordion>
-            {createEditors(editors, setEditors, context.defaultValues, context, props.index, props.isPreviewMode)}
+            {createEditors(editors, setEditors, context.defaultValues, context, props.index, props.isPreviewMode, props.buttonCallback, props.topbarCallback)}
         </Accordion> 
     )
 }

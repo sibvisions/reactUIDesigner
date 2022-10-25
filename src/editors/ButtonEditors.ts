@@ -99,6 +99,17 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         cssType: "scheme",
         value: docStyle.getPropertyValue('--popupmenubutton-item-hover-text-color'),
         usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text", ["color: var(--popupmenubutton-item-hover-text-color);"])
+    },
+    {
+        variable: "--button-border-radius",
+        label: "Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--button-border-radius'),
+        usage: new Map<string, string[]>()
+        .set(".p-button.p-button-icon-only.menu-topbar-buttons", ["border-radius: var(--button-border-radius);"])
+        .set(".p-button", ["border-radius: var(--button-border-radius);"])
+        .set(".rc-popupmenubutton", ["border-radius: var(--button-border-radius);"])
     }
 ])
 .set("Checkbox/Radiobutton", [
@@ -119,6 +130,15 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         value: docStyle.getPropertyValue('--checkbox-border'),
         usage: new Map<string, string[]>()
         .set(".p-checkbox .p-checkbox-box", ["border: var(--checkbox-border);"])
+    },
+    {
+        variable: "--checkbox-border-hover-color",
+        label: "Checkbox Border Hovor Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--checkbox-border-hover-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover", ["border-color: var(--checkbox-border-hover-color);"])
     },
     {
         variable: "--checkbox-selected-background",
@@ -160,6 +180,14 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         .set(".basti .p-checkbox .p-checkbox-box .p-checkbox-icon", ["font-size: calc(var(--checkbox-size) * 0.7);"])
     },
     {
+        variable: "--checkbox-border-radius",
+        label: "Checkbox Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--checkbox-border-radius'),
+        usage: new Map<string, string[]>().set(".p-checkbox .p-checkbox-box", ["border-radius: var(--checkbox-border-radius);"])
+    },
+    {
         variable: "--radiobutton-background",
         label: "Radiobutton Background",
         type: "color",
@@ -178,6 +206,15 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         .set(".p-radiobutton .p-radiobutton-box", ["border: var(--radiobutton-border);"])
     },
     {
+        variable: "--radiobutton-border-hover-color",
+        label: "Radiobutton Border Hovor Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--radiobutton-border-hover-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover", ["border-color: var(--radiobutton-border-hover-color);"])
+    },
+    {
         variable: "--radiobutton-selected-outer-background",
         label: "Radiobutton Outer Background",
         type: "color",
@@ -193,7 +230,6 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         cssType: "theme",
         value: docStyle.getPropertyValue('--radiobutton-selected-outer-hover-background'),
         usage: new Map<string, string[]>()
-        .set(".p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover", ["border-color: var(--radiobutton-selected-outer-hover-background);"])
         .set(".p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover", ["background: var(--radiobutton-selected-outer-hover-background);", "border-color: var(--radiobutton-selected-outer-hover-background);"])
     },
     {

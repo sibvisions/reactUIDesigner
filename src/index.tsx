@@ -27,7 +27,9 @@ export default ReactDOM.render(
     isLogin={false} 
     logoLogin={process.env.PUBLIC_URL + '/assets/logo_login.png'} 
     logoBig={process.env.PUBLIC_URL + '/assets/logo_big.png'}
-    logoSmall={process.env.PUBLIC_URL + '/assets/logo_small.png'} />,
+    logoSmall={process.env.PUBLIC_URL + '/assets/logo_small.png'}
+    buttonCallback={() => {}}
+    topbarCallback={() => {}} />,
   // </React.StrictMode>,
   document.getElementById('root')
 )
