@@ -112,7 +112,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                     context.updateButtonBackground();
                                     buttonCallback();
                                 }
-                                else if (editorItem.variable === "--topbar-color") {
+                                else if (editorItem.variable === "--topbar-colors") {
                                     topbarCallback();
                                 }
                             }} />
@@ -131,7 +131,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                     context.updateButtonBackground();
                                     buttonCallback();
                                 }
-                                else if (editorItem.variable === "--topbar-color") {
+                                else if (editorItem.variable === "--topbar-colors") {
                                     topbarCallback();
                                 }
                             }} />
@@ -151,7 +151,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                     context.updateButtonBackground();
                                     buttonCallback();
                                 }
-                                else if (editorItem.variable === "--topbar-color") {
+                                else if (editorItem.variable === "--topbar-colors") {
                                     topbarCallback();
                                 }
                             }} />
@@ -175,7 +175,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                 context.updateButtonBackground();
                                 buttonCallback();
                             }
-                            else if (editorItem.variable === "--topbar-color") {
+                            else if (editorItem.variable === "--topbar-colors") {
                                 topbarCallback();
                             }
                         }} />
