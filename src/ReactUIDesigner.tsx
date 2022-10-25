@@ -24,6 +24,7 @@ import { sendRequest } from './RequestService';
 import { Toast } from 'primereact/toast';
 import { generateCSS } from './util/GenerateCSS';
 import { Accordion, AccordionTab } from 'primereact/accordion';
+import './index.scss';
 
 interface IReactUIDesigner {
   isCorporation: boolean
