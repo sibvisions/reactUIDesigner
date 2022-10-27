@@ -27,7 +27,7 @@ import Messages from "./messages/Messages";
 import LoadingPreview from "./loading/LoadingPreview";
 import ErrorBar from "./error-bar/ErrorBar";
 import FullPreview from "./full/FullPreview";
-import MiscPreview from "./misc/MiscPreview";
+import TopbarPreview from "./topbar/TopbarPreview";
 
 interface ITabSelection {
     tabChangedCallback: Function
@@ -80,8 +80,8 @@ const TabSelection: FC<ITabSelection> = (props) => {
             <TabPanel header="Full Transfer">
                 <FullPreview />
             </TabPanel>
-            <TabPanel header="Misc.">
-                <MiscPreview />
+            <TabPanel header="Topbar">
+                <TopbarPreview />
             </TabPanel>
         </TabView>
     )

@@ -2,7 +2,7 @@ import { EditorItem } from "./management/EditorCreator";
 
 const docStyle = window.getComputedStyle(document.documentElement);
 
-export const miscEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
+export const topbarEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
 .set("Loading-Topbar", [
     {
         variable: "--topbar-colors",

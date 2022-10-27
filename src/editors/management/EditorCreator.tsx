@@ -113,6 +113,8 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                     buttonCallback();
                                 }
                                 else if (editorItem.variable === "--topbar-colors") {
+                                    document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
+                                    context.updateTopbarColors();
                                     topbarCallback();
                                 }
                             }} />
@@ -132,6 +134,8 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                     buttonCallback();
                                 }
                                 else if (editorItem.variable === "--topbar-colors") {
+                                    document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
+                                    context.updateTopbarColors();
                                     topbarCallback();
                                 }
                             }} />
@@ -152,6 +156,8 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                     buttonCallback();
                                 }
                                 else if (editorItem.variable === "--topbar-colors") {
+                                    document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
+                                    context.updateTopbarColors();
                                     topbarCallback();
                                 }
                             }} />
@@ -176,6 +182,8 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                 buttonCallback();
                             }
                             else if (editorItem.variable === "--topbar-colors") {
+                                document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
+                                context.updateTopbarColors();
                                 topbarCallback();
                             }
                         }} />

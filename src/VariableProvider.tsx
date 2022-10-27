@@ -27,7 +27,8 @@ import { popupEditors } from "./editors/PopupEditors";
 import { messagesEditors } from "./editors/MessagesEditors";
 import { loadingEditors } from "./editors/LoadingEditors";
 import { errorbarEditors } from "./editors/ErrorBarEditors";
-import { miscEditors } from "./editors/MiscEditors";
+import { topbarEditors } from "./editors/TopbarEditors";
+import { fullEditors } from "./editors/FullEditors";
 
 export type VariableContextType = {
     schemeName: string,
@@ -35,7 +36,8 @@ export type VariableContextType = {
     isPreviewMode: boolean,
     variables: Map<string, Map<string, EditorItem[]>>,
     defaultValues: Map<string, string>,
-    updateButtonBackground: () => void
+    updateButtonBackground: () => void,
+    updateTopbarColors: () => void
 }
 
 const editorArray = [
@@ -45,14 +47,15 @@ const editorArray = [
     corporateEditors, 
     buttonEditors, 
     inputEditors, 
-    labelEditors,
     tableEditors, 
     tabsetEditors, 
     popupEditors,
     messagesEditors,
     loadingEditors,
     errorbarEditors,
-    miscEditors
+    fullEditors,
+    topbarEditors,
+    labelEditors
 ];
 
 function getDefaultValues() {
@@ -88,7 +91,8 @@ const initValue: VariableContextType = {
     variables: getVariables(),
     defaultValues: getDefaultValues(),
     isPreviewMode: false,
-    updateButtonBackground: () => {}
+    updateButtonBackground: () => {},
+    updateTopbarColors: () => {}
 }
 
 export const variableContext = createContext<VariableContextType>(initValue);

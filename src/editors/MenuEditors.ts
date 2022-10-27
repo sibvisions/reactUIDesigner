@@ -151,6 +151,14 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             cssType: "scheme",
             value: docStyle.getPropertyPriority('--topbar-button-hover-background'),
             usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons:hover", ["background:var(--topbar-button-hover-background);"])
+        },
+        {
+            variable: "--menuicon-size",
+            label: "Menuicon Size",
+            type: "text",
+            cssType: "theme",
+            value: docStyle.getPropertyValue('--menuicon-size'),
+            usage: new Map<string, string[]>().set(".basti .std-menu .p-menuitem-icon:not(.profile-image):not(.profile-image-null)", ["min-width: var(--menuicon-size);", "max-width: var(--menuicon-size);", "font-size: var(--menuicon-size);"])
         }
     ])
     .set("Profile-Menu", [

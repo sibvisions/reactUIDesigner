@@ -318,3 +318,31 @@ export const labelEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         usage: new Map<string, string[]>().set(".basti .rc-label > span", ["padding: var(--label-padding) 0px;"])
     }
 ])
+
+export const sysEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
+.set("SysColors", [
+    {
+        variable: "--mandatory-background",
+        label: "Mandatory Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--mandatory-background'),
+        usage: new Map<string, string[]>()
+    },
+    {
+        variable: "--readonly-background",
+        label: "Readonly Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--readonly-background'),
+        usage: new Map<string, string[]>()
+    },
+    {
+        variable: "--invalid-background",
+        label: "Invalid Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--invalid-background'),
+        usage: new Map<string, string[]>()
+    },
+])

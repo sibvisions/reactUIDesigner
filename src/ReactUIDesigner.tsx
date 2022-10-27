@@ -25,6 +25,7 @@ import { Toast } from 'primereact/toast';
 import { generateCSS } from './util/GenerateCSS';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import './index.scss';
+import TopBar from './previews/topbar/TopBar';
 
 interface IReactUIDesigner {
   isCorporation: boolean
@@ -203,99 +204,102 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   return (
     <VariableProvider>
       <Toast ref={toastRef} />
-      <div className='designer-main'>
-        <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
-          <div className='designer-topbar'>
-            <div className='designer-topbar-left'>
-              <Button className='designer-topbar-reset-button' icon='fas fa-undo' onClick={confirm} />
+      <TopBar>
+        <div className='designer-main'>
+          <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
+            <div className='designer-topbar'>
+              <div className='designer-topbar-left'>
+                <Button className='designer-topbar-reset-button' icon='fas fa-undo' onClick={confirm} />
+              </div>
+              <span className='designer-topbar-header'>App-Designer</span>
             </div>
-            <span className='designer-topbar-header'>App-Designer</span>
-          </div>
-          <div className='designer-panel-wrapper'>
-          <div className='designer-panel-options'>
-          <div>
-            <div className='designer-panel-row'>
-              <span className='designer-panel-header'>Theme:</span>
-              <InputText
-                value={themeName}
-                onChange={event => setThemeName(event.target.value)}
-                onBlur={() => {
-                  context.variables.forEach(varTab => {
-                    varTab.forEach(varGroup => {
-                      varGroup.forEach(varItem => {
-                        if (varItem.cssType === "theme") {
-                          const getNewSelectorMap = (usageMap?: Map<string, string[]>) => {
-                            if (usageMap && usageMap.size) {
-                              const newMap = new Map<string, string[]>();
-                              const variableEntries = usageMap.entries();
-                              let entry = variableEntries.next();
-                              while (!entry.done) {
-                                entry.value[0] = entry.value[0].replaceAll(previousThemeName.current, themeName);
-                                newMap.set(entry.value[0], entry.value[1]);
-                                entry = variableEntries.next();
+            <div className='designer-panel-wrapper'>
+            <div className='designer-panel-options'>
+            <div>
+              <div className='designer-panel-row'>
+                <span className='designer-panel-header'>Theme:</span>
+                <InputText
+                  value={themeName}
+                  onChange={event => setThemeName(event.target.value)}
+                  onBlur={() => {
+                    context.variables.forEach(varTab => {
+                      varTab.forEach(varGroup => {
+                        varGroup.forEach(varItem => {
+                          if (varItem.cssType === "theme") {
+                            const getNewSelectorMap = (usageMap?: Map<string, string[]>) => {
+                              if (usageMap && usageMap.size) {
+                                const newMap = new Map<string, string[]>();
+                                const variableEntries = usageMap.entries();
+                                let entry = variableEntries.next();
+                                while (!entry.done) {
+                                  entry.value[0] = entry.value[0].replaceAll(previousThemeName.current, themeName);
+                                  newMap.set(entry.value[0], entry.value[1]);
+                                  entry = variableEntries.next();
+                                }
+                                return newMap;
                               }
-                              return newMap;
+                              return usageMap;
                             }
-                            return usageMap;
+                            varItem.usage = getNewSelectorMap(varItem.usage) as Map<string, string[]>;
+                            varItem.usage960 = getNewSelectorMap(varItem.usage960);
+                            varItem.usage530 = getNewSelectorMap(varItem.usage530);
                           }
-                          varItem.usage = getNewSelectorMap(varItem.usage) as Map<string, string[]>;
-                          varItem.usage960 = getNewSelectorMap(varItem.usage960);
-                          varItem.usage530 = getNewSelectorMap(varItem.usage530);
-                        }
+                        })
                       })
-                    })
-                  });
-                  previousThemeName.current = themeName;
-                }}
-                className='designer-panel-inputtext' />
+                    });
+                    previousThemeName.current = themeName;
+                  }}
+                  className='designer-panel-inputtext' />
+              </div>
+              <div className='designer-panel-row'>
+                <span className='designer-panel-header'>Scheme:</span>
+                <InputText value={schemeName} onChange={event => setSchemeName(event.target.value)} className='designer-panel-inputtext' />
+              </div>
             </div>
             <div className='designer-panel-row'>
-              <span className='designer-panel-header'>Scheme:</span>
-              <InputText value={schemeName} onChange={event => setSchemeName(event.target.value)} className='designer-panel-inputtext' />
+              <Button className={uploadUrl ? 'designer-panel-button download-button' : 'designer-panel-button-solo'} icon='fas fa-file-download' onClick={handleDownload} />
+              {uploadUrl && <Button className='designer-panel-button upload-button' icon='fas fa-cloud-upload-alt' onClick={() => handleUpload(uploadUrl)} />}
             </div>
-          </div>
-          <div className='designer-panel-row'>
-            <Button className={uploadUrl ? 'designer-panel-button download-button' : 'designer-panel-button-solo'} icon='fas fa-file-download' onClick={handleDownload} />
-            {uploadUrl && <Button className='designer-panel-button upload-button' icon='fas fa-cloud-upload-alt' onClick={() => handleUpload(uploadUrl)} />}
-          </div>
-          </div>
-            <Accordion>
-              <AccordionTab key={"accordion-tab-upanddownload"} header="Images">
-                <div className='designer-panel-options'>
-                  <div>
-                    <div className='designer-panel-row designer-panel-image-upload'>
-                      <span className='designer-panel-header'>Login:</span>
-                      <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
-                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("login")} />
-                    </div>
-                    <div className='designer-panel-row designer-panel-image-upload'>
-                      <span className='designer-panel-header'>Menu:</span>
-                      <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
-                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("menu")} />
-                    </div>
-                    <div className='designer-panel-row designer-panel-image-upload'>
-                      <span className='designer-panel-header'>Collapsed Menu:</span>
-                      <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
-                      <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("small")} />
+            </div>
+              <Accordion>
+                <AccordionTab key={"accordion-tab-upanddownload"} header="Images">
+                  <div className='designer-panel-options'>
+                    <div>
+                      <div className='designer-panel-row designer-panel-image-upload'>
+                        <span className='designer-panel-header'>Login:</span>
+                        <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
+                        <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("login")} />
+                      </div>
+                      <div className='designer-panel-row designer-panel-image-upload'>
+                        <span className='designer-panel-header'>Menu:</span>
+                        <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
+                        <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("menu")} />
+                      </div>
+                      <div className='designer-panel-row designer-panel-image-upload'>
+                        <span className='designer-panel-header'>Collapsed Menu:</span>
+                        <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
+                        <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("small")} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </AccordionTab>
-            </Accordion>
+                </AccordionTab>
+              </Accordion>
 
-            <EditorManager
-              isPreviewMode={isPreviewMode}
-              isCorporation={props.isCorporation}
-              activeIndex={activeTabIndex}
-              buttonCallback={props.buttonCallback}
-              topbarCallback={props.topbarCallback}
-               />
+              <EditorManager
+                isPreviewMode={isPreviewMode}
+                isCorporation={props.isCorporation}
+                activeIndex={activeTabIndex}
+                buttonCallback={props.buttonCallback}
+                topbarCallback={props.topbarCallback}
+                />
+            </div>
+          </div>
+          <div className='designer-content reactUI basti'>
+            {isPreviewMode ? props.children : <TabSelection tabChangedCallback={tabChangeCallBack} />}
           </div>
         </div>
-        <div className='designer-content reactUI basti'>
-          {isPreviewMode ? props.children : <TabSelection tabChangedCallback={tabChangeCallBack} />}
-        </div>
-      </div>
+      </TopBar>
+
     </VariableProvider>
   );
 }

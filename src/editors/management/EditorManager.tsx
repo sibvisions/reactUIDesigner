@@ -40,7 +40,7 @@ export enum EDITOR_INDICES {
     LOADING_EDITORS = "9",
     ERRORBAR_EDITORS = "10",
     FULLTRANSFER_EDITORS = "11",
-    MISC_EDITORS = "12"
+    TOPBAR_EDITORS = "12"
 }
 
 const EditorManager: FC<IEditorManager> = (props) => {
@@ -76,8 +76,8 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     return context.variables.get(EDITOR_INDICES.ERRORBAR_EDITORS) as Map<string, EditorItem[]>;
                 case parseInt(EDITOR_INDICES.FULLTRANSFER_EDITORS):
                     return context.variables.get(EDITOR_INDICES.FULLTRANSFER_EDITORS) as Map<string, EditorItem[]>;
-                case parseInt(EDITOR_INDICES.MISC_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.MISC_EDITORS) as Map<string, EditorItem[]>;
+                case parseInt(EDITOR_INDICES.TOPBAR_EDITORS):
+                    return context.variables.get(EDITOR_INDICES.TOPBAR_EDITORS) as Map<string, EditorItem[]>;
                 default:
                     return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS) as Map<string, EditorItem[]>;
             }
