@@ -159,6 +159,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         usage: new Map<string, string[]>()
         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item > *", ["border-color: var(--table-row-border-color);"])
         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item > *:not(:first-child)", ["border-color: var(--table-row-border-color);"])
+        .set(".rc-table table", ["box-shadow: 0 0 0 1px var(--table-row-border-color);"])
         .set(".rc-table .p-datatable-tbody > tr > td", ["border-color: var(--table-row-border-color);"])
         .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item", ["border-color: var(--table-row-border-color);"])
     },

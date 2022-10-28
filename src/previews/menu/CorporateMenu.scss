@@ -71,7 +71,15 @@
 .corp-menu-menubar, .mobile-launcher-menu {
     .p-menubar {
         .p-menubar-root-list {
-            @include styledScrollbarCorp();
+            &::-webkit-scrollbar {
+                width: 7px;
+                height: 7px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+            }
+            
             overflow-y: auto;
             overflow-x: hidden;
             height: inherit;

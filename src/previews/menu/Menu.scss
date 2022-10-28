@@ -145,10 +145,17 @@
 
 .menu-panelmenu-wrapper {
     @include menuTransitions();
-    @include styledScrollbarPanelDefault();
     z-index: 10;
     height: calc(100% - var(--std-header-height));
     overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+    }
 
     .p-panelmenu {
         .p-panelmenu-header {
