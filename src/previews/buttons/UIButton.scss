@@ -43,7 +43,7 @@
         border-color: transparent;
     }
 
-    @include btnHover
+    @include btnHover;
 }
 
 .rc-button, .rc-togglebutton {

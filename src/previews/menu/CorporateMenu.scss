@@ -13,26 +13,6 @@
  * the License.
  */
 
- @mixin styledScrollbarCorp() {
-    &::-webkit-scrollbar {
-        width: 7px;
-        height: 7px;
-    }
-    &::-webkit-scrollbar-button:start:decrement {
-        height: var(--corp-header-height);
-    }
-    &::-webkit-scrollbar-track {
-        background: #49525e; 
-    }
-    &::-webkit-scrollbar-thumb {
-        background: rgb(230, 230, 230);
-        border-radius: 10px;
-        &:hover {
-            background: rgb(202, 202, 202);
-        }
-    }
-}
-
 /// No blue borders on focus
 .corp-menu {
     :focus {
@@ -45,6 +25,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .profile-menu {
+        display: flex;
+    }
 }
 
 .p-menubar {

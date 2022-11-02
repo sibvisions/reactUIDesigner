@@ -11,25 +11,6 @@
     transition: 0.5s ease-in-out;
 }
 
-@mixin styledScrollbarPanelDefault() {
-    &::-webkit-scrollbar {
-        width: 7px;
-    }
-    &::-webkit-scrollbar-button:start:decrement {
-        height: 70px;
-    }
-    &::-webkit-scrollbar-track {
-        background: white; 
-    }
-    &::-webkit-scrollbar-thumb {
-        background: rgb(230, 230, 230);
-        border-radius: 10px;
-        &:hover {
-            background: rgb(202, 202, 202);
-        }
-    }
-}
-
 .design-std-menu {
     height: 100%;
     width: 100%;

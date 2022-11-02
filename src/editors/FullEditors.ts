@@ -69,12 +69,12 @@ export const fullEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         usage: new Map<string, string[]>().set(".mobile-launcher-menu .rc-frame-toolbar", ["background: var(--launcher-toolbar-background);"])
     },
     {
-        variable: "--launcher-toolbar-separator-color",
-        label: "Separator Color",
-        type: "color",
+        variable: "--launcher-toolbar-border",
+        label: "Toolbar Border",
+        type: "text",
         cssType: "scheme",
-        value: docStyle.getPropertyValue('--launcher-toolbar-separator-color'),
-        usage: new Map<string, string[]>().set(".mobile-launcher-menu .rc-frame-toolbar", ["border-color: var(--launcher-toolbar-separator-color);"])
+        value: docStyle.getPropertyValue('--launcher-toolbar-border'),
+        usage: new Map<string, string[]>().set(".mobile-launcher-menu .rc-frame-toolbar", ["border-color: var(--launcher-toolbar-border);"])
     },
     {
         variable: "--launcher-toolbar-button-text-color",
@@ -170,12 +170,12 @@ export const fullEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         usage: new Map<string, string[]>().set(".rc-frame .rc-frame-toolbar", ["background: var(--frame-toolbar-background);"])
     },
     {
-        variable: "--frame-toolbar-separator-color",
-        label: "Separator Color",
+        variable: "--frame-toolbar-border",
+        label: "Toolbar Border",
         type: "color",
         cssType: "scheme",
-        value: docStyle.getPropertyValue('--frame-toolbar-separator-color'),
-        usage: new Map<string, string[]>().set(".rc-frame .rc-frame-toolbar", ["border-color: var(--frame-toolbar-separator-color);"])
+        value: docStyle.getPropertyValue('--frame-toolbar-border'),
+        usage: new Map<string, string[]>().set(".rc-frame .rc-frame-toolbar", ["border-color: var(--frame-toolbar-border);"])
     },
     {
         variable: "--frame-toolbar-button-text-color",

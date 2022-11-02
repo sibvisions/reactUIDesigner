@@ -35,7 +35,7 @@ export const generalEditors: Map<string, EditorItem[]> = new Map<string, EditorI
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--screen-background'),
-            usage: new Map<string, string[]>().set("body", ["background: var(--screen-background);"])
+            usage: new Map<string, string[]>().set("body", ["background: var(--screen-background);"]).set(".reactUI", ["background: var(--screen-background);"])
         },
         {
             variable: "--text-color",

@@ -218,7 +218,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         variable: "--radiobutton-selected-outer-background",
         label: "Radiobutton Outer Background",
         type: "color",
-        cssType: "theme",
+        cssType: "scheme",
         value: docStyle.getPropertyValue('--radiobutton-selected-outer-background'),
         usage: new Map<string, string[]>()
         .set(".p-radiobutton .p-radiobutton-box.p-highlight", ["background: var(--radiobutton-selected-outer-background);", "border-color: var(--radiobutton-selected-outer-background);"])
@@ -227,7 +227,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         variable: "--radiobutton-selected-outer-hover-background",
         label: "Radiobutton Outer Hover Background",
         type: "color",
-        cssType: "theme",
+        cssType: "scheme",
         value: docStyle.getPropertyValue('--radiobutton-selected-outer-hover-background'),
         usage: new Map<string, string[]>()
         .set(".p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover", ["background: var(--radiobutton-selected-outer-hover-background);", "border-color: var(--radiobutton-selected-outer-hover-background);"])

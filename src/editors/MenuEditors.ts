@@ -29,7 +29,8 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             .set(".basti .std-menu .menu-header", ["height:var(--std-header-height);"])
             .set(".basti .std-menu .menu-logo-wrapper", ["height:var(--std-header-height);"])
             .set(".basti .std-menu .menu-panelmenu-wrapper", ["padding-top:var(--std-header-height);"])
-            .set(".basti .std-menu .fadeout", ["margin-top:var(--std-header-height);"]),
+            .set(".basti .std-menu .fadeout", ["margin-top:var(--std-header-height);"])
+            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-button:start:decrement", ["height: var(--std-header-height);"]),
             usage530: new Map<string, string[]>().set(".basti .std-menu .fadeout", ["margin-top:calc(var(--std-header-height) + var(--std-logo-height));"])
         },
         {
@@ -149,7 +150,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             label: "Button Hover Background",
             type: "color",
             cssType: "scheme",
-            value: docStyle.getPropertyPriority('--topbar-button-hover-background'),
+            value: docStyle.getPropertyValue('--topbar-button-hover-background'),
             usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons:hover", ["background:var(--topbar-button-hover-background);"])
         },
         {
@@ -159,6 +160,34 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             cssType: "theme",
             value: docStyle.getPropertyValue('--menuicon-size'),
             usage: new Map<string, string[]>().set(".basti .std-menu .p-menuitem-icon:not(.profile-image):not(.profile-image-null)", ["min-width: var(--menuicon-size);", "max-width: var(--menuicon-size);", "font-size: var(--menuicon-size);"])
+        },
+        {
+            variable: "--menu-scrollbar-background",
+            label: "Scrollbar Background",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--menu-scrollbar-background'),
+            usage: new Map<string, string[]>().set(".menu-panelmenu-wrapper::-webkit-scrollbar-track", ["background: var(--menu-scrollbar-background);"])
+        },
+        {
+            variable: "--menu-scrollbar-color",
+            label: "Scrollbar Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--menu-scrollbar-color'),
+            usage: new Map<string, string[]>()
+            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-thumb", ["background: var(--menu-scrollbar-color);"])
+            .set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb", ["background: var(--menu-scrollbar-color);"])
+        },
+        {
+            variable: "--menu-scrollbar-hover-color",
+            label: "Scrollbar Hover Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--menu-scrollbar-hover-color'),
+            usage: new Map<string, string[]>()
+            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-thumb:hover", ["background: var(--menu-scrollbar-hover-color);"])
+            .set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb:hover, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb:hover", ["background: var(--menu-scrollbar-hover-color);"])
         }
     ])
     .set("Profile-Menu", [

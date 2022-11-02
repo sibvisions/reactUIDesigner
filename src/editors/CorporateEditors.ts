@@ -106,8 +106,32 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             label: "Button Hover Background",
             type: "color",
             cssType: "scheme",
-            value: docStyle.getPropertyPriority('--topbar-button-hover-background'),
+            value: docStyle.getPropertyValue('--topbar-button-hover-background'),
             usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons:hover", ["background:var(--topbar-button-hover-background);"])
+        },
+        {
+            variable: "--corp-scrollbar-background",
+            label: "Scrollbar Background",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--corp-scrollbar-background'),
+            usage: new Map<string, string[]>().set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-track, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-track", ["background: var(--menu-scrollbar-background);"])
+        },
+        {
+            variable: "--menu-scrollbar-color",
+            label: "Scrollbar Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--menu-scrollbar-color'),
+            usage: new Map<string, string[]>()
+        },
+        {
+            variable: "--menu-scrollbar-hover-color",
+            label: "Scrollbar Hover Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--menu-scrollbar-hover-color'),
+            usage: new Map<string, string[]>()
         }
     ])
     .set("Profile-Menu", [
