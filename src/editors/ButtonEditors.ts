@@ -82,7 +82,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue("--popupmenubutton-item-color"),
-        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link .p-menuitem-text", ["color: var(--popupmenubutton-item-color);"])
+        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link .p-menuitem-text, .p-menu .p-menuitem-link .p-menuitem-icon", ["color: var(--popupmenubutton-item-color);"])
     },
     {
         variable: "--popupmenubutton-item-hover-background",
@@ -98,7 +98,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--popupmenubutton-item-hover-text-color'),
-        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text", ["color: var(--popupmenubutton-item-hover-text-color);"])
+        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon", ["color: var(--popupmenubutton-item-hover-text-color);"])
     },
     {
         variable: "--button-border-radius",
@@ -157,7 +157,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-selected-hover-background'),
         usage: new Map<string, string[]>()
-        .set(".p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover", ["background: var(--checkbox-selected-hover-background);"])
+        .set(".p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover", ["background: var(--checkbox-selected-hover-background);", "border-color: var(--checkbox-selected-hover-background);"])
     },
     {
         variable: "--checkbox-color",

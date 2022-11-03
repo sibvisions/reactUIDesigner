@@ -56,7 +56,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--topbar-text-color'),
-            usage: new Map<string, string[]>().set(".menu-screen-title", ["color:var(--topbar-text-color);"])
+            usage: new Map<string, string[]>()
         },
         {
             variable: "--corp-screen-title-size",
@@ -91,7 +91,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--topbar-button-background'),
-            usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons", ["background:var(--topbar-button-background);"])
+            usage: new Map<string, string[]>()
         },
         {
             variable: "--topbar-button-text-color",
@@ -99,7 +99,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--topbar-button-text-color'),
-            usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons", ["color:var(--topbar-button-text-color);"])
+            usage: new Map<string, string[]>()
         },
         {
             variable: "--topbar-button-hover-background",
@@ -107,7 +107,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--topbar-button-hover-background'),
-            usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons:hover", ["background:var(--topbar-button-hover-background);"])
+            usage: new Map<string, string[]>()
         },
         {
             variable: "--corp-scrollbar-background",
@@ -115,7 +115,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--corp-scrollbar-background'),
-            usage: new Map<string, string[]>().set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-track, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-track", ["background: var(--menu-scrollbar-background);"])
+            usage: new Map<string, string[]>().set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-track, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-track", ["background: var(--corp-scrollbar-background);"])
         },
         {
             variable: "--menu-scrollbar-color",
@@ -164,8 +164,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-background'),
             usage: new Map<string, string[]>()
-            .set(".profile-menu .p-menubar", ["background: var(--profile-background);"])
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["background:var(--profile-background);"])
         },
         {
             variable: "--profile-hover-background",
@@ -174,7 +172,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-hover-background'),
             usage: new Map<string, string[]>()
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["background:var(--profile-hover-background);"])
         },
         {
             variable: "--profile-text-color",
@@ -183,10 +180,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-text-color'),
             usage: new Map<string, string[]>()
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["color:var(--profile-text-color);"])
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-submenu-icon", ["color:var(--profile-text-color);"])
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["color:var(--profile-text-color);"])
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon", ["color:var(--profile-text-color);"])
         },
         {
             variable: "--corp-profile-padding",
@@ -214,7 +207,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-separator'),
             usage: new Map<string, string[]>()
-            .set(".vl", ["border-left:var(--profile-separator);"])
         },
         {
             variable: "--corp-profile-submenu-width-small",
@@ -233,8 +225,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-submenu-background'),
             usage: new Map<string, string[]>()
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list", ["background:var(--profile-submenu-background);"])
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link", ["background:var(--profile-submenu-background);"])
         },
         {
             variable: "--profile-item-hover-background",
@@ -243,7 +233,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-item-hover-background'),
             usage: new Map<string, string[]>()
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover", ["background:var(--profile-item-hover-background);"])
         },
         {
             variable: "--profile-item-hover-text-color",
@@ -252,7 +241,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-item-hover-text-color'),
             usage: new Map<string, string[]>()
-            .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon", ["color:var(--profile-item-hover-text-color);"])
         }
     ])
     .set("Menubar", [
@@ -293,9 +281,9 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             value: docStyle.getPropertyValue('--menubar-text-color'),
             usage: new Map<string, string[]>()
             .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["color: var(--menubar-text-color);"])
-            .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-icon", ["color: var(--menubar-text-color);"])
-            .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["color: var(--menubar-text-color);"]) /** changed soon */
-            .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon", ["color: var(--menubar-text-color);"]) /** changed soon */
+            .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-icon:not(.profile-image-null), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-icon:not(.profile-image-null)", ["color: var(--menubar-text-color);"])
+            .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["color: var(--menubar-text-color);"])
+            .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon:not(.profile-image-null), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon:not(.profile-image-null)", ["color: var(--menubar-text-color);"])
         },
         {
             variable: "--menubar-submenu-background",

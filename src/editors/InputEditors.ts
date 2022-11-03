@@ -37,7 +37,6 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         value: docStyle.getPropertyValue('--input-border-width'),
         usage: new Map<string, string[]>()
         .set(".p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color);"])
-        .set(".p-editor-container .p-editor-toolbar.ql-snow", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".p-editor-container .p-editor-content", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".p-editor-container .p-editor-content.ql-snow", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".rc-editor-html textarea.p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color); !important"])
@@ -196,7 +195,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         value: docStyle.getPropertyValue('--date-panel-color'),
         usage: new Map<string, string[]>()
         .set(".p-datepicker:not(.p-datepicker-inline), .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header", ["color: var(--date-panel-color);"])
-        .set(".p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year,", ["color: var(--date-panel-color);"])
+        .set(".p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year", ["color: var(--date-panel-color);"])
     },
     {
         variable: "--date-panel-header-border",
@@ -247,7 +246,9 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         type: "text",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--html-toolbar-border'),
-        usage: new Map<string, string[]>().set(".p-editor-container .p-editor-toolbar", ["border: var(--html-toolbar-border);"])
+        usage: new Map<string, string[]>()
+        .set(".p-editor-container .p-editor-toolbar", ["border: var(--html-toolbar-border);"])
+        .set(".p-editor-container .p-editor-toolbar.ql-snow", ["border: var(--html-toolbar-border);"])
     },
     {
         variable: "--html-toolbar-button-background",
