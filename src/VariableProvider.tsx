@@ -15,13 +15,13 @@
 
 import React, { createContext, FC, useState } from "react"
 import { EditorItem } from "./editors/management/EditorCreator"
-import { generalEditors } from "./editors/GeneralEditors";
+import { crashEditors, generalEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
-import { menuEditors } from "./editors/MenuEditors";
+import { fadeoutCalc, menuEditors } from "./editors/MenuEditors";
 import { corporateEditors } from "./editors/CorporateEditors";
 import { buttonEditors } from "./editors/ButtonEditors";
 import { inputEditors, labelEditors, sysEditors } from "./editors/InputEditors";
-import { tableEditors } from "./editors/TableEditors";
+import { cellEditors, tableEditors } from "./editors/TableEditors";
 import { tabsetEditors } from "./editors/TabsetEditors";
 import { popupEditors } from "./editors/PopupEditors";
 import { messagesEditors } from "./editors/MessagesEditors";
@@ -43,11 +43,13 @@ export type VariableContextType = {
 const editorArray = [
     generalEditors, 
     loginEditors, 
-    menuEditors, 
+    menuEditors,
+    fadeoutCalc,
     corporateEditors, 
     buttonEditors, 
     inputEditors, 
     tableEditors, 
+    cellEditors,
     tabsetEditors, 
     popupEditors,
     messagesEditors,
@@ -56,7 +58,8 @@ const editorArray = [
     fullEditors,
     topbarEditors,
     labelEditors,
-    sysEditors
+    sysEditors,
+    crashEditors
 ];
 
 function getDefaultValues() {

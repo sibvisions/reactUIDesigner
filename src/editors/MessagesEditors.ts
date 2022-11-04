@@ -44,7 +44,6 @@ export const messagesEditors: Map<string, EditorItem[]> = new Map<string, Editor
         value: docStyle.getPropertyValue('--message-warning-header-background'),
         usage: new Map<string, string[]>()
         .set(".rc-message-dialog.warning .p-dialog-header", ["background: var(--message-warning-header-background);"])
-        .set("#toast-warning .toast-header.warning", ["background: var(--message-warning-header-background);"])
     },
     {
         variable: "--message-warning-header-color",
@@ -64,7 +63,6 @@ export const messagesEditors: Map<string, EditorItem[]> = new Map<string, Editor
         value: docStyle.getPropertyValue('--message-warning-header-close-hover'),
         usage: new Map<string, string[]>()
         .set(".rc-message-dialog.warning .p-dialog-header .p-dialog-header-close:hover", ["background: var(--message-warning-header-close-hover);"])
-        .set("#toast-warning .toast-header.warning .toast-header-close:hover", ["background: var(--message-warning-header-close-hover);"])
     }
 ])
 .set("Error", [
@@ -76,7 +74,6 @@ export const messagesEditors: Map<string, EditorItem[]> = new Map<string, Editor
         value: docStyle.getPropertyValue('--message-error-header-background'),
         usage: new Map<string, string[]>()
         .set(".rc-message-dialog.error .p-dialog-header", ["background: var(--message-error-header-background);"])
-        .set("#toast-error .toast-header.error", ["background: var(--message-error-header-background);"])
     },
     {
         variable: "--message-error-header-color",
@@ -96,7 +93,6 @@ export const messagesEditors: Map<string, EditorItem[]> = new Map<string, Editor
         value: docStyle.getPropertyValue('--message-error-header-close-hover'),
         usage: new Map<string, string[]>()
         .set(".rc-message-dialog.error .p-dialog-header .p-dialog-header-close:hover", ["background: var(--message-error-header-close-hover);"])
-        .set("#toast-error .toast-header.error .toast-header-close:hover", ["background: var(--message-error-header-close-hover);"])
     }
 ])
 .set("Question", [
@@ -108,7 +104,6 @@ export const messagesEditors: Map<string, EditorItem[]> = new Map<string, Editor
         value: docStyle.getPropertyValue('--message-question-header-background'),
         usage: new Map<string, string[]>()
         .set(".rc-message-dialog.question .p-dialog-header", ["background: var(--message-question-header-background);"])
-        .set("#toast-question .toast-header.question", ["background: var(--message-question-header-background);"])
     },
     {
         variable: "--message-question-header-color",
@@ -128,6 +123,5 @@ export const messagesEditors: Map<string, EditorItem[]> = new Map<string, Editor
         value: docStyle.getPropertyValue('--message-question-header-close-hover'),
         usage: new Map<string, string[]>()
         .set(".rc-message-dialog.question .p-dialog-header .p-dialog-header-close:hover", ["background: var(--message-question-header-close-hover);"])
-        .set("#toast-question .toast-header.question .toast-header-close:hover", ["background: var(--message-question-header-close-hover);"])
     }
 ])

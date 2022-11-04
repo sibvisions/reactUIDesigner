@@ -431,8 +431,17 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             type: "color",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--std-menu-fadeout-background'),
-            usage: new Map<string, string[]>()
-            .set(".fadeout", ["background-image: var(--std-menu-fadeout-background);"])
-
+            usage: new Map<string, string[]>().set(".fadeout", ["background-image: var(--std-menu-fadeout-background);"])
         }
     ])
+
+export const fadeoutCalc: Map<string, EditorItem[]> = new Map<string, EditorItem[]>().set("FadeOutCalc", [
+    {
+        variable: "--std-fadeout-left",
+        label: "Fadeout Left",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-fadeout-left'),
+        usage: new Map<string, string[]>().set(".basti .std-menu .fadeout", ["left: var(--std-fadeout-left);"])
+    }
+])

@@ -23,7 +23,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".rc-table .p-datatable-tbody > tr > td.p-highlight", ["color: var(--table-text-color);"])
         .set(".rc-table .p-datatable-tbody > tr.p-highlight", ["color: var(--table-text-color);"])
         .set(".rc-table .p-datatable-tbody > tr.p-highlight > td .open-cell-editor", ["color: var(--table-text-color);"])
-        .set(".rc-table.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["color: var(--table-text-color);"])
+        .set(".rc-table.p-datatable-selectable-cell .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["color: var(--table-text-color);"])
     },
     {
         variable: "--table-cell-hover-color",
@@ -137,7 +137,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-header-hover-color'),
         usage: new Map<string, string[]>()
-        .set(".p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover", ["color: var(--table-header-hover-color);"])
+        .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover", ["color: var(--table-header-hover-color);"])
     },
     {
         variable: "--table-header-padding",
@@ -356,8 +356,6 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         value: docStyle.getPropertyValue('--tree-background'),
         usage: new Map<string, string[]>()
         .set(".p-tree", ["background: var(--tree-background);"])
-        .set(".p-tree .p-tree-container > .p-treenode:nth-child(odd)", ["background: var(--tree-background);"])
-        .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(odd)", ["background: var(--tree-background);"])
     },
     {
         variable: "--tree-border",
@@ -406,7 +404,6 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--tree-selected-item-background'),
         usage: new Map<string, string[]>()
-        .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled:hover", ["background: var(--tree-selected-item-background);"])
         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight", ["background: var(--tree-selected-item-background);"])
     },
     {
@@ -438,5 +435,26 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         usage: new Map<string, string[]>()
         .set(".p-tree .p-tree-container > .p-treenode:nth-child(even)", ["background: var(--tree-even-background);"])
         .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(even)", ["background: var(--tree-even-background);"])
+    }
+])
+
+export const cellEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>().set("CellPadding", [
+    {
+        variable: "--table-cell-padding-top-bottom",
+        label: "Cell Padding Top Bottom",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--table-cell-padding-top-bottom'),
+        usage: new Map<string, string[]>()
+        .set(".basti .rc-table .p-datatable-tbody > tr > td", ["padding: var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right) var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right);"])
+        .set(".error-dialog .error-dialog-listbox .p-listbox-item", ["padding: var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right) var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right);"])
+    },
+    {
+        variable: "--table-cell-padding-left-right",
+        label: "Cell Padding Left Right",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--table-cell-padding-left-right'),
+        usage: new Map<string, string[]>()
     }
 ])

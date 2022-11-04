@@ -20,7 +20,9 @@ export const popupEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--dialog-header-text-color'),
-        usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["color: var(--dialog-header-text-color);"])
+        usage: new Map<string, string[]>()
+        .set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["color: var(--dialog-header-text-color);"])
+        .set(".rc-popup .p-dialog-header .p-dialog-header-icon", ["color: var(--dialog-header-text-color);"])
     },
     {
         variable: "--dialog-header-close-hover-background",
@@ -28,7 +30,7 @@ export const popupEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--dialog-header-close-hover-background'),
-        usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:hover", ["background: var(--dialog-header-close-hover-background);"])
+        usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-background);"])
     },
     {
         variable: "--dialog-header-close-hover-color",
@@ -36,7 +38,7 @@ export const popupEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--dialog-header-close-hover-color'),
-        usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:hover", ["background: var(--dialog-header-close-hover-color);"])
+        usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-color);"])
     },
     {
         variable: "--dialog-header-border",

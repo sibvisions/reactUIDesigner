@@ -45,10 +45,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             value: docStyle.getPropertyValue('--topbar-background'),
             usage: new Map<string, string[]>()
             .set(".corp-menu-header", ["background:var(--topbar-background);"])
-            .set(".corp-menubar", ["background:var(--topbar-background);"]),
-            usage960: new Map<string, string[]>()
-            .set(".p-menubar .p-menubar-root-list", ["background:var(--topbar-background);"])
-            .set(".p-menubar .p-menubar-root-list > .p-menuitem", ["background:var(--topbar-background);"])
         },
         {
             variable: "--topbar-text-color",

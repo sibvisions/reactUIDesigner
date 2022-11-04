@@ -53,25 +53,13 @@ export const generalEditors: Map<string, EditorItem[]> = new Map<string, EditorI
             .set(".p-menu .p-menuitem-text", ["color: var(--text-color);"])
             .set(".p-inputtext:not(.required-field)", ["color: var(--text-color);"])
             .set(".p-editor-container .p-editor-content .ql-editor", ["color: var(--text-color);"])
-            .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover", ["color: var(--text-color);"])
-            .set(".rc-table .p-datatable-tbody > tr", ["color: var(--text-color);"])
-            .set(".rc-table .p-datatable-tbody > tr > td.p-highlight", ["color: var(--text-color);"])
-            .set(".rc-table .p-datatable-tbody > tr.p-highlight", ["color: var(--text-color);"])
-            .set(".rc-table .p-datatable-tbody > tr.p-highlight > td .open-cell-editor", ["color: var(--text-color);"])
             .set(".rc-table.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["color: var(--text-color);"])
             .set(".rc-popup .p-dialog-content, .error-dialog .p-dialog-content", ["color: var(--text-color);"])
             .set(".error-dialog .p-dialog-footer", ["color: var(--text-color);"])
             .set(".rc-message-dialog .p-dialog-content, .rc-message-dialog .p-dialog-footer", ["color: var(--text-color);"])
-            .set(".rc-error-bar", ["color: var(--text-color);"])
             .set(".p-tabview .p-tabview-nav", ["color: var(--text-color);"])
             .set(".p-tabview .p-tabview-nav li:not(.p-highlight) .p-tabview-nav-link", ["color: var(--text-color);"])
             .set(".p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["color: var(--text-color);", "border-color: var(--text-color);"])
-            .set(".p-tree", ["color: var(--text-color);"])
-            .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover", ["color: var(--text-color);"])
-            .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler", ["color: var(--text-color);"])
-            .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled", ["color: var(--text-color);"])
-            .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled:hover", ["color: var(--text-color);"])
-            .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight", ["color: var(--text-color);"])
             .set(".rc-frame .rc-frame-header .rc-frame-header-close-button", ["color: var(--text-color);"])
             .set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon", ["color: var(--text-color);"])
         },
@@ -95,3 +83,22 @@ export const generalEditors: Map<string, EditorItem[]> = new Map<string, EditorI
             .set(".rc-editor-linked:focus-within", ["box-shadow: var(--focus-box-shadow);"])
         }
     ])
+
+export const crashEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>().set("CrashView", [
+    {
+        variable: "--crash-message-size",
+        label: "Message Size",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--crash-message-size'),
+        usage: new Map<string, string[]>().set(".crash-message-icon", ["font-size: var(--crash-message-size);"]).set(".crash-message-text", ["font-size: var(--crash-message-size);"])
+    },
+    {
+        variable: "--crash-stack-height",
+        label: "Stack Height",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--crash-stack-height'),
+        usage: new Map<string, string[]>().set(".crash-input-stack.show-crash-details", ["max-height: var(--crash-stack-height);"]).set(".crash-input-stack-textarea", ["height: var(--crash-stack-height);"])
+    }
+])

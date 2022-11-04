@@ -52,7 +52,7 @@ export const tabsetEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--tab-close-color'),
-        usage: new Map<string, string[]>().set(".p-tabview-close ", ["color: var(--tab-close-color);"])
+        usage: new Map<string, string[]>().set(".p-tabview-close", ["color: var(--tab-close-color);"])
     },
     {
         variable: "--tab-close-hover-color",

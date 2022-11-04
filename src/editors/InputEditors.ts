@@ -39,7 +39,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".p-editor-container .p-editor-content", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".p-editor-container .p-editor-content.ql-snow", ["border: var(--input-border-width) solid var(--input-border-color);"])
-        .set(".rc-editor-html textarea.p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color); !important"])
+        .set(".rc-editor-html textarea.p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color) !important;"])
         .set(".rc-panel-group-caption", ["border-bottom: var(--input-border-width) solid var(--input-border-color);"])
     },
     {
