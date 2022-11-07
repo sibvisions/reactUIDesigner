@@ -30,7 +30,8 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             .set(".basti .std-menu .menu-logo-wrapper", ["height:var(--std-header-height);"])
             .set(".basti .std-menu .menu-panelmenu-wrapper", ["padding-top:var(--std-header-height);"])
             .set(".basti .std-menu .fadeout", ["margin-top:var(--std-header-height);"])
-            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-button:start:decrement", ["height: var(--std-header-height);"]),
+            .set(".basti .std-menu.menu-collapsed .menu-panelmenu-wrapper::-webkit-scrollbar-button:start:decrement", ["height: var(--std-header-height);"])
+            .set(".basti .std-menu.menu-collapsed .menu-panelmenu-wrapper::-webkit-scrollbar-button:start:decrement", ["height: var(--std-header-height);"]),
             usage530: new Map<string, string[]>().set(".basti .std-menu .fadeout", ["margin-top:calc(var(--std-header-height) + var(--std-logo-height));"])
         },
         {
@@ -198,9 +199,9 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             cssType: "theme",
             value: docStyle.getPropertyValue('--std-profile-height'),
             usage: new Map<string, string[]>()
-            .set(".basti .profile-menu", ["height:var(--std-profile-height);"])
-            .set(".basti .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--std-profile-height);"])
-            .set(".basti .vl", ["height:var(--std-profile-height);"])
+            .set(".basti .std-menu .profile-menu", ["height:var(--std-profile-height);"])
+            .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--std-profile-height);"])
+            .set(".basti .std-menu .vl", ["height:var(--std-profile-height);"])
         },
         {
             variable: "--std-profile-width-small",
@@ -250,7 +251,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             type: "text",
             cssType: "theme",
             value: docStyle.getPropertyValue('--std-profile-padding'),
-            usage: new Map<string, string[]>().set(".basti .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding:var(--std-profile-padding);"])
+            usage: new Map<string, string[]>().set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding:var(--std-profile-padding);"])
         },
         {
             variable: "--std-profile-pic",

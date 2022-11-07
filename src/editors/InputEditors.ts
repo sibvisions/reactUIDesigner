@@ -119,7 +119,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "theme",
         value: docStyle.getPropertyValue('--input-button-icon-size'),
         usage: new Map<string, string[]>()
-        .set(".basti .p-button.p-button-icon-only.p-autocomplete-dropdown > .p-button-icon, .basti .p-button.p-button-icon-only.p-datepicker-trigger > .p-button-icon", ["font-size: var(--input-button-icon-size);"])
+        .set(".basti .p-button.p-button-icon-only:not(.rc-toolbar-button):not(.p-speeddial-button):not(.p-splitbutton-menubutton).p-autocomplete-dropdown > .p-button-icon, .basti .p-button.p-button-icon-only:not(.rc-toolbar-button):not(.p-speeddial-button):not(.p-splitbutton-menubutton).p-datepicker-trigger > .p-button-icon", ["font-size: var(--input-button-icon-size);"])
     },
     {
         variable: "--linked-panel-background",

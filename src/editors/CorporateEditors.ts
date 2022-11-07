@@ -27,6 +27,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "theme",
             usage: new Map<string, string[]>()
             .set(".basti .corp-menu .corp-menu-header", ["height: var(--corp-header-height);"])
+            .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-button:start:decrement", ["height: var(--corp-header-height);"])
         },
         {
             variable: "--corp-logo-width",
@@ -336,7 +337,8 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             usage: new Map<string, string[]>()
             .set(".basti .corp-menu .p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["height: var(--corp-speeddial-size);", "width: var(--corp-speeddial-size);", "top: calc((32px - var(--corp-speeddial-size)) / 2);"])
             .set(".basti .corp-menu .p-speeddial .p-speeddial-button.p-button.p-button-icon-only .p-button-icon", ["font-size: calc(var(--corp-speeddial-size) / 2);"])
-            .set(".basti .corp-menu .p-speeddial .p-speeddial-action", ["height: var(--corp-speeddial-size);", "width: var(--corp-speeddial-size);", "font-size: calc(var(--corp-speeddial-size) / 2);"])
+            .set(".basti .corp-menu .p-speeddial .p-speeddial-action", ["height: var(--corp-speeddial-size);", "width: var(--corp-speeddial-size);"])
+            .set(".basti .corp-menu .p-speeddial .p-speeddial-action .p-speeddial-action-icon", ["font-size: calc(var(--corp-speeddial-size) / 2);"])
         },
         {
             variable: "--corp-menu-speeddial-background",
