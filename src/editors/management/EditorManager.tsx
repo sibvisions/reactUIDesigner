@@ -18,13 +18,13 @@ import { variableContext } from "../../VariableProvider";
 import EditorCreator, { EditorItem } from "./EditorCreator";
 import { generalEditors } from "../GeneralEditors";
 import { getPreviewVariableMap } from "../../util/GetPreviewVariableMap";
+import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 
 interface IEditorManager {
     isPreviewMode: boolean
     isCorporation: boolean
     activeIndex: number
-    buttonCallback: Function
-    topbarCallback: Function
+    designerSubscription: DesignerSubscriptionManager|undefined
 }
 
 export enum EDITOR_INDICES {
@@ -91,15 +91,13 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     index={props.activeIndex} 
                     isPreviewMode={props.isPreviewMode} 
                     editors={generalEditors}
-                    buttonCallback={props.buttonCallback}
-                    topbarCallback={props.topbarCallback} />
+                    designerSubscription={props.designerSubscription} />
             }
             <EditorCreator 
                 index={props.activeIndex} 
                 isPreviewMode={props.isPreviewMode} 
                 editors={editors}
-                buttonCallback={props.buttonCallback}
-                topbarCallback={props.topbarCallback} />
+                designerSubscription={props.designerSubscription} />
         </>
     )
 }

@@ -49,7 +49,7 @@
     /// Standard-menu logo height
     --std-logo-height:60px;
 
-    --std-profile-height: 60px;
+    --std-profile-height:calc(var(--std-header-height) - 10px);
 
     /// Standard-menu small profile-menu width
     --std-profile-width-small:60px;
@@ -90,7 +90,7 @@
     --corp-screen-title-size:22px;
 
     /// Corporation-menu profile-menu height
-    --corp-profile-height:60px;
+    --corp-profile-height:calc(var(--corp-header-height) - 10px);
 
     /// Corporation-menu small profile-menu width
     --corp-profile-width-small:60px;

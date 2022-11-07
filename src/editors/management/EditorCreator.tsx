@@ -18,6 +18,7 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { variableContext, VariableContextType } from "../../VariableProvider";
+import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 
 export type EditorItem = {
     variable: string,
@@ -34,8 +35,7 @@ interface IEditorCreator {
     index: number,
     isPreviewMode: boolean,
     editors: Map<string, EditorItem[]>
-    buttonCallback: Function
-    topbarCallback: Function
+    designerSubscription: DesignerSubscriptionManager|undefined
 }
 
 function createEditors(editors: Map<string, EditorItem[]>, 
@@ -44,9 +44,17 @@ function createEditors(editors: Map<string, EditorItem[]>,
     context: VariableContextType,
     index: number,
     isPreviewMode: boolean,
-    buttonCallback: Function,
-    topbarCallback: Function
+    designerSub: DesignerSubscriptionManager|undefined
     ) {
+    const subFunctionMap:Map<string, Function> = designerSub ? new Map<string, Function>()
+    .set("--font-size", () => designerSub.notifyFontSizeChanged())
+    .set("--button-padding", () => designerSub.notifyButtonPaddingChanged())
+    .set("--primary-color", () => designerSub.notifyButtonBackgroundChanged())
+    .set("--topbar-colors", () => designerSub.notifyTopbarColorChanged())
+    .set("--checkbox-size", () => designerSub.notifyCheckboxSizeChanged())
+    .set("--radiobutton-size", () => designerSub.notifyRadiobuttonSizeChanged())
+    : new Map<string, Function>()
+
     const setVariableState = (key: string , pItem: EditorItem, value: string) => {
         setCallback(prevState => {
             const mapCopy = new Map(prevState);
@@ -75,6 +83,20 @@ function createEditors(editors: Map<string, EditorItem[]>,
             }
             return new Map(mapCopy);
         });
+    }
+
+    const updateVariables = (editorItem:EditorItem) => {
+        if (subFunctionMap.has(editorItem.variable)) {
+            (subFunctionMap.get(editorItem.variable) as Function)()
+        }
+        // Need to update the buttons seperately because the way they set the color is different
+        if (editorItem.variable === "--primary-color") {
+            context.updateButtonBackground();
+        }
+        else if (editorItem.variable === "--topbar-colors") {
+            document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
+            context.updateTopbarColors();
+        }
     }
 
     const swapColorType = (key: string, pItem: EditorItem) => {
@@ -107,16 +129,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             onChange={event => {
                                 setVariableState(key, editorItem, event.target.value);
                                 document.documentElement.style.setProperty(editorItem.variable, event.target.value);
-                                // Need to update the buttons seperately because the way they set the color is different
-                                if (editorItem.variable === "--primary-color") {
-                                    context.updateButtonBackground();
-                                    buttonCallback();
-                                }
-                                else if (editorItem.variable === "--topbar-colors") {
-                                    document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
-                                    context.updateTopbarColors();
-                                    topbarCallback();
-                                }
+                                updateVariables(editorItem);
                             }} />
                         <Button
                             className="style-editor-button"
@@ -128,16 +141,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
                                 document.documentElement.style.setProperty(editorItem.variable, "transparent")
-                                // Need to update the buttons seperately because the way they set the color is different
-                                if (editorItem.variable === "--primary-color") {
-                                    context.updateButtonBackground();
-                                    buttonCallback();
-                                }
-                                else if (editorItem.variable === "--topbar-colors") {
-                                    document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
-                                    context.updateTopbarColors();
-                                    topbarCallback();
-                                }
+                                updateVariables(editorItem);
                             }} />
                     </>
                 )
@@ -150,16 +154,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             onChange={(event) => setVariableState(key, editorItem, event.target.value)} 
                             onBlur={() => {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
-                                // Need to update the buttons seperately because the way they set the color is different
-                                if (editorItem.variable === "--primary-color") {
-                                    context.updateButtonBackground();
-                                    buttonCallback();
-                                }
-                                else if (editorItem.variable === "--topbar-colors") {
-                                    document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
-                                    context.updateTopbarColors();
-                                    topbarCallback();
-                                }
+                                updateVariables(editorItem);
                             }} />
                         <Button
                             className="style-editor-button"
@@ -176,16 +171,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         onChange={(event) => setVariableState(key, editorItem, event.target.value)} 
                         onBlur={() => {
                             document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
-                            // Need to update the buttons seperately because the way they set the color is different
-                            if (editorItem.variable === "--primary-color") {
-                                context.updateButtonBackground();
-                                buttonCallback();
-                            }
-                            else if (editorItem.variable === "--topbar-colors") {
-                                document.documentElement.style.setProperty('--topbar-colors', editorItem.value);
-                                context.updateTopbarColors();
-                                topbarCallback();
-                            }
+                            updateVariables(editorItem);
                         }} />
                 )
         }
@@ -206,10 +192,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                                 onClick={() => {
                                     setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
                                     document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
-                                    // Need to update the buttons seperately because the way they set the color is different
-                                    if (editorItem.variable === "--primary-color") {
-                                        context.updateButtonBackground();
-                                    } 
+                                    updateVariables(editorItem);
                                 }} />
                         </div>
                     </div>
@@ -234,7 +217,7 @@ const EditorCreator:FC<IEditorCreator> = (props) => {
 
     return (
         <Accordion>
-            {createEditors(editors, setEditors, context.defaultValues, context, props.index, props.isPreviewMode, props.buttonCallback, props.topbarCallback)}
+            {createEditors(editors, setEditors, context.defaultValues, context, props.index, props.isPreviewMode, props.designerSubscription)}
         </Accordion> 
     )
 }

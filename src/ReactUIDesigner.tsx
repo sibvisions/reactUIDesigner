@@ -27,6 +27,15 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import './index.scss';
 import TopBar from './previews/topbar/TopBar';
 
+export type DesignerSubscriptionManager = {
+  notifyFontSizeChanged: Function,
+  notifyButtonPaddingChanged: Function,
+  notifyButtonBackgroundChanged: Function,
+  notifyTopbarColorChanged: Function,
+  notifyCheckboxSizeChanged: Function,
+  notifyRadiobuttonSizeChanged: Function
+}
+
 interface IReactUIDesigner {
   isCorporation: boolean
   changeImages: () => void
@@ -35,8 +44,7 @@ interface IReactUIDesigner {
   logoBig: string
   logoSmall: string
   logoLogin: string
-  buttonCallback: Function
-  topbarCallback:Function
+  designerSubscription: DesignerSubscriptionManager|undefined
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -289,8 +297,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                 isPreviewMode={isPreviewMode}
                 isCorporation={props.isCorporation}
                 activeIndex={activeTabIndex}
-                buttonCallback={props.buttonCallback}
-                topbarCallback={props.topbarCallback}
+                designerSubscription={props.designerSubscription}
                 />
             </div>
           </div>
