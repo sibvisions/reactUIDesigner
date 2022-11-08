@@ -33,7 +33,10 @@ export type DesignerSubscriptionManager = {
   notifyButtonBackgroundChanged: Function,
   notifyTopbarColorChanged: Function,
   notifyCheckboxSizeChanged: Function,
-  notifyRadiobuttonSizeChanged: Function
+  notifyRadiobuttonSizeChanged: Function,
+  notifyIconOnlyPaddingChanged: Function,
+  notifyInputButtonPaddingChanged: Function,
+  notifyMenuButtonPaddingChanged: Function
 }
 
 interface IReactUIDesigner {

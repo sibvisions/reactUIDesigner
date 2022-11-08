@@ -53,6 +53,10 @@ function createEditors(editors: Map<string, EditorItem[]>,
     .set("--topbar-colors", () => designerSub.notifyTopbarColorChanged())
     .set("--checkbox-size", () => designerSub.notifyCheckboxSizeChanged())
     .set("--radiobutton-size", () => designerSub.notifyRadiobuttonSizeChanged())
+    .set("--button-icon-only-padding", () => designerSub.notifyIconOnlyPaddingChanged())
+    .set("--input-button-padding", () => designerSub.notifyInputButtonPaddingChanged())
+    .set("--menubtn-leftbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
+    .set("--menubtn-rightbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
     : new Map<string, Function>()
 
     const setVariableState = (key: string , pItem: EditorItem, value: string) => {

@@ -95,22 +95,14 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th", ["background: var(--table-header-background);"])
     },
     {
-        variable: "--table-header-border-color",
+        variable: "--table-header-border",
         label: "Header Border Color",
         type: "color",
         cssType: "scheme",
-        value: docStyle.getPropertyValue('--table-header-border-color'),
+        value: docStyle.getPropertyValue('--table-header-border'),
         usage: new Map<string, string[]>()
-        .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item-group > *", ["border-color: var(--table-header-border-color);"])
-        .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th", ["border-color: var(--table-header-border-color);"])
-    },
-    {
-        variable: "--table-header-border-width",
-        label: "Header Border Width",
-        type: "text",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--table-header-border-width'),
-        usage: new Map<string, string[]>().set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th", ["border-width: var(--table-header-border-width);"])
+        .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item-group > *", ["border-bottom: var(--table-header-border);"])
+        .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th", ["border: var(--table-header-border);"])
     },
     {
         variable: "--table-header-hover-background",
@@ -151,27 +143,17 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
 ])
 .set("Table Rows", [
     {
-        variable: "--table-row-border-color",
+        variable: "--table-row-border",
         label: "Row Border Color",
         type: "color",
         cssType: "scheme",
-        value: docStyle.getPropertyValue('--table-row-border-color'),
+        value: docStyle.getPropertyValue('--table-row-border'),
         usage: new Map<string, string[]>()
-        .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item > *", ["border-color: var(--table-row-border-color);"])
-        .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item > *:not(:first-child)", ["border-color: var(--table-row-border-color);"])
-        .set(".rc-table table", ["box-shadow: 0 0 0 1px var(--table-row-border-color);"])
-        .set(".rc-table .p-datatable-tbody > tr > td", ["border-color: var(--table-row-border-color);"])
-        .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item", ["border-color: var(--table-row-border-color);"])
-    },
-    {
-        variable: "--table-row-border-width",
-        label: "Row Border Width",
-        type: "text",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--table-row-border-width'),
-        usage: new Map<string, string[]>()
-        .set(".rc-table .p-datatable-tbody > tr > td", ["border-width: var(--table-row-border-width);"])
-        .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item", ["border-width: var(--table-row-border-width);"])
+        .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item > *", ["border-bottom: var(--table-row-border);"])
+        .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item > *:not(:first-child)", ["border-left: var(--table-row-border);"])
+        .set(".rc-table table", ["border-bottom: var(--table-row-border);"])
+        .set(".rc-table .p-datatable-tbody > tr > td", ["border-bottom: var(--table-row-border);"])
+        .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item", ["border-bottom: var(--table-row-border);"])
     },
     {
         variable: "--table-selected-row-background",
