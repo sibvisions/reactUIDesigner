@@ -23,7 +23,6 @@ import VariableProvider, { variableContext } from './VariableProvider';
 import { sendRequest } from './RequestService';
 import { Toast } from 'primereact/toast';
 import { generateCSS } from './util/GenerateCSS';
-import { Accordion, AccordionTab } from 'primereact/accordion';
 import './index.scss';
 import TopBar from './previews/topbar/TopBar';
 
@@ -174,7 +173,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const uploadImage = (type: "login" | "menu" | "small") => {
     const inputElem = document.createElement('input');
     inputElem.type = 'file';
-    inputElem.click()
+    //@ts-ignore
+    inputElem.showPicker()
     inputElem.onchange = (e) => {
       // @ts-ignore
       const tmppath = URL.createObjectURL(e.target.files[0]);
@@ -272,35 +272,15 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
               {uploadUrl && <Button className='designer-panel-button upload-button' icon='fas fa-cloud-upload-alt' onClick={() => handleUpload(uploadUrl)} />}
             </div>
             </div>
-              <Accordion>
-                <AccordionTab key={"accordion-tab-upanddownload"} header="Images">
-                  <div className='designer-panel-options'>
-                    <div>
-                      <div className='designer-panel-row designer-panel-image-upload'>
-                        <span className='designer-panel-header'>Login:</span>
-                        <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
-                        <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("login")} />
-                      </div>
-                      <div className='designer-panel-row designer-panel-image-upload'>
-                        <span className='designer-panel-header'>Menu:</span>
-                        <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
-                        <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("menu")} />
-                      </div>
-                      <div className='designer-panel-row designer-panel-image-upload'>
-                        <span className='designer-panel-header'>Collapsed Menu:</span>
-                        <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
-                        <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => uploadImage("small")} />
-                      </div>
-                    </div>
-                  </div>
-                </AccordionTab>
-              </Accordion>
-
               <EditorManager
                 isPreviewMode={isPreviewMode}
                 isCorporation={props.isCorporation}
                 activeIndex={activeTabIndex}
                 designerSubscription={props.designerSubscription}
+                uploadImage={(type:"login"|"small"|"menu") => uploadImage(type)}
+                logoLogin={props.logoLogin}
+                logoBig={props.logoBig}
+                logoSmall={props.logoSmall}
                 />
             </div>
           </div>

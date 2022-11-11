@@ -36,6 +36,10 @@ interface IEditorCreator {
     isPreviewMode: boolean,
     editors: Map<string, EditorItem[]>
     designerSubscription: DesignerSubscriptionManager|undefined
+    uploadImage: Function
+    logoLogin: string
+    logoBig:string
+    logoSmall: string
 }
 
 function createEditors(editors: Map<string, EditorItem[]>, 
@@ -221,6 +225,27 @@ const EditorCreator:FC<IEditorCreator> = (props) => {
 
     return (
         <Accordion>
+            <AccordionTab key={"accordion-tab-upanddownload"} header="Images">
+                <div className='designer-panel-options'>
+                <div>
+                    <div className='designer-panel-row designer-panel-image-upload'>
+                    <span className='designer-panel-header'>Login:</span>
+                    <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
+                    <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => props.uploadImage("login")} />
+                    </div>
+                    <div className='designer-panel-row designer-panel-image-upload'>
+                    <span className='designer-panel-header'>Menu:</span>
+                    <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
+                    <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => props.uploadImage("menu")} />
+                    </div>
+                    <div className='designer-panel-row designer-panel-image-upload'>
+                    <span className='designer-panel-header'>Collapsed Menu:</span>
+                    <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
+                    <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => props.uploadImage("small")} />
+                    </div>
+                </div>
+                </div>
+            </AccordionTab>
             {createEditors(editors, setEditors, context.defaultValues, context, props.index, props.isPreviewMode, props.designerSubscription)}
         </Accordion> 
     )

@@ -25,6 +25,11 @@ interface IEditorManager {
     isCorporation: boolean
     activeIndex: number
     designerSubscription: DesignerSubscriptionManager|undefined
+    uploadImage: Function
+    logoLogin: string
+    logoBig:string
+    logoSmall: string
+
 }
 
 export enum EDITOR_INDICES {
@@ -91,13 +96,21 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     index={props.activeIndex} 
                     isPreviewMode={props.isPreviewMode} 
                     editors={generalEditors}
-                    designerSubscription={props.designerSubscription} />
+                    designerSubscription={props.designerSubscription}
+                    uploadImage={(type:"login"|"small"|"menu") => props.uploadImage(type)}
+                    logoLogin={props.logoLogin}
+                    logoBig={props.logoBig}
+                    logoSmall={props.logoSmall} />
             }
             <EditorCreator 
                 index={props.activeIndex} 
                 isPreviewMode={props.isPreviewMode} 
                 editors={editors}
-                designerSubscription={props.designerSubscription} />
+                designerSubscription={props.designerSubscription}
+                uploadImage={(type:"login"|"small"|"menu") => props.uploadImage(type)}
+                logoLogin={props.logoLogin}
+                logoBig={props.logoBig}
+                logoSmall={props.logoSmall} />
         </>
     )
 }
