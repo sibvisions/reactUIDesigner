@@ -47,6 +47,7 @@ interface IReactUIDesigner {
   logoSmall: string
   logoLogin: string
   designerSubscription: DesignerSubscriptionManager|undefined
+  appName:string
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -109,12 +110,12 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     sendRequest({ formData: formData }, uploadUrl)
       .then(() => {
         if (toastRef.current) {
-          toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The CSS Files have been uploaded to the server." })
+          toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The new styles: " + fileNameTheme + " and " + fileNameScheme + "were set for the application " + props.appName + "." })
         }
       })
       .catch((error) => {
         if (toastRef.current) {
-          toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The CSS Files could not be uploaded. " + error })
+          toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". " + error })
         }
         console.error(error)
       });
@@ -268,8 +269,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
               </div>
             </div>
             <div className='designer-panel-row'>
-              <Button className={uploadUrl ? 'designer-panel-button download-button' : 'designer-panel-button-solo'} icon='fas fa-file-download' onClick={handleDownload} />
-              {uploadUrl && <Button className='designer-panel-button upload-button' icon='fas fa-cloud-upload-alt' onClick={() => handleUpload(uploadUrl)} />}
+              <Button className={uploadUrl ? 'designer-panel-button download-button' : 'designer-panel-button-solo'} tooltip='Download' icon='fas fa-file-download' onClick={handleDownload} />
+              {uploadUrl && <Button className='designer-panel-button upload-button' icon='fas fa-save' tooltip='Save' onClick={() => handleUpload(uploadUrl)} />}
             </div>
             </div>
               <EditorManager

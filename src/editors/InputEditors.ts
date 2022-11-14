@@ -26,7 +26,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--input-background'),
         usage: new Map<string, string[]>()
-        .set(".p-inputtext", ["background: var(--input-background);"])
+        .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput)", ["background: var(--input-background);"])
         .set(".p-editor-container .p-editor-content .ql-editor", ["background: var(--input-background);"])
     },
     {
@@ -36,7 +36,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--input-border-width'),
         usage: new Map<string, string[]>()
-        .set(".p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color);"])
+        .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput)", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".p-editor-container .p-editor-content", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".p-editor-container .p-editor-content.ql-snow", ["border: var(--input-border-width) solid var(--input-border-color);"])
         .set(".rc-editor-html textarea.p-inputtext", ["border: var(--input-border-width) solid var(--input-border-color) !important;"])
@@ -57,8 +57,8 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--input-border-hover-color'),
         usage: new Map<string, string[]>()
-        .set(".p-inputtext:enabled:focus", ["border-color: var(--input-border-hover-color);"])
-        .set(".p-inputtext:enabled:hover", ["border-color: var(--input-border-hover-color);"])
+        .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput):enabled:focus", ["border-color: var(--input-border-hover-color);"])
+        .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput):enabled:hover", ["border-color: var(--input-border-hover-color);"])
         .set(".p-datepicker .p-datepicker-header .p-datepicker-title select:focus", ["border-color: var(--input-border-hover-color);"])
     },
     {
@@ -68,7 +68,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--input-placeholder-color'),
         usage: new Map<string, string[]>()
-        .set(".p-inputtext::placeholder", ["color: var(--input-placeholder-color);"])
+        .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput)::placeholder", ["color: var(--input-placeholder-color);"])
         .set(".p-float-label > label", ["color: var(--input-placeholder-color);"])
     },
     {
@@ -95,7 +95,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         cssType: "scheme",
         value: docStyle.getPropertyValue('--editor-border-radius'),
         usage: new Map<string, string[]>()
-        .set(".p-inputtext", ["border-radius: var(--editor-border-radius);"])
+        .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput)", ["border-radius: var(--editor-border-radius);"])
         .set(".p-calendar:focus-within", ["border-radius: var(--editor-border-radius);"])
         .set(".p-editor-container .p-editor-toolbar", ["border-top-left-radius: var(--editor-border-radius);", "border-top-right-radius: var(--editor-border-radius);"])
         .set(".p-editor-container .p-editor-content", ["border-bottom-left-radius: var(--editor-border-radius);", "border-bottom-right-radius: var(--editor-border-radius);"])

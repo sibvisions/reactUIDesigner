@@ -28,7 +28,8 @@ export default ReactDOM.render(
     logoLogin={process.env.PUBLIC_URL + '/assets/logo_login.png'} 
     logoBig={process.env.PUBLIC_URL + '/assets/logo_big.png'}
     logoSmall={process.env.PUBLIC_URL + '/assets/logo_small.png'}
-    designerSubscription={undefined} />,
+    designerSubscription={undefined}
+    appName="demo" />,
   // </React.StrictMode>,
   document.getElementById('root')
 )

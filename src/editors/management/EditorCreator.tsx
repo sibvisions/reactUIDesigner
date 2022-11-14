@@ -142,10 +142,12 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
+                            tooltip="swap to text"
                             onClick={() => swapColorType(key, editorItem)} />
                         <Button 
                             className="style-editor-button" 
                             icon="fas fa-chess-board" 
+                            tooltip="transparent"
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
                                 document.documentElement.style.setProperty(editorItem.variable, "transparent")
@@ -167,6 +169,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
+                            tooltip="swap to color"
                             onClick={() => swapColorType(key, editorItem)} />
                     </>
                 )
@@ -196,7 +199,8 @@ function createEditors(editors: Map<string, EditorItem[]>,
                             {getInputElements(editorItem, key)}
                             <Button 
                                 className="style-editor-button" 
-                                icon="fas fa-undo" 
+                                icon="fas fa-undo"
+                                tooltip="reset to default"
                                 onClick={() => {
                                     setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
                                     document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
