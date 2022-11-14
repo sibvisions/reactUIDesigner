@@ -544,7 +544,7 @@ body {
     color: var(--text-color);
 }
 
-.reactUI {
+.reactUI:not(.designer-content) {
     background: var(--screen-background);
 }
 

@@ -180,6 +180,10 @@
   .main.menu-transition:not(.main--with-corp-menu) {
     transition: none;
   }
+
+  &.reactUI {
+    height: var(--designer-main-height);
+  }
 }
 
 @media screen and (max-width: 960px) {
