@@ -44,12 +44,10 @@ const editorArray = [
     generalEditors, 
     loginEditors, 
     menuEditors,
-    fadeoutCalc,
     corporateEditors, 
     buttonEditors, 
     inputEditors, 
     tableEditors, 
-    cellEditors,
     tabsetEditors, 
     popupEditors,
     messagesEditors,
@@ -59,7 +57,9 @@ const editorArray = [
     topbarEditors,
     labelEditors,
     sysEditors,
-    crashEditors
+    crashEditors,
+    cellEditors,
+    fadeoutCalc
 ];
 
 function getDefaultValues() {

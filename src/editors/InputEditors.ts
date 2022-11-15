@@ -18,7 +18,7 @@ import { EditorItem } from "./management/EditorCreator";
 const docStyle = window.getComputedStyle(document.documentElement);
 
 export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
-.set("Texteditor", [
+.set("Text-Editor", [
     {
         variable: "--input-background",
         label: "Background",
@@ -102,7 +102,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".p-editor-container .p-editor-content .ql-editor", ["border-bottom-left-radius: var(--editor-border-radius);", "border-bottom-right-radius: var(--editor-border-radius);"])
     }
 ])
-.set("Dateeditor/Linkededitor", [
+.set("Date-Editor", [
     {
         variable: "--input-button-padding",
         label: "Button Padding",
@@ -122,8 +122,63 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
         .set(".basti .p-button.p-button-icon-only:not(.rc-toolbar-button):not(.p-speeddial-button):not(.p-splitbutton-menubutton).p-autocomplete-dropdown > .p-button-icon, .basti .p-button.p-button-icon-only:not(.rc-toolbar-button):not(.p-speeddial-button):not(.p-splitbutton-menubutton).p-datepicker-trigger > .p-button-icon", ["font-size: var(--input-button-icon-size);"])
     },
     {
+        variable: "--date-panel-background",
+        label: "Panel Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--date-panel-background'),
+        usage: new Map<string, string[]>()
+        .set(".p-datepicker:not(.p-datepicker-inline), .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header", ["background: var(--date-panel-background);"])
+        .set(".p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year", ["background-color: var(--date-panel-background);"])
+    },
+    {
+        variable: "--date-panel-color",
+        label: "Panel Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--date-panel-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-datepicker:not(.p-datepicker-inline), .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header", ["color: var(--date-panel-color);"])
+        .set(".p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year", ["color: var(--date-panel-color);"])
+    },
+    {
+        variable: "--date-panel-header-border",
+        label: "Header Border",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--date-panel-header-border'),
+        usage: new Map<string, string[]>().set(".p-datepicker .p-datepicker-header", ["border-bottom: var(--date-panel-header-border);"])
+    },
+    {
+        variable: "--date-panel-hover-color",
+        label: "Panel Hover Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--date-panel-hover-color'),
+        usage: new Map<string, string[]>()
+        .set(".p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):hover", ["color: var(--date-panel-hover-color);"])
+    },
+    {
+        variable: "--date-selected-background",
+        label: "Selected Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--date-selected-background'),
+        usage: new Map<string, string[]>().set(".p-datepicker table td > span.p-highlight", ["background: var(--date-selected-background);"])
+    },
+    {
+        variable: "--date-border-radius",
+        label: "Border-Radius",
+        type: "text",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--date-border-radius'),
+        usage: new Map<string, string[]>().set(".p-datepicker", ["border-radius: var(--date-border-radius);"])
+    }
+])
+.set("Combobox", [
+    {
         variable: "--linked-panel-background",
-        label: "Linked Panel Background",
+        label: "Panel Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--linked-panel-background'),
@@ -133,7 +188,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--linked-item-color",
-        label: "Linked Item Color",
+        label: "Item Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--linked-item-color'),
@@ -145,7 +200,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--linked-item-hover-background",
-        label: "Linked Item Hover Background",
+        label: "Item Hover Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--linked-item-hover-background'),
@@ -153,7 +208,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--linked-item-hover-text-color",
-        label: "Linked Item Hover Color",
+        label: "Item Hover Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--linked-item-hover-text-color'),
@@ -161,7 +216,7 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--linked-highlighted-color",
-        label: "Linked Selected Background",
+        label: "Selected Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--linked-highlighted-color'),
@@ -171,67 +226,14 @@ export const inputEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--linked-border-radius",
-        label: "Linked Border-Radius",
+        label: "Border-Radius",
         type: "text",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--linked-border-radius'),
         usage: new Map<string, string[]>().set(".p-autocomplete-panel", ["border-radius: var(--linked-border-radius);"])
     },
-    {
-        variable: "--date-panel-background",
-        label: "Date Panel Background",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--date-panel-background'),
-        usage: new Map<string, string[]>()
-        .set(".p-datepicker:not(.p-datepicker-inline), .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header", ["background: var(--date-panel-background);"])
-        .set(".p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year", ["background-color: var(--date-panel-background);"])
-    },
-    {
-        variable: "--date-panel-color",
-        label: "Date Panel Color",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--date-panel-color'),
-        usage: new Map<string, string[]>()
-        .set(".p-datepicker:not(.p-datepicker-inline), .p-datepicker:not(.p-datepicker-inline) .p-datepicker-header", ["color: var(--date-panel-color);"])
-        .set(".p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month, .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year", ["color: var(--date-panel-color);"])
-    },
-    {
-        variable: "--date-panel-header-border",
-        label: "Date Header Border",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--date-panel-header-border'),
-        usage: new Map<string, string[]>().set(".p-datepicker .p-datepicker-header", ["border-bottom: var(--date-panel-header-border);"])
-    },
-    {
-        variable: "--date-panel-hover-color",
-        label: "Date Panel Hover Color",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--date-panel-hover-color'),
-        usage: new Map<string, string[]>()
-        .set(".p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):hover", ["color: var(--date-panel-hover-color);"])
-    },
-    {
-        variable: "--date-selected-background",
-        label: "Selected Date Background",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--date-selected-background'),
-        usage: new Map<string, string[]>().set(".p-datepicker table td > span.p-highlight", ["background: var(--date-selected-background);"])
-    },
-    {
-        variable: "--date-border-radius",
-        label: "DatePicker Border-Radius",
-        type: "text",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--date-border-radius'),
-        usage: new Map<string, string[]>().set(".p-datepicker", ["border-radius: var(--date-border-radius);"])
-    }
 ])
-.set("HTMLEditor", [
+.set("HTML-Editor", [
     {
         variable: "--html-toolbar-background",
         label: "Toolbar Background",

@@ -23,9 +23,9 @@ import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 export type EditorItem = {
     variable: string,
     label: string,
-    type: "color"|"text"|"color-text",
+    type: "color" | "text" | "color-text",
     value: string,
-    cssType: "theme"|"scheme",
+    cssType: "theme" | "scheme",
     usage: Map<string, string[]>
     usage960?: Map<string, string[]>
     usage530?: Map<string, string[]>
@@ -35,35 +35,36 @@ interface IEditorCreator {
     index: number,
     isPreviewMode: boolean,
     editors: Map<string, EditorItem[]>
-    designerSubscription: DesignerSubscriptionManager|undefined
+    designerSubscription: DesignerSubscriptionManager | undefined
     uploadImage: Function
     logoLogin: string
-    logoBig:string
+    logoBig: string
     logoSmall: string
+    isGeneral: boolean
 }
 
-function createEditors(editors: Map<string, EditorItem[]>, 
-    setCallback: React.Dispatch<React.SetStateAction<Map<string, EditorItem[]>>>, 
-    defaultValues: Map<string, string>, 
+function createEditors(editors: Map<string, EditorItem[]>,
+    setCallback: React.Dispatch<React.SetStateAction<Map<string, EditorItem[]>>>,
+    defaultValues: Map<string, string>,
     context: VariableContextType,
     index: number,
     isPreviewMode: boolean,
-    designerSub: DesignerSubscriptionManager|undefined
-    ) {
-    const subFunctionMap:Map<string, Function> = designerSub ? new Map<string, Function>()
-    .set("--font-size", () => designerSub.notifyFontSizeChanged())
-    .set("--button-padding", () => designerSub.notifyButtonPaddingChanged())
-    .set("--primary-color", () => designerSub.notifyButtonBackgroundChanged())
-    .set("--topbar-colors", () => designerSub.notifyTopbarColorChanged())
-    .set("--checkbox-size", () => designerSub.notifyCheckboxSizeChanged())
-    .set("--radiobutton-size", () => designerSub.notifyRadiobuttonSizeChanged())
-    .set("--button-icon-only-padding", () => designerSub.notifyIconOnlyPaddingChanged())
-    .set("--input-button-padding", () => designerSub.notifyInputButtonPaddingChanged())
-    .set("--menubtn-leftbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
-    .set("--menubtn-rightbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
-    : new Map<string, Function>()
+    designerSub: DesignerSubscriptionManager | undefined
+) {
+    const subFunctionMap: Map<string, Function> = designerSub ? new Map<string, Function>()
+        .set("--font-size", () => designerSub.notifyFontSizeChanged())
+        .set("--button-padding", () => designerSub.notifyButtonPaddingChanged())
+        .set("--primary-color", () => designerSub.notifyButtonBackgroundChanged())
+        .set("--topbar-colors", () => designerSub.notifyTopbarColorChanged())
+        .set("--checkbox-size", () => designerSub.notifyCheckboxSizeChanged())
+        .set("--radiobutton-size", () => designerSub.notifyRadiobuttonSizeChanged())
+        .set("--button-icon-only-padding", () => designerSub.notifyIconOnlyPaddingChanged())
+        .set("--input-button-padding", () => designerSub.notifyInputButtonPaddingChanged())
+        .set("--menubtn-leftbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
+        .set("--menubtn-rightbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
+        : new Map<string, Function>()
 
-    const setVariableState = (key: string , pItem: EditorItem, value: string) => {
+    const setVariableState = (key: string, pItem: EditorItem, value: string) => {
         setCallback(prevState => {
             const mapCopy = new Map(prevState);
             if (mapCopy.has(key)) {
@@ -93,7 +94,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
         });
     }
 
-    const updateVariables = (editorItem:EditorItem) => {
+    const updateVariables = (editorItem: EditorItem) => {
         if (subFunctionMap.has(editorItem.variable)) {
             (subFunctionMap.get(editorItem.variable) as Function)()
         }
@@ -125,14 +126,14 @@ function createEditors(editors: Map<string, EditorItem[]>,
         });
     }
 
-    const getInputElements = (editorItem:EditorItem, key: string) => {
+    const getInputElements = (editorItem: EditorItem, key: string) => {
         switch (editorItem.type) {
             case "color":
                 return (
                     <>
-                        <input 
-                            className="style-editor-colorpicker" 
-                            type={editorItem.type} 
+                        <input
+                            className="style-editor-colorpicker"
+                            type={editorItem.type}
                             value={editorItem.value}
                             onChange={event => {
                                 setVariableState(key, editorItem, event.target.value);
@@ -142,12 +143,12 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
-                            tooltip="swap to text"
+                            tooltip="Swap to Text"
                             onClick={() => swapColorType(key, editorItem)} />
-                        <Button 
-                            className="style-editor-button" 
-                            icon="fas fa-chess-board" 
-                            tooltip="transparent"
+                        <Button
+                            className="style-editor-button"
+                            icon="fas fa-chess-board"
+                            tooltip="Transparent"
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
                                 document.documentElement.style.setProperty(editorItem.variable, "transparent")
@@ -161,7 +162,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <InputText
                             className="style-editor-color-textinput"
                             value={editorItem.value}
-                            onChange={(event) => setVariableState(key, editorItem, event.target.value)} 
+                            onChange={(event) => setVariableState(key, editorItem, event.target.value)}
                             onBlur={() => {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
                                 updateVariables(editorItem);
@@ -169,7 +170,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
-                            tooltip="swap to color"
+                            tooltip="Swap to Color"
                             onClick={() => swapColorType(key, editorItem)} />
                     </>
                 )
@@ -179,7 +180,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                     <InputText
                         className="style-editor-textinput"
                         value={editorItem.value}
-                        onChange={(event) => setVariableState(key, editorItem, event.target.value)} 
+                        onChange={(event) => setVariableState(key, editorItem, event.target.value)}
                         onBlur={() => {
                             document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
                             updateVariables(editorItem);
@@ -188,7 +189,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
         }
     }
 
-    let groupElements:JSX.Element[] = []
+    let groupElements: JSX.Element[] = []
     if (editors.size) {
         editors.forEach((editorArray, key) => {
             let editorElements = editorArray.map(editorItem => {
@@ -197,10 +198,10 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <span className="style-editor-label">{editorItem.label}</span>
                         <div className="style-editor">
                             {getInputElements(editorItem, key)}
-                            <Button 
-                                className="style-editor-button" 
+                            <Button
+                                className="style-editor-button"
                                 icon="fas fa-undo"
-                                tooltip="reset to default"
+                                tooltip="Reset to Default"
                                 onClick={() => {
                                     setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
                                     document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
@@ -218,7 +219,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
     return groupElements
 }
 
-const EditorCreator:FC<IEditorCreator> = (props) => {
+const EditorCreator: FC<IEditorCreator> = (props) => {
     const context = useContext(variableContext)
 
     const [editors, setEditors] = useState(props.editors);
@@ -229,29 +230,29 @@ const EditorCreator:FC<IEditorCreator> = (props) => {
 
     return (
         <Accordion>
-            <AccordionTab key={"accordion-tab-upanddownload"} header="Images">
+            {(props.isPreviewMode || props.isGeneral) && <AccordionTab key={"accordion-tab-upanddownload"} header="Images">
                 <div className='designer-panel-options'>
-                <div>
-                    <div className='designer-panel-row designer-panel-image-upload'>
-                    <span className='designer-panel-header'>Login:</span>
-                    <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
-                    <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => props.uploadImage("login")} />
-                    </div>
-                    <div className='designer-panel-row designer-panel-image-upload'>
-                    <span className='designer-panel-header'>Menu:</span>
-                    <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
-                    <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => props.uploadImage("menu")} />
-                    </div>
-                    <div className='designer-panel-row designer-panel-image-upload'>
-                    <span className='designer-panel-header'>Collapsed Menu:</span>
-                    <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
-                    <Button className='designer-panel-image-button' icon='fas fa-cloud-upload-alt' onClick={() => props.uploadImage("small")} />
+                    <div>
+                        <div className='designer-panel-row designer-panel-image-upload'>
+                            <span className='designer-panel-header'>Login:</span>
+                            <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
+                            <Button className='designer-panel-image-button' icon='fas fa-save' onClick={() => props.uploadImage("login")} />
+                        </div>
+                        <div className='designer-panel-row designer-panel-image-upload'>
+                            <span className='designer-panel-header'>Menu:</span>
+                            <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
+                            <Button className='designer-panel-image-button' icon='fas fa-save' onClick={() => props.uploadImage("menu")} />
+                        </div>
+                        <div className='designer-panel-row designer-panel-image-upload'>
+                            <span className='designer-panel-header'>Collapsed Menu:</span>
+                            <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
+                            <Button className='designer-panel-image-button' icon='fas fa-save' onClick={() => props.uploadImage("small")} />
+                        </div>
                     </div>
                 </div>
-                </div>
-            </AccordionTab>
+            </AccordionTab>}
             {createEditors(editors, setEditors, context.defaultValues, context, props.index, props.isPreviewMode, props.designerSubscription)}
-        </Accordion> 
+        </Accordion>
     )
 }
 export default EditorCreator

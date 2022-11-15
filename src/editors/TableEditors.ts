@@ -6,7 +6,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
 .set("Table General", [
     {
         variable: "--table-border",
-        label: "Table Border",
+        label: "Border",
         type: "text",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-border'),
@@ -14,7 +14,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--table-text-color",
-        label: "Table Color",
+        label: "Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-text-color'),
@@ -27,7 +27,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--table-cell-hover-color",
-        label: "Table Hover Color",
+        label: "Hover Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-cell-hover-color'),
@@ -86,7 +86,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
 .set("Table Header", [
     {
         variable: "--table-header-background",
-        label: "Header Background",
+        label: "Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-header-background'),
@@ -96,7 +96,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--table-header-border",
-        label: "Header Border Color",
+        label: "Border Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-header-border'),
@@ -106,7 +106,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--table-header-hover-background",
-        label: "Header Hover Background",
+        label: "Hover Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-header-hover-background'),
@@ -115,7 +115,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--table-header-color",
-        label: "Header Color",
+        label: "Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-header-color'),
@@ -124,7 +124,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--table-header-hover-color",
-        label: "Header Hover Color",
+        label: "Hover Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--table-header-hover-color'),
@@ -133,7 +133,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--table-header-padding",
-        label: "Header Padding",
+        label: "Padding",
         type: "text",
         cssType: "theme",
         value: docStyle.getPropertyValue('--table-header-padding'),
@@ -304,7 +304,7 @@ export const tableEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
     },
     {
         variable: "--toolbar-separator",
-        label: "Seperator",
+        label: "Separator",
         type: "text",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--toolbar-separator'),

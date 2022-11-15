@@ -195,7 +195,7 @@ const FullPreview: FC = () => {
                     enableResizing >
                     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                         <div className="rc-frame-header">
-                            <span className="rc-frame-header-title">Frame Title</span>
+                            <span className="rc-frame-header-title">Workscreen Title</span>
                             <button className="rc-frame-header-close-button pi pi-times" />
                         </div>
                         <div className="rc-frame-menu">
@@ -204,7 +204,7 @@ const FullPreview: FC = () => {
                         </div>
                         <div className="rc-frame-content" style={{ flex: "1" }}>
                             <div>
-                                This is an internal frame!
+                                This is a Workscreen Window
                             </div>
                         </div>
                     </div>

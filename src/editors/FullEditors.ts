@@ -3,7 +3,7 @@ import { EditorItem } from "./management/EditorCreator";
 const docStyle = window.getComputedStyle(document.documentElement);
 
 export const fullEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
-.set("Launcher", [
+.set("Full-Topbar", [
     {
         variable: "--menubar-height",
         label: "Height",
@@ -102,7 +102,7 @@ export const fullEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         usage: new Map<string, string[]>().set(".mobile-launcher-menu .rc-frame-toolbar .rc-button.mouse-border:not(a):not(.p-disabled):not(.border-notpainted):hover", ["color: var(--launcher-toolbar-button-hover-text-color);"])
     }
 ])
-.set("Frame", [
+.set("Workscreen Window", [
     {
         variable: "--frame-menubar-background",
         label: "Menubar Background",

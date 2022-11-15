@@ -18,10 +18,10 @@ import { EditorItem } from "./management/EditorCreator";
 const docStyle = window.getComputedStyle(document.documentElement);
 
 export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
-.set("Buttons", [
+.set("Button", [
     {
         variable: "--primary-color",
-        label: "Primary Color",
+        label: "Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--primary-color'),
@@ -51,56 +51,6 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         .set(".basti .p-button.p-button-icon-only:not(.rc-toolbar-button):not(.p-speeddial-button):not(.p-splitbutton-menubutton)", ["padding: var(--btnPadding, var(--button-icon-only-padding, 0.5rem 0.5rem));"])
     },
     {
-        variable: "--menubtn-leftbtn-padding",
-        label: "MenuButton Leftbutton-Padding",
-        type: "text",
-        cssType: "theme",
-        value: docStyle.getPropertyValue('--menubtn-leftbtn-padding'),
-        usage: new Map<string, string[]>()
-        .set(".basti .p-splitbutton-defaultbutton", ["padding: var(--menuBtnPadding, var(--menubtn-leftbtn-padding, 0.5rem 0rem 0.5rem 1rem));"])
-    },
-    {
-        variable: "--menubtn-rightbtn-padding",
-        label: "MenuButton Rightbutton-Padding",
-        type: "text",
-        cssType: "theme",
-        value: docStyle.getPropertyValue('--menubtn-rightbtn-padding'),
-        usage: new Map<string, string[]>()
-        .set(".basti .p-button.p-splitbutton-menubutton", ["padding: var(--menubtn-rightbtn-padding);"])
-    },
-    {
-        variable: "--popupmenubutton-panel-background",
-        label: "MenuButton Panel Background",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--popupmenubutton-panel-background'),
-        usage: new Map<string, string[]>().set(".p-menu.p-menu-overlay", ["background: var(--popupmenubutton-panel-background);"])
-    },
-    {
-        variable: "--popupmenubutton-item-color",
-        label: "MenuButton Item Color",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue("--popupmenubutton-item-color"),
-        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link .p-menuitem-text, .p-menu .p-menuitem-link .p-menuitem-icon", ["color: var(--popupmenubutton-item-color);"])
-    },
-    {
-        variable: "--popupmenubutton-item-hover-background",
-        label: "MenuButton Item Hover Background",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--popupmenubutton-item-hover-background'),
-        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link:not(.p-disabled):hover", ["background: var(--popupmenubutton-item-hover-background);"])
-    },
-    {
-        variable: "--popupmenubutton-item-hover-text-color",
-        label: "MenuButton Item Hover Color",
-        type: "color",
-        cssType: "scheme",
-        value: docStyle.getPropertyValue('--popupmenubutton-item-hover-text-color'),
-        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon", ["color: var(--popupmenubutton-item-hover-text-color);"])
-    },
-    {
         variable: "--button-border-radius",
         label: "Border-Radius",
         type: "text",
@@ -112,10 +62,62 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
         .set(".rc-popupmenubutton", ["border-radius: var(--button-border-radius);"])
     }
 ])
-.set("Checkbox/Radiobutton", [
+.set("Menubutton", [
+    {
+        variable: "--menubtn-leftbtn-padding",
+        label: "Left Button-Padding",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--menubtn-leftbtn-padding'),
+        usage: new Map<string, string[]>()
+        .set(".basti .p-splitbutton-defaultbutton", ["padding: var(--menuBtnPadding, var(--menubtn-leftbtn-padding, 0.5rem 0rem 0.5rem 1rem));"])
+    },
+    {
+        variable: "--menubtn-rightbtn-padding",
+        label: "Right Button-Padding",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--menubtn-rightbtn-padding'),
+        usage: new Map<string, string[]>()
+        .set(".basti .p-button.p-splitbutton-menubutton", ["padding: var(--menubtn-rightbtn-padding);"])
+    },
+    {
+        variable: "--popupmenubutton-panel-background",
+        label: "Panel Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--popupmenubutton-panel-background'),
+        usage: new Map<string, string[]>().set(".p-menu.p-menu-overlay", ["background: var(--popupmenubutton-panel-background);"])
+    },
+    {
+        variable: "--popupmenubutton-item-color",
+        label: "Item Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue("--popupmenubutton-item-color"),
+        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link .p-menuitem-text, .p-menu .p-menuitem-link .p-menuitem-icon", ["color: var(--popupmenubutton-item-color);"])
+    },
+    {
+        variable: "--popupmenubutton-item-hover-background",
+        label: "Item Hover Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--popupmenubutton-item-hover-background'),
+        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link:not(.p-disabled):hover", ["background: var(--popupmenubutton-item-hover-background);"])
+    },
+    {
+        variable: "--popupmenubutton-item-hover-text-color",
+        label: "Item Hover Color",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--popupmenubutton-item-hover-text-color'),
+        usage: new Map<string, string[]>().set(".p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menu .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon", ["color: var(--popupmenubutton-item-hover-text-color);"])
+    }
+])
+.set("Checkbox", [
     {
         variable: "--checkbox-background",
-        label: "Checkbox Background",
+        label: "Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-background'),
@@ -124,7 +126,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--checkbox-border",
-        label: "Checkbox Border",
+        label: "Border",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-border'),
@@ -133,7 +135,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--checkbox-border-hover-color",
-        label: "Checkbox Border Hovor Color",
+        label: "Border Hovor Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-border-hover-color'),
@@ -142,7 +144,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--checkbox-selected-background",
-        label: "Checkbox Selected Background",
+        label: "Selected Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-selected-background'),
@@ -152,7 +154,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--checkbox-selected-hover-background",
-        label: "Checkbox Selected Hover Background",
+        label: "Selected Hover Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-selected-hover-background'),
@@ -161,7 +163,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--checkbox-color",
-        label: "Checkbox Color",
+        label: "Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-color'),
@@ -170,7 +172,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--checkbox-size",
-        label: "Checkbox Size",
+        label: "Size",
         type: "text",
         cssType: "theme",
         value: docStyle.getPropertyValue('--checkbox-size'),
@@ -181,15 +183,17 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--checkbox-border-radius",
-        label: "Checkbox Border-Radius",
+        label: "Border-Radius",
         type: "text",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--checkbox-border-radius'),
         usage: new Map<string, string[]>().set(".p-checkbox .p-checkbox-box", ["border-radius: var(--checkbox-border-radius);"])
-    },
+    }
+])
+.set("Radiobutton", [
     {
         variable: "--radiobutton-background",
-        label: "Radiobutton Background",
+        label: "Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--radiobutton-background'),
@@ -198,7 +202,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--radiobutton-border",
-        label: "Radiobutton Border",
+        label: "Border",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--radiobutton-border'),
@@ -207,7 +211,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--radiobutton-border-hover-color",
-        label: "Radiobutton Border Hovor Color",
+        label: "Border Hovor Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--radiobutton-border-hover-color'),
@@ -216,7 +220,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--radiobutton-selected-outer-background",
-        label: "Radiobutton Outer Background",
+        label: "Selected Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--radiobutton-selected-outer-background'),
@@ -225,7 +229,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--radiobutton-selected-outer-hover-background",
-        label: "Radiobutton Outer Hover Background",
+        label: "Selected Hover Background",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue('--radiobutton-selected-outer-hover-background'),
@@ -234,7 +238,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--radiobutton-inner-color",
-        label: "Radiobutton Color",
+        label: "Selected Color",
         type: "color",
         cssType: "scheme",
         value: docStyle.getPropertyValue("--radiobutton-inner-color"),
@@ -243,7 +247,7 @@ export const buttonEditors: Map<string, EditorItem[]> = new Map<string, EditorIt
     },
     {
         variable: "--radiobutton-size",
-        label: "Radiobutton Size",
+        label: "Size",
         type: "text",
         cssType: "theme",
         value: docStyle.getPropertyValue("--radiobutton-size"),

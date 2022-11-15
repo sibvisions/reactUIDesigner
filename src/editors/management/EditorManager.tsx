@@ -100,7 +100,8 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     uploadImage={(type:"login"|"small"|"menu") => props.uploadImage(type)}
                     logoLogin={props.logoLogin}
                     logoBig={props.logoBig}
-                    logoSmall={props.logoSmall} />
+                    logoSmall={props.logoSmall}
+                    isGeneral />
             }
             <EditorCreator 
                 index={props.activeIndex} 
@@ -110,7 +111,8 @@ const EditorManager: FC<IEditorManager> = (props) => {
                 uploadImage={(type:"login"|"small"|"menu") => props.uploadImage(type)}
                 logoLogin={props.logoLogin}
                 logoBig={props.logoBig}
-                logoSmall={props.logoSmall} />
+                logoSmall={props.logoSmall}
+                isGeneral={false} />
         </>
     )
 }

@@ -199,7 +199,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
         },
         {
             variable: "--profile-separator",
-            label: "Seperator",
+            label: "Separator",
             type: "text",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-separator'),

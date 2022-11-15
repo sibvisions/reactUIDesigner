@@ -153,42 +153,6 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             cssType: "scheme",
             value: docStyle.getPropertyValue('--topbar-button-hover-background'),
             usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons:hover", ["background:var(--topbar-button-hover-background);"])
-        },
-        {
-            variable: "--menuicon-size",
-            label: "Menuicon Size",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--menuicon-size'),
-            usage: new Map<string, string[]>().set(".basti .std-menu .p-menuitem-icon:not(.profile-image):not(.profile-image-null)", ["min-width: var(--menuicon-size);", "max-width: var(--menuicon-size);", "font-size: var(--menuicon-size);"])
-        },
-        {
-            variable: "--menu-scrollbar-background",
-            label: "Scrollbar Background",
-            type: "color",
-            cssType: "scheme",
-            value: docStyle.getPropertyValue('--menu-scrollbar-background'),
-            usage: new Map<string, string[]>().set(".menu-panelmenu-wrapper::-webkit-scrollbar-track", ["background: var(--menu-scrollbar-background);"])
-        },
-        {
-            variable: "--menu-scrollbar-color",
-            label: "Scrollbar Color",
-            type: "color",
-            cssType: "scheme",
-            value: docStyle.getPropertyValue('--menu-scrollbar-color'),
-            usage: new Map<string, string[]>()
-            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-thumb", ["background: var(--menu-scrollbar-color);"])
-            .set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb", ["background: var(--menu-scrollbar-color);"])
-        },
-        {
-            variable: "--menu-scrollbar-hover-color",
-            label: "Scrollbar Hover Color",
-            type: "color",
-            cssType: "scheme",
-            value: docStyle.getPropertyValue('--menu-scrollbar-hover-color'),
-            usage: new Map<string, string[]>()
-            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-thumb:hover", ["background: var(--menu-scrollbar-hover-color);"])
-            .set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb:hover, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb:hover", ["background: var(--menu-scrollbar-hover-color);"])
         }
     ])
     .set("Profile-Menu", [
@@ -266,7 +230,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         },
         {
             variable: "--profile-separator",
-            label: "Seperator",
+            label: "Separator",
             type: "text",
             cssType: "scheme",
             value: docStyle.getPropertyValue('--profile-separator'),
@@ -312,10 +276,10 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon", ["color:var(--profile-item-hover-text-color);"])
         }
     ])
-    .set("Panel-Menu", [
+    .set("Sidebar-Menu", [
         {
             variable: "--std-menu-width",
-            label: "Menu Width",
+            label: "Width",
             type: "text",
             cssType: "theme",
             value: docStyle.getPropertyValue('--std-menu-width'),
@@ -327,7 +291,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         },
         {
             variable: "--std-menu-collapsed-width",
-            label: "Menu Collapsed Width",
+            label: "Collapsed Width",
             type: "text",
             cssType: "theme",
             value: docStyle.getPropertyValue('--std-menu-collapsed-width'),
@@ -418,25 +382,61 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             .set(".menu-panelmenu-wrapper", ["border-right: var(--std-menu-border);"])
         },
         {
-            variable: "--std-fadeout-width",
-            label: "Fadeout Width",
+            variable: "--menuicon-size",
+            label: "Menuicon Size",
             type: "text",
             cssType: "theme",
-            value: docStyle.getPropertyValue('--std-fadeout-width'),
-            usage: new Map<string, string[]>()
-            .set(".basti .std-menu .fadeout", ["width: var(--std-fadeout-width);"])
+            value: docStyle.getPropertyValue('--menuicon-size'),
+            usage: new Map<string, string[]>().set(".basti .std-menu .p-menuitem-icon:not(.profile-image):not(.profile-image-null)", ["min-width: var(--menuicon-size);", "max-width: var(--menuicon-size);", "font-size: var(--menuicon-size);"])
         },
         {
-            variable: "--std-menu-fadeout-background",
-            label: "Fadeout Background",
+            variable: "--menu-scrollbar-background",
+            label: "Scrollbar Background",
             type: "color",
             cssType: "scheme",
-            value: docStyle.getPropertyValue('--std-menu-fadeout-background'),
-            usage: new Map<string, string[]>().set(".fadeout", ["background-image: var(--std-menu-fadeout-background);"])
+            value: docStyle.getPropertyValue('--menu-scrollbar-background'),
+            usage: new Map<string, string[]>().set(".menu-panelmenu-wrapper::-webkit-scrollbar-track", ["background: var(--menu-scrollbar-background);"])
+        },
+        {
+            variable: "--menu-scrollbar-color",
+            label: "Scrollbar Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--menu-scrollbar-color'),
+            usage: new Map<string, string[]>()
+            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-thumb", ["background: var(--menu-scrollbar-color);"])
+            .set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb", ["background: var(--menu-scrollbar-color);"])
+        },
+        {
+            variable: "--menu-scrollbar-hover-color",
+            label: "Scrollbar Hover Color",
+            type: "color",
+            cssType: "scheme",
+            value: docStyle.getPropertyValue('--menu-scrollbar-hover-color'),
+            usage: new Map<string, string[]>()
+            .set(".menu-panelmenu-wrapper::-webkit-scrollbar-thumb:hover", ["background: var(--menu-scrollbar-hover-color);"])
+            .set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb:hover, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-thumb:hover", ["background: var(--menu-scrollbar-hover-color);"])
         }
     ])
 
 export const fadeoutCalc: Map<string, EditorItem[]> = new Map<string, EditorItem[]>().set("FadeOutCalc", [
+    {
+        variable: "--std-fadeout-width",
+        label: "Fadeout Width",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-fadeout-width'),
+        usage: new Map<string, string[]>()
+        .set(".basti .std-menu .fadeout", ["width: var(--std-fadeout-width);"])
+    },
+    {
+        variable: "--std-menu-fadeout-background",
+        label: "Fadeout Background",
+        type: "color",
+        cssType: "scheme",
+        value: docStyle.getPropertyValue('--std-menu-fadeout-background'),
+        usage: new Map<string, string[]>().set(".fadeout", ["background-image: var(--std-menu-fadeout-background);"])
+    },
     {
         variable: "--std-fadeout-left",
         label: "Fadeout Left",
