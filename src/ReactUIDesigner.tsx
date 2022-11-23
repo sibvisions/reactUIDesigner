@@ -28,6 +28,7 @@ import TopBar from './previews/topbar/TopBar';
 
 export type DesignerSubscriptionManager = {
   notifyFontSizeChanged: Function,
+  notifyStdHeaderChanged: Function,
   notifyButtonPaddingChanged: Function,
   notifyButtonBackgroundChanged: Function,
   notifyTopbarColorChanged: Function,
@@ -35,7 +36,13 @@ export type DesignerSubscriptionManager = {
   notifyRadiobuttonSizeChanged: Function,
   notifyIconOnlyPaddingChanged: Function,
   notifyInputButtonPaddingChanged: Function,
-  notifyMenuButtonPaddingChanged: Function
+  notifyMenuButtonPaddingChanged: Function,
+  notifyStdMenuWidthChanged: Function,
+  notifyStdMenuCollapsedWidthChanged: Function,
+  notifyCorpHeaderChanged: Function,
+  notifyCorpMenubarChanged: Function,
+  notifyInputLRPaddingChanged: Function,
+  notifyInputTBPaddingChanged: Function
 }
 
 interface IReactUIDesigner {

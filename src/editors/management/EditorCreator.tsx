@@ -53,6 +53,11 @@ function createEditors(editors: Map<string, EditorItem[]>,
 ) {
     const subFunctionMap: Map<string, Function> = designerSub ? new Map<string, Function>()
         .set("--font-size", () => designerSub.notifyFontSizeChanged())
+        .set("--std-header-height", () => designerSub.notifyStdHeaderChanged())
+        .set("--std-menu-width", () => designerSub.notifyStdMenuWidthChanged())
+        .set("--std-menu-collapsed-width", () => designerSub.notifyStdMenuCollapsedWidthChanged())
+        .set("--corp-header-height", () => designerSub.notifyCorpHeaderChanged())
+        .set("--corp-menubar-height", () => designerSub.notifyCorpMenubarChanged())
         .set("--button-padding", () => designerSub.notifyButtonPaddingChanged())
         .set("--primary-color", () => designerSub.notifyButtonBackgroundChanged())
         .set("--topbar-colors", () => designerSub.notifyTopbarColorChanged())
@@ -62,6 +67,8 @@ function createEditors(editors: Map<string, EditorItem[]>,
         .set("--input-button-padding", () => designerSub.notifyInputButtonPaddingChanged())
         .set("--menubtn-leftbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
         .set("--menubtn-rightbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
+        .set("--input-padding-lr", () => designerSub.notifyInputLRPaddingChanged())
+        .set("--input-padding-tb", () => designerSub.notifyInputTBPaddingChanged())
         : new Map<string, Function>()
 
     const setVariableState = (key: string, pItem: EditorItem, value: string) => {

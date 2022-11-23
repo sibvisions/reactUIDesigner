@@ -42,39 +42,7 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             value: docStyle.getPropertyValue('--topbar-logo-background'),
             usage: new Map<string, string[]>().set(".menu-logo-wrapper", ["background:var(--topbar-logo-background);"])
         },
-        {
-            variable: "--std-logo-height",
-            label: "Logo Max Height",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--std-logo-height'),
-            usage: new Map<string, string[]>()
-            .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["max-height: var(--std-logo-height);"]),
-            usage530: new Map<string, string[]>()
-            .set(".basti .std-menu .menu-logo-mini-wrapper", ["height: var(--std-logo-height);"])
-            .set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["max-height: var(--std-logo-height);"])
-        },
-        {
-            variable: "--std-logo-width",
-            label: "Logo Width",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--std-logo-width'),
-            usage: new Map<string, string[]>()
-            .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["width:var(--std-logo-width);"])
-            .set(".basti .std-menu .menu-logo-mini", ["width:var(--std-logo-width);"]),
-            usage530: new Map<string, string[]>().set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["width:var(--std-logo-width);"])
-        },
-        {
-            variable: "--std-logo-collapsed-width",
-            label: "Logo Collapsed Width",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--std-logo-collapsed-width'),
-            usage: new Map<string, string[]>()
-            .set(".basti .std-menu.menu-collapsed .menu-logo-wrapper .menu-logo", ["width: var(--std-logo-collapsed-width);"])
-            .set(".basti .std-menu.menu-collapsed .menu-logo-mini", ["width: var(--std-logo-collapsed-width);"])
-        },
+
         {
             variable: "--topbar-background",
             label: "Background",
@@ -112,25 +80,6 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             usage: new Map<string, string[]>().set(".basti .std-menu .menu-topbar .menu-screen-title", ["margin-left:var(--std-screen-title-margin);"])
         },
         {
-            variable: "--std-topbar-button-size",
-            label: "Button Size",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--std-topbar-button-size'),
-            usage: new Map<string, string[]>()
-            .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--std-topbar-button-size);", "height:var(--std-topbar-button-size);"])
-        },
-        {
-            variable: "--std-topbar-button-size-small",
-            label: "Button Size (Small)",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--std-topbar-button-size-small'),
-            usage: new Map<string, string[]>(),
-            usage530: new Map<string, string[]>()
-            .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--std-topbar-button-size-small);", "height:var(--std-topbar-button-size-small);"])
-        },
-        {
             variable: "--topbar-button-background",
             label: "Button Background",
             type: "color",
@@ -156,17 +105,6 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         }
     ])
     .set("Profile-Menu", [
-        {
-            variable: "--std-profile-height",
-            label: "Height",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--std-profile-height'),
-            usage: new Map<string, string[]>()
-            .set(".basti .std-menu .profile-menu", ["height:var(--std-profile-height);"])
-            .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--std-profile-height);"])
-            .set(".basti .std-menu .vl", ["height:var(--std-profile-height);"])
-        },
         {
             variable: "--std-profile-width-small",
             label: "Width (Small)",
@@ -216,17 +154,6 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
             cssType: "theme",
             value: docStyle.getPropertyValue('--std-profile-padding'),
             usage: new Map<string, string[]>().set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding:var(--std-profile-padding);"])
-        },
-        {
-            variable: "--std-profile-pic",
-            label: "Picture Size",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--std-profile-pic'),
-            usage: new Map<string, string[]>()
-            .set(".basti .std-menu .profile-image, .basti .std-menu .profile-image-null", ["width:var(--std-profile-pic);", "height:var(--std-profile-pic);"])
-            .set(".basti .std-menu .profile-image", ["background-size:var(--std-profile-pic) var(--std-profile-pic);"])
-            .set(".basti .std-menu .profile-image-null::before", ["font-size:calc(var(--std-profile-pic) - 2px);"])
         },
         {
             variable: "--profile-separator",
@@ -419,7 +346,134 @@ export const menuEditors: Map<string, EditorItem[]> = new Map<string, EditorItem
         }
     ])
 
-export const fadeoutCalc: Map<string, EditorItem[]> = new Map<string, EditorItem[]>().set("FadeOutCalc", [
+export const menuExtras: Map<string, EditorItem[]> = new Map<string, EditorItem[]>().set("MenuExtras", [
+    {
+        variable: "--std-profile-height",
+        label: "Height",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-profile-height'),
+        usage: new Map<string, string[]>()
+        .set(".basti .std-menu .profile-menu", ["height:var(--std-profile-height);"])
+        .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--std-profile-height);"])
+        .set(".basti .std-menu .vl", ["height:var(--std-profile-height);"])
+    },
+    {
+        variable: "--std-logo-width",
+        label: "Logo Width",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-logo-width'),
+        usage: new Map<string, string[]>()
+        .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["width:var(--std-logo-width);"])
+        .set(".basti .std-menu .menu-logo-mini", ["width:var(--std-logo-width);"]),
+        usage530: new Map<string, string[]>().set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["width:var(--std-logo-width);"])
+    },
+    {
+        variable: "--std-logo-collapsed-width",
+        label: "Logo Collapsed Width",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-logo-collapsed-width'),
+        usage: new Map<string, string[]>()
+        .set(".basti .std-menu.menu-collapsed .menu-logo-wrapper .menu-logo", ["width: var(--std-logo-collapsed-width);"])
+        .set(".basti .std-menu.menu-collapsed .menu-logo-mini", ["width: var(--std-logo-collapsed-width);"])
+    },
+    {
+        variable: "--std-logo-height",
+        label: "Logo Max Height",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-logo-height'),
+        usage: new Map<string, string[]>()
+        .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["max-height: var(--std-logo-height);"]),
+        usage530: new Map<string, string[]>()
+        .set(".basti .std-menu .menu-logo-mini-wrapper", ["height: var(--std-logo-height);"])
+        .set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["max-height: var(--std-logo-height);"])
+    },
+    {
+        variable: "--std-profile-pic",
+        label: "Picture Size",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-profile-pic'),
+        usage: new Map<string, string[]>()
+        .set(".basti .std-menu .profile-image, .basti .std-menu .profile-image-null", ["width:var(--std-profile-pic);", "height:var(--std-profile-pic);"])
+        .set(".basti .std-menu .profile-image", ["background-size:var(--std-profile-pic) var(--std-profile-pic);"])
+        .set(".basti .std-menu .profile-image-null::before", ["font-size:calc(var(--std-profile-pic) - 2px);"])
+    },
+    {
+        variable: "--std-topbar-button-size",
+        label: "Button Size",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-topbar-button-size'),
+        usage: new Map<string, string[]>()
+        .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--std-topbar-button-size);", "height:var(--std-topbar-button-size);"])
+    },
+    {
+        variable: "--std-topbar-button-size-small",
+        label: "Button Size (Small)",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--std-topbar-button-size-small'),
+        usage: new Map<string, string[]>(),
+        usage530: new Map<string, string[]>()
+        .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--std-topbar-button-size-small);", "height:var(--std-topbar-button-size-small);"])
+    },
+    {
+        variable: "--corp-profile-height",
+        label: "Height",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--corp-profile-height'),
+        usage: new Map<string, string[]>()
+        .set(".basti .corp-menu .profile-menu", ["height:var(--corp-profile-height);"])
+        .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--corp-profile-height);"])
+        .set(".basti .corp-menu .vl", ["height:var(--corp-profile-height);"])
+    },
+    {
+        variable: "--corp-profile-pic",
+        label: "Picture Size",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--corp-profile-pic'),
+        usage: new Map<string, string[]>()
+        .set(".basti .corp-menu .profile-image, .basti .corp-menu .profile-image-null", ["width:var(--corp-profile-pic);", "height:var(--corp-profile-pic);"])
+        .set(".basti .corp-menu .profile-image", ["background-size:var(--corp-profile-pic) var(--corp-profile-pic);"])
+        .set(".basti .corp-menu .profile-image-null::before", ["font-size:calc(var(--corp-profile-pic) - 2px);"])
+    },
+    {
+        variable: "--corp-topbar-button-size",
+        label: "Button Size",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--corp-topbar-button-size'),
+        usage: new Map<string, string[]>()
+        .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--corp-topbar-button-size);", "height:var(--corp-topbar-button-size);"])
+    },
+    {
+        variable: "--corp-topbar-button-size-small",
+        label: "Button Size (Small)",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--corp-topbar-button-size-small'),
+        usage: new Map<string, string[]>(),
+        usage530: new Map<string, string[]>()
+        .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--corp-topbar-button-size-small);", "height:var(--corp-topbar-button-size-small);"])
+    },
+    {
+        variable: "--corp-speeddial-size",
+        label: "Toolbar-Button Size",
+        type: "text",
+        cssType: "theme",
+        value: docStyle.getPropertyValue('--corp-speeddial-size'),
+        usage: new Map<string, string[]>()
+        .set(".basti .corp-menu .p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["height: var(--corp-speeddial-size);", "width: var(--corp-speeddial-size);", "top: calc((32px - var(--corp-speeddial-size)) / 2);"])
+        .set(".basti .corp-menu .p-speeddial .p-speeddial-button.p-button.p-button-icon-only .p-button-icon", ["font-size: calc(var(--corp-speeddial-size) / 2);"])
+        .set(".basti .corp-menu .p-speeddial .p-speeddial-action", ["height: var(--corp-speeddial-size);", "width: var(--corp-speeddial-size);"])
+        .set(".basti .corp-menu .p-speeddial .p-speeddial-action .p-speeddial-action-icon", ["font-size: calc(var(--corp-speeddial-size) / 2);"])
+    },
     {
         variable: "--std-fadeout-width",
         label: "Fadeout Width",

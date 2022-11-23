@@ -28,6 +28,8 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             usage: new Map<string, string[]>()
             .set(".basti .corp-menu .corp-menu-header", ["height: var(--corp-header-height);"])
             .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-button:start:decrement", ["height: var(--corp-header-height);"])
+            .set(".basti .corp-menu .corp-menu-logo-wrapper", ["max-height: var(--corp-header-height);"])
+            .set(".basti .corp-menu .corp-menu-logo-wrapper .menu-logo", ["max-height: var(--corp-header-height);"])
         },
         {
             variable: "--corp-logo-width",
@@ -36,7 +38,7 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             value: docStyle.getPropertyValue('--corp-logo-width'),
             cssType: "theme",
             usage: new Map<string, string[]>()
-            .set(".basti .corp-menu .corp-menu-logo-wrapper", ["max-width: var(--corp-logo-width);"])
+            .set(".basti .corp-menu .corp-menu-logo-wrapper", ["width: var(--corp-logo-width);"])
         },
         {
             variable: "--topbar-background",
@@ -62,25 +64,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "theme",
             value: docStyle.getPropertyValue('--corp-screen-title-size'),
             usage: new Map<string, string[]>().set(".basti .corp-menu .corp-menu-header .menu-screen-title", ["font-size: var(--corp-screen-title-size);"])
-        },
-        {
-            variable: "--corp-topbar-button-size",
-            label: "Button Size",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--corp-topbar-button-size'),
-            usage: new Map<string, string[]>()
-            .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--corp-topbar-button-size);", "height:var(--corp-topbar-button-size);"])
-        },
-        {
-            variable: "--corp-topbar-button-size-small",
-            label: "Button Size (Small)",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--corp-topbar-button-size-small'),
-            usage: new Map<string, string[]>(),
-            usage530: new Map<string, string[]>()
-            .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["width:var(--corp-topbar-button-size-small);", "height:var(--corp-topbar-button-size-small);"])
         },
         {
             variable: "--topbar-button-background",
@@ -133,17 +116,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
     ])
     .set("Profile-Menu", [
         {
-            variable: "--corp-profile-height",
-            label: "Height",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--corp-profile-height'),
-            usage: new Map<string, string[]>()
-            .set(".basti .corp-menu .profile-menu", ["height:var(--corp-profile-height);"])
-            .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--corp-profile-height);"])
-            .set(".basti .corp-menu .vl", ["height:var(--corp-profile-height);"])
-        },
-        {
             variable: "--corp-profile-width-small",
             label: "Width (Small)",
             type: "text",
@@ -185,17 +157,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             cssType: "theme",
             value: docStyle.getPropertyValue('--corp-profile-padding'),
             usage: new Map<string, string[]>().set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding:var(--corp-profile-padding);"])
-        },
-        {
-            variable: "--corp-profile-pic",
-            label: "Picture Size",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--corp-profile-pic'),
-            usage: new Map<string, string[]>()
-            .set(".basti .corp-menu .profile-image, .basti .corp-menu .profile-image-null", ["width:var(--corp-profile-pic);", "height:var(--corp-profile-pic);"])
-            .set(".basti .corp-menu .profile-image", ["background-size:var(--corp-profile-pic) var(--corp-profile-pic);"])
-            .set(".basti .corp-menu .profile-image-null::before", ["font-size:calc(var(--corp-profile-pic) - 2px);"])
         },
         {
             variable: "--profile-separator",
@@ -327,18 +288,6 @@ export const corporateEditors: Map<string, EditorItem[]> = new Map<string, Edito
             value: docStyle.getPropertyValue('--corp-menu-item-padding'),
             usage: new Map<string, string[]>()
             .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menuitem-link", ["padding: var(--corp-menu-item-padding);"])
-        },
-        {
-            variable: "--corp-speeddial-size",
-            label: "Toolbar-Button Size",
-            type: "text",
-            cssType: "theme",
-            value: docStyle.getPropertyValue('--corp-speeddial-size'),
-            usage: new Map<string, string[]>()
-            .set(".basti .corp-menu .p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["height: var(--corp-speeddial-size);", "width: var(--corp-speeddial-size);", "top: calc((32px - var(--corp-speeddial-size)) / 2);"])
-            .set(".basti .corp-menu .p-speeddial .p-speeddial-button.p-button.p-button-icon-only .p-button-icon", ["font-size: calc(var(--corp-speeddial-size) / 2);"])
-            .set(".basti .corp-menu .p-speeddial .p-speeddial-action", ["height: var(--corp-speeddial-size);", "width: var(--corp-speeddial-size);"])
-            .set(".basti .corp-menu .p-speeddial .p-speeddial-action .p-speeddial-action-icon", ["font-size: calc(var(--corp-speeddial-size) / 2);"])
         },
         {
             variable: "--corp-menu-speeddial-background",

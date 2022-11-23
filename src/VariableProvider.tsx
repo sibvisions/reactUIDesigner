@@ -17,7 +17,7 @@ import React, { createContext, FC, useState } from "react"
 import { EditorItem } from "./editors/management/EditorCreator"
 import { crashEditors, generalEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
-import { fadeoutCalc, menuEditors } from "./editors/MenuEditors";
+import { menuExtras, menuEditors } from "./editors/MenuEditors";
 import { corporateEditors } from "./editors/CorporateEditors";
 import { buttonEditors } from "./editors/ButtonEditors";
 import { inputEditors, labelEditors, sysEditors } from "./editors/InputEditors";
@@ -59,7 +59,7 @@ const editorArray = [
     sysEditors,
     crashEditors,
     cellEditors,
-    fadeoutCalc
+    menuExtras
 ];
 
 function getDefaultValues() {

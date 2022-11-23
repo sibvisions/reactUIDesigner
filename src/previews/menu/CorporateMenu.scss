@@ -32,6 +32,7 @@
 
     .profile-menu {
         display: flex;
+        overflow: hidden;
     }
 }
 
@@ -54,6 +55,10 @@
     margin-left: 10px;
     display: flex;
     transition: max-width 0.5s ease-out;
+
+    .menu-logo {
+        width: 100%;
+    }
 }
 
 .corp-menu-menubar, .mobile-launcher-menu {
@@ -101,7 +106,6 @@
 
 @media screen and (max-width: 530px) {
     .corp-menu-header {
-        justify-content: unset;
         .corp-menu-logo-wrapper {
             max-width: 0px !important;
             transition: max-width 0.5s ease-out;
