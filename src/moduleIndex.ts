@@ -14,3 +14,4 @@
  */
 
 export { default as ReactUIDesigner } from './ReactUIDesigner';
+import './designerindex.scss'
