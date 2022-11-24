@@ -13,23 +13,31 @@
  * the License.
  */
 
+@import '../public/fonts/roboto/Roboto-Regular.ttf';
 @import 'primereact/resources/themes/saga-blue/theme.css';
 @import 'primereact/resources/primereact.css';
 @import 'primeicons/primeicons.css';
 @import '@fortawesome/fontawesome-free/css/all.css';
+@import './ReactUIDesigner.scss';
+@import './editors/Editor.scss';
+@import './previews/buttons/Buttons.scss';
 @import './previews/buttons/UIButton.scss';
 @import './previews/buttons/UICheckBox.scss';
 @import './previews/buttons/UIMenuButton.scss';
 @import './previews/buttons/UIRadioButton.scss';
 @import './previews/buttons/UIToggleButton.scss';
+@import './previews/inputs/Inputs.scss';
 @import './previews/inputs/UIEditorText.scss';
 @import './previews/inputs/UIEditorDate.scss';
 @import './previews/inputs/UIEditorLinked.scss';
+@import './previews/tabletree/TableTree.scss';
 @import './previews/tabletree/UITable.scss';
 @import './previews/tabletree/UITree.scss';
 @import './previews/tabletree/UIToolBarPanel.scss';
 @import './previews/tabset/UITabsetPanel.scss';
+@import './previews/popup/Popup.scss';
 @import './previews/popup/ErrorDialog.scss';
+@import './previews/messages/Messages.scss';
 @import './previews/loading/Loadingscreen.scss';
 @import './previews/error-bar/ErrorBar.scss';
 @import './previews/full/UIFrame.scss';
@@ -37,6 +45,7 @@
 @import './previews/login/Login.scss';
 @import './previews/menu/CorporateMenu.scss';
 @import './previews/menu/Menu.scss';
+@import './previews/TabSelection.scss';
 @import './styles/basti.scss';
 @import './styles/default.scss';
 

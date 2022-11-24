@@ -23,6 +23,7 @@ import VariableProvider, { variableContext } from './VariableProvider';
 import { sendRequest } from './RequestService';
 import { Toast } from 'primereact/toast';
 import { generateCSS } from './util/GenerateCSS';
+import './index.scss';
 import TopBar from './previews/topbar/TopBar';
 
 export type DesignerSubscriptionManager = {

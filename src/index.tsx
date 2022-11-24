@@ -16,7 +16,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import './designerindex.scss'
 
 import ReactUIDesigner from './ReactUIDesigner';
 
