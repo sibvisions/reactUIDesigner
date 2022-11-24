@@ -18,7 +18,7 @@ import { EditorItem } from "./management/EditorCreator";
 const docStyle = window.getComputedStyle(document.documentElement);
 
 export const corporateEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
-    .set("Corporate-Topbar", [
+    .set("Corporation-Topbar", [
         {
             variable: "--corp-header-height",
             label: "Height",

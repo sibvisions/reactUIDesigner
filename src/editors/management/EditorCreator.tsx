@@ -150,7 +150,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
-                            tooltip="Swap to Text"
+                            tooltip="Show Text"
                             onClick={() => swapColorType(key, editorItem)} />
                         <Button
                             className="style-editor-button"
@@ -177,7 +177,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
-                            tooltip="Swap to Color"
+                            tooltip="Show Color"
                             onClick={() => swapColorType(key, editorItem)} />
                     </>
                 )
