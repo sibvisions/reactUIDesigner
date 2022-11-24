@@ -7,7 +7,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = () => {
     return {
         mode: 'production',
-        entry: './src/moduleIndex.ts',
+        entry: ['./src/moduleIndex.ts', './src/designerindex.scss'],
         output: {
             filename: 'moduleIndex.js',
             library: '@sibvisions/reactui-designer',
