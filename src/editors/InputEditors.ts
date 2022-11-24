@@ -323,7 +323,7 @@ export const labelEditors: Map<string, EditorItem[]> = new Map<string, EditorIte
 ])
 
 export const sysEditors: Map<string, EditorItem[]> = new Map<string, EditorItem[]>()
-.set("SysColors", [
+.set("System Colors", [
     {
         variable: "--mandatory-background",
         label: "Mandatory Background",

@@ -31,6 +31,11 @@ export type EditorItem = {
     usage530?: Map<string, string[]>
 }
 
+export type EditorGroup = {
+    name: string,
+    items: EditorItem[]
+}
+
 interface IEditorCreator {
     index: number,
     isPreviewMode: boolean,
@@ -69,6 +74,10 @@ function createEditors(editors: Map<string, EditorItem[]>,
         .set("--menubtn-rightbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
         .set("--input-padding-lr", () => designerSub.notifyInputLRPaddingChanged())
         .set("--input-padding-tb", () => designerSub.notifyInputTBPaddingChanged())
+        .set("--tab-padding", () => designerSub.notifyTabPaddingChanged())
+        .set("--table-header-padding", designerSub.notifyTableHeaderPaddingChanged())
+        .set("--table-data-height", designerSub.notifyTableDataHeightChanged())
+        .set("--menubar-height", designerSub.notifyMenuBarHeightChanged())
         : new Map<string, Function>()
 
     const setVariableState = (key: string, pItem: EditorItem, value: string) => {

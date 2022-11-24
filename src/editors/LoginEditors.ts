@@ -21,20 +21,20 @@ export const loginEditors: Map<string, EditorItem[]> =
     new Map<string, EditorItem[]>()
         .set("Login", [
             {
-                variable: "--login-mask-background",
-                label: "Mask Background",
-                type: "color",
-                cssType: "scheme",
-                value: docStyle.getPropertyValue('--login-mask-background'),
-                usage: new Map<string, string[]>().set(".login-form", ["background: var(--login-mask-background);"])
-            },
-            {
                 variable: "--login-logo-background",
                 label: "Logo Background",
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--login-logo-background'),
                 usage: new Map<string, string[]>().set(".login-logo-wrapper", ["background: var(--login-logo-background);"])
+            },
+            {
+                variable: "--login-mask-background",
+                label: "Background",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--login-mask-background'),
+                usage: new Map<string, string[]>().set(".login-form", ["background: var(--login-mask-background);"])
             },
             {
                 variable: "--login-shadow",

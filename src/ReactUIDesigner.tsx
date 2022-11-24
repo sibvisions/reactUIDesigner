@@ -41,7 +41,11 @@ export type DesignerSubscriptionManager = {
   notifyCorpHeaderChanged: Function,
   notifyCorpMenubarChanged: Function,
   notifyInputLRPaddingChanged: Function,
-  notifyInputTBPaddingChanged: Function
+  notifyInputTBPaddingChanged: Function,
+  notifyTabPaddingChanged: Function,
+  notifyTableHeaderPaddingChanged: Function,
+  notifyTableDataHeightChanged: Function,
+  notifyMenuBarHeightChanged: Function
 }
 
 interface IReactUIDesigner {
