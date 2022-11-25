@@ -14,7 +14,7 @@
  */
 
 import React, { createContext, FC, useState } from "react"
-import { EditorItem } from "./editors/management/EditorCreator"
+import { EditorGroup, EditorItem } from "./editors/management/EditorCreator"
 import { crashEditors, generalEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
 import { menuExtras, menuEditors } from "./editors/MenuEditors";
@@ -34,7 +34,7 @@ export type VariableContextType = {
     schemeName: string,
     themeName: string,
     isPreviewMode: boolean,
-    variables: Map<string, Map<string, EditorItem[]>>,
+    variables: Map<string, Map<string, EditorGroup>>,
     defaultValues: Map<string, string>,
     updateButtonBackground: () => void,
     updateTopbarColors: () => void
@@ -64,14 +64,14 @@ const editorArray = [
 
 function getDefaultValues() {
     const docStyle = window.getComputedStyle(document.documentElement);
-    const mergedMap = new Map<string, EditorItem[]>();
+    const mergedMap = new Map<string, EditorGroup>();
     editorArray.forEach(map => map.forEach((val, key) => mergedMap.set(key, val)))
     const componentEntries = mergedMap.entries();
     const defaultValues = new Map<string, string>();
     let entry = componentEntries.next();
 
     while (!entry.done) {
-        const editorItems = entry.value[1];
+        const editorItems = entry.value[1].items;
         editorItems.forEach(editorItem => {
             defaultValues.set(editorItem.variable, docStyle.getPropertyValue(editorItem.variable))
         })
@@ -82,7 +82,7 @@ function getDefaultValues() {
 }
 
 function getVariables() {
-    const variableMap = new Map<string, Map<string, EditorItem[]>>();
+    const variableMap = new Map<string, Map<string, EditorGroup>>();
     editorArray.forEach((map, i) => variableMap.set((i - 1).toString(), map));
     return variableMap;
 }

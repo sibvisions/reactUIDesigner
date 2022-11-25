@@ -144,9 +144,12 @@
       max-height: 60px;
     }
 
-    // .designer-panel-image-button {
-    //   margin-left: auto;
-    // }
+    .designer-panel-image-button {
+      width: 1.875rem;
+      padding: 0.25rem 0;
+      height: 1.875rem;
+      margin-left: 0.25rem;
+    }
   }
 
   .p-accordion {

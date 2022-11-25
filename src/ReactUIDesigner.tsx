@@ -147,8 +147,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       })
 
       context.variables.forEach((variableMap) => {
-        variableMap.forEach((editorItems) => {
-          editorItems.forEach(editorItem => {
+        variableMap.forEach((editorGroup) => {
+          editorGroup.items.forEach(editorItem => {
             editorItem.value = docStyle.getPropertyValue(editorItem.variable)
           })
         })
@@ -160,8 +160,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const confirm = () => {
     const acceptFunc = () => {
       context.variables.forEach((variableMap) => {
-        variableMap.forEach((editorItems) => {
-          editorItems.forEach((editorItem) => {
+        variableMap.forEach((editorGroup) => {
+          editorGroup.items.forEach((editorItem) => {
             const foundDefaultValue = context.defaultValues.get(editorItem.variable);
             if (foundDefaultValue) {
               editorItem.value = foundDefaultValue;
@@ -246,7 +246,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                   onBlur={() => {
                     context.variables.forEach(varTab => {
                       varTab.forEach(varGroup => {
-                        varGroup.forEach(varItem => {
+                        varGroup.items.forEach(varItem => {
                           if (varItem.cssType === "theme") {
                             const getNewSelectorMap = (usageMap?: Map<string, string[]>) => {
                               if (usageMap && usageMap.size) {

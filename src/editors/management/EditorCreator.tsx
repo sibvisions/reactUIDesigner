@@ -33,13 +33,14 @@ export type EditorItem = {
 
 export type EditorGroup = {
     name: string,
+    visible: boolean
     items: EditorItem[]
 }
 
 interface IEditorCreator {
     index: number,
     isPreviewMode: boolean,
-    editors: Map<string, EditorItem[]>
+    editors: Map<string, EditorGroup>
     designerSubscription: DesignerSubscriptionManager | undefined
     uploadImage: Function
     logoLogin: string
@@ -48,8 +49,8 @@ interface IEditorCreator {
     isGeneral: boolean
 }
 
-function createEditors(editors: Map<string, EditorItem[]>,
-    setCallback: React.Dispatch<React.SetStateAction<Map<string, EditorItem[]>>>,
+function createEditors(editors: Map<string, EditorGroup>,
+    setCallback: React.Dispatch<React.SetStateAction<Map<string, EditorGroup>>>,
     defaultValues: Map<string, string>,
     context: VariableContextType,
     index: number,
@@ -84,20 +85,20 @@ function createEditors(editors: Map<string, EditorItem[]>,
         setCallback(prevState => {
             const mapCopy = new Map(prevState);
             if (mapCopy.has(key)) {
-                const foundEditor = mapCopy.get(key)!.find(item => item.variable === pItem.variable);
+                const foundEditor = mapCopy.get(key)!.items.find(item => item.variable === pItem.variable);
                 if (foundEditor) {
                     foundEditor.value = value;
 
                     // Check for duplicates between standard menu and corporate menu
                     if (!isPreviewMode) {
                         if (index === 1) {
-                            const foundItem = context.variables.get("2")!.get(key)?.find(item => item.variable === pItem.variable);
+                            const foundItem = context.variables.get("2")!.get(key)?.items.find(item => item.variable === pItem.variable);
                             if (foundItem) {
                                 foundItem.value = value
                             }
                         }
                         else if (index === 2) {
-                            const foundItem = context.variables.get("1")!.get(key)?.find(item => item.variable === pItem.variable);
+                            const foundItem = context.variables.get("1")!.get(key)?.items.find(item => item.variable === pItem.variable);
                             if (foundItem) {
                                 foundItem.value = value
                             }
@@ -128,7 +129,7 @@ function createEditors(editors: Map<string, EditorItem[]>,
         setCallback(prevState => {
             const mapCopy = new Map(prevState);
             if (mapCopy.has(key)) {
-                const foundItem = mapCopy.get(key)!.find(item => item.variable === pItem.variable);
+                const foundItem = mapCopy.get(key)!.items.find(item => item.variable === pItem.variable);
                 if (foundItem) {
                     if (foundItem.type === "color") {
                         foundItem.type = "color-text";
@@ -207,28 +208,30 @@ function createEditors(editors: Map<string, EditorItem[]>,
 
     let groupElements: JSX.Element[] = []
     if (editors.size) {
-        editors.forEach((editorArray, key) => {
-            let editorElements = editorArray.map(editorItem => {
-                return (
-                    <div key={editorItem.label} className="style-editor-wrapper">
-                        <span className="style-editor-label">{editorItem.label}</span>
-                        <div className="style-editor">
-                            {getInputElements(editorItem, key)}
-                            <Button
-                                className="style-editor-button"
-                                icon="fas fa-undo"
-                                tooltip="Reset to Default"
-                                onClick={() => {
-                                    setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
-                                    document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
-                                    updateVariables(editorItem);
-                                }} />
+        editors.forEach((editorGroup, key) => {
+            if (editorGroup.visible) {
+                let editorElements = editorGroup.items.map(editorItem => {
+                    return (
+                        <div key={editorItem.label} className="style-editor-wrapper">
+                            <span className="style-editor-label">{editorItem.label}</span>
+                            <div className="style-editor">
+                                {getInputElements(editorItem, key)}
+                                <Button
+                                    className="style-editor-button"
+                                    icon="fas fa-undo"
+                                    tooltip="Reset to Default"
+                                    onClick={() => {
+                                        setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
+                                        document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
+                                        updateVariables(editorItem);
+                                    }} />
+                            </div>
                         </div>
-                    </div>
-                )
-            })
-            let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={key}><div key={key} className="style-editor-group">{editorElements}</div></AccordionTab>);
-            groupElements.push(groupElement)
+                    )
+                })
+                let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={editorGroup.name}><div key={key} className="style-editor-group">{editorElements}</div></AccordionTab>);
+                groupElements.push(groupElement)
+            }
         });
     }
 
@@ -252,17 +255,17 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
                         <div className='designer-panel-row designer-panel-image-upload'>
                             <span className='designer-panel-header'>Login:</span>
                             <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
-                            <Button className='designer-panel-image-button' icon='fas fa-save' onClick={() => props.uploadImage("login")} />
+                            <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("login")} />
                         </div>
                         <div className='designer-panel-row designer-panel-image-upload'>
                             <span className='designer-panel-header'>Menu:</span>
                             <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
-                            <Button className='designer-panel-image-button' icon='fas fa-save' onClick={() => props.uploadImage("menu")} />
+                            <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("menu")} />
                         </div>
                         <div className='designer-panel-row designer-panel-image-upload'>
                             <span className='designer-panel-header'>Collapsed Menu:</span>
                             <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
-                            <Button className='designer-panel-image-button' icon='fas fa-save' onClick={() => props.uploadImage("small")} />
+                            <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("small")} />
                         </div>
                     </div>
                 </div>

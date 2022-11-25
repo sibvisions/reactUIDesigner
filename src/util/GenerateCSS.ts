@@ -13,7 +13,7 @@
  * the License.
  */
 
-import { EditorItem } from "../editors/management/EditorCreator";
+import { EditorGroup, EditorItem } from "../editors/management/EditorCreator";
 import { VariableContextType } from "../VariableProvider";
 import { getPreviewVariableMap } from "./GetPreviewVariableMap";
 
@@ -56,9 +56,9 @@ export function generateCSS(type: "scheme" | "theme", isPreviewMode: boolean, is
     let cssString = ":root {\n";
     let test:string[] = []
 
-    const printRules = (map: Map<string, EditorItem[]>) => {
+    const printRules = (map: Map<string, EditorGroup>) => {
         map.forEach(editorItems => {
-            editorItems.forEach(editorItem => {
+            editorItems.items.forEach(editorItem => {
                 if (editorItem.cssType === type) {
                     if (!test.includes(editorItem.variable)) {
                         cssString += "\t" + editorItem.variable + ":" + editorItem.value + ";\n";
