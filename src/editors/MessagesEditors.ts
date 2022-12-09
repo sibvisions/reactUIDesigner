@@ -79,7 +79,7 @@ export const messagesEditors: Map<string, EditorGroup> = new Map<string, EditorG
     )
     .set("Error",
         {
-            name: "Error-Message",
+            name: "Error Message",
             visible: true,
             items: [
                 {

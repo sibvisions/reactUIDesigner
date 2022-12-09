@@ -71,10 +71,10 @@ const TabSelection: FC<ITabSelection> = (props) => {
             <TabPanel header="Messages">
                 <Messages />
             </TabPanel>
-            <TabPanel header="Loading-Screen">
+            <TabPanel header="Loading Screen">
                 <LoadingPreview />
             </TabPanel>
-            <TabPanel header="Error-Bar">
+            <TabPanel header="Error Bar">
                 <ErrorBar />
             </TabPanel>
             <TabPanel header="Full Transfer">

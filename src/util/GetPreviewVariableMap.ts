@@ -13,7 +13,7 @@
  * the License.
  */
 
-import { EditorGroup, EditorItem } from "../editors/management/EditorCreator";
+import { EditorGroup } from "../editors/management/EditorCreator";
 import { EDITOR_INDICES } from "../editors/management/EditorManager";
 import { VariableContextType } from "../VariableProvider";
 

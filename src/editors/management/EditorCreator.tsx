@@ -53,32 +53,30 @@ function createEditors(editors: Map<string, EditorGroup>,
     setCallback: React.Dispatch<React.SetStateAction<Map<string, EditorGroup>>>,
     defaultValues: Map<string, string>,
     context: VariableContextType,
-    index: number,
-    isPreviewMode: boolean,
-    designerSub: DesignerSubscriptionManager | undefined
+    props: IEditorCreator
 ) {
-    const subFunctionMap: Map<string, Function> = designerSub ? new Map<string, Function>()
-        .set("--font-size", () => designerSub.notifyFontSizeChanged())
-        .set("--std-header-height", () => designerSub.notifyStdHeaderChanged())
-        .set("--std-menu-width", () => designerSub.notifyStdMenuWidthChanged())
-        .set("--std-menu-collapsed-width", () => designerSub.notifyStdMenuCollapsedWidthChanged())
-        .set("--corp-header-height", () => designerSub.notifyCorpHeaderChanged())
-        .set("--corp-menubar-height", () => designerSub.notifyCorpMenubarChanged())
-        .set("--button-padding", () => designerSub.notifyButtonPaddingChanged())
-        .set("--primary-color", () => designerSub.notifyButtonBackgroundChanged())
-        .set("--topbar-colors", () => designerSub.notifyTopbarColorChanged())
-        .set("--checkbox-size", () => designerSub.notifyCheckboxSizeChanged())
-        .set("--radiobutton-size", () => designerSub.notifyRadiobuttonSizeChanged())
-        .set("--button-icon-only-padding", () => designerSub.notifyIconOnlyPaddingChanged())
-        .set("--input-button-padding", () => designerSub.notifyInputButtonPaddingChanged())
-        .set("--menubtn-leftbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
-        .set("--menubtn-rightbtn-padding", () => designerSub.notifyMenuButtonPaddingChanged())
-        .set("--input-padding-lr", () => designerSub.notifyInputLRPaddingChanged())
-        .set("--input-padding-tb", () => designerSub.notifyInputTBPaddingChanged())
-        .set("--tab-padding", () => designerSub.notifyTabPaddingChanged())
-        .set("--table-header-padding", designerSub.notifyTableHeaderPaddingChanged())
-        .set("--table-data-height", designerSub.notifyTableDataHeightChanged())
-        .set("--menubar-height", designerSub.notifyMenuBarHeightChanged())
+    const subFunctionMap: Map<string, Function> = props.designerSubscription ? new Map<string, Function>()
+        .set("--font-size", () => props.designerSubscription!.notifyFontSizeChanged())
+        .set("--std-header-height", () => props.designerSubscription!.notifyStdHeaderChanged())
+        .set("--std-menu-width", () => props.designerSubscription!.notifyStdMenuWidthChanged())
+        .set("--std-menu-collapsed-width", () => props.designerSubscription!.notifyStdMenuCollapsedWidthChanged())
+        .set("--corp-header-height", () => props.designerSubscription!.notifyCorpHeaderChanged())
+        .set("--corp-menubar-height", () => props.designerSubscription!.notifyCorpMenubarChanged())
+        .set("--button-padding", () => props.designerSubscription!.notifyButtonPaddingChanged())
+        .set("--primary-color", () => props.designerSubscription!.notifyButtonBackgroundChanged())
+        .set("--topbar-colors", () => props.designerSubscription!.notifyTopbarColorChanged())
+        .set("--checkbox-size", () => props.designerSubscription!.notifyCheckboxSizeChanged())
+        .set("--radiobutton-size", () => props.designerSubscription!.notifyRadiobuttonSizeChanged())
+        .set("--button-icon-only-padding", () => props.designerSubscription!.notifyIconOnlyPaddingChanged())
+        .set("--input-button-padding", () => props.designerSubscription!.notifyInputButtonPaddingChanged())
+        .set("--menubtn-leftbtn-padding", () => props.designerSubscription!.notifyMenuButtonPaddingChanged())
+        .set("--menubtn-rightbtn-padding", () => props.designerSubscription!.notifyMenuButtonPaddingChanged())
+        .set("--input-padding-lr", () => props.designerSubscription!.notifyInputLRPaddingChanged())
+        .set("--input-padding-tb", () => props.designerSubscription!.notifyInputTBPaddingChanged())
+        .set("--tab-padding", () => props.designerSubscription!.notifyTabPaddingChanged())
+        .set("--table-header-padding", props.designerSubscription!.notifyTableHeaderPaddingChanged())
+        .set("--table-data-height", props.designerSubscription!.notifyTableDataHeightChanged())
+        .set("--menubar-height", props.designerSubscription!.notifyMenuBarHeightChanged())
         : new Map<string, Function>()
 
     const setVariableState = (key: string, pItem: EditorItem, value: string) => {
@@ -90,14 +88,14 @@ function createEditors(editors: Map<string, EditorGroup>,
                     foundEditor.value = value;
 
                     // Check for duplicates between standard menu and corporate menu
-                    if (!isPreviewMode) {
-                        if (index === 1) {
+                    if (!props.isPreviewMode) {
+                        if (props.index === 1) {
                             const foundItem = context.variables.get("2")!.get(key)?.items.find(item => item.variable === pItem.variable);
                             if (foundItem) {
                                 foundItem.value = value
                             }
                         }
-                        else if (index === 2) {
+                        else if (props.index === 2) {
                             const foundItem = context.variables.get("1")!.get(key)?.items.find(item => item.variable === pItem.variable);
                             if (foundItem) {
                                 foundItem.value = value
@@ -231,6 +229,29 @@ function createEditors(editors: Map<string, EditorGroup>,
                 })
                 let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={editorGroup.name}><div key={key} className="style-editor-group">{editorElements}</div></AccordionTab>);
                 groupElements.push(groupElement)
+                if (editorGroup.name === "General") {
+                    groupElements.push(<AccordionTab key={"accordion-tab-upanddownload"} header="Images">
+                    <div className='designer-panel-options'>
+                        <div>
+                            <div className='designer-panel-row designer-panel-image-upload'>
+                                <span className='designer-panel-header'>Login:</span>
+                                <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
+                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("login")} />
+                            </div>
+                            <div className='designer-panel-row designer-panel-image-upload'>
+                                <span className='designer-panel-header'>Menu:</span>
+                                <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
+                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("menu")} />
+                            </div>
+                            <div className='designer-panel-row designer-panel-image-upload'>
+                                <span className='designer-panel-header'>Collapsed Menu:</span>
+                                <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
+                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("small")} />
+                            </div>
+                        </div>
+                    </div>
+                </AccordionTab>)
+                }
             }
         });
     }
@@ -249,28 +270,7 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
 
     return (
         <Accordion>
-            {(props.isPreviewMode || props.isGeneral) && <AccordionTab key={"accordion-tab-upanddownload"} header="Images">
-                <div className='designer-panel-options'>
-                    <div>
-                        <div className='designer-panel-row designer-panel-image-upload'>
-                            <span className='designer-panel-header'>Login:</span>
-                            <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
-                            <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("login")} />
-                        </div>
-                        <div className='designer-panel-row designer-panel-image-upload'>
-                            <span className='designer-panel-header'>Menu:</span>
-                            <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
-                            <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("menu")} />
-                        </div>
-                        <div className='designer-panel-row designer-panel-image-upload'>
-                            <span className='designer-panel-header'>Collapsed Menu:</span>
-                            <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
-                            <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("small")} />
-                        </div>
-                    </div>
-                </div>
-            </AccordionTab>}
-            {createEditors(editors, setEditors, context.defaultValues, context, props.index, props.isPreviewMode, props.designerSubscription)}
+            {createEditors(editors, setEditors, context.defaultValues, context, props)}
         </Accordion>
     )
 }

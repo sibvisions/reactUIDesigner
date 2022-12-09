@@ -70,7 +70,7 @@ export const buttonEditors: Map<string, EditorGroup> = new Map<string, EditorGro
     )
     .set("Menubutton",
         {
-            name: "Menubutton",
+            name: "Menu Button",
             visible: true,
             items: [
                 {
