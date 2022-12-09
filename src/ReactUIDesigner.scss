@@ -45,14 +45,25 @@
   color: #fff;
 }
 
-.designer-topbar-reset-button.p-button {
+.designer-topbar-buttons.p-button {
   border-radius: 50%;
   background: #1169b0;
   border-color: #1169b0;
 
+  &.p-button-icon-only {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+  
+
   &:enabled:hover {
     background: #085594;
     border-color: #065697;
+  }
+
+  &:first-child{
+    margin-right: 0.5rem;
   }
 }
 

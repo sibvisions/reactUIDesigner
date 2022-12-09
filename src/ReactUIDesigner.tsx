@@ -58,6 +58,7 @@ interface IReactUIDesigner {
   logoLogin: string
   designerSubscription: DesignerSubscriptionManager|undefined
   appName:string
+  setShowDesigner: () => void
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -231,7 +232,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
             <div className='designer-topbar'>
               <div className='designer-topbar-left'>
-                <Button className='designer-topbar-reset-button' icon='fas fa-undo' onClick={confirm} />
+                {isPreviewMode && <Button className='designer-topbar-buttons' icon='fas fa-palette' onClick={() => props.setShowDesigner()} />}
+                <Button className='designer-topbar-buttons' icon='fas fa-undo' onClick={confirm} />
               </div>
               <span className='designer-topbar-header'>App-Designer</span>
             </div>
