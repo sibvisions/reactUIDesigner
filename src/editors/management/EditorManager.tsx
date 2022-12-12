@@ -15,8 +15,7 @@
 
 import React, { FC, useContext, useMemo } from "react";
 import { variableContext } from "../../VariableProvider";
-import EditorCreator, { EditorGroup, EditorItem } from "./EditorCreator";
-import { generalEditors } from "../GeneralEditors";
+import EditorCreator, { EditorGroup } from "./EditorCreator";
 import { getPreviewVariableMap } from "../../util/GetPreviewVariableMap";
 import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 
@@ -56,64 +55,48 @@ const EditorManager: FC<IEditorManager> = (props) => {
             return getPreviewVariableMap(context, props.isCorporation);
         }
         else {
+            const generalMap: Map<string, EditorGroup> = new Map<string, EditorGroup>([...context.variables.get("-2") as Map<string, EditorGroup>, ...context.variables.get("-1") as Map<string, EditorGroup>]);
             switch (props.activeIndex) {
-                case parseInt(EDITOR_INDICES.LOGIN_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS) as Map<string, EditorGroup>;
+                case parseInt(EDITOR_INDICES.LOGIN_EDITORS): default:
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.LOGIN_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.MENU_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.MENU_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.MENU_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.COPORATE_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.COPORATE_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.COPORATE_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.BUTTON_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.BUTTON_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.BUTTON_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.INPUT_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.INPUT_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.INPUT_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.TABLE_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.TABLE_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.TABLE_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.TABSET_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.TABSET_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.TABSET_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.POPUP_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.POPUP_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.POPUP_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.MESSAGES_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.MESSAGES_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.MESSAGES_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.LOADING_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.LOADING_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.LOADING_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.ERRORBAR_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.ERRORBAR_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.ERRORBAR_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.FULLTRANSFER_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.FULLTRANSFER_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.FULLTRANSFER_EDITORS) as Map<string, EditorGroup>]);
                 case parseInt(EDITOR_INDICES.TOPBAR_EDITORS):
-                    return context.variables.get(EDITOR_INDICES.TOPBAR_EDITORS) as Map<string, EditorGroup>;
-                default:
-                    return context.variables.get(EDITOR_INDICES.LOGIN_EDITORS) as Map<string, EditorGroup>;
+                    return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.TOPBAR_EDITORS) as Map<string, EditorGroup>]);
             }
         }
     }, [props.activeIndex, props.isPreviewMode, props.isCorporation, context])
 
     return (
-        <>
-            {!props.isPreviewMode && 
-                <EditorCreator 
-                    index={props.activeIndex} 
-                    isPreviewMode={props.isPreviewMode} 
-                    editors={generalEditors}
-                    designerSubscription={props.designerSubscription}
-                    uploadImage={(type:"login"|"small"|"menu") => props.uploadImage(type)}
-                    logoLogin={props.logoLogin}
-                    logoBig={props.logoBig}
-                    logoSmall={props.logoSmall}
-                    isGeneral />
-            }
-            <EditorCreator 
-                index={props.activeIndex} 
-                isPreviewMode={props.isPreviewMode} 
-                editors={editors}
-                designerSubscription={props.designerSubscription}
-                uploadImage={(type:"login"|"small"|"menu") => props.uploadImage(type)}
-                logoLogin={props.logoLogin}
-                logoBig={props.logoBig}
-                logoSmall={props.logoSmall}
-                isGeneral={false} />
-        </>
+        <EditorCreator 
+            index={props.activeIndex} 
+            isPreviewMode={props.isPreviewMode} 
+            editors={editors}
+            designerSubscription={props.designerSubscription}
+            uploadImage={(type:"login"|"small"|"menu") => props.uploadImage(type)}
+            logoLogin={props.logoLogin}
+            logoBig={props.logoBig}
+            logoSmall={props.logoSmall} />
     )
 }
 export default EditorManager

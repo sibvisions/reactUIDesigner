@@ -24,6 +24,7 @@ import { sendRequest } from './RequestService';
 import { Toast } from 'primereact/toast';
 import { generateCSS } from './util/GenerateCSS';
 import TopBar from './previews/topbar/TopBar';
+import { concatClassnames } from './util/ConcatClassNames';
 
 export type DesignerSubscriptionManager = {
   notifyFontSizeChanged: Function,
@@ -297,7 +298,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                 />
             </div>
           </div>
-          <div className='designer-content reactUI basti'>
+          <div className={concatClassnames(
+            'designer-content',
+            !isPreviewMode ? 'reactUI basti' : ''
+            )}>
             {isPreviewMode ? props.children : <TabSelection tabChangedCallback={tabChangeCallBack} />}
           </div>
         </div>

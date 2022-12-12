@@ -13,7 +13,7 @@
  * the License.
  */
 
-import { EditorGroup, EditorItem } from "./management/EditorCreator";
+import { EditorGroup } from "./management/EditorCreator";
 
 const docStyle = window.getComputedStyle(document.documentElement);
 
@@ -85,6 +85,38 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set(".rc-editor-image:focus img, .rc-icon:focus img, .rc-validator:focus img", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".rc-editor-linked:focus-within", ["box-shadow: var(--focus-box-shadow);"])
             }
+        ]
+    });
+
+export const imageEditors: Map<string, EditorGroup> = new Map<string, EditorGroup>()
+    .set("Images", {
+        name: "Images",
+        visible: true,
+        items: [
+            {
+                variable: "",
+                label: "Login",
+                type: "image",
+                cssType: "image",
+                value: "",
+                usage: new Map<string, string[]>()
+            },
+            {
+                variable: "",
+                label: "Menu",
+                type: "image",
+                cssType: "image",
+                value: "",
+                usage: new Map<string, string[]>()
+            },
+            {
+                variable: "",
+                label: "Collapsed Menu",
+                type: "image",
+                cssType: "image",
+                value: "",
+                usage: new Map<string, string[]>()
+            },
         ]
     })
 

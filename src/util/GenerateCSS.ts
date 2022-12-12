@@ -54,15 +54,15 @@ export function generateCSS(type: "scheme" | "theme", isPreviewMode: boolean, is
     }
 
     let cssString = ":root {\n";
-    let test:string[] = []
+    let alreadyAdded:string[] = []
 
     const printRules = (map: Map<string, EditorGroup>) => {
         map.forEach(editorItems => {
             editorItems.items.forEach(editorItem => {
                 if (editorItem.cssType === type) {
-                    if (!test.includes(editorItem.variable)) {
+                    if (!alreadyAdded.includes(editorItem.variable)) {
                         cssString += "\t" + editorItem.variable + ":" + editorItem.value + ";\n";
-                        test.push(editorItem.variable);
+                        alreadyAdded.push(editorItem.variable);
                     }
                     
                     fillSelectorMap(editorItem, "full");

@@ -110,13 +110,6 @@
     flex-direction: column;
     flex-shrink: 0;
 
-    .designer-panel-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0.25rem 0.5rem;
-    }
-
     .designer-panel-header {
       max-width: 55px;
       margin-right: 0.25rem;
@@ -163,7 +156,20 @@
     }
   }
 
-  .p-accordion {
+  .designer-panel-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.25rem 0.5rem;
+    min-height: 35px;
+
+    .p-inputtext {
+      width: 100%;
+    }
+  }
+
+  .designer-accordion {
+    margin-top: 0.25rem;
     .p-accordion-header {
       .p-accordion-header-link {
         background: transparent;

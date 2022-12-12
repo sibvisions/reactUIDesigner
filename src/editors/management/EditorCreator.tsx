@@ -23,9 +23,9 @@ import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 export type EditorItem = {
     variable: string,
     label: string,
-    type: "color" | "text" | "color-text",
+    type: "color" | "text" | "color-text" | "image",
     value: string,
-    cssType: "theme" | "scheme",
+    cssType: "theme" | "scheme" | "image",
     usage: Map<string, string[]>
     usage960?: Map<string, string[]>
     usage530?: Map<string, string[]>
@@ -46,7 +46,6 @@ interface IEditorCreator {
     logoLogin: string
     logoBig: string
     logoSmall: string
-    isGeneral: boolean
 }
 
 function createEditors(editors: Map<string, EditorGroup>,
@@ -209,49 +208,37 @@ function createEditors(editors: Map<string, EditorGroup>,
         editors.forEach((editorGroup, key) => {
             if (editorGroup.visible) {
                 let editorElements = editorGroup.items.map(editorItem => {
-                    return (
-                        <div key={editorItem.label} className="style-editor-wrapper">
-                            <span className="style-editor-label">{editorItem.label}</span>
-                            <div className="style-editor">
-                                {getInputElements(editorItem, key)}
-                                <Button
-                                    className="style-editor-button"
-                                    icon="fas fa-undo"
-                                    tooltip="Reset to Default"
-                                    onClick={() => {
-                                        setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
-                                        document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
-                                        updateVariables(editorItem);
-                                    }} />
+                    if (editorItem.type === "image") {
+                        return (
+                            <div className='designer-panel-row designer-panel-image-upload'>
+                                <span className='designer-panel-header'>{editorItem.label}</span>
+                                <img alt={editorItem.label} id={editorItem.label.toLowerCase() + '-image'} className='designer-panel-image' src={editorItem.label === "Login" ? props.logoLogin : editorItem.label === "Menu" ? props.logoBig : props.logoSmall} />
+                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage(editorItem.label === "Login" ? "login" : editorItem.label === "Menu" ? "menu" : "small")} />
                             </div>
-                        </div>
-                    )
+                        )
+                    }
+                    else {
+                        return (
+                            <div key={editorItem.label} className="style-editor-wrapper">
+                                <span className="style-editor-label">{editorItem.label}</span>
+                                <div className="style-editor">
+                                    {getInputElements(editorItem, key)}
+                                    <Button
+                                        className="style-editor-button"
+                                        icon="fas fa-undo"
+                                        tooltip="Reset to Default"
+                                        onClick={() => {
+                                            setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
+                                            document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
+                                            updateVariables(editorItem);
+                                        }} />
+                                </div>
+                            </div>
+                        )
+                    }
                 })
-                let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={editorGroup.name}><div key={key} className="style-editor-group">{editorElements}</div></AccordionTab>);
+                let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={editorGroup.name}><div key={key} className={editorGroup.name === "Images" ? "designer-panel-options" : "style-editor-group"}>{editorElements}</div></AccordionTab>);
                 groupElements.push(groupElement)
-                if (editorGroup.name === "General") {
-                    groupElements.push(<AccordionTab key={"accordion-tab-upanddownload"} header="Images">
-                    <div className='designer-panel-options'>
-                        <div>
-                            <div className='designer-panel-row designer-panel-image-upload'>
-                                <span className='designer-panel-header'>Login:</span>
-                                <img alt='login' id='login-image' className='designer-panel-image' src={props.logoLogin} />
-                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("login")} />
-                            </div>
-                            <div className='designer-panel-row designer-panel-image-upload'>
-                                <span className='designer-panel-header'>Menu:</span>
-                                <img alt='menu' id='menu-image' className='designer-panel-image' src={props.logoBig} />
-                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("menu")} />
-                            </div>
-                            <div className='designer-panel-row designer-panel-image-upload'>
-                                <span className='designer-panel-header'>Collapsed Menu:</span>
-                                <img alt='collapsed' id='small-image' className='designer-panel-image' src={props.logoSmall} />
-                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage("small")} />
-                            </div>
-                        </div>
-                    </div>
-                </AccordionTab>)
-                }
             }
         });
     }
@@ -264,14 +251,53 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
 
     const [editors, setEditors] = useState(props.editors);
 
+    const [search, setSearch] = useState<string>("");
+
     useEffect(() => {
-        setEditors(props.editors);
-    }, [props.editors])
+        if (search) {
+            const searchResultMap:Map<string, EditorGroup> = new Map<string, EditorGroup>();
+            props.editors.forEach(editorGroup => {
+                if (editorGroup.visible) {
+                    const foundEditors:EditorGroup = {
+                        name: editorGroup.name,
+                        visible: true,
+                        items: []
+                    }
+                    editorGroup.items.forEach(item => {
+                        if (item.label.toLowerCase().includes(search.toLowerCase()) || item.variable.toLowerCase().includes(search.toLowerCase())) {
+                            foundEditors.items.push(item);
+                        }
+                    });
+                    if (search.toLowerCase() === editorGroup.name.toLowerCase()) {
+                        searchResultMap.set(editorGroup.name, editorGroup)
+                    }
+                    else if (foundEditors.items.length) {
+                        searchResultMap.set(foundEditors.name, foundEditors)
+                    }
+                }
+            });
+            setEditors(searchResultMap);
+        }
+        else {
+            setEditors(props.editors);
+        }
+    }, [props.editors, search]);
 
     return (
-        <Accordion>
-            {createEditors(editors, setEditors, context.defaultValues, context, props)}
-        </Accordion>
+        <>
+            <div className="p-field p-input-icon-left designer-panel-row">
+                <i className="pi pi-search" />
+                <InputText
+                    value={search}
+                    id="search"
+                    autoComplete="search"
+                    placeholder="Search"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)} />
+            </div>
+            <Accordion className="designer-accordion">
+                {createEditors(editors, setEditors, context.defaultValues, context, props)}
+            </Accordion>
+        </>
     )
 }
 export default EditorCreator
