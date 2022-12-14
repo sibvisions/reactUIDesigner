@@ -75,7 +75,7 @@ export const menuModel: MenuItem[] = [
 
 const Menu: FC = () => {
     return (
-        <div className="design-std-menu">
+        <div className="design-std-menu std-menu">
             <div className="menu-header">
                 <div className="menu-logo-wrapper">
                     <img alt="logo" draggable="false" className="menu-logo" src={process.env.PUBLIC_URL + '/assets/logo_big.png'}/>

@@ -49,6 +49,7 @@
     /// Standard-menu logo height
     --std-logo-height:calc(var(--std-header-height) - 10px);
 
+    /// Standard-menu height of the profile-menu
     --std-profile-height:calc(var(--std-header-height) - 10px);
 
     /// Standard-menu small profile-menu width
@@ -122,9 +123,9 @@
     /// Padding of a menu-item for corporation menu.
     --corp-menu-item-padding:0.75rem 1rem;
 
-    --input-padding-tb:0.5rem;
+    --input-padding-tb: 0.5rem;
 
-    --input-padding-lr:0.5rem;
+    --input-padding-lr: 0.5rem;
 
     /// Padding for buttons next to input fields. e.g. LinkedCellEditor, DateCellEditor
     --input-button-padding:0rem 0.5rem;
@@ -206,7 +207,7 @@ body {
         height: var(--menubar-height);
     }
 
-    .design-std-menu {
+    .std-menu {
         &.menu-collapsed {
             .menu-logo-wrapper {
                 width: var(--std-menu-collapsed-width);
@@ -218,6 +219,10 @@ body {
 
             .menu-panelmenu-wrapper {
                 width: var(--std-menu-collapsed-width);
+
+                &::-webkit-scrollbar-button:start:decrement {
+                    height: var(--std-header-height)
+                }
             }
 
             .menu-topbar {
@@ -231,6 +236,10 @@ body {
 
         .menu-header {
             height: var(--std-header-height);
+        }
+
+        &:not(.design-std-menu) .menu-topbar {
+            margin-left: var(--std-menu-width);
         }
 
         .menu-topbar {
@@ -285,6 +294,10 @@ body {
 
         .menu-panelmenu-wrapper {
             width: var(--std-menu-width);
+        }
+
+        &:not(.design-std-menu) .menu-panelmenu-wrapper {
+            padding-top: var(--std-header-height);
         }
 
         .menu-logo-mini {
@@ -433,12 +446,16 @@ body {
     }
     
     .p-checkbox {
-        width: var(--checkbox-size);
-        height: var(--checkbox-size);
+        min-width: var(--checkbox-size);
+        min-height: var(--checkbox-size);
+        max-width: var(--checkbox-size);
+        max-height: var(--checkbox-size);
 
         .p-checkbox-box {
-            width: var(--checkbox-size);
-            height: var(--checkbox-size);
+            min-width: var(--checkbox-size);
+            min-height: var(--checkbox-size);
+            max-width: var(--checkbox-size);
+            max-height: var(--checkbox-size);
         
             .p-checkbox-icon {
                 font-size: calc(var(--checkbox-size) * 0.7);
@@ -493,8 +510,6 @@ body {
 }
 
 .error-dialog {
-    min-width: var(--error-dialog-min-width);
-
     .error-dialog-listbox {
         .p-listbox-item {
             height: calc(8px + var(--table-data-height));
@@ -539,7 +554,7 @@ body {
 
 @media screen and (max-width: 960px) {
     .basti {
-        .design-std-menu {
+        .std-menu {
             .profile-menu {
                 .p-menubar .p-menubar-root-list {
                     .p-submenu-list {
@@ -573,7 +588,7 @@ body {
 
 @media screen and (max-width: 530px) {
     .basti {
-        .design-std-menu {
+        .std-menu {
             .menu-logo-mini-wrapper {
                 height: var(--std-logo-height);
 
