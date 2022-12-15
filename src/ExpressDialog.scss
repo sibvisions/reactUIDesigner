@@ -1,0 +1,89 @@
+.express-dialog {
+    min-height: 250px;
+    min-width: 500px;
+
+    .p-dialog-content {
+        padding: 0 1.5rem 0 1.5rem;
+        overflow: hidden;
+    }
+}
+
+.express-group-wrapper {
+    display: flex;
+    .express-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+
+        &:first-child {
+            margin-right: 1rem;
+        }
+
+        &:last-child {
+            margin-left: 1rem;
+        }
+    
+        .express-group-header {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    
+        .express-preset-dropdown {
+            min-width: 150px;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            height: 40px;
+    
+            .p-dropdown-label.p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput) {
+                border: none;
+            }
+        }
+
+        .express-scheme-editor-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            .express-scheme-text {
+                min-width: 100px;
+                margin-right: 0.5rem;
+            }
+
+            .express-scheme-editor {
+                width: 100px;
+                height: 40px;
+                flex: 1;
+                margin-right: 0.25rem;
+            }
+    
+            .style-editor-colorpicker {
+                min-width: 40px;
+                max-width: 40px;
+                min-height: 40px;
+                max-height: 40px
+            }
+        }
+
+        .express-dark-wrapper {
+            display: flex;
+            width: 100%;
+            margin-top: 0.5rem;
+            height: 40px;
+            align-items: center;
+        }
+        .express-dark-checkbox {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+.express-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.p-dialog .p-dialog-footer button {
+    margin: 0;
+}

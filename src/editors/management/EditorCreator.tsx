@@ -268,7 +268,7 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
                             foundEditors.items.push(item);
                         }
                     });
-                    if (search.toLowerCase() === editorGroup.name.toLowerCase()) {
+                    if (editorGroup.name.toLowerCase().startsWith(search.toLowerCase())) {
                         searchResultMap.set(editorGroup.name, editorGroup)
                     }
                     else if (foundEditors.items.length) {
@@ -289,6 +289,7 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
                 <i className="pi pi-search" />
                 <InputText
                     value={search}
+                    className="designer-search-editor"
                     id="search"
                     autoComplete="search"
                     placeholder="Search"

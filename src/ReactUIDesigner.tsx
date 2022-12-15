@@ -25,6 +25,8 @@ import { Toast } from 'primereact/toast';
 import { generateCSS } from './util/GenerateCSS';
 import TopBar from './previews/topbar/TopBar';
 import { concatClassnames } from './util/ConcatClassNames';
+import ExpressDialog from './ExpressDialog';
+import { addCSSDynamically } from './util/AddCSSDynamically';
 
 export type DesignerSubscriptionManager = {
   notifyFontSizeChanged: Function,
@@ -84,6 +86,57 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const uploadUrl = useMemo(() => props.uploadUrl || "PASTE URL HERE", [props.uploadUrl]);
 
   const toastRef = useRef<Toast>(null);
+
+  const [expressVisible, setExpressVisible] = useState<boolean>(false);
+
+  // const [themeChanged, setThemeChanged] = useState<boolean|undefined>(undefined);
+
+  // const [schemeChanged, setSchemeChanged] = useState<boolean|undefined>(undefined);
+
+  // useEffect(() => {
+  //   if (!isPreviewMode) {
+  //     addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setSchemeChanged(prevState => prevState !== undefined ? !prevState : true));
+  //     addCSSDynamically('themes/basti.css', "themeCSS", () => setThemeChanged(prevState => prevState !== undefined ? !prevState : true));
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   const docStyle = window.getComputedStyle(document.documentElement)
+  //   context.variables.forEach((map) => {
+  //     map.forEach(editorGroup => {
+  //       editorGroup.items.forEach(editorItem => {
+  //         if (editorItem.cssType === "theme") {
+  //           const propertyValue = docStyle.getPropertyValue(editorItem.variable);
+  //           editorItem.value = propertyValue
+            
+  //           if (context.defaultValues.has(editorItem.variable)) {
+  //             let defaultValue = context.defaultValues.get(editorItem.variable);
+  //             defaultValue = propertyValue
+  //           }
+  //         }
+  //       })
+  //     })
+  //   })
+  // }, [themeChanged]);
+
+  // useEffect(() => {
+  //   const docStyle = window.getComputedStyle(document.documentElement)
+  //   context.variables.forEach((map) => {
+  //     map.forEach(editorGroup => {
+  //       editorGroup.items.forEach(editorItem => {
+  //         if (editorItem.cssType === "scheme") {
+  //           const propertyValue = docStyle.getPropertyValue(editorItem.variable);
+  //           editorItem.value = propertyValue
+            
+  //           if (context.defaultValues.has(editorItem.variable)) {
+  //             let defaultValue = context.defaultValues.get(editorItem.variable);
+  //             defaultValue = propertyValue
+  //           }
+  //         }
+  //       })
+  //     })
+  //   })
+  // }, [schemeChanged])
 
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + ".css";
@@ -229,12 +282,14 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     <VariableProvider>
       <Toast ref={toastRef} />
       <TopBar>
+      <ExpressDialog visible={expressVisible} handleClose={() => setExpressVisible(false)} />
         <div className='designer-main'>
           <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
             <div className='designer-topbar'>
               <div className='designer-topbar-left'>
                 {isPreviewMode && <Button className='designer-topbar-buttons' icon='fas fa-palette' onClick={() => props.setShowDesigner()} />}
                 <Button className='designer-topbar-buttons' icon='fas fa-undo' onClick={confirm} />
+                <Button className='designer-topbar-buttons' icon='fas fa-fast-forward' onClick={() => setExpressVisible(true)} />
               </div>
               <span className='designer-topbar-header'>App-Designer</span>
             </div>

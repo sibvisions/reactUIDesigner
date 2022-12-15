@@ -56,7 +56,7 @@ const LoginForm:FC<any> = () => {
                             <label htmlFor="password">Password</label>
                         </div>
                         <div className="login-extra-options lost-password-enabled">
-                            <div className="login-cbx-container">
+                            <div className="login-cbx-container rc-checkbox">
                                 <Checkbox
                                     inputId="rememberMe" 
                                     className="remember-me-cbx" 
