@@ -48,7 +48,8 @@ export type DesignerSubscriptionManager = {
   notifyTabPaddingChanged: Function,
   notifyTableHeaderPaddingChanged: Function,
   notifyTableDataHeightChanged: Function,
-  notifyMenuBarHeightChanged: Function
+  notifyMenuBarHeightChanged: Function,
+  notifyAll: Function
 }
 
 interface IReactUIDesigner {
@@ -120,6 +121,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       })
     })
     setVariablesReady(prevState => !prevState);
+
+    if (props.designerSubscription) {
+      props.designerSubscription.notifyAll()
+    }
   }, [expressConfirm]);
 
   const handleDownload = () => {
