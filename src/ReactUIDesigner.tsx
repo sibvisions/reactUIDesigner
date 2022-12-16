@@ -89,54 +89,38 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const [expressVisible, setExpressVisible] = useState<boolean>(false);
 
-  // const [themeChanged, setThemeChanged] = useState<boolean|undefined>(undefined);
+  const [presetTheme, setPresetTheme] = useState<string>("notSet");
 
-  // const [schemeChanged, setSchemeChanged] = useState<boolean|undefined>(undefined);
+  const [expressConfirm, setExpressConfirm] = useState<boolean>()
 
-  // useEffect(() => {
-  //   if (!isPreviewMode) {
-  //     addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setSchemeChanged(prevState => prevState !== undefined ? !prevState : true));
-  //     addCSSDynamically('themes/basti.css', "themeCSS", () => setThemeChanged(prevState => prevState !== undefined ? !prevState : true));
-  //   }
-  // }, [])
+  const [presetScheme, setPresetScheme] = useState<string>("notSet");
 
-  // useEffect(() => {
-  //   const docStyle = window.getComputedStyle(document.documentElement)
-  //   context.variables.forEach((map) => {
-  //     map.forEach(editorGroup => {
-  //       editorGroup.items.forEach(editorItem => {
-  //         if (editorItem.cssType === "theme") {
-  //           const propertyValue = docStyle.getPropertyValue(editorItem.variable);
-  //           editorItem.value = propertyValue
+  const [variablesReady, setVariablesReady] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isPreviewMode) {
+      addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setPresetScheme("default"));
+      addCSSDynamically('themes/basti.css', "themeCSS", () => setPresetTheme("basti"));
+    }
+  }, [])
+
+  useEffect(() => {
+    const docStyle = window.getComputedStyle(document.documentElement)
+    context.variables.forEach((map) => {
+      map.forEach(editorGroup => {
+        editorGroup.items.forEach(editorItem => {
+            const propertyValue = docStyle.getPropertyValue(editorItem.variable);
+            editorItem.value = propertyValue
             
-  //           if (context.defaultValues.has(editorItem.variable)) {
-  //             let defaultValue = context.defaultValues.get(editorItem.variable);
-  //             defaultValue = propertyValue
-  //           }
-  //         }
-  //       })
-  //     })
-  //   })
-  // }, [themeChanged]);
-
-  // useEffect(() => {
-  //   const docStyle = window.getComputedStyle(document.documentElement)
-  //   context.variables.forEach((map) => {
-  //     map.forEach(editorGroup => {
-  //       editorGroup.items.forEach(editorItem => {
-  //         if (editorItem.cssType === "scheme") {
-  //           const propertyValue = docStyle.getPropertyValue(editorItem.variable);
-  //           editorItem.value = propertyValue
-            
-  //           if (context.defaultValues.has(editorItem.variable)) {
-  //             let defaultValue = context.defaultValues.get(editorItem.variable);
-  //             defaultValue = propertyValue
-  //           }
-  //         }
-  //       })
-  //     })
-  //   })
-  // }, [schemeChanged])
+            if (context.defaultValues.has(editorItem.variable)) {
+              let defaultValue = context.defaultValues.get(editorItem.variable);
+              defaultValue = propertyValue
+            }
+        })
+      })
+    })
+    setVariablesReady(prevState => !prevState);
+  }, [expressConfirm]);
 
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + ".css";
@@ -282,7 +266,23 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     <VariableProvider>
       <Toast ref={toastRef} />
       <TopBar>
-      <ExpressDialog visible={expressVisible} handleClose={() => setExpressVisible(false)} />
+      <ExpressDialog 
+        visible={expressVisible} 
+        handleClose={() => setExpressVisible(false)} 
+        setPresetScheme={(val) => {
+          setPresetScheme(val);
+          setSchemeName(val);
+        }} 
+        setPresetTheme={(val) => {
+          setPresetTheme(val);
+          setThemeName(val);
+        }}
+        handleConfirm={() => setExpressConfirm(prevState => !prevState)}
+        showToast={() => {
+          if (toastRef.current) {
+            toastRef.current.show({ severity: "error", summary: "Invalid Color!", detail: "This color is invalid please use a valid color." })
+          }
+        }} />
         <div className='designer-main'>
           <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
             <div className='designer-topbar'>
@@ -350,12 +350,13 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                 logoLogin={props.logoLogin}
                 logoBig={props.logoBig}
                 logoSmall={props.logoSmall}
+                variablesReady={variablesReady}
                 />
             </div>
           </div>
           <div className={concatClassnames(
             'designer-content',
-            !isPreviewMode ? 'reactUI basti' : ''
+            !isPreviewMode ? 'reactUI ' + presetTheme : ''
             )}>
             {isPreviewMode ? props.children : <TabSelection tabChangedCallback={tabChangeCallBack} />}
           </div>

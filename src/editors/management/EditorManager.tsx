@@ -28,7 +28,7 @@ interface IEditorManager {
     logoLogin: string
     logoBig:string
     logoSmall: string
-
+    variablesReady: boolean
 }
 
 export enum EDITOR_INDICES {
@@ -85,7 +85,7 @@ const EditorManager: FC<IEditorManager> = (props) => {
                     return new Map<string, EditorGroup>([...generalMap, ...context.variables.get(EDITOR_INDICES.TOPBAR_EDITORS) as Map<string, EditorGroup>]);
             }
         }
-    }, [props.activeIndex, props.isPreviewMode, props.isCorporation, context])
+    }, [props.activeIndex, props.isPreviewMode, props.isCorporation, context, props.variablesReady])
 
     return (
         <EditorCreator 
