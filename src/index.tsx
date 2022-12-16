@@ -31,7 +31,8 @@ export default ReactDOM.render(
     logoSmall={process.env.PUBLIC_URL + '/assets/logo_small.png'}
     designerSubscription={undefined}
     appName="demo"
-    setShowDesigner={() => {}} />,
+    setShowDesigner={() => {}}
+    changeTheme={() => {}} />,
   // </React.StrictMode>,
   document.getElementById('root')
 )

@@ -63,6 +63,7 @@ interface IReactUIDesigner {
   designerSubscription: DesignerSubscriptionManager|undefined
   appName:string
   setShowDesigner: () => void
+  changeTheme: (value: string) => void
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -287,7 +288,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           if (toastRef.current) {
             toastRef.current.show({ severity: "error", summary: "Invalid Color!", detail: "This color is invalid please use a valid color." })
           }
-        }} />
+        }}
+        changeTheme={props.changeTheme} />
         <div className='designer-main'>
           <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
             <div className='designer-topbar'>

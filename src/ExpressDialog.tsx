@@ -13,7 +13,8 @@ interface IExpressDialog {
     setPresetScheme: (value:string) => void,
     setPresetTheme: (value:string) => void,
     handleConfirm: () => void,
-    showToast: () => void
+    showToast: () => void,
+    changeTheme: (value: string) => void
 }
 
 const ExpressDialog:FC<IExpressDialog> = (props) => {
@@ -56,7 +57,8 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
             readyCheck();
         });
         addCSSDynamically('themes/' + selectedTheme + '.css', "themeCSS", () => {
-            props.setPresetTheme(selectedTheme); 
+            props.setPresetTheme(selectedTheme);
+            props.changeTheme(selectedTheme);
             themeReady.current = true;
             readyCheck();
         });
