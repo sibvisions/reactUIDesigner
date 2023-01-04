@@ -8,3 +8,17 @@
 @import './previews/messages/Messages.scss';
 @import './previews/TabSelection.scss';
 @import './ExpressDialog.scss';
+
+:root {
+    --designer-topbar-height:70px;
+    --designer-main-height: calc(100vh - var(--designer-topbar-height));
+    --designer-panel-wrapper-width:300px;
+    --designer-content-padding:0.5rem;
+    --designer-text-color:#495057;
+    --designer-font-size:14px;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Roboto';
+  }

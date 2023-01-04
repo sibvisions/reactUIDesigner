@@ -19,6 +19,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { variableContext, VariableContextType } from "../../VariableProvider";
 import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
+import { ChromePicker } from 'react-color';
 
 export type EditorItem = {
     variable: string,
@@ -143,8 +144,18 @@ function createEditors(editors: Map<string, EditorGroup>,
     const getInputElements = (editorItem: EditorItem, key: string) => {
         switch (editorItem.type) {
             case "color":
+                // console.log(editorItem.value, editorItem.variable)
+                // let test1 = editorItem.value;
+                // if (test1.includes())
+                // if (test1.includes("rgb")) {
+                //     const firstSubstring = test1.substring(test1.indexOf("rgb("))
+                //     const splitString = firstSubstring.substring(0, firstSubstring.indexOf(")")).split
+                //     convert split string into object with r, g, b and a
+                //     console.log(splitString)
+                // }
                 return (
                     <>
+                        {/* <ChromePicker color={editorItem.value} /> */}
                         <input
                             className="style-editor-colorpicker"
                             type={editorItem.type}

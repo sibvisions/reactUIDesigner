@@ -99,6 +99,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const [variablesReady, setVariablesReady] = useState<boolean>(false);
 
+  const [test, setTest] = useState<boolean>(false);
+
   useEffect(() => {
     if (!isPreviewMode) {
       addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setPresetScheme("default"));
@@ -126,7 +128,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     if (props.designerSubscription) {
       props.designerSubscription.notifyAll()
     }
-  }, [expressConfirm]);
+  }, [presetScheme, presetTheme]);
 
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + ".css";
@@ -210,11 +212,33 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             const foundDefaultValue = context.defaultValues.get(editorItem.variable);
             if (foundDefaultValue) {
               editorItem.value = foundDefaultValue;
-              document.documentElement.style.setProperty(editorItem.variable, foundDefaultValue)
+              document.documentElement.style.setProperty(editorItem.variable, foundDefaultValue);
             }
           });
         });
       });
+      if (props.designerSubscription) {
+        props.designerSubscription.notifyButtonBackgroundChanged();
+        props.designerSubscription.notifyButtonPaddingChanged();
+        props.designerSubscription.notifyCheckboxSizeChanged();
+        props.designerSubscription.notifyCorpHeaderChanged();
+        props.designerSubscription.notifyCorpMenubarChanged();
+        props.designerSubscription.notifyFontSizeChanged();
+        props.designerSubscription.notifyIconOnlyPaddingChanged();
+        props.designerSubscription.notifyInputButtonPaddingChanged();
+        props.designerSubscription.notifyInputLRPaddingChanged();
+        props.designerSubscription.notifyInputTBPaddingChanged();
+        props.designerSubscription.notifyMenuBarHeightChanged();
+        props.designerSubscription.notifyMenuButtonPaddingChanged();
+        props.designerSubscription.notifyRadiobuttonSizeChanged();
+        props.designerSubscription.notifyStdHeaderChanged();
+        props.designerSubscription.notifyStdMenuCollapsedWidthChanged();
+        props.designerSubscription.notifyStdMenuWidthChanged();
+        props.designerSubscription.notifyTabPaddingChanged();
+        props.designerSubscription.notifyTableDataHeightChanged();
+        props.designerSubscription.notifyTableHeaderPaddingChanged();
+        props.designerSubscription.notifyTopbarColorChanged();
+      }
       setReset(prevState => !prevState)
     }
 
