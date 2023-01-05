@@ -117,8 +117,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             editorItem.value = propertyValue
             
             if (context.defaultValues.has(editorItem.variable)) {
-              let defaultValue = context.defaultValues.get(editorItem.variable);
-              defaultValue = propertyValue
+              context.defaultValues.set(editorItem.variable, propertyValue)
             }
         })
       })

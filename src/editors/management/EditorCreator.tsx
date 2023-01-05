@@ -19,7 +19,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { variableContext, VariableContextType } from "../../VariableProvider";
 import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
-import { ChromePicker } from 'react-color';
+import ColorPicker from "../ColorPicker";
 
 export type EditorItem = {
     variable: string,
@@ -144,27 +144,13 @@ function createEditors(editors: Map<string, EditorGroup>,
     const getInputElements = (editorItem: EditorItem, key: string) => {
         switch (editorItem.type) {
             case "color":
-                // console.log(editorItem.value, editorItem.variable)
-                // let test1 = editorItem.value;
-                // if (test1.includes())
-                // if (test1.includes("rgb")) {
-                //     const firstSubstring = test1.substring(test1.indexOf("rgb("))
-                //     const splitString = firstSubstring.substring(0, firstSubstring.indexOf(")")).split
-                //     convert split string into object with r, g, b and a
-                //     console.log(splitString)
-                // }
                 return (
                     <>
-                        {/* <ChromePicker color={editorItem.value} /> */}
-                        <input
-                            className="style-editor-colorpicker"
-                            type={editorItem.type}
-                            value={editorItem.value}
-                            onChange={event => {
-                                setVariableState(key, editorItem, event.target.value);
-                                document.documentElement.style.setProperty(editorItem.variable, event.target.value);
-                                updateVariables(editorItem);
-                            }} />
+                        <ColorPicker color={editorItem.value} handleOnChange={(color:string) => {
+                            setVariableState(key, editorItem, color);
+                            document.documentElement.style.setProperty(editorItem.variable, color);
+                            updateVariables(editorItem);
+                        }} />
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
