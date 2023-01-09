@@ -99,8 +99,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const [variablesReady, setVariablesReady] = useState<boolean>(false);
 
-  const [test, setTest] = useState<boolean>(false);
-
   useEffect(() => {
     if (!isPreviewMode) {
       addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setPresetScheme("default"));

@@ -5,6 +5,7 @@ import { Dropdown } from "primereact/dropdown"
 import { InputText } from "primereact/inputtext"
 import React, { FC, useCallback, useRef, useState } from "react"
 import tinycolor from "tinycolor2"
+import ColorPicker from "./editors/ColorPicker"
 import { addCSSDynamically } from "./util/AddCSSDynamically"
 
 interface IExpressDialog {
@@ -135,11 +136,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                     <div className="express-scheme-editor-wrapper">
                         <span className="express-scheme-text">Primary Color</span>
                         <InputText className="express-scheme-editor" value={schemeColor} onChange={(event) => setSchemeColor(event.target.value)} />
-                        <input
-                            className="style-editor-colorpicker"
-                            type="color"
-                            value={schemeColor}
-                            onChange={event => setSchemeColor(event.target.value)} />
+                        <ColorPicker color={schemeColor} handleOnChange={(color:string) => setSchemeColor(color)} />
                     </div>
                     <div className="express-dark-wrapper">
                         <label htmlFor="dark-mode-cb">Dark Mode</label>

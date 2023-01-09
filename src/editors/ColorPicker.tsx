@@ -45,7 +45,7 @@ const ColorPicker: FC<IColorPicker> = (props) => {
                 a: splitString.length === 4 ? !Number.isNaN(parseFloat(splitString[3])) ? parseFloat(splitString[3]) : 1 : 1
             }
         }
-        return props.color;
+        return props.color ? props.color : "#000000";
     }, [props.color]);
 
     const getPreviewBackground = useCallback(() => {
@@ -75,7 +75,6 @@ const ColorPicker: FC<IColorPicker> = (props) => {
                 <div className="color-picker-popover">
                     <div className="color-picker-cover" onClick={() => setPickerVisible(false)} />
                     <ChromePicker color={pickerColor} onChange={(color) => {
-                        console.log(color)
                         if (document.getElementsByClassName("chrome-picker").length && document.getElementsByClassName("chrome-picker")[0].querySelector("label")) {
                             const identifier = (document.getElementsByClassName("chrome-picker")[0].querySelector("label") as HTMLElement).innerHTML
                             if (identifier === "hex") {
