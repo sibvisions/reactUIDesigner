@@ -30,7 +30,8 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                 value: docStyle.getPropertyValue('--font-size'),
                 usage: new Map<string, string[]>()
                     .set("body", ["font-size: var(--font-size);"])
-                    .set(".basti .p-component", ["font-size: var(--font-size);"])
+                    .set(".basti .p-component", ["font-size: var(--font-size);"]),
+                tooltip: "The font-size used for components and labels."
             },
             {
                 variable: "--screen-background",
@@ -38,7 +39,8 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--screen-background'),
-                usage: new Map<string, string[]>().set("body", ["background: var(--screen-background);"]).set(".reactUI", ["background: var(--screen-background);"])
+                usage: new Map<string, string[]>().set("body", ["background: var(--screen-background);"]).set(".reactUI", ["background: var(--screen-background);"]),
+                tooltip: "The background for workscreens."
             },
             {
                 variable: "--text-color",
@@ -64,7 +66,8 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set(".p-tabview .p-tabview-nav li:not(.p-highlight) .p-tabview-nav-link", ["color: var(--text-color);"])
                     .set(".p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["color: var(--text-color);", "border-color: var(--text-color);"])
                     .set(".rc-frame .rc-frame-header .rc-frame-header-close-button", ["color: var(--text-color);"])
-                    .set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon", ["color: var(--text-color);"])
+                    .set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon", ["color: var(--text-color);"]),
+                tooltip: "The text-color used for most of the application."
             },
             {
                 variable: "--focus-box-shadow",
@@ -83,7 +86,8 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set(".p-calendar:focus-within", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".p-datepicker .p-datepicker-header .p-datepicker-title select:focus", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".rc-editor-image:focus img, .rc-icon:focus img, .rc-validator:focus img", ["box-shadow: var(--focus-box-shadow);"])
-                    .set(".rc-editor-linked:focus-within", ["box-shadow: var(--focus-box-shadow);"])
+                    .set(".rc-editor-linked:focus-within", ["box-shadow: var(--focus-box-shadow);"]),
+                tooltip: "The focus-box highlights a focused component."
             }
         ]
     });
@@ -99,7 +103,8 @@ export const imageEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                 type: "image",
                 cssType: "image",
                 value: "",
-                usage: new Map<string, string[]>()
+                usage: new Map<string, string[]>(),
+                tooltip: "This image will be displayed during login."
             },
             {
                 variable: "",
@@ -107,7 +112,8 @@ export const imageEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                 type: "image",
                 cssType: "image",
                 value: "",
-                usage: new Map<string, string[]>()
+                usage: new Map<string, string[]>(),
+                tooltip: "This image will be displayed in the menu."
             },
             {
                 variable: "",
@@ -115,10 +121,111 @@ export const imageEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                 type: "image",
                 cssType: "image",
                 value: "",
-                usage: new Map<string, string[]>()
+                usage: new Map<string, string[]>(),
+                tooltip: "This image will be displayed in the collapsed menu."
             },
         ]
     })
+
+export const expressEditors: Map<string, EditorGroup> = new Map<string, EditorGroup>()
+    .set("Express", {
+        name: "Express",
+        visible: true,
+        items: [
+            {
+                variable: "--primary-color",
+                label: "Primary Color",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--primary-color'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The primary color of the application."
+            },
+            {
+                variable: "--frame-hover-backgrounds",
+                label: "Topbar Hover Backgrounds",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--frame-hover-backgrounds'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The hover background-color of elements in the topbar."
+            },
+            {
+                variable: "--frame-text-color",
+                label: "Topbar Text Color",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--frame-text-color'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The text-color of elements in the topbar."
+            },
+            {
+                variable: "--backgrounds",
+                label: "Backgrounds",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--backgrounds'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The background-color of multiple components."
+
+            },
+            {
+                variable: "--hover-backgrounds",
+                label: "Hover Backgrounds",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--hover-backgrounds'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The hover background-color of multiple components."
+            },
+            {
+                variable: "--border-colors",
+                label: "Borders Color",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--border-colors'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The border-color of multiple components."
+            },
+            {
+                variable: "--text-color",
+                label: "Text Color",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--text-color'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The text-color used in the application."
+            },
+            {
+                variable: "--hover-text-color",
+                label: "Hover Text Color",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--hover-text-color'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The hover text-color used in the application."
+            },
+            {
+                variable: "--selected-background",
+                label: "Selected Background",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--selected-background'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The background-color for components where items can be selected."
+            },
+            {
+                variable: "--frame-toolbar-borders",
+                label: "Toolbar Border Color (V2)",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--frame-toolbar-borders'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The toolbar border-color for V2 frames."
+            }
+        ]
+    })
+
 
 export const crashEditors: Map<string, EditorGroup> = new Map<string, EditorGroup>()
     .set("CrashView", {
@@ -131,7 +238,8 @@ export const crashEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--crash-message-size'),
-                usage: new Map<string, string[]>().set(".crash-message-icon", ["font-size: var(--crash-message-size);"]).set(".crash-message-text", ["font-size: var(--crash-message-size);"])
+                usage: new Map<string, string[]>().set(".crash-message-icon", ["font-size: var(--crash-message-size);"]).set(".crash-message-text", ["font-size: var(--crash-message-size);"]),
+                tooltip: "The font-size of the crash message."
             },
             {
                 variable: "--crash-stack-height",
@@ -139,7 +247,8 @@ export const crashEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--crash-stack-height'),
-                usage: new Map<string, string[]>().set(".crash-input-stack.show-crash-details", ["max-height: var(--crash-stack-height);"]).set(".crash-input-stack-textarea", ["height: var(--crash-stack-height);"])
+                usage: new Map<string, string[]>().set(".crash-input-stack.show-crash-details", ["max-height: var(--crash-stack-height);"]).set(".crash-input-stack-textarea", ["height: var(--crash-stack-height);"]),
+                tooltip: "The maximum-stack height of the crash message."
             }
         ]
     })

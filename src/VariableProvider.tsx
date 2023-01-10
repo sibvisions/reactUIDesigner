@@ -15,7 +15,7 @@
 
 import React, { createContext, FC, useState } from "react"
 import { EditorGroup } from "./editors/management/EditorCreator"
-import { crashEditors, generalEditors, imageEditors } from "./editors/GeneralEditors";
+import { crashEditors, expressEditors, generalEditors, imageEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
 import { menuExtras, menuEditors } from "./editors/MenuEditors";
 import { corporateEditors } from "./editors/CorporateEditors";
@@ -43,6 +43,7 @@ export type VariableContextType = {
 const editorArray = [
     generalEditors,
     imageEditors,
+    expressEditors,
     loginEditors, 
     menuEditors,
     corporateEditors, 
@@ -84,7 +85,7 @@ function getDefaultValues() {
 
 function getVariables() {
     const variableMap = new Map<string, Map<string, EditorGroup>>();
-    let i = -2;
+    let i = -3;
     editorArray.forEach((map) => {
         variableMap.set((i).toString(), map);
         i++;

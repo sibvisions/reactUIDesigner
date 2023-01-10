@@ -13,7 +13,7 @@
  * the License.
  */
 
-import { EditorGroup, EditorItem } from "./management/EditorCreator";
+import { EditorGroup } from "./management/EditorCreator";
 
 const docStyle = window.getComputedStyle(document.documentElement);
 
@@ -33,7 +33,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                         .set(".basti .corp-menu .corp-menu-header", ["height: var(--corp-header-height);"])
                         .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-button:start:decrement", ["height: var(--corp-header-height);"])
                         .set(".basti .corp-menu .corp-menu-logo-wrapper", ["max-height: var(--corp-header-height);"])
-                        .set(".basti .corp-menu .corp-menu-logo-wrapper .menu-logo", ["max-height: var(--corp-header-height);"])
+                        .set(".basti .corp-menu .corp-menu-logo-wrapper .menu-logo", ["max-height: var(--corp-header-height);"]),
+                    tooltip: "The height of the topbar."
                 },
                 {
                     variable: "--corp-logo-width",
@@ -42,7 +43,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     value: docStyle.getPropertyValue('--corp-logo-width'),
                     cssType: "theme",
                     usage: new Map<string, string[]>()
-                        .set(".basti .corp-menu .corp-menu-logo-wrapper", ["width: var(--corp-logo-width);"])
+                        .set(".basti .corp-menu .corp-menu-logo-wrapper", ["width: var(--corp-logo-width);"]),
+                    tooltip: "The width of the logo in the topbar."
                 },
                 {
                     variable: "--topbar-background",
@@ -51,7 +53,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-background'),
                     usage: new Map<string, string[]>()
-                        .set(".corp-menu-header", ["background:var(--topbar-background);"])
+                        .set(".corp-menu-header", ["background:var(--topbar-background);"]),
+                    tooltip: "The background-color of the topbar."
                 },
                 {
                     variable: "--topbar-text-color",
@@ -59,7 +62,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-text-color'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The text-color of the topbar."
                 },
                 {
                     variable: "--corp-screen-title-size",
@@ -67,7 +71,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--corp-screen-title-size'),
-                    usage: new Map<string, string[]>().set(".basti .corp-menu .corp-menu-header .menu-screen-title", ["font-size: var(--corp-screen-title-size);"])
+                    usage: new Map<string, string[]>().set(".basti .corp-menu .corp-menu-header .menu-screen-title", ["font-size: var(--corp-screen-title-size);"]),
+                    tooltip: "The font-size of the screen title in the topbar."
                 },
                 {
                     variable: "--topbar-button-background",
@@ -75,7 +80,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-button-background'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The background-color of the topbar's buttons."
                 },
                 {
                     variable: "--topbar-button-text-color",
@@ -83,7 +89,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-button-text-color'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The text-color of the topbar's buttons."
                 },
                 {
                     variable: "--topbar-button-hover-background",
@@ -91,7 +98,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-button-hover-background'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The hover background-color of the topbar's buttons."
                 },
                 {
                     variable: "--corp-scrollbar-background",
@@ -99,7 +107,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--corp-scrollbar-background'),
-                    usage: new Map<string, string[]>().set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-track, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-track", ["background: var(--corp-scrollbar-background);"])
+                    usage: new Map<string, string[]>().set(".corp-menu-menubar .p-menubar .p-menubar-root-list::-webkit-scrollbar-track, .mobile-launcher-menu .p-menubar .p-menubar-root-list::-webkit-scrollbar-track", ["background: var(--corp-scrollbar-background);"]),
+                    tooltip: "The color of the background of the scrollbar in the menubar."
                 },
                 {
                     variable: "--menu-scrollbar-color",
@@ -107,7 +116,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--menu-scrollbar-color'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The color of the scrollbar in the menubar."
                 },
                 {
                     variable: "--menu-scrollbar-hover-color",
@@ -115,7 +125,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--menu-scrollbar-hover-color'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The hover color of the scrollbar in the menubar."
                 }
             ]
         }
@@ -134,7 +145,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     usage: new Map<string, string[]>(),
                     usage960: new Map<string, string[]>()
                         .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["width:var(--corp-profile-width-small);"])
-                        .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["left:calc(var(--corp-profile-width-small) - var(--corp-profile-submenu-width-small));"])
+                        .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["left:calc(var(--corp-profile-width-small) - var(--corp-profile-submenu-width-small));"]),
+                    tooltip: "The width of the profile-menu when the application is small."
                 },
                 {
                     variable: "--profile-background",
@@ -142,7 +154,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-background'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The background-color of the profile-menu."
                 },
                 {
                     variable: "--profile-hover-background",
@@ -150,7 +163,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-hover-background'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The hover background-color of the profile-menu."
                 },
                 {
                     variable: "--profile-text-color",
@@ -158,7 +172,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-text-color'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The text-color of the profile-menu."
                 },
                 {
                     variable: "--corp-profile-padding",
@@ -166,7 +181,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--corp-profile-padding'),
-                    usage: new Map<string, string[]>().set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding:var(--corp-profile-padding);"])
+                    usage: new Map<string, string[]>().set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding:var(--corp-profile-padding);"]),
+                    tooltip: "The padding of the profile-menu."
                 },
                 {
                     variable: "--profile-separator",
@@ -174,7 +190,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-separator'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The seperator between profile-menu and topbar buttons."
                 },
                 {
                     variable: "--corp-profile-submenu-width-small",
@@ -184,7 +201,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     value: docStyle.getPropertyValue('--corp-profile-submenu-width-small'),
                     usage: new Map<string, string[]>(),
                     usage960: new Map<string, string[]>()
-                        .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["width:var(--corp-profile-submenu-width-small);"])
+                        .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["width:var(--corp-profile-submenu-width-small);"]),
+                        tooltip: "The width of the profile-menu's sub-menu when the application is small."
                 },
                 {
                     variable: "--profile-submenu-background",
@@ -192,7 +210,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-submenu-background'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The background-color of the profile-menu's sub-menu."
                 },
                 {
                     variable: "--profile-item-hover-background",
@@ -200,7 +219,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-item-hover-background'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The item hover background-color of the profile-menu's sub-menu."
                 },
                 {
                     variable: "--profile-item-hover-text-color",
@@ -208,7 +228,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-item-hover-text-color'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The item hover text-color of the profile-menu's sub-menu."
                 }
             ]
         }
@@ -225,7 +246,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--corp-menubar-height'),
                     usage: new Map<string, string[]>()
-                        .set(".basti .corp-menu .corp-menu-menubar .p-menubar", ["height: var(--corp-menubar-height);"])
+                        .set(".basti .corp-menu .corp-menu-menubar .p-menubar", ["height: var(--corp-menubar-height);"]),
+                    tooltip: "The height of the menubar."
                 },
                 {
                     variable: "--menubar-background",
@@ -236,7 +258,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     usage: new Map<string, string[]>()
                         .set(".corp-menu-menubar", ["background: var(--menubar-background);"])
                         .set(".p-menubar", ["background: var(--menubar-background);"])
-                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["background: var(--menubar-background);"])
+                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["background: var(--menubar-background);"]),
+                    tooltip: "The background-color of the menubar."
                 },
                 {
                     variable: "--menubar-hover-background",
@@ -245,7 +268,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--menubar-hover-background'),
                     usage: new Map<string, string[]>()
-                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["background: var(--menubar-hover-background);"])
+                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["background: var(--menubar-hover-background);"]),
+                    tooltip: "The hover background-color of the menubar."
                 },
                 {
                     variable: "--menubar-text-color",
@@ -257,7 +281,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                         .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["color: var(--menubar-text-color);"])
                         .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-icon:not(.profile-image-null), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-icon:not(.profile-image-null)", ["color: var(--menubar-text-color);"])
                         .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["color: var(--menubar-text-color);"])
-                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon:not(.profile-image-null), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon:not(.profile-image-null)", ["color: var(--menubar-text-color);"])
+                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon:not(.profile-image-null), .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon:not(.profile-image-null)", ["color: var(--menubar-text-color);"]),
+                    tooltip: "The text-color of the menubar."
                 },
                 {
                     variable: "--menubar-submenu-background",
@@ -267,7 +292,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     value: docStyle.getPropertyValue('--menubar-submenu-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list", ["background: var(--menubar-submenu-background);"])
-                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link", ["background: var(--menubar-submenu-background);"])
+                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link", ["background: var(--menubar-submenu-background);"]),
+                    tooltip: "The submenu background-color of the menubar."
                 },
                 {
                     variable: "--menubar-item-hover-background",
@@ -276,7 +302,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--menubar-item-hover-background'),
                     usage: new Map<string, string[]>()
-                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover", ["background: var(--menubar-item-hover-background);"])
+                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover", ["background: var(--menubar-item-hover-background);"]),
+                    tooltip: "The submenu item hover background-color of the menubar."
                 },
                 {
                     variable: "--menubar-item-hover-text-color",
@@ -285,7 +312,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--menubar-item-hover-text-color'),
                     usage: new Map<string, string[]>()
-                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon", ["color: var(--menubar-item-hover-text-color);"])
+                        .set(".p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon", ["color: var(--menubar-item-hover-text-color);"]),
+                    tooltip: "The submenu item hover text-color of the menubar."
                 },
                 {
                     variable: "--corp-menu-header-padding",
@@ -294,7 +322,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--corp-menu-header-padding'),
                     usage: new Map<string, string[]>()
-                        .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled)", ["padding: var(--corp-menu-header-padding);"])
+                        .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled)", ["padding: var(--corp-menu-header-padding);"]),
+                    tooltip: "The menu-group padding of the menubar"
                 },
                 {
                     variable: "--corp-menu-item-padding",
@@ -303,7 +332,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--corp-menu-item-padding'),
                     usage: new Map<string, string[]>()
-                        .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menuitem-link", ["padding: var(--corp-menu-item-padding);"])
+                        .set(".basti .corp-menu .corp-menu-menubar .p-menubar .p-menuitem-link", ["padding: var(--corp-menu-item-padding);"]),
+                    tooltip: "The menu-item padding of the menubar."
                 },
                 {
                     variable: "--corp-menu-speeddial-background",
@@ -312,7 +342,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--corp-menu-speeddial-background'),
                     usage: new Map<string, string[]>()
-                        .set(".p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["background: var(--corp-menu-speeddial-background);", "border-color: var(--corp-menu-speeddial-background);"])
+                        .set(".p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["background: var(--corp-menu-speeddial-background);", "border-color: var(--corp-menu-speeddial-background);"]),
+                    tooltip: "The background-color of the speeddial component in the menubar."
                 },
                 {
                     variable: "--corp-menu-speeddial-color",
@@ -321,7 +352,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--corp-menu-speeddial-color'),
                     usage: new Map<string, string[]>()
-                        .set(".p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["color: var(--corp-menu-speeddial-color);"])
+                        .set(".p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["color: var(--corp-menu-speeddial-color);"]),
+                    tooltip: "The text-color of the speeddial component in the menubar."
                 },
                 {
                     variable: "--corp-menu-speeddial-shadow",
@@ -330,7 +362,8 @@ export const corporateEditors: Map<string, EditorGroup> = new Map<string, Editor
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--corp-menu-speeddial-shadow'),
                     usage: new Map<string, string[]>()
-                        .set(".p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["box-shadow: var(--corp-menu-speeddial-shadow);"])
+                        .set(".p-speeddial .p-speeddial-button.p-button.p-button-icon-only", ["box-shadow: var(--corp-menu-speeddial-shadow);"]),
+                    tooltip: "The shadow of the speeddial component in the menubar."
                 }
             ]
         }

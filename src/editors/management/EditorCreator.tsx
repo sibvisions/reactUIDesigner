@@ -17,6 +17,7 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
+import { Tooltip } from "primereact/tooltip";
 import { variableContext, VariableContextType } from "../../VariableProvider";
 import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 import ColorPicker from "../ColorPicker";
@@ -27,9 +28,10 @@ export type EditorItem = {
     type: "color" | "text" | "color-text" | "image",
     value: string,
     cssType: "theme" | "scheme" | "image",
-    usage: Map<string, string[]>
-    usage960?: Map<string, string[]>
-    usage530?: Map<string, string[]>
+    usage: Map<string, string[]>,
+    usage960?: Map<string, string[]>,
+    usage530?: Map<string, string[]>,
+    tooltip?: string
 }
 
 export type EditorGroup = {
@@ -205,10 +207,14 @@ function createEditors(editors: Map<string, EditorGroup>,
         editors.forEach((editorGroup, key) => {
             if (editorGroup.visible) {
                 let editorElements = editorGroup.items.map(editorItem => {
+                    const tooltipId = editorItem.label.toLowerCase().replaceAll(" ", "") + "-tooltip";
                     if (editorItem.type === "image") {
                         return (
                             <div className='designer-panel-row designer-panel-image-upload'>
-                                <span className='designer-panel-header'>{editorItem.label}</span>
+                                <div className="style-editor-label-wrapper">
+                                    <i className="style-editor-tooltip-icon pi pi-info-circle" />
+                                    <span className="style-editor-label">{editorItem.label}</span>
+                                </div>
                                 <img alt={editorItem.label} id={editorItem.label.toLowerCase() + '-image'} className='designer-panel-image' src={editorItem.label === "Login" ? props.logoLogin : editorItem.label === "Menu" ? props.logoBig : props.logoSmall} />
                                 <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage(editorItem.label === "Login" ? "login" : editorItem.label === "Menu" ? "menu" : "small")} />
                             </div>
@@ -217,7 +223,11 @@ function createEditors(editors: Map<string, EditorGroup>,
                     else {
                         return (
                             <div key={editorItem.label} className="style-editor-wrapper">
-                                <span className="style-editor-label">{editorItem.label}</span>
+                                <div className="style-editor-label-wrapper">
+                                    <Tooltip target={"#" + tooltipId} position="right" />
+                                    <i id={tooltipId} className="style-editor-tooltip-icon pi pi-info-circle" data-pr-tooltip={editorItem.tooltip ? editorItem.tooltip : ""} />
+                                    <span className="style-editor-label">{editorItem.label}</span>
+                                </div>
                                 <div className="style-editor">
                                     {getInputElements(editorItem, key)}
                                     <Button

@@ -13,7 +13,7 @@
  * the License.
  */
 
-import { EditorGroup, EditorItem } from "./management/EditorCreator";
+import { EditorGroup } from "./management/EditorCreator";
 
 const docStyle = window.getComputedStyle(document.documentElement);
 
@@ -30,7 +30,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         type: "color",
                         cssType: "scheme",
                         value: docStyle.getPropertyValue('--login-logo-background'),
-                        usage: new Map<string, string[]>().set(".login-logo-wrapper", ["background: var(--login-logo-background);"])
+                        usage: new Map<string, string[]>().set(".login-logo-wrapper", ["background: var(--login-logo-background);"]),
+                        tooltip: "The background-color of the login view where the logo is displayed."
                     },
                     {
                         variable: "--login-mask-background",
@@ -38,7 +39,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         type: "color",
                         cssType: "scheme",
                         value: docStyle.getPropertyValue('--login-mask-background'),
-                        usage: new Map<string, string[]>().set(".login-form", ["background: var(--login-mask-background);"])
+                        usage: new Map<string, string[]>().set(".login-form", ["background: var(--login-mask-background);"]),
+                        tooltip: "The background-color of the login view where the fields are displayed."
                     },
                     {
                         variable: "--login-shadow",
@@ -48,7 +50,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         value: docStyle.getPropertyValue('--login-shadow'),
                         usage: new Map<string, string[]>()
                             .set(".login-form", ["box-shadow: var(--login-shadow);"])
-                            .set(".login-form-position-wrapper", ["box-shadow: var(--login-shadow);"])
+                            .set(".login-form-position-wrapper", ["box-shadow: var(--login-shadow);"]),
+                        tooltip: "The shadow of the login view."
                     },
                     {
                         variable: "--login-form-top-bottom-padding",
@@ -58,7 +61,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         value: docStyle.getPropertyValue('--login-form-top-bottom-padding'),
                         usage: new Map<string, string[]>()
                             .set(".login-form .p-fluid", ["padding: calc(var(--login-form-top-bottom-padding) / 2) var(--login-form-left-right-padding) var(--login-form-top-bottom-padding);"])
-                            .set(".login-form .login-logo-wrapper", ["padding: var(--login-form-top-bottom-padding) var(--login-form-left-right-padding) calc(var(--login-form-top-bottom-padding) / 2);"])
+                            .set(".login-form .login-logo-wrapper", ["padding: var(--login-form-top-bottom-padding) var(--login-form-left-right-padding) calc(var(--login-form-top-bottom-padding) / 2);"]),
+                        tooltip: "The top and bottom padding of the login view (changes size)."
                     },
                     {
                         variable: "--login-form-left-right-padding",
@@ -66,7 +70,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         type: "text",
                         cssType: "theme",
                         value: docStyle.getPropertyValue('--login-form-left-right-padding'),
-                        usage: new Map<string, string[]>()
+                        usage: new Map<string, string[]>(),
+                        tooltip: "The left and right padding of the login view (changes size)."
                     },
                     {
                         variable: "--login-form-field-margin",
@@ -74,7 +79,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         type: "text",
                         cssType: "theme",
                         value: docStyle.getPropertyValue('--login-form-field-margin'),
-                        usage: new Map<string, string[]>().set(".login-form .p-fluid .p-field", ["margin-bottom: var(--login-form-field-margin);"])
+                        usage: new Map<string, string[]>().set(".login-form .p-fluid .p-field", ["margin-bottom: var(--login-form-field-margin);"]),
+                        tooltip: "The margin between fields in the login view."
                     },
                     {
                         variable: "--login-border-radius",
@@ -84,7 +90,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         value: docStyle.getPropertyValue('--login-border-radius'),
                         usage: new Map<string, string[]>()
                             .set(".login-form", ["border-radius: var(--login-border-radius);"])
-                            .set(".login-form-position-wrapper", ["border-radius: var(--login-border-radius);"])
+                            .set(".login-form-position-wrapper", ["border-radius: var(--login-border-radius);"]),
+                        tooltip: "The border-radius of the login-view."
                     }
                 ]
             }
