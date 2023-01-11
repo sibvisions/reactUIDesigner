@@ -16,7 +16,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     value: docStyle.getPropertyValue('--dialog-header-background'),
                     usage: new Map<string, string[]>()
                         .set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["background: var(--dialog-header-background);"])
-                        .set(".rc-message-dialog .p-dialog-header", ["background: var(--dialog-header-background);"])
+                        .set(".rc-message-dialog .p-dialog-header", ["background: var(--dialog-header-background);"]),
+                    tooltip: "The background-color of the header."
                 },
                 {
                     variable: "--dialog-header-text-color",
@@ -26,7 +27,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     value: docStyle.getPropertyValue('--dialog-header-text-color'),
                     usage: new Map<string, string[]>()
                         .set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["color: var(--dialog-header-text-color);"])
-                        .set(".rc-popup .p-dialog-header .p-dialog-header-icon", ["color: var(--dialog-header-text-color);"])
+                        .set(".rc-popup .p-dialog-header .p-dialog-header-icon", ["color: var(--dialog-header-text-color);"]),
+                    tooltip: "The text-color of the header."
                 },
                 {
                     variable: "--dialog-header-close-hover-background",
@@ -34,7 +36,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-close-hover-background'),
-                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-background);"])
+                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-background);"]),
+                    tooltip: "The hover background-color of the 'x' to close the popup."
                 },
                 {
                     variable: "--dialog-header-close-hover-color",
@@ -42,7 +45,9 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-close-hover-color'),
-                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-color);"])
+                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-color);"]),
+                    tooltip: "The hover text-color of the 'x' to close the popup."
+                    
                 },
                 {
                     variable: "--dialog-header-border",
@@ -50,7 +55,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-border'),
-                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["border-bottom: var(--dialog-header-border);"])
+                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["border-bottom: var(--dialog-header-border);"]),
+                    tooltip: "The border which seperates header and content of a popup."
                 },
                 {
                     variable: "--dialog-header-padding",
@@ -58,7 +64,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--dialog-header-padding'),
-                    usage: new Map<string, string[]>().set(".p-dialog .p-dialog-header", ["padding: var(--dialog-header-padding);"])
+                    usage: new Map<string, string[]>().set(".p-dialog .p-dialog-header", ["padding: var(--dialog-header-padding);"]),
+                    tooltip: "The padding of the header."
                 },
                 {
                     variable: "--dialog-content-background",
@@ -70,7 +77,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-popup .p-dialog-content, .error-dialog .p-dialog-content", ["background: var(--dialog-content-background);"])
                         .set(".error-dialog .p-dialog-footer", ["background: var(--dialog-content-background);"])
                         .set(".rc-message-dialog .p-dialog-content, .rc-message-dialog .p-dialog-footer", ["background: var(--dialog-content-background);"])
-                        .set("#toast-info .p-toast-message", ["background: var(--dialog-content-background);"])
+                        .set("#toast-info .p-toast-message", ["background: var(--dialog-content-background);"]),
+                    tooltip: "The background-color of the popup-content."
                 },
                 {
                     variable: "--dialog-border-radius",
@@ -84,7 +92,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".error-dialog .p-dialog-footer", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
                         .set(".rc-message-dialog .p-dialog-header", ["border-top-left-radius: var(--dialog-border-radius);", "border-top-right-radius: var(--dialog-border-radius);"])
                         .set(".rc-message-dialog .p-dialog-footer", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
-                        .set(".rc-message-dialog.message-dialog-no-footer .p-dialog-content", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
+                        .set(".rc-message-dialog.message-dialog-no-footer .p-dialog-content", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"]),
+                    tooltip: "The border-radius of the popup (rounds corners)."
                 }
             ]
         }
@@ -101,7 +110,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--message-error-header-background'),
                     usage: new Map<string, string[]>()
-                        .set(".error-dialog .p-dialog-header", ["background: var(--message-error-header-background);"])
+                        .set(".error-dialog .p-dialog-header", ["background: var(--message-error-header-background);"]),
+                    tooltip: "The header background-color of the error-popup."
                 },
                 {
                     variable: "--message-error-header-color",
@@ -112,7 +122,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     usage: new Map<string, string[]>()
                         .set(".error-dialog .p-dialog-header", ["color: var(--message-error-header-color);"])
                         .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled", ["color: var(--message-error-header-color);"])
-                        .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover", ["color: var(--message-error-header-color);"])
+                        .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover", ["color: var(--message-error-header-color);"]),
+                    tooltip: "The header text-color of the error-popup."
                 },
                 {
                     variable: "--message-error-header-close-hover",
@@ -121,7 +132,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--message-error-header-close-hover'),
                     usage: new Map<string, string[]>()
-                        .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--message-error-header-close-hover);"])
+                        .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--message-error-header-close-hover);"]),
+                    tooltip: "The hover background-color of the 'x' to close the error-popup."
                 },
                 {
                     variable: "--error-dialog-textarea-height",
@@ -129,7 +141,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--error-dialog-textarea-height'),
-                    usage: new Map<string, string[]>().set(".error-dialog .error-dialog-textarea", ["height: var(--error-dialog-textarea-height);"])
+                    usage: new Map<string, string[]>().set(".error-dialog .error-dialog-textarea", ["height: var(--error-dialog-textarea-height);"]),
+                    tooltip: "The height of the error-popup's textarea."
                 },
                 {
                     variable: "--error-dialog-icon-size",
@@ -137,7 +150,8 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--error-dialog-icon-size'),
-                    usage: new Map<string, string[]>().set(".error-dialog .error-dialog-icon", ["min-width: var(--error-dialog-icon-size);", "font-size: var(--error-dialog-icon-size);"])
+                    usage: new Map<string, string[]>().set(".error-dialog .error-dialog-icon", ["min-width: var(--error-dialog-icon-size);", "font-size: var(--error-dialog-icon-size);"]),
+                    tooltip: "The icon size of the error-popup."
                 }
             ]
         }

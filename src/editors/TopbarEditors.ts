@@ -14,7 +14,8 @@ export const topbarEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-colors'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The color of the progressbar when sending requests."
                 }
             ]
         }

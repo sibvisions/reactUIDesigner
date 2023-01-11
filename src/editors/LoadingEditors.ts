@@ -19,7 +19,8 @@ export const loadingEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                             "background: -webkit-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);",
                             "background: -o-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);",
                             "background: -moz-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);",
-                            "background: radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);"])
+                            "background: radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);"]),
+                    tooltip: "The background-color for the left part of the loading-screen."
                 },
                 {
                     variable: "--loading-screen-right-background",
@@ -27,7 +28,8 @@ export const loadingEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--loading-screen-right-background'),
-                    usage: new Map<string, string[]>()
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The background-color for the right part of the loading-screen."
                 }
             ]
         }
