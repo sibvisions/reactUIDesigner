@@ -212,7 +212,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                         return (
                             <div className='designer-panel-row designer-panel-image-upload'>
                                 <div className="style-editor-label-wrapper">
-                                    <i className="style-editor-tooltip-icon pi pi-info-circle" />
+                                    <i className="tooltip-icon pi pi-info-circle" />
                                     <span className="style-editor-label">{editorItem.label}</span>
                                 </div>
                                 <img alt={editorItem.label} id={editorItem.label.toLowerCase() + '-image'} className='designer-panel-image' src={editorItem.label === "Login" ? props.logoLogin : editorItem.label === "Menu" ? props.logoBig : props.logoSmall} />
@@ -225,7 +225,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             <div key={editorItem.label} className="style-editor-wrapper">
                                 <div className="style-editor-label-wrapper">
                                     <Tooltip target={"#" + tooltipId} position="right" />
-                                    <i id={tooltipId} className="style-editor-tooltip-icon pi pi-info-circle" data-pr-tooltip={editorItem.tooltip ? editorItem.tooltip : ""} />
+                                    <i id={tooltipId} className="tooltip-icon pi pi-info-circle" data-pr-tooltip={editorItem.tooltip ? editorItem.tooltip : ""} />
                                     <span className="style-editor-label">{editorItem.label}</span>
                                 </div>
                                 <div className="style-editor">

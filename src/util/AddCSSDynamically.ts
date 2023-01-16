@@ -43,12 +43,6 @@ export function addCSSDynamically(path:string, type:"applicationCSS"|"schemeCSS"
     link.rel = 'stylesheet'; 
     link.type = 'text/css';
     link.href = path;
-    link.addEventListener("load", () => appReadyCallback());
-
-    link.addEventListener("error", (e) => {
-        console.error("error in file: " + type + ". The file could not be loaded.");
-        appReadyCallback()
-    })
 
     if (before && type !== "applicationCSS") {
         document.head.insertBefore(link, before);
@@ -56,5 +50,15 @@ export function addCSSDynamically(path:string, type:"applicationCSS"|"schemeCSS"
     else {
         document.head.appendChild(link);
     }
-    
+
+    var img = document.createElement('img');
+    document.body.appendChild(img);
+
+    img.onerror = img.onload = function() {
+        img.onerror = img.onload = null;
+        document.body.removeChild(img);
+        appReadyCallback()
+    };
+
+    img.src = path
 }

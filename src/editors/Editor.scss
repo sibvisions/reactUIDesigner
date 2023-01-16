@@ -34,11 +34,6 @@
             display: flex;
             align-items: center;
             max-width: 125px;
-
-            .style-editor-tooltip-icon {
-                margin-top: 1px;
-                opacity: 0.7;
-            }
         }
 
         .style-editor-label {
@@ -84,15 +79,15 @@
     .style-editor-label-wrapper {
         display: flex;
         align-items: center;
-
-        .style-editor-tooltip-icon {
-            margin-top: 1px;
-            opacity: 0.7;
-        }
     }
 
     .style-editor-label {
         max-width: 110px;
         padding-left: 0.25rem;
     }
+}
+
+.tooltip-icon {
+    margin-top: 1px;
+    opacity: 0.7;
 }

@@ -23,16 +23,28 @@
         &:last-child {
             margin-left: 1rem;
         }
+
+        .express-group-header-wrapper {
+            display: flex;
+            align-items: center;
+
+            .tooltip-icon {
+                margin-top: 3px;
+            }
+        }
+
+        .express-group-header-wrapper, .express-preset-dropdown:not(:last-child), .express-scheme-editor-wrapper:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
     
         .express-group-header {
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-right: 0.5rem;
         }
     
         .express-preset-dropdown {
             min-width: 150px;
             width: 100%;
-            margin-bottom: 0.5rem;
             height: 40px;
     
             .p-dropdown-label.p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput) {
@@ -55,26 +67,34 @@
                 height: 40px;
                 flex: 1;
                 margin-right: 0.25rem;
+
+                &.p-disabled {
+                    background: #efefef;
+                }
             }
     
             .style-editor-colorpicker {
                 min-width: 40px;
                 max-width: 40px;
                 min-height: 40px;
-                max-height: 40px
+                max-height: 40px;
             }
         }
 
         .express-dark-wrapper {
             display: flex;
             width: 100%;
-            margin-top: 0.5rem;
             height: 40px;
             align-items: center;
         }
         .express-dark-checkbox {
             margin-left: auto;
             margin-right: auto;
+
+            &.p-checkbox-disabled {
+                background: #efefef;
+                cursor: default;
+            }
         }
     }
 }

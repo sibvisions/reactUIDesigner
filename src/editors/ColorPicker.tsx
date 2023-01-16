@@ -15,10 +15,12 @@
 
 import React, { FC, useCallback, useMemo, useState } from "react";
 import { ChromePicker, HSLColor, RGBColor } from "react-color";
+import { concatClassnames } from "../util/ConcatClassNames";
 
 interface IColorPicker {
     color: string,
-    handleOnChange: (color:string) => void
+    handleOnChange: (color:string) => void,
+    className?: string
 }
 
 const ColorPicker: FC<IColorPicker> = (props) => {
@@ -68,7 +70,7 @@ const ColorPicker: FC<IColorPicker> = (props) => {
 
     return (
         <div className="color-picker-preview-wrapper">
-            <div className="color-picker-preview" onClick={() => setPickerVisible(prevState => !prevState)}>
+            <div className={concatClassnames("color-picker-preview", props.className)} onClick={() => setPickerVisible(prevState => !prevState)}>
                 <div className="color-picker-preview-color" style={{ background: getPreviewBackground() }} />
             </div>
             {pickerVisible ?
