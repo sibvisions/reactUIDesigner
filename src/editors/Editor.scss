@@ -15,7 +15,7 @@
 
 .style-editor-group {
     width: 100%;
-    padding: 0.5rem;
+    //padding: 0.5rem;
 
     .style-editor-group-header {
         display: block;
@@ -33,6 +33,7 @@
         .style-editor-label-wrapper {
             display: flex;
             align-items: center;
+            max-width: 125px;
 
             .style-editor-tooltip-icon {
                 margin-top: 1px;
@@ -41,7 +42,8 @@
         }
 
         .style-editor-label {
-            max-width: 110px;
+            //max-width: 110px;
+            flex: 1;
             padding-left: 0.25rem;
         }
 
