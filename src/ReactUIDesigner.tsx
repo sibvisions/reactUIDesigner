@@ -64,7 +64,7 @@ interface IReactUIDesigner {
   appName:string
   setShowDesigner: () => void
   changeTheme: (value: string) => void
-  uploadCallback: () => void
+  uploadCallback: (schemeName: string, themeName: string) => void
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -166,7 +166,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       .then(() => {
         if (toastRef.current) {
           toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The new styles: " + fileNameTheme + " and " + fileNameScheme + " were set for the application " + props.appName + "." });
-          props.uploadCallback();
+          props.uploadCallback(fileNameScheme, fileNameTheme);
         }
       })
       .catch((error) => {
