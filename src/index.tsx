@@ -32,7 +32,8 @@ export default ReactDOM.render(
     designerSubscription={undefined}
     appName="demo"
     setShowDesigner={() => {}}
-    changeTheme={() => {}} />,
+    changeTheme={() => {}}
+    uploadCallback={() => {}} />,
   // </React.StrictMode>,
   document.getElementById('root')
 )
