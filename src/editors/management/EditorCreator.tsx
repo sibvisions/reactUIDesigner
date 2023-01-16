@@ -207,7 +207,7 @@ function createEditors(editors: Map<string, EditorGroup>,
         editors.forEach((editorGroup, key) => {
             if (editorGroup.visible) {
                 let editorElements = editorGroup.items.map(editorItem => {
-                    const tooltipId = editorItem.label.toLowerCase().replaceAll(" ", "") + "-tooltip";
+                    const tooltipId = editorItem.label.toLowerCase().replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "") + "-tooltip";
                     if (editorItem.type === "image") {
                         return (
                             <div className='designer-panel-row designer-panel-image-upload'>
