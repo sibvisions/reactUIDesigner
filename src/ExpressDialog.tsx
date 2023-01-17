@@ -4,10 +4,11 @@ import { Dialog } from "primereact/dialog"
 import { Dropdown } from "primereact/dropdown"
 import { InputText } from "primereact/inputtext"
 import { Tooltip } from "primereact/tooltip"
-import React, { FC, useCallback, useEffect, useRef, useState } from "react"
+import React, { FC, useCallback, useContext, useEffect, useRef, useState } from "react"
 import tinycolor from "tinycolor2"
 import ColorPicker from "./editors/ColorPicker"
 import { addCSSDynamically } from "./util/AddCSSDynamically"
+import { variableContext } from "./VariableProvider"
 
 interface IExpressDialog {
     visible: boolean,
@@ -20,6 +21,8 @@ interface IExpressDialog {
 }
 
 const ExpressDialog:FC<IExpressDialog> = (props) => {
+    const context = useContext(variableContext);
+
     const themes = [
         {label: "basti", value: "basti"},
         {label: "basti (small)", value: "basti_small"},
@@ -107,7 +110,11 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                 props.showToast()
             }
             else {
-                document.documentElement.removeAttribute("style");
+                context.variables.forEach(map => {
+                    map.forEach(group => {
+                        group.items.forEach(item => document.documentElement.style.removeProperty(item.variable));
+                    })
+                })
             }
             props.handleConfirm();
         }
