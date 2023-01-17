@@ -4,7 +4,7 @@ import { Dialog } from "primereact/dialog"
 import { Dropdown } from "primereact/dropdown"
 import { InputText } from "primereact/inputtext"
 import { Tooltip } from "primereact/tooltip"
-import React, { FC, useCallback, useContext, useEffect, useRef, useState } from "react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import tinycolor from "tinycolor2"
 import ColorPicker from "./editors/ColorPicker"
 import { addCSSDynamically } from "./util/AddCSSDynamically"
@@ -15,9 +15,10 @@ interface IExpressDialog {
     handleClose: () => void,
     setPresetScheme: (value:string) => void,
     setPresetTheme: (value:string) => void,
-    handleConfirm: () => void,
+    handleConfirm: (scheme:string, theme:string) => void,
     showToast: () => void,
-    changeTheme: (value: string) => void
+    changeTheme: (value: string) => void,
+    isPreviewMode: boolean
 }
 
 const ExpressDialog:FC<IExpressDialog> = (props) => {
@@ -45,7 +46,6 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
 
     const themeReady = useRef<boolean>(false);
     const schemeReady = useRef<boolean>(false);
-    const variablesReady = useRef<boolean>(false);
 
     useEffect(() => {
         if (!schemeName && schemeColor) {
@@ -116,22 +116,32 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                     })
                 })
             }
-            props.handleConfirm();
+            props.handleConfirm(selectedScheme, selectedTheme);
         }
     }
 
     const handleConfirm = () => {
-        addCSSDynamically('color-schemes/' + selectedScheme + '.css', "schemeCSS", () => {
+        if (props.isPreviewMode) {
             props.setPresetScheme(schemeName ? schemeName : selectedScheme); 
             schemeReady.current = true;
-            readyCheck();
-        });
-        addCSSDynamically('themes/' + selectedTheme + '.css', "themeCSS", () => {
             props.setPresetTheme(selectedTheme);
             props.changeTheme(selectedTheme);
             themeReady.current = true;
             readyCheck();
-        });
+        }
+        else {
+            addCSSDynamically('color-schemes/' + selectedScheme + '.css', "schemeCSS", () => {
+                props.setPresetScheme(schemeName ? schemeName : selectedScheme); 
+                schemeReady.current = true;
+                readyCheck();
+            });
+            addCSSDynamically('themes/' + selectedTheme + '.css', "themeCSS", () => {
+                props.setPresetTheme(selectedTheme);
+                props.changeTheme(selectedTheme);
+                themeReady.current = true;
+                readyCheck();
+            });
+        }
     }
 
     const footer = 

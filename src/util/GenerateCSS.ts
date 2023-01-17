@@ -15,9 +15,8 @@
 
 import { EditorGroup, EditorItem } from "../editors/management/EditorCreator";
 import { VariableContextType } from "../VariableProvider";
-import { getPreviewVariableMap } from "./GetPreviewVariableMap";
 
-export function generateCSS(type: "scheme" | "theme", isPreviewMode: boolean, isCorporation: boolean, context: VariableContextType) {
+export function generateCSS(type: "scheme" | "theme", context: VariableContextType) {
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
     const selectorMap960: Map<string, string[]> = new Map<string, string[]>();
     const selectorMap530: Map<string, string[]> = new Map<string, string[]>();
@@ -58,7 +57,7 @@ export function generateCSS(type: "scheme" | "theme", isPreviewMode: boolean, is
 
     const printRules = (map: Map<string, EditorGroup>) => {
         map.forEach(editorItems => {
-            editorItems.items.forEach(editorItem => {
+            editorItems.items.forEach(editorItem => {      
                 if (editorItem.cssType === type) {
                     if (!alreadyAdded.includes(editorItem.variable)) {
                         cssString += "\t" + editorItem.variable + ":" + editorItem.value + ";\n";
@@ -73,14 +72,14 @@ export function generateCSS(type: "scheme" | "theme", isPreviewMode: boolean, is
         })
     }
 
-    if (isPreviewMode) {
-        printRules(getPreviewVariableMap(context, isCorporation))
-    }
-    else {
-        context.variables.forEach((tabGroup) => {
-            printRules(tabGroup);
-        });
-    }
+    // if (isPreviewMode) {
+    //     printRules(getPreviewVariableMap(context, isCorporation))
+    // }
+    // else {
+    context.variables.forEach((tabGroup) => {
+        printRules(tabGroup);
+    });
+    //}
 
     cssString += "}\n\n"
 

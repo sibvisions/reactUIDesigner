@@ -94,8 +94,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const [presetTheme, setPresetTheme] = useState<string>("notSet");
 
-  const [expressConfirm, setExpressConfirm] = useState<boolean>()
-
   const [presetScheme, setPresetScheme] = useState<string>("notSet");
 
   const [variablesReady, setVariablesReady] = useState<boolean>(false);
@@ -130,10 +128,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const handleDownload = () => {
     const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme", isPreviewMode, props.isCorporation, context);
+    const schemeCSS = generateCSS("scheme", context);
 
     const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme", isPreviewMode, props.isCorporation, context);
+    const themeCSS = generateCSS("theme", context);
 
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(themeCSS));
@@ -149,10 +147,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const handleUpload = (uploadUrl: string) => {
     const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme", isPreviewMode, props.isCorporation, context);
+    const schemeCSS = generateCSS("scheme", context);
 
     const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme", isPreviewMode, props.isCorporation, context);
+    const themeCSS = generateCSS("theme", context);
 
     const formData = new FormData();
 
@@ -306,13 +304,14 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           setPresetTheme(val);
           setThemeName(val);
         }}
-        handleConfirm={() => setExpressConfirm(prevState => !prevState)}
+        handleConfirm={(scheme:string, theme:string) => props.uploadCallback(scheme + ".css", theme + ".css")}
         showToast={() => {
           if (toastRef.current) {
             toastRef.current.show({ severity: "error", summary: "Invalid Color!", detail: "This color is invalid please use a valid color." })
           }
         }}
-        changeTheme={props.changeTheme} />
+        changeTheme={props.changeTheme}
+        isPreviewMode={isPreviewMode} />
         <div className='designer-main'>
           <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
             <div className='designer-topbar'>
