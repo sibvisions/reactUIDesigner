@@ -245,7 +245,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                                     <i className="tooltip-icon pi pi-info-circle" />
                                     <span className="style-editor-label">{editorItem.label}</span>
                                 </div>
-                                <img alt={editorItem.label} id={editorItem.label.toLowerCase() + '-image'} className='designer-panel-image' src={editorItem.label === "Login" ? props.logoLogin : editorItem.label === "Menu" ? props.logoBig : props.logoSmall} />
+                                <img alt={editorItem.label} id={editorItem.label !== "Collapsed Menu" ? editorItem.label.toLowerCase() + '-image' : 'small-image'} className='designer-panel-image' src={editorItem.label === "Login" ? props.logoLogin : editorItem.label === "Menu" ? props.logoBig : props.logoSmall} />
                                 <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage(editorItem.label === "Login" ? "login" : editorItem.label === "Menu" ? "menu" : "small")} />
                             </div>
                         )
