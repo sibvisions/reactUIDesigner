@@ -164,6 +164,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       .then(() => {
         if (toastRef.current) {
           toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The new styles: " + fileNameTheme + " and " + fileNameScheme + " were set for the application " + props.appName + "." });
+          localStorage.setItem("designerScheme", fileNameScheme.substring(0, fileNameScheme.indexOf(".")));
+          localStorage.setItem("designerTheme", fileNameTheme.substring(0, fileNameTheme.indexOf(".")));
           props.uploadCallback(fileNameScheme, fileNameTheme);
         }
       })

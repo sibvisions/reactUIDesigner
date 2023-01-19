@@ -313,7 +313,7 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".basti .rc-table .p-datatable-tbody > tr > td", ["height: calc(8px + var(--table-data-height));"])
                         .set(".error-dialog .error-dialog-listbox .p-listbox-item", ["height: calc(8px + var(--table-data-height));", "line-height: var(--table-data-height);"])
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item", ["height: calc(8px + var(--table-data-height));"]),
-                    tooltip: "The height of table rows."
+                    tooltip: "The height of table rows. Note: minimum height is 16px!"
                 }
             ]
         }

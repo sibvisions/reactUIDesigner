@@ -195,7 +195,37 @@ function createEditors(editors: Map<string, EditorGroup>,
                         value={editorItem.value}
                         onChange={(event) => setVariableState(key, editorItem, event.target.value)}
                         onBlur={() => {
-                            document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
+                            const convertToPixels = (value: number) => {    
+                                return value * parseFloat(getComputedStyle(document.documentElement).fontSize);
+                            }
+                            const convertToRem = () => {
+                                return 16 / parseFloat(getComputedStyle(document.documentElement).fontSize);
+                            }
+
+                            // table data height cant go lower than 16px, 1rem or 1em
+                            if (editorItem.variable === "--table-data-height") {
+                                console.log(parseFloat(getComputedStyle(document.documentElement).fontSize));
+                                if (editorItem.value.includes("px") && parseFloat(editorItem.value) < 16) {
+                                    setVariableState(key, editorItem, "16px");
+                                    document.documentElement.style.setProperty(editorItem.variable, "16px");
+                                }
+                                else if (convertToPixels(parseFloat(editorItem.value)) < 16) {
+                                    if (editorItem.value.includes("rem")) {
+                                        setVariableState(key, editorItem, "1rem");
+                                        document.documentElement.style.setProperty(editorItem.variable, convertToRem() + "rem");
+                                    }
+                                    else {
+                                        setVariableState(key, editorItem, "1em");
+                                        document.documentElement.style.setProperty(editorItem.variable, convertToRem() + "em");
+                                    }
+                                }
+                                else {
+                                    document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
+                                }
+                            }
+                            else {
+                                document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
+                            }
                             updateVariables(editorItem);
                         }} />
                 )
