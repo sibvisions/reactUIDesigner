@@ -54,7 +54,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
     }, [schemeName]);
 
     const setStyle = (primaryColor:string) => {
-        const docStyle = document.documentElement.style
+        const docStyle = document.documentElement.style;
         docStyle.setProperty("--primary-color", primaryColor);
         docStyle.setProperty("--frame-hover-backgrounds", tinycolor(primaryColor).darken(10).toString());
         docStyle.setProperty("--checkbox-radio-selected-hover-background", tinycolor(primaryColor).darken(5).toString());

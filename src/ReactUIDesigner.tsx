@@ -27,6 +27,7 @@ import TopBar from './previews/topbar/TopBar';
 import { concatClassnames } from './util/ConcatClassNames';
 import ExpressDialog from './ExpressDialog';
 import { addCSSDynamically } from './util/AddCSSDynamically';
+import { Tooltip } from 'primereact/tooltip';
 
 export type DesignerSubscriptionManager = {
   notifyFontSizeChanged: Function,
@@ -127,54 +128,71 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   }, [presetScheme, presetTheme]);
 
   const handleDownload = () => {
-    const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme", context);
-
-    const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme", context);
-
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(themeCSS));
-    element.setAttribute('download', fileNameTheme);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(schemeCSS));
-    element.setAttribute('download', fileNameScheme);
-    element.click();
-    document.body.removeChild(element);
+    if (context.schemeName === "factory-default" || context.themeName === "factory-basti") {
+      confirmDialog({
+        message: "The set name(s) of the color-scheme and/or theme is not allowed!",
+        header: "Unallowed Names!",
+        icon: "pi pi-times-circle"
+      });
+    }
+    else {
+      const fileNameScheme = context.schemeName + ".css";
+      const schemeCSS = generateCSS("scheme", context);
+      const fileNameTheme = context.themeName + ".css";
+      const themeCSS = generateCSS("theme", context);
+  
+      const element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(themeCSS));
+      element.setAttribute('download', fileNameTheme);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(schemeCSS));
+      element.setAttribute('download', fileNameScheme);
+      element.click();
+      document.body.removeChild(element);
+    }
   }
 
   const handleUpload = (uploadUrl: string) => {
-    const fileNameScheme = context.schemeName + ".css";
-    const schemeCSS = generateCSS("scheme", context);
-
-    const fileNameTheme = context.themeName + ".css";
-    const themeCSS = generateCSS("theme", context);
-
-    const formData = new FormData();
-
-    formData.set("theme-file-name", fileNameTheme);
-    formData.set("theme-css", themeCSS);
-
-    formData.set("scheme-file-name", fileNameScheme);
-    formData.set("scheme-css", schemeCSS);
-
-    sendRequest({ formData: formData }, uploadUrl)
-      .then(() => {
-        if (toastRef.current) {
-          toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The new styles: " + fileNameTheme + " and " + fileNameScheme + " were set for the application " + props.appName + "." });
-          sessionStorage.setItem("reactui-designer-scheme-" + props.appName, fileNameScheme.substring(0, fileNameScheme.indexOf(".")));
-          sessionStorage.setItem("reactui-designer-theme-" + props.appName, fileNameTheme.substring(0, fileNameTheme.indexOf(".")));
-          props.uploadCallback(fileNameScheme, fileNameTheme);
-        }
-      })
-      .catch((error) => {
-        if (toastRef.current) {
-          toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". " + error })
-        }
-        console.error(error)
+    if (context.schemeName === "factory-default" || context.themeName === "factory-basti") {
+      confirmDialog({
+        message: "The set name(s) of the color-scheme and/or theme is not allowed!",
+        header: "Unallowed Names!",
+        icon: "pi pi-times-circle"
       });
+    }
+    else {
+      const fileNameScheme = context.schemeName + ".css";
+      const schemeCSS = generateCSS("scheme", context);
+  
+      const fileNameTheme = context.themeName + ".css";
+      const themeCSS = generateCSS("theme", context);
+  
+      const formData = new FormData();
+  
+      formData.set("theme-file-name", fileNameTheme);
+      formData.set("theme-css", themeCSS);
+  
+      formData.set("scheme-file-name", fileNameScheme);
+      formData.set("scheme-css", schemeCSS);
+  
+      sendRequest({ formData: formData }, uploadUrl)
+        .then(() => {
+          if (toastRef.current) {
+            toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The new styles: " + fileNameTheme + " and " + fileNameScheme + " were set for the application " + props.appName + "." });
+            sessionStorage.setItem("reactui-designer-scheme-" + props.appName, fileNameScheme.substring(0, fileNameScheme.indexOf(".")));
+            sessionStorage.setItem("reactui-designer-theme-" + props.appName, fileNameTheme.substring(0, fileNameTheme.indexOf(".")));
+            props.uploadCallback(fileNameScheme, fileNameTheme);
+          }
+        })
+        .catch((error) => {
+          if (toastRef.current) {
+            toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". " + error })
+          }
+          console.error(error)
+        });
+    }
   }
 
   useEffect(() => {
@@ -185,25 +203,40 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     context.schemeName = schemeName;
   }, [schemeName, context]);
 
-  useEffect(() => {
+  const overwriteStyleToContext = useCallback(() => {
     const docStyle = window.getComputedStyle(document.documentElement);
-    if (isPreviewMode) {
-      context.defaultValues.forEach((value, key) => {
-        context.defaultValues.set(key, docStyle.getPropertyValue(key))
-      })
+    context.defaultValues.forEach((value, key) => {
+      context.defaultValues.set(key, docStyle.getPropertyValue(key))
+    })
 
-      context.variables.forEach((variableMap) => {
-        variableMap.forEach((editorGroup) => {
-          editorGroup.items.forEach(editorItem => {
-            editorItem.value = docStyle.getPropertyValue(editorItem.variable)
-          })
+    context.variables.forEach((variableMap) => {
+      variableMap.forEach((editorGroup) => {
+        editorGroup.items.forEach(editorItem => {
+          editorItem.value = docStyle.getPropertyValue(editorItem.variable)
         })
       })
+    })
+  }, [context.variables]);
+
+  const overwriteContextToStyle = useCallback(() => {
+    const docStyle = document.documentElement.style;
+    context.variables.forEach((variableMap) => {
+      variableMap.forEach((editorGroup) => {
+        editorGroup.items.forEach(editorItem => {
+          docStyle.setProperty(editorItem.variable, editorItem.value);
+        })
+      })
+    })
+  }, [context.variables])
+
+  useEffect(() => {
+    if (isPreviewMode) {
+      overwriteStyleToContext()
       setPreviewValuesChanges(true);
     }
-  }, [isPreviewMode, context.defaultValues, context.variables]);
+  }, [isPreviewMode, context.defaultValues, context.variables, overwriteStyleToContext]);
 
-  const confirm = () => {
+  const resetToDefault = () => {
     const acceptFunc = () => {
       context.variables.forEach((variableMap) => {
         variableMap.forEach((editorGroup) => {
@@ -217,26 +250,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         });
       });
       if (props.designerSubscription) {
-        props.designerSubscription.notifyButtonBackgroundChanged();
-        props.designerSubscription.notifyButtonPaddingChanged();
-        props.designerSubscription.notifyCheckboxSizeChanged();
-        props.designerSubscription.notifyCorpHeaderChanged();
-        props.designerSubscription.notifyCorpMenubarChanged();
-        props.designerSubscription.notifyFontSizeChanged();
-        props.designerSubscription.notifyIconOnlyPaddingChanged();
-        props.designerSubscription.notifyInputButtonPaddingChanged();
-        props.designerSubscription.notifyInputLRPaddingChanged();
-        props.designerSubscription.notifyInputTBPaddingChanged();
-        props.designerSubscription.notifyMenuBarHeightChanged();
-        props.designerSubscription.notifyMenuButtonPaddingChanged();
-        props.designerSubscription.notifyRadiobuttonSizeChanged();
-        props.designerSubscription.notifyStdHeaderChanged();
-        props.designerSubscription.notifyStdMenuCollapsedWidthChanged();
-        props.designerSubscription.notifyStdMenuWidthChanged();
-        props.designerSubscription.notifyTabPaddingChanged();
-        props.designerSubscription.notifyTableDataHeightChanged();
-        props.designerSubscription.notifyTableHeaderPaddingChanged();
-        props.designerSubscription.notifyTopbarColorChanged();
+        props.designerSubscription.notifyAll();
       }
       setReset(prevState => !prevState)
     }
@@ -244,6 +258,48 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     confirmDialog({
       message: "Are you sure you want to reset to default?",
       header: "Resetting Variables",
+      icon: "pi pi-question-circle",
+      accept: () => acceptFunc(),
+    })
+  }
+
+  const resetToFactory = () => {
+    const acceptFunc = () => {
+      let schemeReady = false;
+      let themeReady = false;
+
+      const readyCheck = () => {
+        if (schemeReady && themeReady) {
+          overwriteStyleToContext();
+          if (props.designerSubscription) {
+            props.designerSubscription.notifyAll();
+          }
+          for (let link of document.head.getElementsByTagName('link')) {
+            if (link.href.includes("factory-default.css") || link.href.includes("factory-basti.css")) {
+              document.head.removeChild(link);
+            }
+          }
+          overwriteContextToStyle()
+          setVariablesReady(prevState => !prevState);
+        }
+      }
+      addCSSDynamically("color-schemes/factory-default.css", "factoryCSS", () => {
+        setTimeout(() => {
+          schemeReady = true;
+          readyCheck();
+        }, 0);
+      });
+      addCSSDynamically("themes/factory-basti.css", "factoryCSS", () => {
+        setTimeout(() => {
+          themeReady = true;
+          readyCheck();
+        }, 0)
+      })
+    }
+
+    confirmDialog({
+      message: "Are you sure you want to reset to factory default?",
+      header: "Resetting to Factory Default",
       icon: "pi pi-question-circle",
       accept: () => acceptFunc(),
     })
@@ -319,8 +375,12 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             <div className='designer-topbar'>
               <div className='designer-topbar-left'>
                 {isPreviewMode && <Button className='designer-topbar-buttons' icon='fas fa-palette' onClick={() => props.setShowDesigner()} />}
-                <Button className='designer-topbar-buttons' icon='fas fa-undo' onClick={confirm} />
-                <Button className='designer-topbar-buttons' icon='fas fa-fast-forward' onClick={() => setExpressVisible(true)} />
+                <Tooltip target={"#reset-default-button"} />
+                <Tooltip target={"#reset-factory-button"} />
+                <Tooltip target={"#express-mode-button"} />
+                <Button id={"reset-default-button"} className='designer-topbar-buttons' icon='fas fa-undo' onClick={resetToDefault} data-pr-tooltip="Reset to Default" />
+                <Button id={"reset-factory-button"} className='designer-topbar-buttons' icon='fas fa-industry' onClick={resetToFactory} data-pr-tooltip="Reset to Factory Default" />
+                <Button id={"express-mode-button"} className='designer-topbar-buttons' icon='fas fa-fast-forward' onClick={() => setExpressVisible(true)} data-pr-tooltip="Express-Mode" />
               </div>
               <span className='designer-topbar-header'>App-Designer</span>
             </div>

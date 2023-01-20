@@ -19,7 +19,7 @@
  * @param type - the type of stylesheet that is added
  * @param appReadyCallback - a callback to set the appready-state
  */
-export function addCSSDynamically(path:string, type:"applicationCSS"|"schemeCSS"|"themeCSS", appReadyCallback:() => void) {
+export function addCSSDynamically(path:string, type:"applicationCSS"|"schemeCSS"|"themeCSS"|"factoryCSS", appReadyCallback:() => void) {
     let before = undefined
     for (let link of document.head.getElementsByTagName('link')) {
         if (link.href.includes("application.css")) {
