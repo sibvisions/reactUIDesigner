@@ -29,6 +29,7 @@ interface IEditorManager {
     logoBig:string
     logoSmall: string
     variablesReady: boolean
+    transferType: "full"|"partial"|"all"
 }
 
 export enum EDITOR_INDICES {
@@ -52,7 +53,7 @@ const EditorManager: FC<IEditorManager> = (props) => {
 
     const editors = useMemo(() => {
         if (props.isPreviewMode) {
-            return getPreviewVariableMap(context, props.isCorporation);
+            return getPreviewVariableMap(context, props.isCorporation, props.transferType);
         }
         else {
             const generalMap: Map<string, EditorGroup> = new Map<string, EditorGroup>([...context.variables.get("-3") as Map<string, EditorGroup>, ...context.variables.get("-2") as Map<string, EditorGroup>, ...context.variables.get("-1") as Map<string, EditorGroup>]);

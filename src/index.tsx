@@ -33,7 +33,8 @@ export default ReactDOM.render(
     appName="demo"
     setShowDesigner={() => {}}
     changeTheme={() => {}}
-    uploadCallback={() => {}} />,
+    uploadCallback={() => {}}
+    transferType="all" />,
   // </React.StrictMode>,
   document.getElementById('root')
 )

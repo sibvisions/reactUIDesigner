@@ -17,12 +17,16 @@ import { EditorGroup } from "../editors/management/EditorCreator";
 import { EDITOR_INDICES } from "../editors/management/EditorManager";
 import { VariableContextType } from "../VariableProvider";
 
-export function getPreviewVariableMap(context: VariableContextType, isCorporation: boolean) {
+export function getPreviewVariableMap(context: VariableContextType, isCorporation: boolean, transferType:"full"|"partial"|"all") {
     let newVariableMap = new Map<string, EditorGroup>();
     const variableEntries = context.variables.entries();
     let entry = variableEntries.next();
     while (!entry.done) {
-        if ((isCorporation && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS) || (!isCorporation && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS)) {
+        if ((isCorporation && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS) 
+            || (!isCorporation && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS) 
+            || (transferType !== "full" && entry.value[0] !== EDITOR_INDICES.FULLTRANSFER_EDITORS)
+            || (transferType !== "partial" && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS && entry.value[0] !== EDITOR_INDICES.LOGIN_EDITORS)
+            || transferType === "all") {
             newVariableMap = new Map<string, EditorGroup>([...newVariableMap, ...entry.value[1]]);
         }
         entry = variableEntries.next();

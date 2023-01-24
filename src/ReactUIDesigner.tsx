@@ -65,7 +65,8 @@ interface IReactUIDesigner {
   appName:string
   setShowDesigner: () => void
   changeTheme: (value: string) => void
-  uploadCallback: (schemeName: string, themeName: string) => void
+  uploadCallback: (schemeName: string, themeName: string) => void,
+  transferType: "full"|"partial"|"all"
 }
 
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
@@ -442,6 +443,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                 logoBig={props.logoBig}
                 logoSmall={props.logoSmall}
                 variablesReady={variablesReady}
+                transferType={props.transferType}
                 />
             </div>
           </div>
