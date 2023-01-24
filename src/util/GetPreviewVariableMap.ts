@@ -22,11 +22,10 @@ export function getPreviewVariableMap(context: VariableContextType, isCorporatio
     const variableEntries = context.variables.entries();
     let entry = variableEntries.next();
     while (!entry.done) {
-        if ((isCorporation && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS) 
-            || (!isCorporation && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS) 
-            || (transferType !== "full" && entry.value[0] !== EDITOR_INDICES.FULLTRANSFER_EDITORS)
+        if (((isCorporation && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS) || (!isCorporation && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS))
+            && ((transferType !== "full" && entry.value[0] !== EDITOR_INDICES.FULLTRANSFER_EDITORS)
             || (transferType !== "partial" && entry.value[0] !== EDITOR_INDICES.MENU_EDITORS && entry.value[0] !== EDITOR_INDICES.COPORATE_EDITORS && entry.value[0] !== EDITOR_INDICES.LOGIN_EDITORS)
-            || transferType === "all") {
+            || transferType === "all")) {
             newVariableMap = new Map<string, EditorGroup>([...newVariableMap, ...entry.value[1]]);
         }
         entry = variableEntries.next();
