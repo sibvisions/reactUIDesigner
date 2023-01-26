@@ -144,6 +144,12 @@ function createEditors(editors: Map<string, EditorGroup>,
     }
 
     const getInputElements = (editorItem: EditorItem, key: string) => {
+        const storeValue = (editorItem: EditorItem, value: string) => {
+            const variableName = editorItem.variable.replace("--", "")
+            const sessionItem = "reactui-designer-" + variableName + "-" + context.appName;
+            sessionStorage.setItem(sessionItem, value);
+        }
+
         switch (editorItem.type) {
             case "color":
                 return (
@@ -151,6 +157,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                         <ColorPicker color={editorItem.value} handleOnChange={(color:string) => {
                             setVariableState(key, editorItem, color);
                             document.documentElement.style.setProperty(editorItem.variable, color);
+                            storeValue(editorItem, color);
                             updateVariables(editorItem);
                         }} />
                         <Button
@@ -164,7 +171,8 @@ function createEditors(editors: Map<string, EditorGroup>,
                             tooltip="Transparent"
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
-                                document.documentElement.style.setProperty(editorItem.variable, "transparent")
+                                document.documentElement.style.setProperty(editorItem.variable, "transparent");
+                                storeValue(editorItem, "transparent");
                                 updateVariables(editorItem);
                             }} />
                     </>
@@ -178,6 +186,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             onChange={(event) => setVariableState(key, editorItem, event.target.value)}
                             onBlur={() => {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
+                                storeValue(editorItem, editorItem.value);
                                 updateVariables(editorItem);
                             }} />
                         <Button
@@ -204,7 +213,6 @@ function createEditors(editors: Map<string, EditorGroup>,
 
                             // table data height cant go lower than 16px, 1rem or 1em
                             if (editorItem.variable === "--table-data-height") {
-                                console.log(parseFloat(getComputedStyle(document.documentElement).fontSize));
                                 if (editorItem.value.includes("px") && parseFloat(editorItem.value) < 16) {
                                     setVariableState(key, editorItem, "16px");
                                     document.documentElement.style.setProperty(editorItem.variable, "16px");
@@ -226,6 +234,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             else {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
                             }
+                            storeValue(editorItem, editorItem.value);
                             updateVariables(editorItem);
                         }} />
                 )

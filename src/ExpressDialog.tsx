@@ -116,6 +116,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                     })
                 })
             }
+            sessionStorage.clear();
             props.handleConfirm(selectedScheme, selectedTheme);
         }
     }

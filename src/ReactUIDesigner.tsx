@@ -28,6 +28,7 @@ import { concatClassnames } from './util/ConcatClassNames';
 import ExpressDialog from './ExpressDialog';
 import { addCSSDynamically } from './util/AddCSSDynamically';
 import { Tooltip } from 'primereact/tooltip';
+import { getCSSValue } from './util/GetCSSValue';
 
 export type DesignerSubscriptionManager = {
   notifyFontSizeChanged: Function,
@@ -100,6 +101,9 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
   const [variablesReady, setVariablesReady] = useState<boolean>(false);
 
+  const lastPreTheme = useRef<string>(presetTheme);
+  const lastPreScheme = useRef<string>(presetScheme);
+
   useEffect(() => {
     if (!isPreviewMode) {
       addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setPresetScheme("default"));
@@ -112,15 +116,14 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     context.variables.forEach((map) => {
       map.forEach(editorGroup => {
         editorGroup.items.forEach(editorItem => {
-            const propertyValue = docStyle.getPropertyValue(editorItem.variable);
-            editorItem.value = propertyValue
-            
-            if (context.defaultValues.has(editorItem.variable)) {
-              context.defaultValues.set(editorItem.variable, propertyValue)
-            }
-        })
+            context.defaultValues.set(editorItem.variable, docStyle.getPropertyValue(editorItem.variable));
+            editorItem.value = getCSSValue(editorItem, context.appName, lastPreTheme.current, lastPreScheme.current);
+        });
       })
-    })
+    });
+
+    lastPreScheme.current = presetScheme;
+    lastPreTheme.current = presetTheme;
     setVariablesReady(prevState => !prevState);
 
     if (props.designerSubscription) {
@@ -197,6 +200,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   }
 
   useEffect(() => {
+    context.appName = props.appName;
+  }, [props.appName])
+
+  useEffect(() => {
     context.themeName = themeName;
   }, [themeName, context]);
 
@@ -244,6 +251,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           editorGroup.items.forEach((editorItem) => {
             const foundDefaultValue = context.defaultValues.get(editorItem.variable);
             if (foundDefaultValue) {
+              const variableName = editorItem.variable.replace("--", "");
+              sessionStorage.removeItem("reactui-designer-" + variableName + "-" + context.appName);
               editorItem.value = foundDefaultValue;
               document.documentElement.style.setProperty(editorItem.variable, foundDefaultValue);
             }

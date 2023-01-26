@@ -13,7 +13,7 @@
  * the License.
  */
 
-import React, { createContext, FC, useState } from "react"
+import React, { createContext, FC, useEffect, useState } from "react"
 import { EditorGroup } from "./editors/management/EditorCreator"
 import { crashEditors, expressEditors, generalEditors, imageEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
@@ -31,6 +31,7 @@ import { topbarEditors } from "./editors/TopbarEditors";
 import { fullEditors } from "./editors/FullEditors";
 
 export type VariableContextType = {
+    appName: string
     schemeName: string,
     themeName: string,
     isPreviewMode: boolean,
@@ -64,25 +65,6 @@ const editorArray = [
     menuExtras
 ];
 
-function getDefaultValues() {
-    const docStyle = window.getComputedStyle(document.documentElement);
-    const mergedMap = new Map<string, EditorGroup>();
-    editorArray.forEach(map => map.forEach((val, key) => mergedMap.set(key, val)))
-    const componentEntries = mergedMap.entries();
-    const defaultValues = new Map<string, string>();
-    let entry = componentEntries.next();
-
-    while (!entry.done) {
-        const editorItems = entry.value[1].items;
-        editorItems.forEach(editorItem => {
-            defaultValues.set(editorItem.variable, docStyle.getPropertyValue(editorItem.variable))
-        })
-
-        entry = componentEntries.next();
-    }
-    return defaultValues;
-}
-
 function getVariables() {
     const variableMap = new Map<string, Map<string, EditorGroup>>();
     let i = -3;
@@ -93,13 +75,12 @@ function getVariables() {
     return variableMap;
 }
 
-getVariables()
-
 const initValue: VariableContextType = {
+    appName: "demo",
     schemeName: "default",
     themeName: "basti",
     variables: getVariables(),
-    defaultValues: getDefaultValues(),
+    defaultValues: new Map<string, string>(),
     isPreviewMode: false,
     updateButtonBackground: () => {},
     updateTopbarColors: () => {}
