@@ -20,8 +20,9 @@ import { InputText } from "primereact/inputtext";
 import { Tooltip } from "primereact/tooltip";
 import { variableContext, VariableContextType } from "../../VariableProvider";
 import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
-import ColorPicker from "../ColorPicker";
+import ColorPicker from "../colorpicker/ColorPicker";
 
+/** Type for EditorItems */
 export type EditorItem = {
     variable: string,
     label: string,
@@ -34,12 +35,14 @@ export type EditorItem = {
     tooltip?: string
 }
 
+/** Type for EditorGroups */
 export type EditorGroup = {
     name: string,
     visible: boolean
     items: EditorItem[]
 }
 
+/** Interface for the EditorCreator */
 interface IEditorCreator {
     index: number,
     isPreviewMode: boolean,
@@ -51,12 +54,24 @@ interface IEditorCreator {
     logoSmall: string
 }
 
+/**
+ * Returns the elements of the editors
+ * @param editors - the editors which need to be rendered
+ * @param setCallback - a callback to change the type of the editor if there is a swap from color to color-text or to set a variables value
+ * @param defaultValues - the default values of the editors to restore default
+ * @param context - the context for various values which need to be changed
+ * @param props - the props of the editorcreator (IEditorCreator)
+ */
 function createEditors(editors: Map<string, EditorGroup>,
     setCallback: React.Dispatch<React.SetStateAction<Map<string, EditorGroup>>>,
     defaultValues: Map<string, string>,
     context: VariableContextType,
     props: IEditorCreator
 ) {
+    /** 
+     * A Map to call functions to tell the components to update their size. 
+     * The key are the CSS-variables and the values are the function which need to be called to tell the components to remeasure themselves
+     *  */
     const subFunctionMap: Map<string, Function> = props.designerSubscription ? new Map<string, Function>()
         .set("--font-size", () => props.designerSubscription!.notifyFontSizeChanged())
         .set("--std-header-height", () => props.designerSubscription!.notifyStdHeaderChanged())
@@ -81,6 +96,12 @@ function createEditors(editors: Map<string, EditorGroup>,
         .set("--menubar-height", props.designerSubscription!.notifyMenuBarHeightChanged())
         : new Map<string, Function>()
 
+    /**
+     * Sets the value of a variable
+     * @param key - the name of the EditorGroup
+     * @param pItem - the EditorItem to update
+     * @param value - the value which gets set
+     */
     const setVariableState = (key: string, pItem: EditorItem, value: string) => {
         setCallback(prevState => {
             const mapCopy = new Map(prevState);
@@ -111,6 +132,10 @@ function createEditors(editors: Map<string, EditorGroup>,
         });
     }
 
+    /**
+     * Updating the variables similar to what props.designerSubscription does but when the designer is used without the reactui
+     * @param editorItem - the EditorItem which needs to be updated
+     */
     const updateVariables = (editorItem: EditorItem) => {
         if (subFunctionMap.has(editorItem.variable)) {
             (subFunctionMap.get(editorItem.variable) as Function)()
@@ -125,6 +150,11 @@ function createEditors(editors: Map<string, EditorGroup>,
         }
     }
 
+    /**
+     * Swaps the editor mode between color and color-text
+     * @param key - the key of the EditorGroup
+     * @param pItem - the item which needs to be updated
+     */
     const swapColorType = (key: string, pItem: EditorItem) => {
         setCallback(prevState => {
             const mapCopy = new Map(prevState);
@@ -143,9 +173,19 @@ function createEditors(editors: Map<string, EditorGroup>,
         });
     }
 
+    /**
+     * Returns the editor elements for each variable according to their type
+     * @param editorItem - the EditorItem to render
+     * @param key - the key of the EditorGroup
+     */
     const getInputElements = (editorItem: EditorItem, key: string) => {
-        const storeValue = (editorItem: EditorItem, value: string) => {
-            const variableName = editorItem.variable.replace("--", "")
+        /**
+         * Stores the value changes in the session-storage so when the user refreshes the progress won't be lost.
+         * @param variable - the variable which is being changed
+         * @param value - the value which is set
+         */
+        const storeValue = (variable: string, value: string) => {
+            const variableName = variable.replace("--", "")
             const sessionItem = "reactui-designer-" + variableName + "-" + context.appName;
             sessionStorage.setItem(sessionItem, value);
         }
@@ -157,7 +197,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                         <ColorPicker color={editorItem.value} handleOnChange={(color:string) => {
                             setVariableState(key, editorItem, color);
                             document.documentElement.style.setProperty(editorItem.variable, color);
-                            storeValue(editorItem, color);
+                            storeValue(editorItem.variable, color);
                             updateVariables(editorItem);
                         }} />
                         <Button
@@ -172,7 +212,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
                                 document.documentElement.style.setProperty(editorItem.variable, "transparent");
-                                storeValue(editorItem, "transparent");
+                                storeValue(editorItem.variable, "transparent");
                                 updateVariables(editorItem);
                             }} />
                     </>
@@ -186,7 +226,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             onChange={(event) => setVariableState(key, editorItem, event.target.value)}
                             onBlur={() => {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
-                                storeValue(editorItem, editorItem.value);
+                                storeValue(editorItem.variable, editorItem.value);
                                 updateVariables(editorItem);
                             }} />
                         <Button
@@ -234,13 +274,14 @@ function createEditors(editors: Map<string, EditorGroup>,
                             else {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
                             }
-                            storeValue(editorItem, editorItem.value);
+                            storeValue(editorItem.variable, editorItem.value);
                             updateVariables(editorItem);
                         }} />
                 )
         }
     }
 
+    // Adds every group to an accordion.
     let groupElements: JSX.Element[] = []
     if (editors.size) {
         editors.forEach((editorGroup, key) => {
@@ -292,13 +333,18 @@ function createEditors(editors: Map<string, EditorGroup>,
     return groupElements
 }
 
+/** Renders the Editors in an Accordion */
 const EditorCreator: FC<IEditorCreator> = (props) => {
+    /** The context to gain access to the variables, defaultValues and more. */
     const context = useContext(variableContext)
 
+    /** State of the editors to display (EditorItems) */
     const [editors, setEditors] = useState(props.editors);
 
+    /** The search string to search for specific variables */
     const [search, setSearch] = useState<string>("");
 
+    // If there is a search string, search for the editors which fit the search
     useEffect(() => {
         if (search) {
             const searchResultMap:Map<string, EditorGroup> = new Map<string, EditorGroup>();

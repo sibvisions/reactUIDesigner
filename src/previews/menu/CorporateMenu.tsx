@@ -20,7 +20,9 @@ import { menuModel, profileModel } from "./Menu";
 import { MenuItem } from "primereact/menuitem";
 import { Button } from "primereact/button";
 
+/** A preview the corporation menu to see changes live */
 const CorporateMenu: FC = () => {
+    /** Toolbar menu model */
     const toolbarItems:MenuItem[] = [
         {
             label: "Toolbar Item 1",

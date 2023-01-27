@@ -15,8 +15,21 @@
 
 import { EditorGroup } from "./management/EditorCreator";
 
+/** The current style of the root element */
 const docStyle = window.getComputedStyle(document.documentElement);
 
+/** 
+ * The EditorItems for general variables.
+ * @var variable - the name of the variable which is being edited
+ * @var label - the label which is being displayed in the designer
+ * @var type - the type of the editor, color is a colorpicker, color-text is a text input for colors, and text is just a text.
+ * @var cssType - either scheme or theme to know in which css file the variable is saved
+ * @var value - the current value of the variable
+ * @var usage - a Map which contains the CSS selector as key and the styles as value, to generate the css file
+ * @var usage960 - optional, same as usage but for media query 960px
+ * @var usage530 - optional, same as usage but for media query 530px
+ * @var tooltip - optional, displays a tooltip for the variable
+ */
 export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGroup>()
     .set("General", {
         name: "General",
@@ -93,6 +106,18 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
         ]
     });
 
+/** 
+ * The EditorItems for images.
+ * @var variable - the name of the variable which is being edited
+ * @var label - the label which is being displayed in the designer
+ * @var type - the type of the editor, color is a colorpicker, color-text is a text input for colors, and text is just a text.
+ * @var cssType - either scheme or theme to know in which css file the variable is saved
+ * @var value - the current value of the variable
+ * @var usage - a Map which contains the CSS selector as key and the styles as value, to generate the css file
+ * @var usage960 - optional, same as usage but for media query 960px
+ * @var usage530 - optional, same as usage but for media query 530px
+ * @var tooltip - optional, displays a tooltip for the variable
+ */
 export const imageEditors: Map<string, EditorGroup> = new Map<string, EditorGroup>()
     .set("Images", {
         name: "Images",
@@ -128,6 +153,18 @@ export const imageEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
         ]
     })
 
+/** 
+ * The EditorItems for express variables.
+ * @var variable - the name of the variable which is being edited
+ * @var label - the label which is being displayed in the designer
+ * @var type - the type of the editor, color is a colorpicker, color-text is a text input for colors, and text is just a text.
+ * @var cssType - either scheme or theme to know in which css file the variable is saved
+ * @var value - the current value of the variable
+ * @var usage - a Map which contains the CSS selector as key and the styles as value, to generate the css file
+ * @var usage960 - optional, same as usage but for media query 960px
+ * @var usage530 - optional, same as usage but for media query 530px
+ * @var tooltip - optional, displays a tooltip for the variable
+ */
 export const expressEditors: Map<string, EditorGroup> = new Map<string, EditorGroup>()
     .set("Express", {
         name: "Express",
@@ -227,7 +264,18 @@ export const expressEditors: Map<string, EditorGroup> = new Map<string, EditorGr
         ]
     })
 
-
+/** 
+ * The EditorItems for all crash message variables.
+ * @var variable - the name of the variable which is being edited
+ * @var label - the label which is being displayed in the designer
+ * @var type - the type of the editor, color is a colorpicker, color-text is a text input for colors, and text is just a text.
+ * @var cssType - either scheme or theme to know in which css file the variable is saved
+ * @var value - the current value of the variable
+ * @var usage - a Map which contains the CSS selector as key and the styles as value, to generate the css file
+ * @var usage960 - optional, same as usage but for media query 960px
+ * @var usage530 - optional, same as usage but for media query 530px
+ * @var tooltip - optional, displays a tooltip for the variable
+ */
 export const crashEditors: Map<string, EditorGroup> = new Map<string, EditorGroup>()
     .set("CrashView", {
         name: "Crash View",

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import { concatClassnames } from '../../util/ConcatClassNames';
 
+/** preview of the loadingscreen to see changes live */
 const LoadingPreview: FC = () => {
     return (
         <div className='preview-container'>

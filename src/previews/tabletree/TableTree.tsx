@@ -7,6 +7,7 @@ import * as _ from 'underscore'
 import { concatClassnames } from '../../util/ConcatClassNames';
 import tinycolor from 'tinycolor2';
 
+/** Stock table data */
 const tableItems = [
     {
         firstName: "Max",
@@ -28,6 +29,7 @@ const tableItems = [
     }
 ];
 
+/** Stock tree data */
 const treeItems = [
     {
         key: "0",
@@ -129,9 +131,15 @@ const treeItems = [
     }
 ]
 
+/** A preview for the table (with toolbar) and tree to see changes live */
 const TableTree:FC = () => {
+    /** The selected table item */
     const [selectedTableItem, setSelectedTableItem] = useState<{value: any, field: string, rowData: any, rowIndex: number, cellIndex: number}>({ cellIndex: 0, field: "firstName", rowData: tableItems[0], rowIndex: 0, value: "Max" });
+
+    /** The selected tree item */
     const [selectedTreeItem, setSelectedTreeItem] = useState<TreeSelectionKeys>(null);
+
+    /** The background-color of buttons */
     const btnBgd = window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
 
     return (

@@ -15,12 +15,27 @@
 
 import { EditorGroup, EditorItem } from "../editors/management/EditorCreator";
 import { VariableContextType } from "../VariableProvider";
-
+ 
+/**
+ * Returns the whole css file for scheme and theme as string and is used for up-and download
+ * @param type - either scheme or theme
+ * @param context - the variable-context
+ */
 export function generateCSS(type: "scheme" | "theme", context: VariableContextType) {
+    /** A map of all selectors for full width */
     const selectorMapFull: Map<string, string[]> = new Map<string, string[]>();
+
+    /** A map of all selectors for 960px max-width */
     const selectorMap960: Map<string, string[]> = new Map<string, string[]>();
+
+    /** A map of all selectors for 530px max-width */
     const selectorMap530: Map<string, string[]> = new Map<string, string[]>();
 
+    /**
+     * Fills the selectormaps with every selector of all groups. selector as and styles as values
+     * @param editorItem - the EditorItem to get the usage map from
+     * @param size - the size of the chosen usage map
+     */
     const fillSelectorMap = (editorItem: EditorItem, size: "full" | "960" | "530") => {
         let selectorMap = new Map();
         let usageMap: Map<string, string[]> | undefined = {} = new Map();
@@ -52,10 +67,15 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
         }
     }
 
+    // Start of the css file
     let cssString = ":root {\n";
     let alreadyAdded:string[] = []
 
-    const printRules = (map: Map<string, EditorGroup>) => {
+    /**
+     * Prints the variables into the root part of the css
+     * @param map - the map which needs to be added
+     */
+    const printVariables = (map: Map<string, EditorGroup>) => {
         map.forEach(editorItems => {
             editorItems.items.forEach(editorItem => {      
                 if (editorItem.cssType === type) {
@@ -77,12 +97,14 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
     // }
     // else {
     context.variables.forEach((tabGroup) => {
-        printRules(tabGroup);
+        printVariables(tabGroup);
     });
     //}
 
+    // end of root
     cssString += "}\n\n"
 
+    /** Generates the css rules and adds to the cssString */
     const generateCSSRules = (size: "full" | "960" | "530") => {
         let selectorMap = size === "full" ? selectorMapFull : size === "960" ? selectorMap960 : selectorMap530;
         selectorMap.forEach((values, selector) => {
@@ -98,6 +120,7 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
         }
     }
 
+    // First add full then 960 then 530
     generateCSSRules("full");
 
     cssString += "@media screen and (max-width: 960px) {\n";

@@ -19,6 +19,7 @@ import { Menubar } from 'primereact/menubar';
 import { Button } from "primereact/button";
 import { MenuItem } from "primereact/menuitem";
 
+/** A preview for the profile-menu to see changes live */
 export const profileModel:MenuItem [] = [
     {
         label: "John Doe",
@@ -40,6 +41,7 @@ export const profileModel:MenuItem [] = [
     }
 ];
 
+/** Menu model */
 export const menuModel: MenuItem[] = [
     {
         label: "Example #1",
@@ -73,6 +75,7 @@ export const menuModel: MenuItem[] = [
     }
 ]
 
+/** A preview for the standard menu to see changes live */
 const Menu: FC = () => {
     return (
         <div className="design-std-menu std-menu">

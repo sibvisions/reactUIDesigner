@@ -17,6 +17,12 @@ import { EditorGroup } from "../editors/management/EditorCreator";
 import { EDITOR_INDICES } from "../editors/management/EditorManager";
 import { VariableContextType } from "../VariableProvider";
 
+/**
+ * Returns the variable map for when the designer is in preview mode. Doesn't show the other editors of transferType and doesn't show editors of the other menu.
+ * @param context - the variable context
+ * @param isCorporation - true, if the menu mode is corporation
+ * @param transferType - the transferType
+ */
 export function getPreviewVariableMap(context: VariableContextType, isCorporation: boolean, transferType:"full"|"partial"|"all") {
     let newVariableMap = new Map<string, EditorGroup>();
     const variableEntries = context.variables.entries();

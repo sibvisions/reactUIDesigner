@@ -6,20 +6,30 @@ import React, { FC, useState, CSSProperties, useCallback, useEffect } from 'reac
 import tinycolor from 'tinycolor2';
 import { concatClassnames } from '../../util/ConcatClassNames';
 
+/** A preview for popups to see changes live */
 const Popup: FC = () => {
+    /** True, if the popup is visible */
     const [visible, setVisible] = useState<boolean>(false);
+
+    /** True, if the error-popup is visible */
     const [errorVisible, setErrorVisible] = useState<boolean>(false);
+
+    /** True, if the details of the error-popup should be shown */
     const [showDetails, setShowDetails] = useState<boolean>(false);
 
+    /** A cause of failure for the listbox */
     const errorItems = [{
         label: "Cause(s) of failure",
         items: [{ label: "This is an Exception!", exception: "These are the Details of the Example Exception!" }]
     }]
 
+    /** The selected error */
     const [selectedError, setSelectedError] = useState<{label: string, exception: string} | null>(errorItems[0].items[0])
 
+    /** The background color for the button */
     const btnBgd = window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
 
+    /** Removes height and width when disabling 'showDetails' to reset the size */
     useEffect(() => {
         const elem = document.getElementById("error-dialog");
         if (!showDetails && elem) {
@@ -28,6 +38,7 @@ const Popup: FC = () => {
         }
     }, [showDetails]);
 
+    /** The footer element of the error-popup */
     const errorFooter = useCallback(() => {
         return (
             <div className="error-dialog-footer">

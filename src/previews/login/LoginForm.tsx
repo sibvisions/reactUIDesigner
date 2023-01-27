@@ -19,13 +19,18 @@ import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import tinycolor from "tinycolor2";
 
+/** A preview for the login component to see changes live */
 const LoginForm:FC<any> = () => {
+    /** The username in the login view */
     const [username, setUsername] = useState<string>();
 
+    /** The password in the login view */
     const [password, setPassword] = useState<string>();
 
+    /** True, if autologin should be on */
     const [rememberMe, setRememberMe] = useState<boolean>(false);
 
+    /** The background-color of the button */
     const btnBgd = window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
 
     return (

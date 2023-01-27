@@ -6,10 +6,11 @@ import { InputText } from "primereact/inputtext"
 import { Tooltip } from "primereact/tooltip"
 import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import tinycolor from "tinycolor2"
-import ColorPicker from "./editors/ColorPicker"
+import ColorPicker from "./editors/colorpicker/ColorPicker"
 import { addCSSDynamically } from "./util/AddCSSDynamically"
 import { variableContext } from "./VariableProvider"
 
+/** The interface of the ExpressDialog */
 interface IExpressDialog {
     visible: boolean,
     handleClose: () => void,
@@ -21,15 +22,19 @@ interface IExpressDialog {
     isPreviewMode: boolean
 }
 
+/** A popup which lets you either lets you change to a preset of scheme or theme or creates a new scheme based on a primary color */
 const ExpressDialog:FC<IExpressDialog> = (props) => {
+    /** The context to gain access to the variables, defaultValues and more. */
     const context = useContext(variableContext);
 
+    /** The standard themes */
     const themes = [
         {label: "basti", value: "basti"},
         {label: "basti (small)", value: "basti_small"},
         {label: "basti (mobile)", value: "basti_mobile"}
     ];
 
+    /** The standard schemes */
     const schemes = [
         {label: "default", value: "default"},
         {label: "dark", value: "dark"},
@@ -37,22 +42,38 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
         {label: "orange", value: "orange"}
     ]
 
+    /** The selected standard themes */
     const [selectedTheme, setSelectedTheme] = useState<string>(themes[0].label);
+
+    /** The selected standard scheme */
     const [selectedScheme, setSelectedScheme] = useState<string>(schemes[0].label);
 
+    /** The scheme name for the new scheme */
     const [schemeName, setSchemeName] = useState<string>("");
+
+    /** The primary color of the new scheme */
     const [schemeColor, setSchemeColor] = useState<string>("");
+
+    /** True, if the new scheme should be in dark mode */
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
+    /** True, if the theme is ready when loading a new theme */
     const themeReady = useRef<boolean>(false);
+
+    /** True, if the scheme is ready when loading a new scheme */
     const schemeReady = useRef<boolean>(false);
 
+    /** Reset schemeColor if there is no name set for the new scheme */
     useEffect(() => {
         if (!schemeName && schemeColor) {
             setSchemeColor("");
         }
     }, [schemeName]);
 
+    /**
+     * Creates and sets a new scheme based on a primaryColor
+     * @param primaryColor - the primaryColor  
+     */
     const setStyle = (primaryColor:string) => {
         const docStyle = document.documentElement.style;
         docStyle.setProperty("--primary-color", primaryColor);
@@ -99,6 +120,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
         docStyle.setProperty("--html-toolbar-background", isDarkMode ? "#3f4b5b" : "#e9ecef");
     }
 
+    /** A readyCheck to check if scheme and theme is ready when loading them, then set the custom scheme if there is one remove all previous set properties */
     const readyCheck = () => {
         if (schemeReady.current && themeReady.current) {
             schemeReady.current = false;
@@ -121,6 +143,10 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
         }
     }
 
+    /**
+     * In preview mode set the scheme and theme and call the readyCheck -> reactui loads the new theme and scheme
+     * When not in preview mode load, the css set theme/scheme and call the readyCheck
+     */
     const handleConfirm = () => {
         if (props.isPreviewMode) {
             props.setPresetScheme(schemeName ? schemeName : selectedScheme); 

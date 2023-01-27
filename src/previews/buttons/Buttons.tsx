@@ -23,20 +23,30 @@ import tinycolor from "tinycolor2";
 import { concatClassnames } from "../../util/ConcatClassNames";
 import { variableContext } from "../../VariableProvider";
 
+/** A preview for all button components to see changes live */
 const Buttons: FC = () => {
     /** Reference for the button element */
     const menuButtonRef = useRef<SplitButton>(null);
 
+    /** The context to gain access to the variables, defaultValues and more. */
     const context = useContext(variableContext);
 
+    /** True, if the checkbox is checked */
     const [cbChecked, setCbChecked] = useState<boolean>(false);
+
+    /** True, if the radiobutton is checked */
     const [rbChecked, setRbChecked] = useState<boolean>(false);
+
+    /** True, if the togglebutton is checked */
     const [tbChecked, setTbChecked] = useState<boolean>(false);
 
+    /** Flag which updates the state of the button background */
     const [buttonUpdate, setButtonUpdate] = useState<boolean>(false);
 
+    /** The background-color of the button */
     const btnBgd = useMemo(() => window.getComputedStyle(document.documentElement).getPropertyValue("--primary-color"), [buttonUpdate]);
 
+    // Updates the button background
     useEffect(() => {
         context.updateButtonBackground = () => setButtonUpdate(prevState => !prevState);
 
@@ -45,6 +55,7 @@ const Buttons: FC = () => {
         }
     }, [])
 
+    /** Model for the menubutton */
     const menuButtonModel = [
         {
             label: "Sub-Item #1",

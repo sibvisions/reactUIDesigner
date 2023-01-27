@@ -5,9 +5,12 @@ import React, { FC, CSSProperties, useRef, useLayoutEffect } from 'react';
 import { Rnd } from 'react-rnd';
 import { concatClassnames } from '../../util/ConcatClassNames';
 
+/** A preview for full transfertype components to see changes live */
 const FullPreview: FC = () => {
+    /** Reference for the rnd component */
     const rndRef = useRef<Rnd>(null)
 
+    /** Menuitems for the menubar */
     const menuItems: MenuItem[] = [
         {
             label: "File",
@@ -60,12 +63,14 @@ const FullPreview: FC = () => {
         }
     ]
 
+    /** Style for the rnd component */
     const rndStyle = {
         background: window.getComputedStyle(document.documentElement).getPropertyValue("--screen-background"),
         overflow: "hidden",
         zIndex: 1,
     };
 
+    /** initially updates the position of the rnd component */
     useLayoutEffect(() => {
         if (rndRef.current && document.getElementById("full-content")) {
             const elemSize = document.getElementById("full-content")!.getBoundingClientRect();
@@ -73,6 +78,7 @@ const FullPreview: FC = () => {
         }
     }, [])
 
+    /** the toolbar element */
     const toolbar =
         <div className='rc-frame-toolbar' style={{ display: "flex" }}>
             <div className='rc-panel rc-toolbar-border-right panel-hide-overflow preview-toolbar'>

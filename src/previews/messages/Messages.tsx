@@ -3,9 +3,12 @@ import React, { FC, CSSProperties } from 'react';
 import tinycolor from 'tinycolor2';
 import { concatClassnames } from '../../util/ConcatClassNames';
 
+/** A preview for all message components to see changes live */
 const Messages: FC = () => {
+    /** The background-color of the buttons */
     const btnBgd = window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
 
+    /** Returns a message element based on the type */
     const buildMessage = (type: "info" | "warning" | "error" | "question") => {
         const buildMessageObject = () => {
             switch(type) {

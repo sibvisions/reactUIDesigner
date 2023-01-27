@@ -19,6 +19,7 @@ import EditorCreator, { EditorGroup } from "./EditorCreator";
 import { getPreviewVariableMap } from "../../util/GetPreviewVariableMap";
 import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 
+/** The interface for the EditorManager */
 interface IEditorManager {
     isPreviewMode: boolean
     isCorporation: boolean
@@ -32,6 +33,7 @@ interface IEditorManager {
     transferType: "full"|"partial"|"all"
 }
 
+/** Indices for the different EditorGroups */
 export enum EDITOR_INDICES {
     LOGIN_EDITORS = "0",
     MENU_EDITORS = "1",
@@ -48,14 +50,18 @@ export enum EDITOR_INDICES {
     TOPBAR_EDITORS = "12"
 }
 
+/** Manages which editors should be rendered and passes them and more properties to the EditorCreator */
 const EditorManager: FC<IEditorManager> = (props) => {
+    /** The context to gain access to the variables, defaultValues and more. */
     const context = useContext(variableContext)
 
+    /** Returns the editors which are being passed to the EditorCreator based on previewmode or not. If no previewmode pass the editors according to the current tab. */
     const editors = useMemo(() => {
         if (props.isPreviewMode) {
             return getPreviewVariableMap(context, props.isCorporation, props.transferType);
         }
         else {
+            // Always add the general editors
             const generalMap: Map<string, EditorGroup> = new Map<string, EditorGroup>([...context.variables.get("-3") as Map<string, EditorGroup>, ...context.variables.get("-2") as Map<string, EditorGroup>, ...context.variables.get("-1") as Map<string, EditorGroup>]);
             switch (props.activeIndex) {
                 case parseInt(EDITOR_INDICES.LOGIN_EDITORS): default:

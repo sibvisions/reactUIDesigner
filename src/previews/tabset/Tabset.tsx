@@ -1,6 +1,7 @@
 import { TabPanel, TabView } from 'primereact/tabview';
 import React, { FC } from 'react';
 
+/** A preview for the tabset component to see changes live */
 const Tabset: FC = () => {
     return(
         <div className='preview-container rc-tabset'>

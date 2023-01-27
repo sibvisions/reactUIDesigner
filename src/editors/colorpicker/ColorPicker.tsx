@@ -15,17 +15,27 @@
 
 import React, { FC, useCallback, useMemo, useState } from "react";
 import { ChromePicker, HSLColor, RGBColor } from "react-color";
-import { concatClassnames } from "../util/ConcatClassNames";
+import { concatClassnames } from "../../util/ConcatClassNames";
 
+/** Interface for the colorpicker */
 interface IColorPicker {
     color: string,
     handleOnChange: (color:string) => void,
     className?: string
 }
 
+/**
+ * A colorpicker which lets you pick colors in HEX, RGBA and HSLA format.
+ */
 const ColorPicker: FC<IColorPicker> = (props) => {
+    /** True, if the colorpicker is visible */
     const [pickerVisible, setPickerVisible] = useState<boolean>(false);
 
+    /**
+     * Transforms the string the colorpicker receives from the editor into an object the colorpicker can handle
+     * if the format is RGBA or HSLA. If the format is HEX, the string can be used.
+     * @returns either the color as a string or object depending of the format.
+     */
     const pickerColor = useMemo<string|RGBColor|HSLColor>(() => {
         if (props.color.includes("rgb")) {
             const firstSubstring = props.color.substring(props.color.indexOf("rgb("));
@@ -50,28 +60,29 @@ const ColorPicker: FC<IColorPicker> = (props) => {
         return props.color ? props.color : "#000000";
     }, [props.color]);
 
-    const getPreviewBackground = useCallback(() => {
-        if (typeof pickerColor === "string") {
-            return pickerColor
-        }
-        else if ((pickerColor as RGBColor).r !== undefined) {
-            const castedColor = pickerColor as RGBColor;
-            return `rgb(${castedColor.r}, ${ castedColor.g }, ${ castedColor.b }, ${ castedColor.a })`
-        }
-        else {
-            const castedColor = pickerColor as HSLColor;
-            let adjustedAlpha:number|string|undefined = castedColor.a;
-            if (adjustedAlpha !== undefined && adjustedAlpha > 1) {
-                adjustedAlpha = `${adjustedAlpha}%`;
-            }
-            return `hsl(${castedColor.h} ${ castedColor.s }% ${ castedColor.l }% / ${ adjustedAlpha })`
-        }
-    }, [pickerColor]);
+    /** Returns the picker color transformed into a string the previewer can understand */
+    // const getPreviewBackground = useCallback(() => {
+    //     if (typeof pickerColor === "string") {
+    //         return pickerColor
+    //     }
+    //     else if ((pickerColor as RGBColor).r !== undefined) {
+    //         const castedColor = pickerColor as RGBColor;
+    //         return `rgb(${castedColor.r}, ${ castedColor.g }, ${ castedColor.b }, ${ castedColor.a })`
+    //     }
+    //     else {
+    //         const castedColor = pickerColor as HSLColor;
+    //         let adjustedAlpha:number|string|undefined = castedColor.a;
+    //         if (adjustedAlpha !== undefined && adjustedAlpha > 1) {
+    //             adjustedAlpha = `${adjustedAlpha}%`;
+    //         }
+    //         return `hsl(${castedColor.h} ${ castedColor.s }% ${ castedColor.l }% / ${ adjustedAlpha })`
+    //     }
+    // }, [pickerColor]);
 
     return (
         <div className="color-picker-preview-wrapper">
             <div className={concatClassnames("color-picker-preview", props.className)} onClick={() => setPickerVisible(prevState => !prevState)}>
-                <div className="color-picker-preview-color" style={{ background: getPreviewBackground() }} />
+                <div className="color-picker-preview-color" style={{ background: props.color }} />
             </div>
             {pickerVisible ?
                 <div className="color-picker-popover">

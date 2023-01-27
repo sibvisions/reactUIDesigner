@@ -30,6 +30,7 @@ import { addCSSDynamically } from './util/AddCSSDynamically';
 import { Tooltip } from 'primereact/tooltip';
 import { getCSSValue } from './util/GetCSSValue';
 
+// Type for the DesignerSubscriptionManager
 export type DesignerSubscriptionManager = {
   notifyFontSizeChanged: Function,
   notifyStdHeaderChanged: Function,
@@ -54,6 +55,7 @@ export type DesignerSubscriptionManager = {
   notifyAll: Function
 }
 
+// Interface for the Designer
 interface IReactUIDesigner {
   isCorporation: boolean
   changeImages: () => void
@@ -70,40 +72,63 @@ interface IReactUIDesigner {
   transferType: "full"|"partial"|"all"
 }
 
+/** 
+ * A Designer for the ReactUI which can adjust the theme and scheme of the application. 
+ * The newly created scheme and theme can be uploaded to the server and downloaded.
+ */
 const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
+  /** The context to gain access to the variables, defaultValues and more. */
   const context = useContext(variableContext);
 
+  /** The name of the theme */
   const [themeName, setThemeName] = useState<string>(context.themeName);
 
+  /** The name of the scheme */
   const [schemeName, setSchemeName] = useState<string>(context.schemeName);
 
+  /** The currently active tab, relevant for non previewmode */
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
+  /** A function to set the tabindex */
   const tabChangeCallBack = useCallback((index: number) => setActiveTabIndex(index), []);
 
+  /** Helper for previous theme name */
   const previousThemeName = useRef<string>(context.themeName);
 
+  /** True, if the designer is used with the reactui */
   const isPreviewMode = useMemo(() => props.children !== undefined, [props.children]);
 
+  /** Rerender flag */
   const [, setPreviewValuesChanges] = useState<boolean>(false);
 
+  /** Reset flag */
   const [, setReset] = useState<boolean>(false);
 
+  /** The url to upload the css files/images to the server */
   const uploadUrl = useMemo(() => props.uploadUrl || "PASTE URL HERE", [props.uploadUrl]);
 
+  /** The reference of the toast component */
   const toastRef = useRef<Toast>(null);
 
+  /** True if the express popup is visible */
   const [expressVisible, setExpressVisible] = useState<boolean>(false);
 
+  /** The preset theme set initially or by the express mode */
   const [presetTheme, setPresetTheme] = useState<string>("notSet");
 
+  /** The preset scheme set initially or by the express mode */
   const [presetScheme, setPresetScheme] = useState<string>("notSet");
 
+  /** True, if the variables have loaded */
   const [variablesReady, setVariablesReady] = useState<boolean>(false);
 
+  /** The name of the last used theme */
   const lastPreTheme = useRef<string>(presetTheme);
+
+  /** The name of the last used scheme */
   const lastPreScheme = useRef<string>(presetScheme);
 
+  /** Initially load the basic theme and scheme if it isn't in preview mode */
   useEffect(() => {
     if (!isPreviewMode) {
       addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setPresetScheme("default"));
@@ -111,6 +136,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }, [])
 
+  /** Set the variables for scheme and theme when the presetScheme or presetTheme changes */
   useEffect(() => {
     const docStyle = window.getComputedStyle(document.documentElement)
     context.variables.forEach((map) => {
@@ -131,6 +157,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }, [presetScheme, presetTheme]);
 
+  /** Generates the scheme and theme css files and downloades them */
   const handleDownload = () => {
     if (context.schemeName === "factory-default" || context.themeName === "factory-basti") {
       confirmDialog({
@@ -158,6 +185,11 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }
 
+  /**
+   * Generates the theme and scheme css files and uploads them to the server if it is successful a message is shown and if it fails an error is shown.
+   * On successful upload, the theme and scheme is saved in the sessionstorage to be used on reload
+   * 
+   */
   const handleUpload = (uploadUrl: string) => {
     if (context.schemeName === "factory-default" || context.themeName === "factory-basti") {
       confirmDialog({
@@ -199,18 +231,22 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }
 
+  // Sets context appname when props appname changes
   useEffect(() => {
     context.appName = props.appName;
   }, [props.appName])
 
+  // Sets context themename when themename changes
   useEffect(() => {
     context.themeName = themeName;
   }, [themeName, context]);
 
+  // Sets context schemename when schemename changes
   useEffect(() => {
     context.schemeName = schemeName;
   }, [schemeName, context]);
 
+  /** Overwrites the context values with the current style values */
   const overwriteStyleToContext = useCallback(() => {
     const docStyle = window.getComputedStyle(document.documentElement);
     context.defaultValues.forEach((value, key) => {
@@ -226,6 +262,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     })
   }, [context.variables]);
 
+  /** Overwrites the current style values with the context values */
   const overwriteContextToStyle = useCallback(() => {
     const docStyle = document.documentElement.style;
     context.variables.forEach((variableMap) => {
@@ -237,6 +274,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     })
   }, [context.variables])
 
+  // If in previewmode overwrite the context with the style
   useEffect(() => {
     if (isPreviewMode) {
       overwriteStyleToContext()
@@ -244,6 +282,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }, [isPreviewMode, context.defaultValues, context.variables, overwriteStyleToContext]);
 
+  /** Show  a confirmdialog and when confirmed reset the changes to the theme and scheme of the current scheme and theme name */
   const resetToDefault = () => {
     const acceptFunc = () => {
       context.variables.forEach((variableMap) => {
@@ -273,6 +312,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     })
   }
 
+  /** Show a confirmdialog and when confirmed reset to the default and basti scheme/theme */
   const resetToFactory = () => {
     const acceptFunc = () => {
       let schemeReady = false;
@@ -315,6 +355,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     })
   }
 
+  /**
+   * Uploads an image to the server based on the type for login, the menu or collapsed menu
+   * @param type - the type of the image
+   */
   const uploadImage = (type: "login" | "menu" | "small") => {
     const inputElem = document.createElement('input');
     inputElem.type = 'file';
