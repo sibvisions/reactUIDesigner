@@ -147,7 +147,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
      */
     const handleConfirm = () => {
         if (props.isPreviewMode) {
-            props.setPresetScheme(schemeName ? schemeName : selectedScheme); 
+            props.setPresetScheme(selectedScheme); 
             schemeReady.current = true;
             props.setPresetTheme(selectedTheme);
             props.changeTheme(selectedTheme);
@@ -156,7 +156,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
         }
         else {
             addCSSDynamically('color-schemes/' + selectedScheme + '.css', "schemeCSS", () => {
-                props.setPresetScheme(schemeName ? schemeName : selectedScheme); 
+                props.setPresetScheme(selectedScheme); 
                 schemeReady.current = true;
                 readyCheck();
             });

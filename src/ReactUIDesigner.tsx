@@ -143,8 +143,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       map.forEach(editorGroup => {
         editorGroup.items.forEach(editorItem => {
           if (editorItem.cssType === type || type === "all") {
-            context.defaultValues.set(editorItem.variable, docStyle.getPropertyValue(editorItem.variable));
-            editorItem.value = getCSSValue(editorItem, context.appName, lastPreTheme.current, lastPreScheme.current);
+            if ((presetScheme === "notSet" && presetTheme === "notSet" && isPreviewMode && !context.defaultValues.has(editorItem.variable)) || !isPreviewMode) {
+              context.defaultValues.set(editorItem.variable, docStyle.getPropertyValue(editorItem.variable));
+            }           
+            editorItem.value = getCSSValue(editorItem, context.appName, lastPreTheme.current, lastPreScheme.current, isPreviewMode, variablesReady);
           }
         });
       })
@@ -311,12 +313,12 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   }, [context.variables])
 
   // If in previewmode overwrite the context with the style
-  useEffect(() => {
-    if (isPreviewMode) {
-      overwriteStyleToContext()
-      setPreviewValuesChanges(true);
-    }
-  }, [isPreviewMode, context.defaultValues, context.variables, overwriteStyleToContext]);
+  // useEffect(() => {
+  //   if (isPreviewMode) {
+  //     overwriteStyleToContext()
+  //     setPreviewValuesChanges(true);
+  //   }
+  // }, [isPreviewMode, context.defaultValues, context.variables, overwriteStyleToContext]);
 
   /** Show  a confirmdialog and when confirmed reset the changes to the theme and scheme of the current scheme and theme name */
   const resetToDefault = () => {
