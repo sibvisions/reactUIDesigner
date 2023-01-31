@@ -120,7 +120,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const [presetScheme, setPresetScheme] = useState<string>("notSet");
 
   /** True, if the variables have loaded */
-  const [variablesReady, setVariablesReady] = useState<boolean>(false);
+  const [variablesReady, setVariablesReady] = useState<boolean|undefined>(undefined);
 
   /** The name of the last used theme */
   const lastPreTheme = useRef<string>(presetTheme);
@@ -134,28 +134,65 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setPresetScheme("default"));
       addCSSDynamically('themes/basti.css', "themeCSS", () => setPresetTheme("basti"));
     }
-  }, [])
+  }, []);
 
-  /** Set the variables for scheme and theme when the presetScheme or presetTheme changes */
-  useEffect(() => {
+  /** Sets the default and normal variables */
+  const setContextVariableValues = useCallback((type: "scheme"|"theme"|"all") => {
     const docStyle = window.getComputedStyle(document.documentElement)
     context.variables.forEach((map) => {
       map.forEach(editorGroup => {
         editorGroup.items.forEach(editorItem => {
+          if (editorItem.cssType === type || type === "all") {
             context.defaultValues.set(editorItem.variable, docStyle.getPropertyValue(editorItem.variable));
             editorItem.value = getCSSValue(editorItem, context.appName, lastPreTheme.current, lastPreScheme.current);
+          }
         });
       })
     });
 
-    lastPreScheme.current = presetScheme;
-    lastPreTheme.current = presetTheme;
-    setVariablesReady(prevState => !prevState);
+    if (type === "scheme" || type === "all") {
+      lastPreScheme.current = presetScheme;
+    }
+    
+    if (type === "theme" || type === "all") {
+      lastPreTheme.current = presetTheme;
+    }
+    
+    setVariablesReady(prevState => prevState === undefined ? true : !prevState);
 
     if (props.designerSubscription) {
       props.designerSubscription.notifyAll()
     }
-  }, [presetScheme, presetTheme]);
+  }, [presetScheme, presetTheme, context.defaultValues, context.variables])
+
+  /** Set the variables for scheme and theme when the presetScheme or presetTheme changes */
+  useEffect(() => {
+    if (!isPreviewMode || variablesReady === undefined) {
+      setContextVariableValues("all")
+    }
+  }, [presetScheme, presetTheme, setContextVariableValues]);
+
+  /** Adds the css files to the header */
+  const reloadCSSFile = useCallback((type: "scheme"|"theme", filename: string, upload:boolean) => {
+    if (isPreviewMode && presetScheme !== "notSet" && presetTheme !== "notSet") {
+      let path = '';
+      if (type === "scheme") {
+        path = 'color-schemes/' + filename + "?version=" + Math.random().toString(36).slice(2);
+      }
+      else {
+        path = 'themes/' + filename + "?version=" + Math.random().toString(36).slice(2);
+      }
+      addCSSDynamically(path, type === "scheme" ? "schemeCSS" : "themeCSS", () => !upload ? setTimeout(() => setContextVariableValues(type), 0) : {});
+    }
+  }, [setContextVariableValues, isPreviewMode])
+
+  useEffect(() => {
+    reloadCSSFile("scheme", presetScheme + ".css", false)
+  }, [presetScheme, reloadCSSFile])
+
+  useEffect(() => {
+    reloadCSSFile("theme", presetTheme + ".css", false)
+  }, [presetTheme, reloadCSSFile])
 
   /** Generates the scheme and theme css files and downloades them */
   const handleDownload = () => {
@@ -219,7 +256,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The new styles: " + fileNameTheme + " and " + fileNameScheme + " were set for the application " + props.appName + "." });
             sessionStorage.setItem("reactui-designer-scheme-" + props.appName, fileNameScheme.substring(0, fileNameScheme.indexOf(".")));
             sessionStorage.setItem("reactui-designer-theme-" + props.appName, fileNameTheme.substring(0, fileNameTheme.indexOf(".")));
-            props.uploadCallback(fileNameScheme, fileNameTheme);
           }
         })
         .catch((error) => {
@@ -330,7 +366,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             }
           }
           overwriteContextToStyle()
-          setVariablesReady(prevState => !prevState);
+          setVariablesReady(prevState => prevState === undefined ? true : !prevState);
         }
       }
       addCSSDynamically("color-schemes/factory-default.css", "factoryCSS", () => {
@@ -416,7 +452,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           setPresetTheme(val);
           setThemeName(val);
         }}
-        handleConfirm={(scheme:string, theme:string) => props.uploadCallback(scheme + ".css", theme + ".css")}
         showToast={() => {
           if (toastRef.current) {
             toastRef.current.show({ severity: "error", summary: "Invalid Color!", detail: "This color is invalid please use a valid color." })

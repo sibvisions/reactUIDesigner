@@ -29,7 +29,7 @@ interface IEditorManager {
     logoLogin: string
     logoBig:string
     logoSmall: string
-    variablesReady: boolean
+    variablesReady: boolean|undefined
     transferType: "full"|"partial"|"all"
 }
 

@@ -16,7 +16,6 @@ interface IExpressDialog {
     handleClose: () => void,
     setPresetScheme: (value:string) => void,
     setPresetTheme: (value:string) => void,
-    handleConfirm: (scheme:string, theme:string) => void,
     showToast: () => void,
     changeTheme: (value: string) => void,
     isPreviewMode: boolean
@@ -139,7 +138,6 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                 })
             }
             sessionStorage.clear();
-            props.handleConfirm(selectedScheme, selectedTheme);
         }
     }
 
