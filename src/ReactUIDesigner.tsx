@@ -168,7 +168,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   /** Set the variables for scheme and theme when the presetScheme or presetTheme changes */
   useEffect(() => {
     if (!isPreviewMode || variablesReady === undefined) {
-      setContextVariableValues("all")
+      setTimeout(() => setContextVariableValues("all"), 0) 
     }
   }, [presetScheme, presetTheme, setContextVariableValues]);
 
