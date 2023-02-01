@@ -59,17 +59,17 @@ Next to the editors there are buttons which will either change the type of the e
 #### 1.2.1 Undo Button
 The 'undo' button reverts the changes made to the editor to the default value. The default value gets set at the very start and is set to the variable's value of the loaded color-scheme/theme. The default value is set to a different value, when the color-scheme/theme is changed in express-mode.
 
-![undo-button](./src/readme-images/designer-undo-button.PNG)
+![undo-button](./src/readme-images/designer-undo-button.png)
 
 #### 1.2.2 Show Text/Show Color
 The 'show text' button is exclusive to color-editors. When clicking the button the color picker is replaced by a textinput or the other way around. It was introduced so gradients could be added to color variables.
 
-![show-button](./src/readme-images/designer-show-button.PNG)
+![show-button](./src/readme-images/designer-show-button.png)
 
 #### 1.2.3 Transparent
 The transparent button is also exclusive to color-editors. When clicking it, the value of the variable gets set to 'transparent'.
 
-![transparent-button](./src/readme-images/designer-transparent-button.PNG)
+![transparent-button](./src/readme-images/designer-transparent-button.png)
 
 ## 2. Set Images of Application
 The application frame of the ReactUI has three images: login, menu and collapsed menu. All of them can be replaced by uploading the new images. When the designer is started with the ReactUI (or you cloned this project, run in standalone mode, added a valid upload-url and have a VisionX server running in the background), you are able to upload the files directly to the server. You will get feedback if the upload was successful or not.
@@ -97,14 +97,14 @@ By pressing the button with the 'fast forward' icon in the topbar the Express-Mo
 ### 4.1. Presets
 If you want to change the currently selected color-scheme/theme you can select another one of the pre-made ones the ReactUI has to offer, after confirming, the styles get applied. This sets the default values when clicking 'undo'.
 
-![express-preset](./src/readme-images/designer-express-preset.PNG)
+![express-preset](./src/readme-images/designer-express-preset.png)
 
 ### 4.2. Express Scheme
 After entering a name for your custom scheme, the color picker gets enabled, after choosing a color and if the scheme should be in dark-mode or not, a new scheme is created based on the chosen color.
 
-![express-scheme](./src/readme-images/designer-express-scheme.PNG)
+![express-scheme](./src/readme-images/designer-express-scheme.png)
 
-![express-preset2](./src/readme-images/designer-express-scheme2.PNG)
+![express-preset2](./src/readme-images/designer-express-scheme2.png)
 
 ## 5. Reset to Default/Factory
 There is also the option to reset the current changes and go back to default/factory.
