@@ -292,11 +292,11 @@ function createEditors(editors: Map<string, EditorGroup>,
                         return (
                             <div className='designer-panel-row designer-panel-image-upload'>
                                 <div className="style-editor-label-wrapper">
-                                    <i className="tooltip-icon pi pi-info-circle" />
                                     <span className="style-editor-label">{editorItem.label}</span>
                                 </div>
                                 <img alt={editorItem.label} id={editorItem.label !== "Collapsed Menu" ? editorItem.label.toLowerCase() + '-image' : 'small-image'} className='designer-panel-image' src={editorItem.label === "Login" ? props.logoLogin : editorItem.label === "Menu" ? props.logoBig : props.logoSmall} />
                                 <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage(editorItem.label === "Login" ? "login" : editorItem.label === "Menu" ? "menu" : "small")} />
+                                <i className="tooltip-icon pi pi-info-circle" />
                             </div>
                         )
                     }
@@ -304,8 +304,6 @@ function createEditors(editors: Map<string, EditorGroup>,
                         return (
                             <div key={editorItem.label} className="style-editor-wrapper">
                                 <div className="style-editor-label-wrapper">
-                                    <Tooltip target={"#" + tooltipId} position="right" />
-                                    <i id={tooltipId} className="tooltip-icon pi pi-info-circle" data-pr-tooltip={editorItem.tooltip ? editorItem.tooltip : ""} />
                                     <span className="style-editor-label">{editorItem.label}</span>
                                 </div>
                                 <div className="style-editor">
@@ -321,6 +319,8 @@ function createEditors(editors: Map<string, EditorGroup>,
                                             sessionStorage.removeItem("reactui-designer-" + variableName + "-" + context.appName);
                                             updateVariables(editorItem);
                                         }} />
+                                    <Tooltip target={"#" + tooltipId} position="right" />
+                                    <i id={tooltipId} className="tooltip-icon pi pi-info-circle" data-pr-tooltip={editorItem.tooltip ? editorItem.tooltip : ""} />
                                 </div>
                             </div>
                         )
@@ -358,7 +358,7 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
                         items: []
                     }
                     editorGroup.items.forEach(item => {
-                        if (item.label.toLowerCase().includes(search.toLowerCase()) || item.variable.toLowerCase().includes(search.toLowerCase())) {
+                        if (item.label.toLowerCase().includes(search.toLowerCase())) {
                             foundEditors.items.push(item);
                         }
                     });

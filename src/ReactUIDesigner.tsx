@@ -356,6 +356,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       let schemeReady = false;
       let themeReady = false;
 
+      let loginImgReady = false;
+      let bigImgReady = false;
+      let smallImgReady = false;
+
       const readyCheck = () => {
         if (schemeReady && themeReady) {
           overwriteStyleToContext();
@@ -375,6 +379,55 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       document.documentElement.removeAttribute("style");
       document.documentElement.style.setProperty("--main-height", "calc(100vh - 70px - 0.5rem - 0.5rem)");
       document.documentElement.style.setProperty("--main-width", "calc(100vw - 300px - 0.5rem - 0.5rem)");
+
+      const formData = new FormData();
+
+      const imgElemLogin = document.getElementById("login-image") as HTMLImageElement;
+      const imgElemBig = document.getElementById("menu-image") as HTMLImageElement;
+      const imgElemSmall = document.getElementById("small-image") as HTMLImageElement;
+
+      imgElemLogin.src = "public/assets/factory-images/factory_login.png";
+      imgElemBig.src = "public/assets/factory-images/factory_big.png"
+      imgElemSmall.src = "public/assets/factory-images/factory_small.png"
+
+      const imageReadyCheck = () => {
+        if (loginImgReady && smallImgReady && bigImgReady) {
+          sendRequest({ formData: formData }, uploadUrl)
+            .then(() => {
+              props.changeImages();
+            })
+            .catch((error) => {
+              console.error(error)
+            });
+        }
+      }
+
+      fetch("public/assets/factory-images/factory_login.png")
+      .then(async (response) => {
+        const blob = await response.blob();
+        const file = new File([blob], "logo_login.png", { type: "image/png" });
+        formData.set("login-image", file);
+        loginImgReady = true;
+        imageReadyCheck();
+      });
+
+      fetch("public/assets/factory-images/factory_big.png")
+      .then(async (response) => {
+        const blob = await response.blob();
+        const file = new File([blob], "logo_big.png", { type: "image/png" });
+        formData.set("menu-image", file);
+        bigImgReady = true;
+        imageReadyCheck();
+      })
+
+      fetch("public/assets/factory-images/factory_small.png")
+      .then(async (response) => {
+        const blob = await response.blob();
+        const file = new File([blob], "logo_small.png", { type: "image/png" });
+        formData.set("menu-image-small", file);
+        smallImgReady = true;
+        imageReadyCheck();
+      })
 
       addCSSDynamically("color-schemes/factory-default.css", "factoryCSS", () => {
         setTimeout(() => {
@@ -415,6 +468,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       const formData = new FormData();
       switch (type) {
         case "login":
+          // @ts-ignore
+          console.log(e.target.files[0])
           // @ts-ignore
           formData.set("login-image", e.target.files[0]);
           break;
