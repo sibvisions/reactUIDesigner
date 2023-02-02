@@ -15,6 +15,26 @@
 
 import { EditorGroup, EditorItem } from "../editors/management/EditorCreator";
 import { VariableContextType } from "../VariableProvider";
+
+/** 
+ * A Map of variables which use other variables in their css and are dependent on them
+ * eg.: --std-profile-height:calc(var(--std-header-height) - 10px);
+ */
+const varsUsingVarsMap: Map<string, string> = new Map<string, string>()
+.set("--std-logo-width", "calc(var(--std-menu-width) - 50px)")
+.set("--std-logo-collapsed-width", "calc(var(--std-menu-collapsed-width) - 20px)")
+.set("--std-logo-height", "calc(var(--std-header-height) - 10px)")
+.set("--std-profile-height", "calc(var(--std-header-height) - 10px)")
+.set("--std-profile-pic", "calc(var(--std-profile-height) - 20px)")
+.set("--std-topbar-button-size", "var(--std-profile-height)")
+.set("--std-topbar-button-size-small", "calc(var(--std-profile-height) - 20px")
+.set("--std-fadeout-left", "calc(var(--std-menu-collapsed-width) - var(--std-fadeout-width))")
+.set("--corp-profile-height", "calc(var(--corp-header-height) - 10px)")
+.set("--corp-profile-pic", "calc(var(--corp-profile-height) - 20px)")
+.set("--corp-topbar-button-size", "var(--corp-profile-height)")
+.set("--corp-topbar-button-size-small", "calc(var(--corp-profile-height) - 20px)")
+.set("--corp-speeddial-size", "calc(var(--corp-menubar-height) - calc(var(--corp-menubar-height) / 10) * 2)")
+.set("--label-padding", "calc(var(--input-padding-tb) + var(--input-border-width))")
  
 /**
  * Returns the whole css file for scheme and theme as string and is used for up-and download
@@ -80,7 +100,7 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
             editorItems.items.forEach(editorItem => {      
                 if (editorItem.cssType === type) {
                     if (!alreadyAdded.includes(editorItem.variable)) {
-                        cssString += "\t" + editorItem.variable + ":" + editorItem.value + ";\n";
+                        cssString += "\t" + editorItem.variable + ":" + (varsUsingVarsMap.has(editorItem.variable) ? varsUsingVarsMap.get(editorItem.variable) : editorItem.value) + ";\n";
                         alreadyAdded.push(editorItem.variable);
                     }
                     
