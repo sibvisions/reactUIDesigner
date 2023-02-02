@@ -317,6 +317,8 @@ function createEditors(editors: Map<string, EditorGroup>,
                                         onClick={() => {
                                             setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
                                             document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
+                                            const variableName = editorItem.variable.replace("--", "");
+                                            sessionStorage.removeItem("reactui-designer-" + variableName + "-" + context.appName);
                                             updateVariables(editorItem);
                                         }} />
                                 </div>
