@@ -285,7 +285,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   }, [schemeName, context]);
 
   /** Overwrites the context values with the current style values */
-  const overwriteStyleToContext = useCallback(() => {
+  const overwriteStyleToContext = () => {
     const docStyle = window.getComputedStyle(document.documentElement);
     context.defaultValues.forEach((value, key) => {
       context.defaultValues.set(key, docStyle.getPropertyValue(key))
@@ -298,10 +298,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         })
       })
     })
-  }, [context.variables]);
+  };
 
   /** Overwrites the current style values with the context values */
-  const overwriteContextToStyle = useCallback(() => {
+  const overwriteContextToStyle = () => {
     const docStyle = document.documentElement.style;
     context.variables.forEach((variableMap) => {
       variableMap.forEach((editorGroup) => {
@@ -310,7 +310,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         })
       })
     })
-  }, [context.variables])
+  }
 
   // If in previewmode overwrite the context with the style
   // useEffect(() => {
@@ -371,6 +371,11 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           setVariablesReady(prevState => prevState === undefined ? true : !prevState);
         }
       }
+
+      document.documentElement.removeAttribute("style");
+      document.documentElement.style.setProperty("--main-height", "calc(100vh - 70px - 0.5rem - 0.5rem)");
+      document.documentElement.style.setProperty("--main-width", "calc(100vw - 300px - 0.5rem - 0.5rem)");
+
       addCSSDynamically("color-schemes/factory-default.css", "factoryCSS", () => {
         setTimeout(() => {
           schemeReady = true;
