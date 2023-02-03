@@ -386,9 +386,9 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       const imgElemBig = document.getElementById("menu-image") as HTMLImageElement;
       const imgElemSmall = document.getElementById("small-image") as HTMLImageElement;
 
-      imgElemLogin.src = "public/assets/factory-images/factory_login.png";
-      imgElemBig.src = "public/assets/factory-images/factory_big.png"
-      imgElemSmall.src = "public/assets/factory-images/factory_small.png"
+      imgElemLogin.src = "/assets/factory-images/factory_login.png";
+      imgElemBig.src = "/assets/factory-images/factory_big.png"
+      imgElemSmall.src = "/assets/factory-images/factory_small.png"
 
       const imageReadyCheck = () => {
         if (loginImgReady && smallImgReady && bigImgReady) {
@@ -402,32 +402,32 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         }
       }
 
-      fetch("public/assets/factory-images/factory_login.png")
-      .then(async (response) => {
-        const blob = await response.blob();
-        const file = new File([blob], "logo_login.png", { type: "image/png" });
+      fetch("assets/factory-images/factory_login.png")
+      .then(response => response.arrayBuffer())
+      .then(buf => new File([buf], "logo_login.png", { type: "image/png" }))
+      .then(file => {
         formData.set("login-image", file);
         loginImgReady = true;
         imageReadyCheck();
       });
 
-      fetch("public/assets/factory-images/factory_big.png")
-      .then(async (response) => {
-        const blob = await response.blob();
-        const file = new File([blob], "logo_big.png", { type: "image/png" });
+      fetch("assets/factory-images/factory_big.png")
+      .then(response => response.arrayBuffer())
+      .then(buf => new File([buf], "logo_big.png", { type: "image/png" }))
+      .then(file => {
         formData.set("menu-image", file);
         bigImgReady = true;
         imageReadyCheck();
-      })
+      });
 
-      fetch("public/assets/factory-images/factory_small.png")
-      .then(async (response) => {
-        const blob = await response.blob();
-        const file = new File([blob], "logo_small.png", { type: "image/png" });
+      fetch("assets/factory-images/factory_small.png")
+      .then(response => response.arrayBuffer())
+      .then(buf => new File([buf], "logo_small.png", { type: "image/png" }))
+      .then(file => {
         formData.set("menu-image-small", file);
         smallImgReady = true;
         imageReadyCheck();
-      })
+      });
 
       addCSSDynamically("color-schemes/factory-default.css", "factoryCSS", () => {
         setTimeout(() => {
@@ -468,8 +468,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       const formData = new FormData();
       switch (type) {
         case "login":
-          // @ts-ignore
-          console.log(e.target.files[0])
           // @ts-ignore
           formData.set("login-image", e.target.files[0]);
           break;
@@ -539,7 +537,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             <div className='designer-panel-options'>
             <div>
               <div className='designer-panel-row'>
-                <span className='designer-panel-header'>Theme:</span>
+                <span className='designer-panel-header'>Theme</span>
                 <InputText
                   value={themeName}
                   onChange={event => setThemeName(event.target.value)}
@@ -574,7 +572,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                   className='designer-panel-inputtext' />
               </div>
               <div className='designer-panel-row'>
-                <span className='designer-panel-header'>Scheme:</span>
+                <span className='designer-panel-header'>Scheme</span>
                 <InputText value={schemeName} onChange={event => setSchemeName(event.target.value)} className='designer-panel-inputtext' />
               </div>
             </div>

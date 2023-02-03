@@ -4,7 +4,7 @@ import { Dialog } from "primereact/dialog"
 import { Dropdown } from "primereact/dropdown"
 import { InputText } from "primereact/inputtext"
 import { Tooltip } from "primereact/tooltip"
-import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import React, { FC, useContext, useEffect, useMemo, useRef, useState } from "react"
 import tinycolor from "tinycolor2"
 import ColorPicker from "./editors/colorpicker/ColorPicker"
 import { addCSSDynamically } from "./util/AddCSSDynamically"
@@ -47,11 +47,8 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
     /** The selected standard scheme */
     const [selectedScheme, setSelectedScheme] = useState<string>(schemes[0].label);
 
-    /** The scheme name for the new scheme */
-    const [schemeName, setSchemeName] = useState<string>("");
-
     /** The primary color of the new scheme */
-    const [schemeColor, setSchemeColor] = useState<string>("");
+    const [schemeColor, setSchemeColor] = useState<{ color: string, initial: boolean }>({ color: "", initial: true });
 
     /** True, if the new scheme should be in dark mode */
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -62,12 +59,30 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
     /** True, if the scheme is ready when loading a new scheme */
     const schemeReady = useRef<boolean>(false);
 
-    /** Reset schemeColor if there is no name set for the new scheme */
-    useEffect(() => {
-        if (!schemeName && schemeColor) {
-            setSchemeColor("");
+    const placeHolderText = useMemo(() => {
+        switch(selectedScheme) {
+            case "orange":
+                return "#f78500";
+            case "dark":
+                return "#205e8f";
+            case "default": case "blue": default:
+                return "#2196F3";
         }
-    }, [schemeName]);
+    }, [selectedScheme]);
+
+    useEffect(() => {
+        switch(selectedScheme) {
+            case "orange":
+                setSchemeColor({ color: "#f78500", initial: true });
+                return
+            case "dark":
+                setSchemeColor({ color: "#205e8f", initial: true });
+                return
+            case "default": case "blue": default:
+                setSchemeColor({ color: "#2196F3", initial: true });
+                return
+        }
+    }, [selectedScheme])
 
     /**
      * Creates and sets a new scheme based on a primaryColor
@@ -124,11 +139,8 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
         if (schemeReady.current && themeReady.current) {
             schemeReady.current = false;
             themeReady.current = false;
-            if (tinycolor(schemeColor).isValid()) {
-                setStyle(schemeColor);
-            }
-            else if (schemeName) {
-                props.showToast()
+            if (tinycolor(schemeColor.color).isValid()) {
+                setStyle(schemeColor.color);
             }
             else {
                 context.variables.forEach(map => {
@@ -171,8 +183,8 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
 
     const footer = 
     <div className="express-button-wrapper">
-        <Button className="express-button" label="Cancel" icon="pi pi-times" onClick={props.handleClose} />
-        <Button className="express-button" label="Confirm" icon="pi pi-check" onClick={handleConfirm} />
+        <Button className="express-button" label="Close" icon="pi pi-times" onClick={props.handleClose} />
+        <Button className="express-button" label="Apply" icon="pi pi-check" onClick={handleConfirm} />
     </div>
 
     return (
@@ -184,28 +196,33 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                         <span className="express-group-header">Select a Preset</span>
                         <i id="express-preset-info" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="Select a color-scheme and theme to use as a base." />
                     </div>
-                    <Dropdown className="express-preset-dropdown" value={selectedTheme} options={themes} onChange={(e) => setSelectedTheme(e.value)} optionLabel="label" optionValue="value" />
-                    <Dropdown className="express-preset-dropdown" value={selectedScheme} options={schemes} onChange={(e) => setSelectedScheme(e.value)} />
-                </div>
-                <hr style={{ borderRight: "1px solid #bbb" }} />
-                <div className="express-group">
-                    <div className="express-group-header-wrapper">
-                        <Tooltip target={"#express-scheme-info"} />
-                        <span className="express-group-header">Express Scheme</span>
-                        <i id="express-scheme-info" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="First choose a name then a primary color which will be the base of your scheme, lastly select the checkbox to enable darkmode." />
-                    </div>
-                    <div className="express-scheme-editor-wrapper">
-                        <span className="express-scheme-text">Name</span>
-                        <InputText className="express-scheme-editor" value={schemeName} onChange={(event) => setSchemeName(event.target.value)} />
-                    </div>
-                    <div className="express-scheme-editor-wrapper">
-                        <span className="express-scheme-text">Primary Color</span>
-                        <InputText className="express-scheme-editor" value={schemeColor} onChange={(event) => setSchemeColor(event.target.value)} disabled={!schemeName} />
-                        <ColorPicker className={!schemeName ? "colorpicker-disabled" : ""} color={schemeColor} handleOnChange={(color:string) => setSchemeColor(color)} />
-                    </div>
-                    <div className="express-dark-wrapper">
-                        <label htmlFor="dark-mode-cb">Dark Mode</label>
-                        <Checkbox className="express-dark-checkbox" inputId="dark-mode-cb" checked={isDarkMode} disabled={!schemeName} onChange={(e) => setIsDarkMode(e.checked)} />
+                    <div className="express-preset-groups">
+                        <div className="express-preset-group">
+                            <span className="express-preset-label">Theme</span>
+                            <Dropdown className="express-preset-editor" value={selectedTheme} options={themes} onChange={(e) => setSelectedTheme(e.value)} optionLabel="label" optionValue="value" />
+                        </div>
+                        <div className="express-preset-group">
+                            <span className="express-preset-label">Scheme</span>
+                            <Dropdown className="express-preset-editor" value={selectedScheme} options={schemes} onChange={(e) => setSelectedScheme(e.value)} />
+                        </div>
+                        <div className="express-preset-group">
+                            <span className="express-preset-label">Primary Color</span>
+                            <div className="express-preset-colorpicker-group">
+                                <Tooltip target={"#express-preset-primary"} />
+                                <InputText className="express-preset-editor editor-color" value={schemeColor.initial === false ? schemeColor.color : ""} placeholder={schemeColor.initial ? schemeColor.color : ""} onChange={(event) => setSchemeColor({ color: event.target.value, initial: false })} />
+                                <ColorPicker color={schemeColor.color} handleOnChange={(color: string) => setSchemeColor({ color: color, initial: false })} />
+                                <i id="express-preset-primary" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="Create a custom scheme based on this color." />
+                            </div>
+                        </div>
+                        <div className="express-preset-group dark-wrapper">
+                            <label htmlFor="dark-mode-cb">Dark Mode</label>
+                            <div className="express-dark-checkbox-wrapper">
+                                <Tooltip target={"#express-preset-dark"} />
+                                <Checkbox className="express-dark-checkbox" inputId="dark-mode-cb" checked={isDarkMode} onChange={(e) => setIsDarkMode(e.checked)} />
+                                <i id="express-preset-dark" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="If selected, the custom scheme will be in dark mode." />
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>

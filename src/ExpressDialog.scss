@@ -14,30 +14,32 @@
  */
 
 .express-dialog {
-    min-height: 250px;
-    min-width: 500px;
+    //min-height: 250px;
+    min-width: 330px;
 
     .p-dialog-content {
-        padding: 0 1.5rem 0 1.5rem;
+        padding: 0 1rem 0 1rem;
         overflow: hidden;
     }
 }
 
+.express-dialog.p-dialog .p-dialog-header {
+    padding: 1rem 6px 2.5rem 1rem;
+}
+
+.p-dialog .p-dialog-footer {
+    padding: 0 1rem 1.5rem 1rem;
+}
+
 .express-group-wrapper {
     display: flex;
+    flex-direction: column;
+
     .express-group {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         flex: 1;
-
-        &:first-child {
-            margin-right: 1rem;
-        }
-
-        &:last-child {
-            margin-left: 1rem;
-        }
 
         .express-group-header-wrapper {
             display: flex;
@@ -48,67 +50,92 @@
             }
         }
 
-        .express-group-header-wrapper, .express-preset-dropdown:not(:last-child), .express-scheme-editor-wrapper:not(:last-child) {
+        .express-group-header-wrapper {
+            margin-bottom: 1.5rem;
+        }
+        
+        .express-preset-dropdown {
             margin-bottom: 0.5rem;
         }
     
         .express-group-header {
             font-weight: bold;
             margin-right: 0.5rem;
-        }
-    
-        .express-preset-dropdown {
-            min-width: 150px;
-            width: 100%;
-            height: 40px;
-    
-            .p-dropdown-label.p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput) {
-                border: none;
-            }
+            font-size: 18px;
         }
 
-        .express-scheme-editor-wrapper {
+        .express-preset-groups {
+            width: 100%;
+        }
+
+        .express-preset-group {
             display: flex;
             align-items: center;
             width: 100%;
+            margin-bottom: 1rem;
 
-            .express-scheme-text {
-                min-width: 100px;
-                margin-right: 0.5rem;
+            .express-preset-label {
+                margin-right: 4px;
             }
 
-            .express-scheme-editor {
-                width: 100px;
-                height: 40px;
-                flex: 1;
-                margin-right: 0.25rem;
-
-                &.p-disabled {
-                    background: #efefef;
-                }
-            }
-    
             .style-editor-colorpicker {
                 min-width: 40px;
                 max-width: 40px;
                 min-height: 40px;
                 max-height: 40px;
             }
-        }
 
-        .express-dark-wrapper {
-            display: flex;
-            width: 100%;
+            .express-preset-colorpicker-group {
+                display: flex;
+                align-items: center;
+                width: 150px;
+                margin-left: auto;
+            }
+
+            &.dark-wrapper {
+                display: flex;
+                width: 100%;
+                height: 40px;
+                align-items: center;
+
+                .express-dark-checkbox-wrapper {
+                    width: 150px;
+                    float: right;
+                    margin-left: auto;
+
+                    .express-dark-checkbox {
+                        margin-left: auto;
+                        margin-right: auto;
+            
+                        &.p-checkbox-disabled {
+                            background: #efefef;
+                            cursor: default;
+                        }
+                    }
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 2.5rem;
+            }
+        }
+    
+        .express-preset-editor  {
+            width: 150px;
+
+            &.editor-color {
+                width: 100%;
+            }
+
             height: 40px;
-            align-items: center;
-        }
-        .express-dark-checkbox {
             margin-left: auto;
-            margin-right: auto;
+    
+            .p-dropdown-label.p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput) {
+                border: none;
+            }
 
-            &.p-checkbox-disabled {
-                background: #efefef;
-                cursor: default;
+            &.editor-color {
+                margin-right: 0.5rem;
             }
         }
     }
