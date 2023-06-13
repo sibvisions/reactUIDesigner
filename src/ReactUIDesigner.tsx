@@ -105,7 +105,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const [, setReset] = useState<boolean>(false);
 
   /** The url to upload the css files/images to the server */
-  const uploadUrl = useMemo(() => props.uploadUrl || "PASTE URL HERE", [props.uploadUrl]);
+  const uploadUrl = useMemo(() => props.uploadUrl, [props.uploadUrl]);
 
   /** The reference of the toast component */
   const toastRef = useRef<Toast>(null);
@@ -396,7 +396,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       imgElemSmall.src = "/assets/factory-images/factory_small.png"
 
       const imageReadyCheck = () => {
-        if (loginImgReady && smallImgReady && bigImgReady) {
+        if (loginImgReady && smallImgReady && bigImgReady && uploadUrl) {
           sendRequest({ formData: formData }, uploadUrl)
             .then(() => {
               props.changeImages();
@@ -486,19 +486,24 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           break;
       }
 
-      sendRequest({ formData: formData }, uploadUrl)
-      .then(() => {
-        props.changeImages();
-        if (toastRef.current) {
-          toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The image has been uploaded to the server." })
-        }
-      })
-      .catch((error) => {
-        if (toastRef.current) {
-          toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The image could not be uploaded. " + error })
-        }
-        console.error(error)
-      });
+      if (uploadUrl) {
+        sendRequest({ formData: formData }, uploadUrl)
+        .then(() => {
+          props.changeImages();
+          if (toastRef.current) {
+            toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The image has been uploaded to the server." })
+          }
+        })
+        .catch((error) => {
+          if (toastRef.current) {
+            toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The image could not be uploaded. " + error })
+          }
+          console.error(error)
+        });
+      }
+      else if (toastRef.current) {
+        toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The image could not be uploaded. Because the Upload-URL is not set!" })
+      }
     }
   }
 
