@@ -12,6 +12,5 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
-export { default as ReactUIDesigner } from './ReactUIDesigner';
 import './designerindex.scss'
+export { default as ReactUIDesigner } from './ReactUIDesigner';

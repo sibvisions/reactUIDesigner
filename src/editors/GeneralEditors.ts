@@ -43,7 +43,7 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                 value: docStyle.getPropertyValue('--font-size'),
                 usage: new Map<string, string[]>()
                     .set("body", ["font-size: var(--font-size);"])
-                    .set(".basti .p-component", ["font-size: var(--font-size);"])
+                    .set(".basti .p-component, .basti .rc-label", ["font-size: var(--font-size);"])
                     .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-items", ["font-size: var(--font-size);"]),
                 tooltip: "The font-size used for components and labels."
             },

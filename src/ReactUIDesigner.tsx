@@ -262,7 +262,12 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         })
         .catch((error) => {
           if (toastRef.current) {
-            toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". " + error })
+            if (uploadUrl === "PASTE URL HERE" || !uploadUrl) {
+              toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". The Upload-URL is wrong!" })
+            }
+            else {
+              toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". " + error })
+            }
           }
           console.error(error)
         });
