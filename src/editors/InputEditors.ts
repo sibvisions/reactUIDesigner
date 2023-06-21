@@ -100,7 +100,7 @@ export const inputEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--input-padding-tb'),
                     usage: new Map<string, string[]>()
-                        .set(".basti .p-inputtext", ["padding: var(--input-padding-tb) var(--input-padding-lr);"]),
+                        .set(".basti .p-inputtext:not(.login-inputtext)", ["padding: var(--input-padding-tb) var(--input-padding-lr);"]),
                     tooltip: "The top and bottom padding for editors."
                 },
                 {
