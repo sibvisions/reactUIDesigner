@@ -256,7 +256,7 @@ export const fullEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--frame-header-background'),
                     usage: new Map<string, string[]>()
                         .set(".rc-frame .rc-frame-header", ["background: var(--frame-header-background);"])
-                        .set(".rc-frame .rc-frame-content, .rc-frame .rc-frame-menu", ["border-color: var(--frame-header-background);"]),
+                        .set(".rc-frame .rc-frame-window-content, .rc-frame .rc-frame-menu", ["border-color: var(--frame-header-background);"]),
                     tooltip: "The header background-color of a workscreen window."
                 },
                 {
@@ -312,7 +312,7 @@ export const fullEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--frame-border-width'),
                     usage: new Map<string, string[]>()
                         .set(".rc-frame .rc-frame-menu", ["border-width: 0 var(--frame-border-width) 0 var(--frame-border-width);"])
-                        .set(".rc-frame .rc-frame-content", ["0 var(--frame-border-width) var(--frame-border-width) var(--frame-border-width);"]),
+                        .set(".rc-frame .rc-frame-window-content", ["0 var(--frame-border-width) var(--frame-border-width) var(--frame-border-width);"]),
                     tooltip: "The border-width of a workscreen window."
                 },
                 {

@@ -208,7 +208,7 @@ const FullPreview: FC = () => {
                             <Menubar model={menuItems} />
                             {toolbar}
                         </div>
-                        <div className="rc-frame-content" style={{ flex: "1" }}>
+                        <div className="rc-frame-window-content" style={{ flex: "1" }}>
                             <div>
                                 This is a Workscreen Window
                             </div>
