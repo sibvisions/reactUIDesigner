@@ -182,6 +182,8 @@
     --crash-message-size:2rem;
 
     --crash-stack-height:8rem;
+
+    --topbar-position: "top";
 }
 
 body {
@@ -225,7 +227,7 @@ body {
                 }
             }
 
-            .menu-topbar {
+            &:not(.design-std-menu) .menu-topbar {
                 margin-left: var(--std-menu-collapsed-width);
             }
 
@@ -420,11 +422,11 @@ body {
         }
     }
 
-    .p-component {
+    .p-component, .rc-label {
         font-size: var(--font-size);
     }
     
-    .p-inputtext {
+    .p-inputtext:not(.login-inputtext) {
         padding: var(--input-padding-tb) var(--input-padding-lr);
     }
 
@@ -529,6 +531,10 @@ body {
 }
 
 .p-autocomplete-panel.dropdown-table {
+    .p-autocomplete-items {
+        font-size: var(--font-size);
+    }
+
     .p-autocomplete-item {
         height: calc(8px + var(--table-data-height));
     }
