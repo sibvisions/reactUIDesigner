@@ -183,7 +183,11 @@
 
     --crash-stack-height:8rem;
 
-    --topbar-position: "top";
+    --topbar-position:"top";
+    
+    --topbar-medium-time:8000;
+
+    --topbar-long-time:15000;
 }
 
 body {
