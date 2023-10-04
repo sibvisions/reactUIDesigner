@@ -29,7 +29,34 @@ export const topbarEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     value: docStyle.getPropertyValue('--topbar-colors'),
                     usage: new Map<string, string[]>(),
                     tooltip: "The color of the progressbar when sending requests."
-                }
+                },
+                {
+                    variable: "--topbar-position",
+                    label: "Position",
+                    type: "text",
+                    cssType: "theme",
+                    value: docStyle.getPropertyValue('--topbar-position'),
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The position of the progressbar, valid values are 'top' or 'bottom'."
+                },
+                {
+                    variable: "--topbar-medium-interval",
+                    label: "Medium Interval",
+                    type: "text",
+                    cssType: "theme",
+                    value: docStyle.getPropertyValue('--topbar-medium-interval'),
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The interval when the color of the topbar switches to yellow. Doesn't switch color if no value is set."
+                },
+                {
+                    variable: "--topbar-long-interval",
+                    label: "Long Interval",
+                    type: "text",
+                    cssType: "theme",
+                    value: docStyle.getPropertyValue('--topbar-long-interval'),
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The interval when the color of the topbar switches to red. Doesn't switch color if no value is set."
+                },
             ]
         }
     )

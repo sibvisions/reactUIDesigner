@@ -53,7 +53,7 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--screen-background'),
-                usage: new Map<string, string[]>().set("body", ["background: var(--screen-background);"]).set(".reactUI", ["background: var(--screen-background);"]),
+                usage: new Map<string, string[]>().set("body", ["background: var(--screen-background);"]).set(".reactUI:not(.designer-content)", ["background: var(--screen-background);"]),
                 tooltip: "The background for workscreens."
             },
             {
@@ -70,17 +70,16 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set(".rc-button.mouse-border", ["color: var(--text-color);"])
                     .set(".border-notpainted:not(.p-button-link), .border-notpainted:enabled:hover:not(.p-button-link)", ["color: var(--text-color);"])
                     .set(".p-menu .p-menuitem-text", ["color: var(--text-color);"])
-                    .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput):not(.required-field)", ["color: var(--text-color);"])
+                    .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput):not(.express-scheme-editor):not(.designer-search-editor):not(.p-dropdown-label):not(.required-field)", ["color: var(--text-color);"])
                     .set(".p-editor-container .p-editor-content .ql-editor", ["color: var(--text-color);"])
-                    .set(".rc-table.p-datatable-hoverable-rows .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["color: var(--text-color);"])
                     .set(".rc-popup .p-dialog-content, .error-dialog .p-dialog-content", ["color: var(--text-color);"])
                     .set(".error-dialog .p-dialog-footer", ["color: var(--text-color);"])
                     .set(".rc-message-dialog .p-dialog-content, .rc-message-dialog .p-dialog-footer", ["color: var(--text-color);"])
-                    .set(".p-tabview .p-tabview-nav", ["color: var(--text-color);"])
-                    .set(".p-tabview .p-tabview-nav li:not(.p-highlight) .p-tabview-nav-link", ["color: var(--text-color);"])
-                    .set(".p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["color: var(--text-color);", "border-color: var(--text-color);"])
-                    .set(".rc-frame .rc-frame-header .rc-frame-header-close-button", ["color: var(--text-color);"])
-                    .set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon", ["color: var(--text-color);"]),
+                    .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav", ["color: var(--text-color);"])
+                    .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li:not(.p-highlight) .p-tabview-nav-link", ["color: var(--text-color);"])
+                    .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["color: var(--text-color);", "border-color: var(--text-color);"])
+                    .set(".rc-frame .rc-frame-header .rc-frame-header-close-button", ["color: var(--text-color);"]),
+                usage960: new Map<string, string[]>().set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon", ["color: var(--text-color);"]),
                 tooltip: "The text-color used for most of the application."
             },
             {
@@ -96,7 +95,7 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set(".rc-popupmenubutton:focus-within", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".rc-togglebutton:focus", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".rc-editor-choice:focus img", ["box-shadow: var(--focus-box-shadow);"])
-                    .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput):enabled:focus", ["box-shadow: var(--focus-box-shadow);"])
+                    .set(".p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput):not(.express-scheme-editor):not(.designer-search-editor):not(.p-dropdown-label):enabled:focus", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".p-calendar:focus-within", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".p-datepicker .p-datepicker-header .p-datepicker-title select:focus", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".rc-editor-image:focus img, .rc-icon:focus img, .rc-validator:focus img", ["box-shadow: var(--focus-box-shadow);"])
@@ -187,6 +186,15 @@ export const expressEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                 value: docStyle.getPropertyValue('--frame-hover-backgrounds'),
                 usage: new Map<string, string[]>(),
                 tooltip: "The hover background-color of elements in the topbar."
+            },
+            {
+                variable: "--checkbox-radio-selected-hover-background",
+                label: "Checkbox/Radiobutton Hover Background",
+                type: "color",
+                cssType: "scheme",
+                value: docStyle.getPropertyValue('--checkbox-radio-selected-hover-background'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The hover background-color of checkboxes and radiobuttons."
             },
             {
                 variable: "--frame-text-color",

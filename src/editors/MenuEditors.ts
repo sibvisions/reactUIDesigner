@@ -43,13 +43,13 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--std-header-height'),
                     cssType: "theme",
                     usage: new Map<string, string[]>()
-                        .set(".basti .std-menu .menu-header", ["height:var(--std-header-height);"])
-                        .set(".basti .std-menu .menu-logo-wrapper", ["height:var(--std-header-height);"])
-                        .set(".basti .std-menu .menu-panelmenu-wrapper", ["padding-top:var(--std-header-height);"])
-                        .set(".basti .std-menu .fadeout", ["margin-top:var(--std-header-height);"])
+                        .set(".basti .std-menu .menu-header", ["height: var(--std-header-height);"])
+                        .set(".basti .std-menu .menu-logo-wrapper", ["height: var(--std-header-height);"])
+                        .set(".basti .std-menu:not(.design-std-menu) .menu-panelmenu-wrapper", ["padding-top: var(--std-header-height);"])
+                        .set(".basti .std-menu .fadeout", ["margin-top: var(--std-header-height);"])
                         .set(".basti .std-menu.menu-collapsed .menu-panelmenu-wrapper::-webkit-scrollbar-button:start:decrement", ["height: var(--std-header-height);"])
                         .set(".basti .std-menu.menu-collapsed .menu-panelmenu-wrapper::-webkit-scrollbar-button:start:decrement", ["height: var(--std-header-height);"]),
-                    usage530: new Map<string, string[]>().set(".basti .std-menu .fadeout", ["margin-top:calc(var(--std-header-height) + var(--std-logo-height));"]),
+                    usage530: new Map<string, string[]>().set(".basti .std-menu .fadeout", ["margin-top: calc(var(--std-header-height) + var(--std-logo-height));"]),
                     tooltip: "The height of the topbar."
                 },
                 {
@@ -58,7 +58,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-logo-background'),
-                    usage: new Map<string, string[]>().set(".menu-logo-wrapper", ["background:var(--topbar-logo-background);"]),
+                    usage: new Map<string, string[]>().set(".menu-logo-wrapper", ["background: var(--topbar-logo-background);"]),
                     tooltip: "The background-color of the logo in the topbar."
                 },
 
@@ -69,10 +69,10 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-background'),
                     usage: new Map<string, string[]>()
-                        .set(".menu-header", ["background:var(--topbar-background);"]),
+                        .set(".menu-header", ["background: var(--topbar-background);"]),
                     usage960: new Map<string, string[]>()
-                        .set(".p-menubar .p-menubar-root-list", ["background:var(--topbar-background);"])
-                        .set(".p-menubar .p-menubar-root-list > .p-menuitem", ["background:var(--topbar-background);"]),
+                        .set(".p-menubar .p-menubar-root-list", ["background: var(--topbar-background);"])
+                        .set(".p-menubar .p-menubar-root-list > .p-menuitem", ["background: var(--topbar-background);"]),
                     tooltip: "The background-color of the topbar."
                 },
                 {
@@ -81,7 +81,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-text-color'),
-                    usage: new Map<string, string[]>().set(".menu-screen-title", ["color:var(--topbar-text-color);"]),
+                    usage: new Map<string, string[]>().set(".menu-screen-title", ["color: var(--topbar-text-color);"]),
                     tooltip: "The text-color of the toolbar."
                 },
                 {
@@ -90,7 +90,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--std-screen-title-size'),
-                    usage: new Map<string, string[]>().set(".basti .std-menu .menu-topbar .menu-screen-title", ["font-size:var(--std-screen-title-size);"]),
+                    usage: new Map<string, string[]>().set(".basti .std-menu .menu-topbar .menu-screen-title", ["font-size: var(--std-screen-title-size);"]),
                     tooltip: "The font-size of the title in the topbar."
                 },
                 {
@@ -99,7 +99,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--std-screen-title-margin'),
-                    usage: new Map<string, string[]>().set(".basti .std-menu .menu-topbar .menu-screen-title", ["margin-left:var(--std-screen-title-margin);"]),
+                    usage: new Map<string, string[]>().set(".basti .std-menu .menu-topbar .menu-screen-title", ["margin-left: var(--std-screen-title-margin);"]),
                     tooltip: "The left margin of the title to the collapse button."
                 },
                 {
@@ -108,7 +108,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-button-background'),
-                    usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons", ["background:var(--topbar-button-background);"]),
+                    usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons", ["background: var(--topbar-button-background);"]),
                     tooltip: "The background-color of the topbar's buttons."
                 },
                 {
@@ -117,7 +117,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-button-text-color'),
-                    usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons", ["color:var(--topbar-button-text-color);"]),
+                    usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons", ["color: var(--topbar-button-text-color);"]),
                     tooltip: "The text-color of the topbar's buttons."
                 },
                 {
@@ -126,7 +126,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-button-hover-background'),
-                    usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons:hover", ["background:var(--topbar-button-hover-background);"]),
+                    usage: new Map<string, string[]>().set(".p-button.p-button-icon-only.menu-topbar-buttons:hover", ["background: var(--topbar-button-hover-background);"]),
                     tooltip: "The hover background-color of the topbar's buttons."
                 }
             ]
@@ -145,8 +145,8 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--std-profile-width-small'),
                     usage: new Map<string, string[]>(),
                     usage960: new Map<string, string[]>()
-                        .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .basti .std-menu .profile-menu .p-menubar .p-menubar-root-list.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["width:var(--std-profile-width-small);"])
-                        .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["left:calc(var(--std-profile-width-small) - var(--std-profile-submenu-width-small));"]),
+                        .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .basti .std-menu .profile-menu .p-menubar .p-menubar-root-list.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["width: var(--std-profile-width-small);"])
+                        .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["left: calc(var(--std-profile-width-small) - var(--std-profile-submenu-width-small));"]),
                     tooltip: "The profile-menu width when the menu is small."
                 },
                 {
@@ -157,7 +157,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--profile-background'),
                     usage: new Map<string, string[]>()
                         .set(".profile-menu .p-menubar", ["background: var(--profile-background);"])
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["background:var(--profile-background);"]),
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["background: var(--profile-background);"]),
                     tooltip: "The background-color of the profile-menu."
                 },
                 {
@@ -167,7 +167,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-hover-background'),
                     usage: new Map<string, string[]>()
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["background:var(--profile-hover-background);"]),
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["background: var(--profile-hover-background);"]),
                     tooltip: "The hover background-color of the profile-menu."
                 },
                 {
@@ -177,10 +177,10 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-text-color'),
                     usage: new Map<string, string[]>()
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["color:var(--profile-text-color);"])
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-submenu-icon", ["color:var(--profile-text-color);"])
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["color:var(--profile-text-color);"])
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon", ["color:var(--profile-text-color);"]),
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["color: var(--profile-text-color);"])
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled) .p-submenu-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled) .p-submenu-icon", ["color: var(--profile-text-color);"])
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover", ["color: var(--profile-text-color);"])
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon", ["color: var(--profile-text-color);"]),
                     tooltip: "The text-color of the profile-menu."
                 },
                 {
@@ -189,7 +189,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--std-profile-padding'),
-                    usage: new Map<string, string[]>().set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding:var(--std-profile-padding);"]),
+                    usage: new Map<string, string[]>().set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["padding: var(--std-profile-padding);"]),
                     tooltip: "The padding of the profile-menu (changes size)."
                 },
                 {
@@ -199,7 +199,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-separator'),
                     usage: new Map<string, string[]>()
-                        .set(".vl", ["border-left:var(--profile-separator);"]),
+                        .set(".vl", ["border-left: var(--profile-separator);"]),
                     tooltip: "The seperator between profile-menu and topbar buttons."
                 },
                 {
@@ -210,7 +210,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--std-profile-submenu-width-small'),
                     usage: new Map<string, string[]>(),
                     usage960: new Map<string, string[]>()
-                        .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["width:var(--std-profile-submenu-width-small);"]),
+                        .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list .p-submenu-list", ["width: var(--std-profile-submenu-width-small);"]),
                     tooltip: "The width of the profile-menu's sub-menu when the application is small."
                 },
                 {
@@ -220,8 +220,8 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-submenu-background'),
                     usage: new Map<string, string[]>()
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list", ["background:var(--profile-submenu-background);"])
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link", ["background:var(--profile-submenu-background);"]),
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list", ["background: var(--profile-submenu-background);"])
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link", ["background: var(--profile-submenu-background);"]),
                     tooltip: "The background-color of the profile-menu's sub-menu."
                 },
                 {
@@ -231,7 +231,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-item-hover-background'),
                     usage: new Map<string, string[]>()
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover", ["background:var(--profile-item-hover-background);"]),
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover", ["background: var(--profile-item-hover-background);"]),
                     tooltip: "The item hover background-color of the profile-menu's sub-menu."
                 },
                 {
@@ -241,7 +241,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--profile-item-hover-text-color'),
                     usage: new Map<string, string[]>()
-                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon", ["color:var(--profile-item-hover-text-color);"]),
+                        .set(".profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-text, .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link:hover .p-menuitem-icon", ["color: var(--profile-item-hover-text-color);"]),
                     tooltip: "The item hover text-color of the profile-menu's sub-menu."
                 }
             ]
@@ -259,10 +259,10 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--std-menu-width'),
                     usage: new Map<string, string[]>()
-                        .set(".basti .std-menu .menu-topbar", ["margin-left:var(--std-menu-width);"])
-                        .set(".basti .std-menu .menu-logo-wrapper", ["width:var(--std-menu-width);"])
-                        .set(".basti .std-menu .menu-panelmenu-wrapper", ["width:var(--std-menu-width);"])
-                        .set(".basti .std-menu .p-panelmenu .p-panelmenu-icon", ["left:calc(var(--std-menu-width) - 30px);"]),
+                        .set(".basti .std-menu:not(.design-std-menu) .menu-topbar", ["margin-left: var(--std-menu-width);"])
+                        .set(".basti .std-menu .menu-logo-wrapper", ["width: var(--std-menu-width);"])
+                        .set(".basti .std-menu .menu-panelmenu-wrapper", ["width: var(--std-menu-width);"])
+                        .set(".basti .std-menu .p-panelmenu .p-panelmenu-icon", ["left: calc(var(--std-menu-width) - 30px);"]),
                     tooltip: "The sidebar menu's width."
                 },
                 {
@@ -274,7 +274,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     usage: new Map<string, string[]>()
                         .set(".basti .std-menu.menu-collapsed .menu-logo-wrapper", ["width: var(--std-menu-collapsed-width);"])
                         .set(".basti .std-menu.menu-collapsed .menu-panelmenu-wrapper", ["width: var(--std-menu-collapsed-width);"])
-                        .set(".basti .std-menu.menu-collapsed .menu-topbar", ["margin-left: var(--std-menu-collapsed-width);"]),
+                        .set(".basti .std-menu.menu-collapsed:not(.design-std-menu) .menu-topbar", ["margin-left: var(--std-menu-collapsed-width);"]),
                     tooltip: "The sidebar menu's collapsed width."
                 },
                 {
@@ -286,7 +286,6 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     usage: new Map<string, string[]>()
                         .set(".menu-panelmenu-wrapper", ["background: var(--std-menu-background);"])
                         .set(".p-panelmenu .p-panelmenu-header > a", ["background: var(--std-menu-background);", "border-color: var(--std-menu-background);"])
-                        .set(".p-panelmenu .p-panelmenu-header.p-highlight > a, .p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["background: var(--std-menu-background);"])
                         .set(".p-panelmenu .p-panelmenu-content", ["background: var(--std-menu-background);"])
                         .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link", ["background: var(--std-menu-background);"]),
                     tooltip: "The background-color of the sidebar menu."
@@ -299,7 +298,8 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--std-menu-item-hover-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover", ["background: var(--std-menu-item-hover-background);", "border-color: var(--std-menu-item-hover-background);"])
-                        .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover", ["background: var(--std-menu-item-hover-background);"]),
+                        .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover", ["background: var(--std-menu-item-hover-background);"])
+                        .set(".p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["background: var(--std-menu-item-hover-background);", "border-color: var(--std-menu-item-hover-background);"]),
                     tooltip: "The item hover background-color of the sidebar menu."
                 },
                 {
@@ -321,7 +321,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--std-menu-item-hover-text-color'),
                     usage: new Map<string, string[]>()
                         .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover", ["color: var(--std-menu-item-hover-text-color);"])
-                        .set(".p-panelmenu .p-panelmenu-header.p-highlight > a, .p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["color: var(--std-menu-item-hover-text-color);"])
+                        .set(".p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["color: var(--std-menu-item-hover-text-color);"])
                         .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon, .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text", ["color: var(--std-menu-item-hover-text-color);"]),
                     tooltip: "The item hover text-color of the sidebar menu."
                 },
@@ -434,9 +434,9 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--std-profile-height'),
                 usage: new Map<string, string[]>()
-                    .set(".basti .std-menu .profile-menu", ["height:var(--std-profile-height);"])
-                    .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--std-profile-height);"])
-                    .set(".basti .std-menu .vl", ["height:var(--std-profile-height);"]),
+                    .set(".basti .std-menu .profile-menu", ["height: var(--std-profile-height);"])
+                    .set(".basti .std-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height: var(--std-profile-height);"])
+                    .set(".basti .std-menu .vl", ["height: var(--std-profile-height);"]),
                 tooltip: "The height of the profile-menu."
             },
             {
@@ -446,9 +446,9 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--std-logo-width'),
                 usage: new Map<string, string[]>()
-                    .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["width:var(--std-logo-width);"])
-                    .set(".basti .std-menu .menu-logo-mini", ["width:var(--std-logo-width);"]),
-                usage530: new Map<string, string[]>().set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["width:var(--std-logo-width);"]),
+                    .set(".basti .std-menu .menu-logo-wrapper .menu-logo", ["width: var(--std-logo-width);"])
+                    .set(".basti .std-menu .menu-logo-mini", ["width: var(--std-logo-width);"]),
+                usage530: new Map<string, string[]>().set(".basti .std-menu .menu-logo-mini-wrapper .menu-logo-mini", ["width: var(--std-logo-width);"]),
                 tooltip: "The width of the logo in the topbar."
             },
             {
@@ -482,9 +482,9 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--std-profile-pic'),
                 usage: new Map<string, string[]>()
-                    .set(".basti .std-menu .profile-image, .basti .std-menu .profile-image-null", ["width:var(--std-profile-pic);", "height:var(--std-profile-pic);"])
-                    .set(".basti .std-menu .profile-image", ["background-size:var(--std-profile-pic) var(--std-profile-pic);"])
-                    .set(".basti .std-menu .profile-image-null::before", ["font-size:calc(var(--std-profile-pic) - 2px);"]),
+                    .set(".basti .std-menu .profile-image, .basti .std-menu .profile-image-null", ["width: var(--std-profile-pic);", "height: var(--std-profile-pic);"])
+                    .set(".basti .std-menu .profile-image", ["background-size: var(--std-profile-pic) var(--std-profile-pic);"])
+                    .set(".basti .std-menu .profile-image-null::before", ["font-size: calc(var(--std-profile-pic) - 2px);"]),
                 tooltip: "The size of the profile-picture in the profile menu."
             },
             {
@@ -494,7 +494,7 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--std-topbar-button-size'),
                 usage: new Map<string, string[]>()
-                    .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--std-topbar-button-size);", "height:var(--std-topbar-button-size);"]),
+                    .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width: var(--std-topbar-button-size);", "height: var(--std-topbar-button-size);"]),
                 tooltip: "The size of the topbar's buttons."
             },
             {
@@ -505,7 +505,7 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 value: docStyle.getPropertyValue('--std-topbar-button-size-small'),
                 usage: new Map<string, string[]>(),
                 usage530: new Map<string, string[]>()
-                    .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--std-topbar-button-size-small);", "height:var(--std-topbar-button-size-small);"]),
+                    .set(".basti .std-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width: var(--std-topbar-button-size-small);", "height: var(--std-topbar-button-size-small);"]),
                 tooltip: "The size of the topbar's buttons when the application is small."
             },
             {
@@ -515,9 +515,9 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--corp-profile-height'),
                 usage: new Map<string, string[]>()
-                    .set(".basti .corp-menu .profile-menu", ["height:var(--corp-profile-height);"])
-                    .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height:var(--corp-profile-height);"])
-                    .set(".basti .corp-menu .vl", ["height:var(--corp-profile-height);"]),
+                    .set(".basti .corp-menu .profile-menu", ["height: var(--corp-profile-height);"])
+                    .set(".basti .corp-menu .profile-menu .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link", ["height: var(--corp-profile-height);"])
+                    .set(".basti .corp-menu .vl", ["height: var(--corp-profile-height);"]),
                 tooltip: "The height of the profile-menu in corporation menu mode."
             },
             {
@@ -527,9 +527,9 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--corp-profile-pic'),
                 usage: new Map<string, string[]>()
-                    .set(".basti .corp-menu .profile-image, .basti .corp-menu .profile-image-null", ["width:var(--corp-profile-pic);", "height:var(--corp-profile-pic);"])
-                    .set(".basti .corp-menu .profile-image", ["background-size:var(--corp-profile-pic) var(--corp-profile-pic);"])
-                    .set(".basti .corp-menu .profile-image-null::before", ["font-size:calc(var(--corp-profile-pic) - 2px);"]),
+                    .set(".basti .corp-menu .profile-image, .basti .corp-menu .profile-image-null", ["width: var(--corp-profile-pic);", "height: var(--corp-profile-pic);"])
+                    .set(".basti .corp-menu .profile-image", ["background-size: var(--corp-profile-pic) var(--corp-profile-pic);"])
+                    .set(".basti .corp-menu .profile-image-null::before", ["font-size: calc(var(--corp-profile-pic) - 2px);"]),
                 tooltip: "The size of the profile-picture in corporation menu mode."
             },
             {
@@ -539,7 +539,7 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--corp-topbar-button-size'),
                 usage: new Map<string, string[]>()
-                    .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--corp-topbar-button-size);", "height:var(--corp-topbar-button-size);"]),
+                    .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width: var(--corp-topbar-button-size);", "height: var(--corp-topbar-button-size);"]),
                 tooltip: "The size of the topbar's buttons in corporation menu mode."
             },
             {
@@ -550,7 +550,7 @@ export const menuExtras: Map<string, EditorGroup> = new Map<string, EditorGroup>
                 value: docStyle.getPropertyValue('--corp-topbar-button-size-small'),
                 usage: new Map<string, string[]>(),
                 usage530: new Map<string, string[]>()
-                    .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width:var(--corp-topbar-button-size-small);", "height:var(--corp-topbar-button-size-small);"]),
+                    .set(".basti .corp-menu .p-button.p-button-icon-only.menu-topbar-buttons", ["min-width: var(--corp-topbar-button-size-small);", "height: var(--corp-topbar-button-size-small);"]),
                 tooltip: "The size of the topbar's buttons when the application is small in corporation menu mode."
             },
             {

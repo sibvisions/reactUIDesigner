@@ -37,8 +37,8 @@ export const tabsetEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-navbar-background'),
                     usage: new Map<string, string[]>()
-                        .set(".p-tabview .p-tabview-nav", ["background: var(--tab-navbar-background);"])
-                        .set(".p-tabview .p-tabview-nav li .p-tabview-nav-link", ["background: var(--tab-navbar-background);"]),
+                        .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav", ["background: var(--tab-navbar-background);"])
+                        .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li .p-tabview-nav-link", ["background: var(--tab-navbar-background);"]),
                     tooltip: "The background-color of the navigation-bar."
                 },
                 {
@@ -47,7 +47,7 @@ export const tabsetEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-border-color'),
-                    usage: new Map<string, string[]>().set(".p-tabview .p-tabview-nav li:not(.p-highlight) .p-tabview-nav-link", ["border-color: transparent transparent var(--tab-border-color) transparent;"]),
+                    usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li:not(.p-highlight) .p-tabview-nav-link", ["border-color: transparent transparent var(--tab-border-color) transparent;"]),
                     tooltip: "The border color of the navigation-bar."
                 },
                 {
@@ -56,7 +56,7 @@ export const tabsetEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-selected-color'),
-                    usage: new Map<string, string[]>().set(".p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link", ["color: var(--tab-selected-color);", "border-color: var(--tab-selected-color);"]),
+                    usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li.p-highlight .p-tabview-nav-link", ["color: var(--tab-selected-color);", "border-color: var(--tab-selected-color);"]),
                     tooltip: "The text and border color of the selected tab."
                 },
                 {
@@ -65,7 +65,7 @@ export const tabsetEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-hover-background'),
-                    usage: new Map<string, string[]>().set(".p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["background: var(--tab-hover-background);"]),
+                    usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["background: var(--tab-hover-background);"]),
                     tooltip: "The hover background-color of a tab."
                 },
                 {
@@ -92,7 +92,7 @@ export const tabsetEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-border-radius'),
-                    usage: new Map<string, string[]>().set(".p-tabview .p-tabview-nav", ["border-radius: var(--tab-border-radius);", "padding: 0 var(--tab-border-radius);"]),
+                    usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav", ["border-radius: var(--tab-border-radius);", "padding: 0 var(--tab-border-radius);"]),
                     tooltip: "The border-radius of the navigation-bar (rounds borders)."
                 }
             ]

@@ -73,8 +73,8 @@ export const loginEditors: Map<string, EditorGroup> =
                         cssType: "theme",
                         value: docStyle.getPropertyValue('--login-form-top-bottom-padding'),
                         usage: new Map<string, string[]>()
-                            .set(".login-form .p-fluid", ["padding: calc(var(--login-form-top-bottom-padding) / 2) var(--login-form-left-right-padding) var(--login-form-top-bottom-padding);"])
-                            .set(".login-form .login-logo-wrapper", ["padding: var(--login-form-top-bottom-padding) var(--login-form-left-right-padding) calc(var(--login-form-top-bottom-padding) / 2);"]),
+                            .set(".login-form .p-fluid", ["padding: 20px var(--login-form-left-right-padding) var(--login-form-top-bottom-padding);"])
+                            .set(".login-form .login-logo-wrapper", ["padding: var(--login-form-top-bottom-padding) var(--login-form-left-right-padding) 20px;"]),
                         tooltip: "The top and bottom padding of the login view (changes size)."
                     },
                     {

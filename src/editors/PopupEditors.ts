@@ -58,7 +58,7 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-close-hover-color'),
-                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-color);"]),
+                    usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["color: var(--dialog-header-close-hover-color);"]),
                     tooltip: "The hover text-color of the 'x' to close the popup."
                     
                 },
