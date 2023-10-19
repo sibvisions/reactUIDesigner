@@ -46,7 +46,16 @@ export const topbarEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--topbar-medium-interval'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The interval when the color of the topbar switches to yellow. Doesn't switch color if no value is set."
+                    tooltip: "The interval when a response roundtrip is considered medium."
+                },
+                {
+                    variable: "--topbar-medium-interval-colors",
+                    label: "Medium Interval Color",
+                    type: "color",
+                    cssType: "scheme",
+                    value: docStyle.getPropertyValue('--topbar-medium-interval-colors'),
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The color of the topbar for medium response times."
                 },
                 {
                     variable: "--topbar-long-interval",
@@ -55,7 +64,16 @@ export const topbarEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--topbar-long-interval'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The interval when the color of the topbar switches to red. Doesn't switch color if no value is set."
+                    tooltip: "The interval when a response roundtrip is considered long."
+                },
+                {
+                    variable: "--topbar-long-interval-colors",
+                    label: "Long Interval Color",
+                    type: "color",
+                    cssType: "scheme",
+                    value: docStyle.getPropertyValue('--topbar-long-interval-colors'),
+                    usage: new Map<string, string[]>(),
+                    tooltip: "The color of the topbar for long response times."
                 },
             ]
         }
