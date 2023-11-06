@@ -387,14 +387,22 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
       const formData = new FormData();
 
-      const imgElemLogin = document.getElementById("login-image") as HTMLImageElement;
-      const imgElemBig = document.getElementById("menu-image") as HTMLImageElement;
-      const imgElemSmall = document.getElementById("small-image") as HTMLImageElement;
+      const imgElemLogin = document.getElementById("login-image")
+      const imgElemBig = document.getElementById("menu-image")
+      const imgElemSmall = document.getElementById("small-image")
 
-      imgElemLogin.src = "/assets/factory-images/factory_login.png";
-      imgElemBig.src = "/assets/factory-images/factory_big.png"
-      imgElemSmall.src = "/assets/factory-images/factory_small.png"
-
+      if (imgElemLogin) {
+        (imgElemLogin as HTMLImageElement).src = "/assets/factory-images/factory_login.png";
+      }
+      
+      if (imgElemBig) {
+        (imgElemBig as HTMLImageElement).src = "/assets/factory-images/factory_big.png";
+      }
+      
+      if (imgElemSmall) {
+        (imgElemSmall as HTMLImageElement).src = "/assets/factory-images/factory_small.png";
+      }
+      
       const imageReadyCheck = () => {
         if (loginImgReady && smallImgReady && bigImgReady && uploadUrl) {
           sendRequest({ formData: formData }, uploadUrl)
