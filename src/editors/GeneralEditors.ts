@@ -189,7 +189,7 @@ export const expressEditors: Map<string, EditorGroup> = new Map<string, EditorGr
             },
             {
                 variable: "--checkbox-radio-selected-hover-background",
-                label: "Checkbox/Radiobutton Hover Background",
+                label: "Checkbox-Radiobutton Hover Background",
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--checkbox-radio-selected-hover-background'),
