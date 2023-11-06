@@ -149,7 +149,13 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                     })
                 })
             }
-            sessionStorage.clear();
+            let sessionStorageLength = sessionStorage.length;
+            while (sessionStorageLength--) {
+                const key = sessionStorage.key(sessionStorageLength);
+                if (key !== null && key !== "clientId") {
+                    sessionStorage.removeItem(key);
+                }
+            }
         }
     }
 
