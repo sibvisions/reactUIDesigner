@@ -18,7 +18,7 @@ import { Calendar } from 'primereact/calendar';
 import { AutoComplete } from 'primereact/autocomplete';
 import { Editor } from 'primereact/editor';
 import Quill from "quill";
-import React, { FC, useState } from 'react';
+import React, { CSSProperties, FC, useState } from 'react';
 import tinycolor from 'tinycolor2';
 
 /** custom divider blot to insert <hr> intro quill editor */
@@ -178,7 +178,7 @@ const Inputs: FC = () => {
                     style={{
                         '--background': btnBgd,
                         '--hoverBackground': tinycolor(btnBgd).darken(5).toString()
-                    }}
+                    } as CSSProperties}
                     dateFormat="dd.mm.yy"
                     monthNavigator
                     yearNavigator
@@ -195,7 +195,7 @@ const Inputs: FC = () => {
                     style={{
                         '--background': btnBgd,
                         '--hoverBackground': tinycolor(btnBgd).darken(5).toString()
-                    }}
+                    } as CSSProperties}
                     value={selectedItem} 
                     suggestions={filteredItems} 
                     completeMethod={searchItems} 

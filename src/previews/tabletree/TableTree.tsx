@@ -1,6 +1,6 @@
 import React, { FC, useState, CSSProperties } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { Tree, TreeSelectionKeys } from 'primereact/tree';
+import { DataTable, DataTableCellSelection } from 'primereact/datatable';
+import { Tree, TreeCheckboxSelectionKeys, TreeMultipleSelectionKeys } from 'primereact/tree';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import * as _ from 'underscore'
@@ -134,10 +134,10 @@ const treeItems = [
 /** A preview for the table (with toolbar) and tree to see changes live */
 const TableTree:FC = () => {
     /** The selected table item */
-    const [selectedTableItem, setSelectedTableItem] = useState<{value: any, field: string, rowData: any, rowIndex: number, cellIndex: number}>({ cellIndex: 0, field: "firstName", rowData: tableItems[0], rowIndex: 0, value: "Max" });
+    const [selectedTableItem, setSelectedTableItem] = useState<DataTableCellSelection<{firstName: string, lastName: string, age: number, city: string}[]>>({ cellIndex: 0, field: "firstName", rowData: tableItems[0], rowIndex: 0, value: "Max", column: new Column({}), props: {}, selected: false });
 
     /** The selected tree item */
-    const [selectedTreeItem, setSelectedTreeItem] = useState<TreeSelectionKeys>(null);
+    const [selectedTreeItem, setSelectedTreeItem] = useState<string | TreeMultipleSelectionKeys | TreeCheckboxSelectionKeys | null>(null);
 
     /** The background-color of buttons */
     const btnBgd = window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color');

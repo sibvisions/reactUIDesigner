@@ -588,17 +588,19 @@ body {
 
         .p-menubar-root-list {
             >.p-menuitem, >.p-menuitem.p-menuitem-active  {
-                > .p-menuitem-link:not(.p-disabled) {
+                > .p-menuitem-content {
                     background: var(--profile-background);
                     color: var(--profile-text-color);
-    
-                    .p-menuitem-text, .p-submenu-icon {
-                        color: var(--profile-text-color);
-                    }
-    
+
                     &:hover {
                         background: var(--profile-hover-background);
                         color: var(--profile-text-color);
+                        .p-menuitem-text, .p-submenu-icon {
+                            color: var(--profile-text-color);
+                        }
+                    }
+
+                    > .p-menuitem-link:not(.p-disabled) {
                         .p-menuitem-text, .p-submenu-icon {
                             color: var(--profile-text-color);
                         }
@@ -656,6 +658,10 @@ body {
 }
 
 .p-panelmenu {
+    .single-group-item.p-menuitem--active .p-panelmenu-header-link {
+        color: var(--std-menu-activeitem-color);
+    }
+
     .p-panelmenu-header {
         > a {
             background: var(--std-menu-background);
@@ -670,8 +676,14 @@ body {
         }
 
         &.p-highlight {
-            > a, &:not(.p-disabled) > a:hover {
+            > a {
                 background: var(--std-menu-background);
+                border-color: var(--std-menu-background);
+                color: var(--std-menu-text-color);
+            } 
+            &:not(.p-disabled) > a:hover {
+                background: var(--std-menu-item-hover-background);
+                border-color: var(--std-menu-item-hover-background);
                 color: var(--std-menu-item-hover-text-color);
             }
         }
@@ -745,19 +757,21 @@ body {
     
     .p-menubar-root-list {
         >.p-menuitem, >.p-menuitem.p-menuitem-active  {
-            > .p-menuitem-link:not(.p-disabled) {
+            > .p-menuitem-content {
                 background: var(--menubar-background);
                 color: var(--menubar-text-color);
 
-                .p-menuitem-text, .p-submenu-icon, .p-menuitem-icon:not(.profile-image-null) {
-                    color: var(--menubar-text-color);
-                }
-
-                &:hover {
-                    background: var(--menubar-hover-background);
-                    color: var(--menubar-text-color);
+                > .p-menuitem-link:not(.p-disabled) {
                     .p-menuitem-text, .p-submenu-icon, .p-menuitem-icon:not(.profile-image-null) {
                         color: var(--menubar-text-color);
+                    }
+    
+                    &:hover {
+                        background: var(--menubar-hover-background);
+                        color: var(--menubar-text-color);
+                        .p-menuitem-text, .p-submenu-icon, .p-menuitem-icon:not(.profile-image-null) {
+                            color: var(--menubar-text-color);
+                        }
                     }
                 }
             }
@@ -818,7 +832,7 @@ body {
 /// *----------Components----------*
 
 /// Button
-.p-button {
+.p-button:not(.p-speeddial-button) {
     border-radius: var(--button-border-radius);
 }
 
@@ -837,7 +851,7 @@ body {
 }
 
 /// Checkbox & Radiobutton
-.p-checkbox .p-checkbox-box {
+.rc-editor-checkbox .p-checkbox .p-checkbox-box, .rc-checkbox .p-checkbox .p-checkbox-box {
     background: var(--checkbox-background);
     border: var(--checkbox-border);
 }
@@ -847,7 +861,7 @@ body {
     border: var(--radiobutton-border);
 }
 
-.p-checkbox {
+.rc-editor-checkbox .p-checkbox, .rc-checkbox .p-checkbox {
     &:not(.p-checkbox-disabled) .p-checkbox-box {
         &:hover {
             border-color: var(--checkbox-border-hover-color);
@@ -874,7 +888,7 @@ body {
     }
 }
 
-.p-checkbox-box.p-highlight .p-checkbox-icon {
+.rc-editor-checkbox .p-checkbox-box.p-highlight .p-checkbox-icon, .rc-checkbox .p-checkbox-box.p-highlight .p-checkbox-icon {
     color: var(--checkbox-color);
 }
 
@@ -952,10 +966,15 @@ body {
 }
 
 /// Inputfields
-.p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput) {
+.p-inputtext:not(.designer-panel-inputtext):not(.style-editor-textinput):not(.express-scheme-editor):not(.designer-search-editor):not(.p-dropdown-label) {
     background: var(--input-background);
     border: var(--input-border-width) solid var(--input-border-color);
     border-radius: var(--editor-border-radius);
+
+    &.p-autocomplete-input, &.p-date-input {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
 
     &:not(.required-field) {
         color: var(--text-color);
@@ -1689,7 +1708,7 @@ body {
 }
 
 /// TabSetPanel
-.p-tabview .p-tabview-nav {
+.p-tabview:not(.designer-tab-view) .p-tabview-nav {
     background: var(--tab-navbar-background);
     color: var(--text-color);
     border-radius: var(--tab-border-radius);
@@ -1865,23 +1884,25 @@ body {
 
         .p-menubar-root-list {
             >.p-menuitem, >.p-menuitem.p-menuitem-active  {
-                > .p-menuitem-link:not(.p-disabled) {
+                > .p-menuitem-content {
                     background: var(--frame-menubar-background);
                     color: var(--frame-menubar-text-color);
-    
-                    .p-menuitem-text, .p-submenu-icon {
-                        color: var(--frame-menubar-text-color);
-                    }
-    
-                    &:hover {
-                        background: var(--frame-menubar-hover-background);
-                        color: var(--frame-menubar-text-color);
+
+                    > .p-menuitem-link:not(.p-disabled) {
                         .p-menuitem-text, .p-submenu-icon {
                             color: var(--frame-menubar-text-color);
                         }
+        
+                        &:hover {
+                            background: var(--frame-menubar-hover-background);
+                            color: var(--frame-menubar-text-color);
+                            .p-menuitem-text, .p-submenu-icon {
+                                color: var(--frame-menubar-text-color);
+                            }
+                        }
                     }
                 }
-    
+
                 > .p-submenu-list {
                     background: var(--frame-menubar-submenu-background);
     

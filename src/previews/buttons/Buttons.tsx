@@ -103,14 +103,14 @@ const Buttons: FC = () => {
                 <Checkbox
                     inputId="preview-checkbox"
                     checked={cbChecked}
-                    onChange={e => setCbChecked(e.checked)} />
+                    onChange={e => setCbChecked(e.checked === undefined ? false : e.checked)} />
                 <label className="p-radiobutton-label" htmlFor="preview-checkbox">Preview Checkbox</label>
             </span>
             <span className={concatClassnames("rc-radiobutton", "gap-right", "comp-container")} style={{ '--iconTextGap': '4px' } as CSSProperties} >
                 <RadioButton 
                     inputId="preview-radiobutton"
                     checked={rbChecked}
-                    onChange={e => setRbChecked(e.checked)} />
+                    onChange={e => setRbChecked(e.checked === undefined ? false : e.checked)} />
                 <label className="p-radiobutton-label" htmlFor="preview-radiobutton">Preview Radiobutton</label>
             </span>
             <span className="comp-container">

@@ -78,7 +78,7 @@ export const buttonEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     value: docStyle.getPropertyValue('--button-border-radius'),
                     usage: new Map<string, string[]>()
                         .set(".p-button.p-button-icon-only.menu-topbar-buttons", ["border-radius: var(--button-border-radius);"])
-                        .set(".p-button", ["border-radius: var(--button-border-radius);"])
+                        .set(".p-button:not(.p-speeddial-button)", ["border-radius: var(--button-border-radius);"])
                         .set(".rc-popupmenubutton", ["border-radius: var(--button-border-radius);"]),
                     tooltip: "The border-radius for button components (rounds borders)."
                 }

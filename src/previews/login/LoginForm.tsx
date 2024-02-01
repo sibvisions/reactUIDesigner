@@ -66,7 +66,7 @@ const LoginForm:FC<any> = () => {
                                     inputId="rememberMe" 
                                     className="remember-me-cbx" 
                                     checked={rememberMe} 
-                                    onChange={(event) => setRememberMe(prevState => event.checked)} />
+                                    onChange={(event) => setRememberMe(event.checked === undefined ? false : event.checked)} />
                                 <label htmlFor="rememberMe" className="p-checkbox-label">Remember me?</label>
                             </div>
                             <Button

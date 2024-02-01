@@ -146,7 +146,7 @@ export const fullEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--frame-menubar-background'),
                     usage: new Map<string, string[]>()
                         .set(".rc-frame .p-menubar", ["background: var(--frame-menubar-background);"])
-                        .set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled), .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled)", ["background: var(--frame-menubar-background);"]),
+                        .set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content, .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-content", ["background: var(--frame-menubar-background);"]),
                     tooltip: "The background-color of the menubar in a workscreen window."
                 },
                 {

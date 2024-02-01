@@ -224,7 +224,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
                             <label htmlFor="dark-mode-cb">Dark Mode</label>
                             <div className="express-dark-checkbox-wrapper">
                                 <Tooltip target={"#express-preset-dark"} />
-                                <Checkbox className="express-dark-checkbox" inputId="dark-mode-cb" checked={isDarkMode} onChange={(e) => setIsDarkMode(e.checked)} />
+                                <Checkbox className="express-dark-checkbox" inputId="dark-mode-cb" checked={isDarkMode} onChange={(e) => setIsDarkMode(e.checked === undefined ? false : e.checked)} />
                                 <i id="express-preset-dark" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="If selected, the custom scheme will be in dark mode." />
                             </div>
                             
