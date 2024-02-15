@@ -285,7 +285,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     value: docStyle.getPropertyValue('--std-menu-background'),
                     usage: new Map<string, string[]>()
                         .set(".menu-panelmenu-wrapper", ["background: var(--std-menu-background);"])
-                        .set(".p-panelmenu .p-panelmenu-header > a", ["background: var(--std-menu-background);", "border-color: var(--std-menu-background);"])
+                        .set(".p-panelmenu .p-panelmenu-header a", ["background: var(--std-menu-background);", "border-color: var(--std-menu-background);"])
                         .set(".p-panelmenu .p-panelmenu-content", ["background: var(--std-menu-background);"])
                         .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link", ["background: var(--std-menu-background);"]),
                     tooltip: "The background-color of the sidebar menu."
@@ -309,7 +309,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--std-menu-text-color'),
                     usage: new Map<string, string[]>()
-                        .set(".p-panelmenu .p-panelmenu-header > a", ["color: var(--std-menu-text-color);"])
+                        .set(".p-panelmenu .p-panelmenu-header a", ["color: var(--std-menu-text-color);"])
                         .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-icon, .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-menuitem-text", ["color: var(--std-menu-text-color);"]),
                     tooltip: "The text-color of the sidebar menu."
                 },
@@ -342,7 +342,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--std-menu-header-padding'),
                     usage: new Map<string, string[]>()
-                        .set(".basti .std-menu .p-panelmenu .p-panelmenu-header > a", ["padding: var(--std-menu-header-padding);"]),
+                        .set(".basti .std-menu .p-panelmenu .p-panelmenu-header a", ["padding: var(--std-menu-header-padding);"]),
                     tooltip: "The padding of a menu-group in the sidebar menu."
                 },
                 {
