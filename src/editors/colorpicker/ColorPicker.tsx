@@ -13,7 +13,7 @@
  * the License.
  */
 
-import React, { FC, useCallback, useMemo, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { ChromePicker, HSLColor, RGBColor } from "react-color";
 import { concatClassnames } from "../../util/ConcatClassNames";
 
@@ -60,25 +60,6 @@ const ColorPicker: FC<IColorPicker> = (props) => {
         return props.color ? props.color : "#000000";
     }, [props.color]);
 
-    /** Returns the picker color transformed into a string the previewer can understand */
-    // const getPreviewBackground = useCallback(() => {
-    //     if (typeof pickerColor === "string") {
-    //         return pickerColor
-    //     }
-    //     else if ((pickerColor as RGBColor).r !== undefined) {
-    //         const castedColor = pickerColor as RGBColor;
-    //         return `rgb(${castedColor.r}, ${ castedColor.g }, ${ castedColor.b }, ${ castedColor.a })`
-    //     }
-    //     else {
-    //         const castedColor = pickerColor as HSLColor;
-    //         let adjustedAlpha:number|string|undefined = castedColor.a;
-    //         if (adjustedAlpha !== undefined && adjustedAlpha > 1) {
-    //             adjustedAlpha = `${adjustedAlpha}%`;
-    //         }
-    //         return `hsl(${castedColor.h} ${ castedColor.s }% ${ castedColor.l }% / ${ adjustedAlpha })`
-    //     }
-    // }, [pickerColor]);
-
     return (
         <div className="color-picker-preview-wrapper">
             <div className={concatClassnames("color-picker-preview", props.className)} onClick={() => setPickerVisible(prevState => !prevState)}>
@@ -92,6 +73,7 @@ const ColorPicker: FC<IColorPicker> = (props) => {
                             const identifier = (document.getElementsByClassName("chrome-picker")[0].querySelector("label") as HTMLElement).innerHTML
                             if (identifier === "hex") {
                                 if (color.rgb.a !== 1) {
+                                    // If there is an alpha set, we still need to right it in rgba
                                     props.handleOnChange(`rgb(${color.rgb.r}, ${ color.rgb.g }, ${ color.rgb.b }, ${ color.rgb.a })`)
                                 }
                                 else {

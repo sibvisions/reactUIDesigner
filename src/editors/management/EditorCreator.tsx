@@ -13,7 +13,7 @@
  * the License.
  */
 
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
@@ -55,6 +55,16 @@ interface IEditorCreator {
 }
 
 /**
+ * Returns the reference of the item to change
+ * @param map - the map of editorgroups
+ * @param key - the editorgroup name
+ * @param pItem - the editoritem to find
+ */
+function getEditorItem(map: Map<string, EditorGroup>, key: string, pItem: EditorItem) {
+    return map.get(key)!.items.find(item => item.variable === pItem.variable);
+}
+
+/**
  * Returns the elements of the editors
  * @param editors - the editors which need to be rendered
  * @param setCallback - a callback to change the type of the editor if there is a swap from color to color-text or to set a variables value
@@ -63,7 +73,7 @@ interface IEditorCreator {
  * @param props - the props of the editorcreator (IEditorCreator)
  */
 function createEditors(editors: Map<string, EditorGroup>,
-    setCallback: React.Dispatch<React.SetStateAction<Map<string, EditorGroup>>>,
+    setCallback: React.Dispatch<React.SetStateAction<boolean>>,
     defaultValues: Map<string, string>,
     context: VariableContextType,
     props: IEditorCreator
@@ -71,7 +81,7 @@ function createEditors(editors: Map<string, EditorGroup>,
     /** 
      * A Map to call functions to tell the components to update their size. 
      * The key are the CSS-variables and the values are the function which need to be called to tell the components to remeasure themselves
-     *  */
+     */
     const subFunctionMap: Map<string, Function> = props.designerSubscription ? new Map<string, Function>()
         .set("--font-size", () => props.designerSubscription!.notifyFontSizeChanged())
         .set("--std-header-height", () => props.designerSubscription!.notifyStdHeaderChanged())
@@ -104,31 +114,22 @@ function createEditors(editors: Map<string, EditorGroup>,
      */
     const setVariableState = (key: string, pItem: EditorItem, value: string) => {
         setCallback(prevState => {
-            const mapCopy = new Map(prevState);
-            if (mapCopy.has(key)) {
-                const foundEditor = mapCopy.get(key)!.items.find(item => item.variable === pItem.variable);
-                if (foundEditor) {
-                    foundEditor.value = value;
-
-                    // Check for duplicates between standard menu and corporate menu
-                    if (!props.isPreviewMode) {
-                        if (props.index === 1) {
-                            const foundItem = context.variables.get("2")!.get(key)?.items.find(item => item.variable === pItem.variable);
-                            if (foundItem) {
-                                foundItem.value = value
-                            }
-                        }
-                        else if (props.index === 2) {
-                            const foundItem = context.variables.get("1")!.get(key)?.items.find(item => item.variable === pItem.variable);
-                            if (foundItem) {
-                                foundItem.value = value
-                            }
-                        }
-
+            pItem.value = value;
+            if (!props.isPreviewMode) {
+                if (props.index === 1) {
+                    const foundItem = getEditorItem(context.variables.get("1")!, key, pItem);
+                    if (foundItem) {
+                        foundItem.value = value
+                    }
+                }
+                else if (props.index === 2) {
+                    const foundItem = getEditorItem(context.variables.get("2")!, key, pItem);
+                    if (foundItem) {
+                        foundItem.value = value
                     }
                 }
             }
-            return new Map(mapCopy);
+            return !prevState;
         });
     }
 
@@ -157,19 +158,13 @@ function createEditors(editors: Map<string, EditorGroup>,
      */
     const swapColorType = (key: string, pItem: EditorItem) => {
         setCallback(prevState => {
-            const mapCopy = new Map(prevState);
-            if (mapCopy.has(key)) {
-                const foundItem = mapCopy.get(key)!.items.find(item => item.variable === pItem.variable);
-                if (foundItem) {
-                    if (foundItem.type === "color") {
-                        foundItem.type = "color-text";
-                    }
-                    else {
-                        foundItem.type = "color";
-                    }
-                }
+            if (pItem.type === "color") {
+                pItem.type = "color-text";
             }
-            return new Map(mapCopy);
+            else {
+                pItem.type = "color";
+            }
+            return !prevState;
         });
     }
 
@@ -338,10 +333,11 @@ function createEditors(editors: Map<string, EditorGroup>,
 /** Renders the Editors in an Accordion */
 const EditorCreator: FC<IEditorCreator> = (props) => {
     /** The context to gain access to the variables, defaultValues and more. */
-    const context = useContext(variableContext)
+    const context = useContext(variableContext);
 
-    /** State of the editors to display (EditorItems) */
-    const [editors, setEditors] = useState(props.editors);
+    const editorTest = useRef<Map<string, EditorGroup>>(props.editors);
+
+    const [renderFlag, setRenderFlag] = useState<boolean>(true);
 
     /** The search string to search for specific variables */
     const [search, setSearch] = useState<string>("");
@@ -370,11 +366,12 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
                     }
                 }
             });
-            setEditors(searchResultMap);
+            editorTest.current = searchResultMap;
         }
         else {
-            setEditors(props.editors);
+            editorTest.current = props.editors
         }
+        setRenderFlag(prevState => !prevState);
     }, [props.editors, search]);
 
     return (
@@ -390,7 +387,7 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)} />
             </div>
             <Accordion className="designer-accordion">
-                {createEditors(editors, setEditors, context.defaultValues, context, props)}
+                {createEditors(editorTest.current, setRenderFlag, context.defaultValues, context, props)}
             </Accordion>
         </>
     )
