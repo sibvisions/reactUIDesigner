@@ -297,9 +297,9 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--std-menu-item-hover-background'),
                     usage: new Map<string, string[]>()
-                        .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover", ["background: var(--std-menu-item-hover-background);", "border-color: var(--std-menu-item-hover-background);"])
+                        .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) a:hover", ["background: var(--std-menu-item-hover-background);", "border-color: var(--std-menu-item-hover-background);"])
                         .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover", ["background: var(--std-menu-item-hover-background);"])
-                        .set(".p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["background: var(--std-menu-item-hover-background);", "border-color: var(--std-menu-item-hover-background);"]),
+                        .set(".p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) a:hover", ["background: var(--std-menu-item-hover-background);", "border-color: var(--std-menu-item-hover-background);"]),
                     tooltip: "The item hover background-color of the sidebar menu."
                 },
                 {
@@ -320,8 +320,8 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--std-menu-item-hover-text-color'),
                     usage: new Map<string, string[]>()
-                        .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover", ["color: var(--std-menu-item-hover-text-color);"])
-                        .set(".p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover", ["color: var(--std-menu-item-hover-text-color);"])
+                        .set(".p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) a:hover", ["color: var(--std-menu-item-hover-text-color);"])
+                        .set(".p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) a:hover", ["color: var(--std-menu-item-hover-text-color);"])
                         .set(".p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon, .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text", ["color: var(--std-menu-item-hover-text-color);"]),
                     tooltip: "The item hover text-color of the sidebar menu."
                 },
