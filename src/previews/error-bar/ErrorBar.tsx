@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { concatClassnames } from '../../util/ConcatClassNames';
 
-/** A preview for the errorbar to see changes live */
+/** A preview for the reactui-errorbar (normal and gone) to see changes live */
 const ErrorBar: FC = () => {
     return (
         <div className='preview-container error-bar-container'>

@@ -29,11 +29,14 @@ import ErrorBar from "./error-bar/ErrorBar";
 import FullPreview from "./full/FullPreview";
 import TopbarPreview from "./topbar/TopbarPreview";
 
+/** Interface for TabSelection */
 interface ITabSelection {
     tabChangedCallback: Function
 }
 
+/** This components displays a tabview to show the previews of the components, if the standalone mode of the designer is used. */
 const TabSelection: FC<ITabSelection> = (props) => {
+    /** The currently active tab-index */
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
     return (

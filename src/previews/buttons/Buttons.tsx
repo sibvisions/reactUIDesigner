@@ -25,11 +25,11 @@ import { variableContext } from "../../VariableProvider";
 
 /** A preview for all button components to see changes live */
 const Buttons: FC = () => {
-    /** Reference for the button element */
-    const menuButtonRef = useRef<SplitButton>(null);
-
     /** The context to gain access to the variables, defaultValues and more. */
     const context = useContext(variableContext);
+
+    /** Reference for the menubutton element */
+    const menuButtonRef = useRef<SplitButton>(null);
 
     /** True, if the checkbox is checked */
     const [cbChecked, setCbChecked] = useState<boolean>(false);
@@ -46,7 +46,7 @@ const Buttons: FC = () => {
     /** The background-color of the button */
     const btnBgd = useMemo(() => window.getComputedStyle(document.documentElement).getPropertyValue("--primary-color"), [buttonUpdate]);
 
-    // Updates the button background
+    // "subscribes" to button background changes
     useEffect(() => {
         context.updateButtonBackground = () => setButtonUpdate(prevState => !prevState);
 
@@ -67,6 +67,7 @@ const Buttons: FC = () => {
         }
     ]
 
+    // Render the buttons with the same classNames and style variables as in the reactUI
     return (
         <div className="preview-container">
             <span className="comp-container">

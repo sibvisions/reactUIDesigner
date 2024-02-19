@@ -13,7 +13,7 @@ export function getCSSValue(editorItem: EditorItem, appName:string, lastPreTheme
 
     /** If there is a sessionItem and the scheme and theme have initally loaded return the sessionItem */
     if (sessionItem && ((lastPreTheme !== "notSet" && lastPreScheme === "notSet") || (lastPreTheme === "notSet" && lastPreScheme !== "notSet") || (isPreviewMode && variablesReady === undefined))) {
-        document.documentElement.style.setProperty(editorItem.variable, sessionItem)
+        document.documentElement.style.setProperty(editorItem.variable, sessionItem);
         return sessionItem;
     }
     return docStyle.getPropertyValue(editorItem.variable);

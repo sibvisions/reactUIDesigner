@@ -13,7 +13,7 @@
  * the License.
  */
 
-import React, { createContext, FC, useEffect, useState } from "react"
+import React, { createContext, FC, useState } from "react"
 import { EditorGroup } from "./editors/management/EditorCreator"
 import { crashEditors, expressEditors, generalEditors, imageEditors } from "./editors/GeneralEditors";
 import { loginEditors } from "./editors/LoginEditors";
@@ -30,6 +30,7 @@ import { errorbarEditors } from "./editors/ErrorBarEditors";
 import { topbarEditors } from "./editors/TopbarEditors";
 import { fullEditors } from "./editors/FullEditors";
 
+/** Type of the Variable Context */
 export type VariableContextType = {
     appName: string
     schemeName: string,
@@ -41,6 +42,7 @@ export type VariableContextType = {
     updateTopbarColors: () => void
 }
 
+/** Array of all available editors */
 const editorArray = [
     generalEditors,
     imageEditors,
@@ -65,6 +67,7 @@ const editorArray = [
     menuExtras
 ];
 
+/** Returns all editorgroups in a map with an index as key and the group as value */
 function getVariables() {
     const variableMap = new Map<string, Map<string, EditorGroup>>();
     let i = -3;
@@ -75,6 +78,7 @@ function getVariables() {
     return variableMap;
 }
 
+/** The initial value of the provider */
 const initValue: VariableContextType = {
     appName: "demo",
     schemeName: "default",
@@ -86,9 +90,12 @@ const initValue: VariableContextType = {
     updateTopbarColors: () => {}
 }
 
+/** The context which includes the variables, app-, scheme- and theme-name, the defaultvalues and more */
 export const variableContext = createContext<VariableContextType>(initValue);
 
+/** This component returns the variableprovider */
 const VariableProvider: FC<any> = (props) => {
+    /** The current state of the context */
     const [contextState] = useState<VariableContextType>(initValue);
 
     return (

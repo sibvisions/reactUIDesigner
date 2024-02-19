@@ -67,7 +67,7 @@ function getEditorItem(map: Map<string, EditorGroup>, key: string, pItem: Editor
 /**
  * Returns the elements of the editors
  * @param editors - the editors which need to be rendered
- * @param setCallback - a callback to change the type of the editor if there is a swap from color to color-text or to set a variables value
+ * @param setCallback - a callback to trigger a rerender
  * @param defaultValues - the default values of the editors to restore default
  * @param context - the context for various values which need to be changed
  * @param props - the props of the editorcreator (IEditorCreator)
@@ -153,10 +153,9 @@ function createEditors(editors: Map<string, EditorGroup>,
 
     /**
      * Swaps the editor mode between color and color-text
-     * @param key - the key of the EditorGroup
      * @param pItem - the item which needs to be updated
      */
-    const swapColorType = (key: string, pItem: EditorItem) => {
+    const swapColorType = (pItem: EditorItem) => {
         setCallback(prevState => {
             if (pItem.type === "color") {
                 pItem.type = "color-text";
@@ -199,7 +198,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
                             tooltip="Show Text"
-                            onClick={() => swapColorType(key, editorItem)} />
+                            onClick={() => swapColorType(editorItem)} />
                         <Button
                             className="style-editor-button"
                             icon="fas fa-chess-board"
@@ -228,7 +227,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
                             tooltip="Show Color"
-                            onClick={() => swapColorType(key, editorItem)} />
+                            onClick={() => swapColorType(editorItem)} />
                     </>
                 )
             case "text":
@@ -239,14 +238,22 @@ function createEditors(editors: Map<string, EditorGroup>,
                         value={editorItem.value}
                         onChange={(event) => setVariableState(key, editorItem, event.target.value)}
                         onBlur={() => {
+                            /**
+                             * Returns a value (rem or em) converted to px
+                             * @param value - the value to convert
+                             */
                             const convertToPixels = (value: number) => {    
                                 return value * parseFloat(getComputedStyle(document.documentElement).fontSize);
                             }
+
+                            /**
+                             * Converts px to rem
+                             */
                             const convertToRem = () => {
                                 return 16 / parseFloat(getComputedStyle(document.documentElement).fontSize);
                             }
 
-                            // table data height cant go lower than 16px, 1rem or 1em
+                            // table data height cant go lower than 16px, 1rem or 1em. So don't allow anything below that and set it to that minimum if lower
                             if (editorItem.variable === "--table-data-height") {
                                 if (editorItem.value.includes("px") && parseFloat(editorItem.value) < 16) {
                                     setVariableState(key, editorItem, "16px");

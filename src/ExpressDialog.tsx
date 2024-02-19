@@ -21,7 +21,7 @@ interface IExpressDialog {
     isPreviewMode: boolean
 }
 
-/** A popup which lets you either lets you change to a preset of scheme or theme or creates a new scheme based on a primary color */
+/** A popup which lets you either change to a preset of scheme or theme or creates a new scheme based on a primary color */
 const ExpressDialog:FC<IExpressDialog> = (props) => {
     /** The context to gain access to the variables, defaultValues and more. */
     const context = useContext(variableContext);
@@ -59,17 +59,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
     /** True, if the scheme is ready when loading a new scheme */
     const schemeReady = useRef<boolean>(false);
 
-    const placeHolderText = useMemo(() => {
-        switch(selectedScheme) {
-            case "orange":
-                return "#f78500";
-            case "dark":
-                return "#205e8f";
-            case "default": case "blue": default:
-                return "#2196F3";
-        }
-    }, [selectedScheme]);
-
+    // Sets the schemeColor of the express color-picker when changing selectedScheme
     useEffect(() => {
         switch(selectedScheme) {
             case "orange":
@@ -86,6 +76,7 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
 
     /**
      * Creates and sets a new scheme based on a primaryColor
+     * uses tinycolor to create various shades of a color from one primary color and sets the css-variables
      * @param primaryColor - the primaryColor  
      */
     const setStyle = (primaryColor:string) => {

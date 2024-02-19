@@ -10,6 +10,7 @@ const Messages: FC = () => {
 
     /** Returns a message element based on the type */
     const buildMessage = (type: "info" | "warning" | "error" | "question") => {
+        /** Returns the correct icon, header-text and text, based on the type */
         const buildMessageObject = () => {
             switch(type) {
                 case "info":
@@ -25,6 +26,7 @@ const Messages: FC = () => {
             }
         }
 
+        /** The object containing icon, and texts */
         const messageObject = buildMessageObject()
 
         return (

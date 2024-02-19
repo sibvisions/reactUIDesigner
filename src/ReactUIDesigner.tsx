@@ -98,9 +98,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   /** True, if the designer is used with the reactui */
   const isPreviewMode = useMemo(() => props.children !== undefined, [props.children]);
 
-  /** Rerender flag */
-  const [, setPreviewValuesChanges] = useState<boolean>(false);
-
   /** Reset flag */
   const [, setReset] = useState<boolean>(false);
 
@@ -143,9 +140,11 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       map.forEach(editorGroup => {
         editorGroup.items.forEach(editorItem => {
           if (editorItem.cssType === type || type === "all") {
+            // Set the default values, when the designer is initialising
             if ((presetScheme === "notSet" && presetTheme === "notSet" && isPreviewMode && !context.defaultValues.has(editorItem.variable)) || !isPreviewMode) {
               context.defaultValues.set(editorItem.variable, docStyle.getPropertyValue(editorItem.variable));
-            }           
+            }
+            // Set the values of the editors with the values extracted from the css files
             editorItem.value = getCSSValue(editorItem, context.appName, lastPreTheme.current, lastPreScheme.current, isPreviewMode, variablesReady);
           }
         });
@@ -162,6 +161,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     
     setVariablesReady(prevState => prevState === undefined ? true : !prevState);
 
+    // Notify all components, that their values changed
     if (props.designerSubscription) {
       props.designerSubscription.notifyAll()
     }
@@ -174,7 +174,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }, [presetScheme, presetTheme, setContextVariableValues]);
 
-  /** Adds the css files to the header */
+  /** Adds the css files to the header and set's the variables after loading */
   const reloadCSSFile = useCallback((type: "scheme"|"theme", filename: string, upload:boolean) => {
     if (isPreviewMode && presetScheme !== "notSet" && presetTheme !== "notSet") {
       let path = '';
@@ -188,10 +188,12 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }, [setContextVariableValues, isPreviewMode])
 
+  /** Reloads the CSS files when the color-scheme changes */
   useEffect(() => {
     reloadCSSFile("scheme", presetScheme + ".css", false)
-  }, [presetScheme, reloadCSSFile])
+  }, [presetScheme, reloadCSSFile]);
 
+  /** Reloads the CSS files when the color-scheme changes */
   useEffect(() => {
     reloadCSSFile("theme", presetTheme + ".css", false)
   }, [presetTheme, reloadCSSFile])
@@ -317,15 +319,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     })
   }
 
-  // If in previewmode overwrite the context with the style
-  // useEffect(() => {
-  //   if (isPreviewMode) {
-  //     overwriteStyleToContext()
-  //     setPreviewValuesChanges(true);
-  //   }
-  // }, [isPreviewMode, context.defaultValues, context.variables, overwriteStyleToContext]);
-
-  /** Show  a confirmdialog and when confirmed reset the changes to the theme and scheme of the current scheme and theme name */
+  /** Show a confirmdialog and when confirmed reset the changes to the theme and scheme of the current scheme and theme name */
   const resetToDefault = () => {
     const acceptFunc = () => {
       context.variables.forEach((variableMap) => {
@@ -367,20 +361,24 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
 
       const readyCheck = () => {
         if (schemeReady && themeReady) {
+          // after the color-scheme and theme have loaded, save the variables from the DOM-Tree into the contect
           overwriteStyleToContext();
           if (props.designerSubscription) {
             props.designerSubscription.notifyAll();
           }
+          // Remove the factory files again
           for (let link of document.head.getElementsByTagName('link')) {
             if (link.href.includes("factory-default.css") || link.href.includes("factory-basti.css")) {
               document.head.removeChild(link);
             }
           }
+          // Then write the context to the style again (because the files have been removed and the styles need to be set again)
           overwriteContextToStyle()
           setVariablesReady(prevState => prevState === undefined ? true : !prevState);
         }
       }
 
+      // Remove all previously set styles and re-add the height and width
       document.documentElement.removeAttribute("style");
       document.documentElement.style.setProperty("--main-height", "calc(100vh - 70px - 0.5rem - 0.5rem)");
       document.documentElement.style.setProperty("--main-width", "calc(100vw - 300px - 0.5rem - 0.5rem)");
@@ -415,6 +413,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         }
       }
 
+      // reset the images to default
       fetch("assets/factory-images/factory_login.png")
       .then(response => response.arrayBuffer())
       .then(buf => new File([buf], "logo_login.png", { type: "image/png" }))
@@ -442,6 +441,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         imageReadyCheck();
       });
 
+      // reset the themes, after loading call the readycheck
       addCSSDynamically("color-schemes/factory-default.css", "factoryCSS", () => {
         setTimeout(() => {
           schemeReady = true;

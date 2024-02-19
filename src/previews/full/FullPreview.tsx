@@ -76,106 +76,66 @@ const FullPreview: FC = () => {
             const elemSize = document.getElementById("full-content")!.getBoundingClientRect();
             rndRef.current.updatePosition({ x: elemSize.width / 2 - (rndRef.current.props.default!.width as number / 2), y: elemSize.height / 2 })
         }
-    }, [])
+    }, []);
 
-    /** the toolbar element */
-    const toolbar =
+    /** The classnames of the button in the toolbar */
+    const buttonClassNames = concatClassnames(
+        "rc-button",
+        "mouse-border",
+        "gap-bottom",
+        "icon-center-right",
+        "rc-toolbar-button",
+        "no-center-gap",
+        "no-focus-rect"
+    );
+
+    /**
+     * Returns the style of the toolbar-buttons
+     * @param withMarginLeft - true, if the button should also have some left margin
+     */
+    const getButtonStyle = (withMarginLeft: boolean): CSSProperties => {
+        return {
+            flexDirection: "column",
+            marginLeft: withMarginLeft ? "5px" : undefined,
+            marginRight: "5px",
+            '--btnJustify': "center",
+            '--btnAlign': "center",
+            '--iconWidth': "20px",
+            '--iconHeight': "20px",
+            //'--iconColor': "#ffffff",
+            '--iconTextGap': "2px",
+        } as CSSProperties
+    }
+
+    /** the toolbar element, no real flowlayout just similar */
+    const toolbar = (
         <div className='rc-frame-toolbar' style={{ display: "flex" }}>
             <div className='rc-panel rc-toolbar-border-right panel-hide-overflow preview-toolbar'>
                 <Button
-                    className={concatClassnames(
-                        "rc-button",
-                        "mouse-border",
-                        "gap-bottom",
-                        "icon-center-right",
-                        "rc-toolbar-button",
-                        "no-center-gap",
-                        "no-focus-rect"
-                    )}
+                    className={buttonClassNames}
                     label="Exit"
                     icon="pi pi-power-off rc-button-icon"
-                    style={{
-                        flexDirection: "column",
-                        marginLeft: "5px",
-                        marginRight: "5px",
-                        '--btnJustify': "center",
-                        '--btnAlign': "center",
-                        '--iconWidth': "20px",
-                        '--iconHeight': "20px",
-                        //'--iconColor': "#ffffff",
-                        '--iconTextGap': "2px",
-                    } as CSSProperties} />
+                    style={getButtonStyle(true)} />
                 <Button
-                    className={concatClassnames(
-                        "rc-button",
-                        "mouse-border",
-                        "gap-bottom",
-                        "icon-center-right",
-                        "rc-toolbar-button",
-                        "no-center-gap",
-                        "no-focus-rect"
-                    )}
+                    className={buttonClassNames}
                     label="Logout"
                     icon="pi pi-lock rc-button-icon"
-                    style={{
-                        flexDirection: "column",
-                        marginRight: "5px",
-                        '--btnJustify': "center",
-                        '--btnAlign': "center",
-                        '--iconWidth': "20px",
-                        '--iconHeight': "20px",
-                        //'--iconColor': "#ffffff",
-                        '--iconTextGap': "2px",
-                    } as CSSProperties} />
+                    style={getButtonStyle(false)} />
             </div>
             <div className='rc-panel rc-toolbar-border-right panel-hide-overflow preview-toolbar'>
                 <Button
-                    className={concatClassnames(
-                        "rc-button",
-                        "mouse-border",
-                        "gap-bottom",
-                        "icon-center-right",
-                        "rc-toolbar-button",
-                        "no-center-gap",
-                        "no-focus-rect"
-                    )}
+                    className={buttonClassNames}
                     label="Save"
                     icon="pi pi-save rc-button-icon"
-                    style={{
-                        flexDirection: "column",
-                        marginLeft: "5px",
-                        marginRight: "5px",
-                        '--btnJustify': "center",
-                        '--btnAlign': "center",
-                        '--iconWidth': "20px",
-                        '--iconHeight': "20px",
-                        //'--iconColor': "#ffffff",
-                        '--iconTextGap': "2px",
-                    } as CSSProperties} />
+                    style={getButtonStyle(true)} />
                 <Button
-                    className={concatClassnames(
-                        "rc-button",
-                        "mouse-border",
-                        "gap-bottom",
-                        "icon-center-right",
-                        "rc-toolbar-button",
-                        "no-center-gap",
-                        "no-focus-rect"
-                    )}
+                    className={buttonClassNames}
                     label="Reload"
                     icon="pi pi-sync rc-button-icon"
-                    style={{
-                        flexDirection: "column",
-                        marginRight: "5px",
-                        '--btnJustify': "center",
-                        '--btnAlign': "center",
-                        '--iconWidth': "20px",
-                        '--iconHeight': "20px",
-                        //'--iconColor': "#ffffff",
-                        '--iconTextGap': "2px",
-                    } as CSSProperties} />
+                    style={getButtonStyle(false)} />
             </div>
         </div>
+    )
 
     return (
         <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>

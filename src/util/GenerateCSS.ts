@@ -52,13 +52,13 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
     const selectorMap530: Map<string, string[]> = new Map<string, string[]>();
 
     /**
-     * Fills the selectormaps with every selector of all groups. selector as and styles as values
+     * Fills the selectormaps with every selector of all groups. selector as keys and styles as values
      * @param editorItem - the EditorItem to get the usage map from
      * @param size - the size of the chosen usage map
      */
     const fillSelectorMap = (editorItem: EditorItem, size: "full" | "960" | "530") => {
         let selectorMap = new Map();
-        let usageMap: Map<string, string[]> | undefined = {} = new Map();
+        let usageMap: Map<string, string[]> | undefined = undefined
 
         switch (size) {
             case "960":
@@ -75,6 +75,11 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
                 usageMap = editorItem.usage;
         }
 
+        /** 
+         * Go through the usageMap (keys: selectors, values: css rules as array eg. [background: #ffffff, color: #000000])
+         * and either update a map entry with its key and the old value or set it in the map
+         */ 
+        
         if (usageMap) {
             usageMap.forEach((value, selector) => {
                 if (selectorMap.has(selector)) {
@@ -89,10 +94,12 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
 
     // Start of the css file
     let cssString = ":root {\n";
+
+    /** Contains the variables, which have already been added to the CSS File */
     let alreadyAdded:string[] = []
 
     /**
-     * Prints the variables into the root part of the css
+     * Prints the variables into the ROOT part of the css
      * @param map - the map which needs to be added
      */
     const printVariables = (map: Map<string, EditorGroup>) => {
@@ -112,29 +119,33 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
         })
     }
 
-    // if (isPreviewMode) {
-    //     printRules(getPreviewVariableMap(context, isCorporation))
-    // }
-    // else {
+    // Put the CSS-variables into the root part of the file
     context.variables.forEach((tabGroup) => {
         printVariables(tabGroup);
     });
-    //}
 
     // end of root
     cssString += "}\n\n"
 
     /** Generates the css rules and adds to the cssString */
     const generateCSSRules = (size: "full" | "960" | "530") => {
-        let selectorMap = size === "full" ? selectorMapFull : size === "960" ? selectorMap960 : selectorMap530;
+        // get correct map based on size
+        const selectorMap = size === "full" ? selectorMapFull : size === "960" ? selectorMap960 : selectorMap530;
+
         selectorMap.forEach((values, selector) => {
+            // When not full add a tab-space because of the media query part
+            // Write the selector, then open curly braces and go to the next line
             cssString += (size !== "full" ? "\t" : "") + selector + " {\n";
+            // For each css rule add them to the CSS File with tab-space so it is formatted prettily, then next line
             values.forEach(value => {
                 cssString += (size !== "full" ? "\t\t" : "\t") + value + "\n";
-            })
+            });
+
+            // After all rules have been added, close the braces and go to the next rule
             cssString += (size !== "full" ? "\t" : "") + "}\n\n";
         });
 
+        // If not full, close media query
         if (size !== "full") {
             cssString += "}\n\n";
         }
@@ -151,5 +162,5 @@ export function generateCSS(type: "scheme" | "theme", context: VariableContextTy
 
     generateCSSRules("530");
 
-    return cssString
+    return cssString;
 }

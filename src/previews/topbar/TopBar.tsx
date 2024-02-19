@@ -24,7 +24,7 @@ export interface TopBarContextType {
     hide: Function
 }
 
-
+/** A topbar context, so other components which use this context can call the show and hide functions */
 export const TopBarContext = createContext<TopBarContextType>({
     show: () => {},
     hide: () => {}
@@ -43,11 +43,16 @@ export function showTopBar(promise: Promise<any>, topbar: TopBarContextType) {
 
 // Shows a topbar at the top of the browser when a promise is being processed.
 const TopBar:FC = ({children}) => {
-    const context = useContext(variableContext)
+    /** The context to gain access to the variables, defaultValues and more. */
+    const context = useContext(variableContext);
+
+    /** True, if the topbar is currently visible */
     const [show, setShow] = useState(false);
 
+    /** A flag to know if the topbar design was changed by the designer */
     const [designerTopbarChanged, setDesignerTopbarChanged] = useState<boolean>(false);
 
+    // "Subscribes" to topbar color change.
     useEffect(() => {
         context.updateTopbarColors = () => setDesignerTopbarChanged(prevState => !prevState);
 
@@ -56,6 +61,7 @@ const TopBar:FC = ({children}) => {
         }
     }, [])
 
+    /** Loads the topbar css settings */
     const topbarSettings = useMemo(() => {
         return getSettingsFromCSSVar({
             barColors: {
@@ -74,6 +80,7 @@ const TopBar:FC = ({children}) => {
         })
     }, [designerTopbarChanged])
 
+    /** Sets the topbar config */
     useEffect(() => {
         TopBarProgress.config({
             barColors: Object.fromEntries((topbarSettings.barColors as string[]).map((v, idx, a) => [idx / (a.length - 1), v])),

@@ -100,6 +100,7 @@ const Popup: FC = () => {
 
     return (
         <>
+            {/** Normal popup example */}
             <Dialog
                 className='rc-popup basti'
                 header='Popup Example Header'
@@ -111,6 +112,7 @@ const Popup: FC = () => {
                     This is an example for Popups!
                 </div>
             </Dialog>
+            {/** Error popup example */}
             <Dialog
                 className={concatClassnames("error-dialog", showDetails ? "error-details-enabled" : "")}
                 header="Error"

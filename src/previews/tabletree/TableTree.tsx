@@ -142,60 +142,45 @@ const TableTree:FC = () => {
     /** The background-color of buttons */
     const btnBgd = window.getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
 
+    /** The classnames of the button in the toolbar */
+    const buttonClassNames = concatClassnames(
+        "rc-button",
+        tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
+        "mouse-border",
+        "gap-right",
+        "rc-toolbar-button",
+        "no-focus-rect"
+    );
+
+    /** The CSS-Style of the button */
+    const buttonStyle = { "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties
+
     return (
         <div className="preview-container">
             <div className='comp-container table-container'>
                 <div className='rc-toolbar navbar-west'>
                     <div className='toolbar-buttons rc-toolbar-border-bottom'>
                         <Button
-                            className={concatClassnames(
-                                "rc-button",
-                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
-                                "mouse-border",
-                                "gap-right",
-                                "rc-toolbar-button",
-                                "no-focus-rect"
-                            )}
+                            className={buttonClassNames}
                             icon="pi pi-plus-circle"
-                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties}
+                            style={buttonStyle}
                         />
                         <Button
-                            className={concatClassnames(
-                                "rc-button",
-                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
-                                "mouse-border",
-                                "gap-right",
-                                "rc-toolbar-button",
-                                "no-focus-rect"
-                            )}
+                            className={buttonClassNames}
                             icon="pi pi-times-circle"
-                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px' } as CSSProperties}
+                            style={buttonStyle}
                         />
                         <Button
-                            className={concatClassnames(
-                                "rc-button",
-                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
-                                "mouse-border",
-                                "gap-right",
-                                "rc-toolbar-button",
-                                "no-focus-rect"
-                            )}
+                            className={buttonClassNames}
                             icon="pi pi-pencil"
-                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px', marginBottom: '4px' } as CSSProperties}
+                            style={{ ...buttonStyle, marginBottom: '4px' }}
                         />
                     </div>
                     <div className='toolbar-buttons'>
                         <Button
-                            className={concatClassnames(
-                                "rc-button",
-                                tinycolor(btnBgd.toString()).isDark() ? "bright-button" : "dark-button",
-                                "mouse-border",
-                                "gap-right",
-                                "rc-toolbar-button",
-                                "no-focus-rect"
-                            )}
+                            className={buttonClassNames}
                             icon="pi pi-sort-alt"
-                            style={{ "--background": btnBgd, "--hoverBackground": tinycolor(btnBgd.toString()).darken(5).toString(), '--iconTextGap': '4px', marginTop: '4px' } as CSSProperties}
+                            style={{ ...buttonStyle, marginTop: '4px' }}
                         />
                     </div>
                 </div>
