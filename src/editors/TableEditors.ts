@@ -360,7 +360,7 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--toolbar-color'),
-                    usage: new Map<string, string[]>().set(".rc-toolbar .rc-button.mouse-border", ["color: var(--toolbar-color);"]),
+                    usage: new Map<string, string[]>().set(".rc-toolbar .rc-button.mouse-border, .rc-toolbar .rc-togglebutton.mouse-border", ["color: var(--toolbar-color);"]),
                     tooltip: "The icon-color of the toolbar"
                 },
                 {
