@@ -54,6 +54,12 @@ interface IEditorCreator {
     logoSmall: string
 }
 
+export function storeValue(variable: string, value: string, appName: string) {
+    const variableName = variable.replace("--", "")
+    const sessionItem = "reactui-designer-" + variableName + "-" + appName;
+    sessionStorage.setItem(sessionItem, value);
+}
+
 /**
  * Returns the reference of the item to change
  * @param map - the map of editorgroups
@@ -178,11 +184,7 @@ function createEditors(editors: Map<string, EditorGroup>,
          * @param variable - the variable which is being changed
          * @param value - the value which is set
          */
-        const storeValue = (variable: string, value: string) => {
-            const variableName = variable.replace("--", "")
-            const sessionItem = "reactui-designer-" + variableName + "-" + context.appName;
-            sessionStorage.setItem(sessionItem, value);
-        }
+
 
         switch (editorItem.type) {
             case "color":
@@ -191,7 +193,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                         <ColorPicker color={editorItem.value} handleOnChange={(color:string) => {
                             setVariableState(key, editorItem, color);
                             document.documentElement.style.setProperty(editorItem.variable, color);
-                            storeValue(editorItem.variable, color);
+                            storeValue(editorItem.variable, color, context.appName);
                             updateVariables(editorItem);
                         }} />
                         <Button
@@ -206,7 +208,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
                                 document.documentElement.style.setProperty(editorItem.variable, "transparent");
-                                storeValue(editorItem.variable, "transparent");
+                                storeValue(editorItem.variable, "transparent", context.appName);
                                 updateVariables(editorItem);
                             }} />
                     </>
@@ -220,7 +222,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             onChange={(event) => setVariableState(key, editorItem, event.target.value)}
                             onBlur={() => {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
-                                storeValue(editorItem.variable, editorItem.value);
+                                storeValue(editorItem.variable, editorItem.value, context.appName);
                                 updateVariables(editorItem);
                             }} />
                         <Button
@@ -276,7 +278,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                             else {
                                 document.documentElement.style.setProperty(editorItem.variable, editorItem.value);
                             }
-                            storeValue(editorItem.variable, editorItem.value);
+                            storeValue(editorItem.variable, editorItem.value, context.appName);
                             updateVariables(editorItem);
                         }} />
                 )

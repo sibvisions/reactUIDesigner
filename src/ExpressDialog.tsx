@@ -9,6 +9,7 @@ import tinycolor from "tinycolor2"
 import ColorPicker from "./editors/colorpicker/ColorPicker"
 import { addCSSDynamically } from "./util/AddCSSDynamically"
 import { variableContext } from "./VariableProvider"
+import { storeValue } from "./editors/management/EditorCreator"
 
 /** The interface of the ExpressDialog */
 interface IExpressDialog {
@@ -143,9 +144,16 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
             let sessionStorageLength = sessionStorage.length;
             while (sessionStorageLength--) {
                 const key = sessionStorage.key(sessionStorageLength);
-                if (key !== null && key !== "clientId") {
+                if (key !== null && key !== "clientId" && key !== "reactui-designer-on") {
                     sessionStorage.removeItem(key);
                 }
+            }
+
+            const styleArray = Object.entries(document.documentElement.style);
+            let i = 0;
+            while (!isNaN(parseInt(styleArray[i][0]))) {
+                storeValue(styleArray[i][1], window.getComputedStyle(document.documentElement).getPropertyValue(styleArray[i][1]), context.appName);
+                i++;
             }
         }
     }

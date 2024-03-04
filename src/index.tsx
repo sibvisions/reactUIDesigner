@@ -14,13 +14,15 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom/client";
 import './index.scss';
 import './designerindex.scss'
 
 import ReactUIDesigner from './ReactUIDesigner';
 
-export default ReactDOM.render(
+/** Rendering the application */
+const root = ReactDOM.createRoot(document.getElementById("root") as Element);
+export default root.render(
   // <React.StrictMode>
   <ReactUIDesigner 
     isCorporation={false} 
@@ -36,5 +38,4 @@ export default ReactDOM.render(
     uploadCallback={() => {}}
     transferType="all" />,
   // </React.StrictMode>,
-  document.getElementById('root')
 )

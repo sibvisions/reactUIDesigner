@@ -131,6 +131,7 @@
     }
 }
 
+/// Panelmenu-wrapper styling & positioning
 .menu-panelmenu-wrapper {
     @include menuTransitions();
     z-index: 10;
@@ -145,20 +146,39 @@
         border-radius: 10px;
     }
 
+    /// Panelmenu styling, nesting needed because primereact nesting
     .p-panelmenu {
+        .single-group-item {
+            .p-panelmenu-header-link {
+                font-weight: normal;
+            }
+
+            .p-toggleable-content {
+                display: none;
+            }
+        } 
+
         .p-panelmenu-header {
             a {
                 padding: 1rem 1rem 1rem 10px;
-
-                .p-panelmenu-icon {
-                    position: absolute;
-                    margin-right: 0;
-                }
             }
-            .p-panelmenu-header-link {
+
+            .p-panelmenu-header-content {
                 border: none;
-                .p-menuitem-text {
-                    white-space: nowrap;
+
+                .p-panelmenu-header-link {
+                    .p-submenu-icon {
+                        order: 1;
+                        position: absolute;
+                        margin-right: 0;
+                        right: 1rem;
+                    }
+
+                    /// When text is longer don't break
+                    .p-menuitem-text {
+                        order: 0;
+                        white-space: nowrap;
+                    }
                 }
             }
         }
@@ -166,6 +186,7 @@
             border: none;
 
             .p-menuitem {
+                /// Menu sub points little more to the right
                 .p-menuitem-link:not(.p-disabled) {
                     padding: 0.75rem 0.75rem 0.75rem 1.5rem;
 
