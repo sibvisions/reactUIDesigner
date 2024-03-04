@@ -28,14 +28,15 @@ export default root.render(
     isCorporation={false} 
     changeImages={() => {}}
     isLogin={false} 
-    logoLogin={process.env.PUBLIC_URL + '/assets/logo_login.png'} 
-    logoBig={process.env.PUBLIC_URL + '/assets/logo_big.png'}
-    logoSmall={process.env.PUBLIC_URL + '/assets/logo_small.png'}
+    logoLogin={process.env.PUBLIC_URL + '/assets/basti/logo_login.png'} 
+    logoBig={process.env.PUBLIC_URL + '/assets/basti/logo_big.png'}
+    logoSmall={process.env.PUBLIC_URL + '/assets/basti/logo_small.png'}
     designerSubscription={undefined}
     appName="demo"
     setShowDesigner={() => {}}
     changeTheme={() => {}}
     uploadCallback={() => {}}
-    transferType="all" />,
+    transferType="all"
+    translation={new Map<string, string>()} />,
   // </React.StrictMode>,
 )

@@ -54,6 +54,12 @@ interface IEditorCreator {
     logoSmall: string
 }
 
+/**
+ * Stores the value in the session storage
+ * @param variable - the variable to save
+ * @param value - the value to save
+ * @param appName - the name of the application
+ */
 export function storeValue(variable: string, value: string, appName: string) {
     const variableName = variable.replace("--", "")
     const sessionItem = "reactui-designer-" + variableName + "-" + appName;

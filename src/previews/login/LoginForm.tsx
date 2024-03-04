@@ -37,7 +37,7 @@ const LoginForm:FC<any> = () => {
         <div className="login-container">
             <form className="login-form">
                 <div className="login-logo-wrapper">
-                    <img className="login-logo" src={process.env.PUBLIC_URL + '/assets/logo_login.png'} alt="logo" />
+                    <img className="login-logo" src={process.env.PUBLIC_URL + '/assets/basti/logo_login.png'} alt="logo" />
                 </div>
                 <div className="p-fluid">
                         <div className="p-field p-float-label p-input-icon-left">

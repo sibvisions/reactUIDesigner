@@ -81,7 +81,7 @@ const Menu: FC = () => {
         <div className="design-std-menu std-menu">
             <div className="menu-header">
                 <div className="menu-logo-wrapper">
-                    <img alt="logo" draggable="false" className="menu-logo" src={process.env.PUBLIC_URL + '/assets/logo_big.png'}/>
+                    <img alt="logo" draggable="false" className="menu-logo" src={process.env.PUBLIC_URL + '/assets/basti/logo_big.png'}/>
                 </div>
                 <div className="menu-topbar">
                     <div className="menu-topbar-left">

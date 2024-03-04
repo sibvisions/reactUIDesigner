@@ -70,6 +70,7 @@ interface IReactUIDesigner {
   changeTheme: (value: string) => void
   uploadCallback: (schemeName: string, themeName: string) => void,
   transferType: "full"|"partial"|"all",
+  translation: Map<string, string>
   children?: React.ReactNode
 }
 
@@ -132,6 +133,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       addCSSDynamically('color-schemes/default.css', "schemeCSS", () => setPresetScheme("default"));
       addCSSDynamically('themes/basti.css', "themeCSS", () => setPresetTheme("basti"));
     }
+
+    context.translation = props.translation;
   }, []);
 
   /** Sets the default and normal variables */
