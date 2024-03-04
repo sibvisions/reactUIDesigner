@@ -69,7 +69,8 @@ interface IReactUIDesigner {
   setShowDesigner: () => void
   changeTheme: (value: string) => void
   uploadCallback: (schemeName: string, themeName: string) => void,
-  transferType: "full"|"partial"|"all"
+  transferType: "full"|"partial"|"all",
+  children?: React.ReactNode
 }
 
 /** 
