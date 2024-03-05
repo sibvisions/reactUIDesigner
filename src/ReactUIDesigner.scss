@@ -46,7 +46,6 @@
 }
 
 .designer-topbar-buttons.p-button {
-  border-radius: 50%;
   background: #1169b0;
   border-color: #1169b0;
 
@@ -54,6 +53,7 @@
     width: 45px;
     height: 45px;
     font-size: 20px;
+    border-radius: 50%;
   }
   
 
@@ -205,6 +205,19 @@
   &.reactUI {
     height: var(--designer-main-height);
   }
+}
+
+.designer-topbar-header,
+.designer-panel-header,
+.designer-panel-inputtext.p-inputtext,
+.p-tooltip.p-component .p-tooltip-text,
+.designer-search-editor.p-inputtext,
+.p-accordion-header-text,
+.style-editor-label,
+.style-editor-textinput.p-inputtext,
+.style-editor-color-textinput.p-inputtext
+ {
+  font-family: 'Roboto';
 }
 
 @media screen and (max-width: 960px) {

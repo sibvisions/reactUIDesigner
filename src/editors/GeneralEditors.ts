@@ -36,6 +36,15 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
         visible: true,
         items: [
             {
+                variable: "--font-family",
+                label: "Font Family",
+                type: "text",
+                cssType: "theme",
+                value: docStyle.getPropertyValue('--font-family'),
+                usage: new Map<string, string[]>(),
+                tooltip: "The font-family used for the application"
+            },
+            {
                 variable: "--font-size",
                 label: "Font Size",
                 type: "text",
