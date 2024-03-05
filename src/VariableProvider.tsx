@@ -38,7 +38,6 @@ export type VariableContextType = {
     isPreviewMode: boolean,
     variables: Map<string, Map<string, EditorGroup>>,
     defaultValues: Map<string, string>,
-    translation: Map<string, string>,
     updateButtonBackground: () => void,
     updateTopbarColors: () => void
 }
@@ -86,7 +85,6 @@ const initValue: VariableContextType = {
     themeName: "basti",
     variables: getVariables(),
     defaultValues: new Map<string, string>(),
-    translation: new Map<string, string>(),
     isPreviewMode: false,
     updateButtonBackground: () => {},
     updateTopbarColors: () => {},

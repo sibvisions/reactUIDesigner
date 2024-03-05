@@ -16,7 +16,7 @@
 import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { confirmDialog } from 'primereact/confirmdialog';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import EditorManager from './editors/management/EditorManager';
 import TabSelection from './previews/TabSelection';
 import VariableProvider, { variableContext } from './VariableProvider';
@@ -29,6 +29,7 @@ import ExpressDialog from './ExpressDialog';
 import { addCSSDynamically } from './util/AddCSSDynamically';
 import { Tooltip } from 'primereact/tooltip';
 import { getCSSValue } from './util/GetCSSValue';
+import { translation } from './util/Translation';
 
 // Type for the DesignerSubscriptionManager
 export type DesignerSubscriptionManager = {
@@ -134,7 +135,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       addCSSDynamically('themes/basti.css', "themeCSS", () => setPresetTheme("basti"));
     }
 
-    context.translation = props.translation;
+    // Can't directly set translation because it is an import
+    props.translation.forEach((value, key) => {
+      translation.set(key, value);
+    })
   }, []);
 
   /** Sets the default and normal variables */
@@ -206,8 +210,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const handleDownload = () => {
     if (context.schemeName === "factory-default" || context.themeName === "factory-basti") {
       confirmDialog({
-        message: "The set name(s) of the color-scheme and/or theme is not allowed!",
-        header: "Unallowed Names!",
+        message: translation.get("The set name(s) of the color-scheme and/or theme is not allowed!"),
+        header: translation.get("Unallowed Names!"),
         icon: "pi pi-times-circle"
       });
     }
@@ -238,8 +242,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
   const handleUpload = (uploadUrl: string) => {
     if (context.schemeName === "factory-default" || context.themeName === "factory-basti") {
       confirmDialog({
-        message: "The set name(s) of the color-scheme and/or theme is not allowed!",
-        header: "Unallowed Names!",
+        message: translation.get("The set name(s) of the color-scheme and/or theme is not allowed!"),
+        header: translation.get("Unallowed Names!"),
         icon: "pi pi-times-circle"
       });
     }
@@ -261,7 +265,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       sendRequest({ formData: formData }, uploadUrl)
         .then(() => {
           if (toastRef.current) {
-            toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The new styles: " + fileNameTheme + " and " + fileNameScheme + " were set for the application " + props.appName + "." });
+            toastRef.current.show({ severity: "success", summary: translation.get("Upload successful!"), detail: translation.get("The new styles were set for the application.") });
             sessionStorage.setItem("reactui-designer-scheme-" + props.appName, fileNameScheme.substring(0, fileNameScheme.indexOf(".")));
             sessionStorage.setItem("reactui-designer-theme-" + props.appName, fileNameTheme.substring(0, fileNameTheme.indexOf(".")));
           }
@@ -269,10 +273,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         .catch((error) => {
           if (toastRef.current) {
             if (uploadUrl === "PASTE URL HERE" || !uploadUrl) {
-              toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". The Upload-URL is wrong!" })
+              toastRef.current.show({ severity: "error", summary: translation.get("Upload failed!"), detail: translation.get("The new styles could not be set for application. The Upload-URL is wrong!") })
             }
             else {
-              toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The new styles could not be set for application " + props.appName + ". " + error })
+              toastRef.current.show({ severity: "error", summary: translation.get("Upload failed!"), detail: translation.get("The new styles could not be set for application.")})
             }
           }
           console.error(error)
@@ -345,9 +349,10 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       setReset(prevState => !prevState)
     }
 
+    console.log('test')
     confirmDialog({
-      message: "Are you sure you want to reset to default?",
-      header: "Resetting Variables",
+      message: translation.get("Are you sure you want to reset to default?"),
+      header: translation.get("Resetting Variables"),
       icon: "pi pi-question-circle",
       accept: () => acceptFunc(),
     })
@@ -461,8 +466,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
 
     confirmDialog({
-      message: "Are you sure you want to reset to factory default?",
-      header: "Resetting to Factory Default",
+      message: translation.get("Are you sure you want to reset to factory default?"),
+      header: translation.get("Resetting to Factory Default"),
       icon: "pi pi-question-circle",
       accept: () => acceptFunc(),
     })
@@ -505,18 +510,18 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         .then(() => {
           props.changeImages();
           if (toastRef.current) {
-            toastRef.current.show({ severity: "success", summary: "Upload successful!", detail: "The image has been uploaded to the server." })
+            toastRef.current.show({ severity: "success", summary: translation.get("Upload successful!"), detail: translation.get("The image has been uploaded to the server.") })
           }
         })
         .catch((error) => {
           if (toastRef.current) {
-            toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The image could not be uploaded. " + error })
+            toastRef.current.show({ severity: "error", summary: translation.get("Upload failed!"), detail: translation.get("The image could not be uploaded.") })
           }
           console.error(error)
         });
       }
       else if (toastRef.current) {
-        toastRef.current.show({ severity: "error", summary: "Upload failed!", detail: "The image could not be uploaded. Because the Upload-URL is not set!" })
+        toastRef.current.show({ severity: "error", summary: translation.get("Upload failed!"), detail: translation.get("The image could not be uploaded. Because the Upload-URL is not set!") })
       }
     }
   }
@@ -525,6 +530,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     <VariableProvider>
       <Toast ref={toastRef} />
       <TopBar>
+      <ConfirmDialog />
       <ExpressDialog 
         visible={expressVisible} 
         handleClose={() => setExpressVisible(false)} 
@@ -538,7 +544,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
         }}
         showToast={() => {
           if (toastRef.current) {
-            toastRef.current.show({ severity: "error", summary: "Invalid Color!", detail: "This color is invalid please use a valid color." })
+            toastRef.current.show({ severity: "error", summary: translation.get("Invalid Color!"), detail: translation.get("This color is invalid please use a valid color.") })
           }
         }}
         changeTheme={props.changeTheme}
@@ -551,9 +557,9 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                 <Tooltip target={"#reset-default-button"} />
                 <Tooltip target={"#reset-factory-button"} />
                 <Tooltip target={"#express-mode-button"} />
-                <Button id={"reset-default-button"} className='designer-topbar-buttons' icon='fas fa-undo' onClick={resetToDefault} data-pr-tooltip="Reset to Default" />
-                <Button id={"reset-factory-button"} className='designer-topbar-buttons' icon='fas fa-industry' onClick={resetToFactory} data-pr-tooltip="Reset to Factory Default" />
-                <Button id={"express-mode-button"} className='designer-topbar-buttons' icon='fas fa-fast-forward' onClick={() => setExpressVisible(true)} data-pr-tooltip="Express-Mode" />
+                <Button id={"reset-default-button"} className='designer-topbar-buttons' icon='fas fa-undo' onClick={resetToDefault} data-pr-tooltip={translation.get("Reset to Default")} />
+                <Button id={"reset-factory-button"} className='designer-topbar-buttons' icon='fas fa-industry' onClick={resetToFactory} data-pr-tooltip={translation.get("Reset to Factory Default")} />
+                <Button id={"express-mode-button"} className='designer-topbar-buttons' icon='fas fa-fast-forward' onClick={() => setExpressVisible(true)} data-pr-tooltip={translation.get("Express-Mode")} />
               </div>
               <span className='designer-topbar-header'>App-Designer</span>
             </div>
@@ -561,7 +567,7 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
             <div className='designer-panel-options'>
             <div>
               <div className='designer-panel-row'>
-                <span className='designer-panel-header'>Theme</span>
+                <span className='designer-panel-header'>{translation.get("Theme")}</span>
                 <InputText
                   value={themeName}
                   onChange={event => setThemeName(event.target.value)}
@@ -596,13 +602,13 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
                   className='designer-panel-inputtext' />
               </div>
               <div className='designer-panel-row'>
-                <span className='designer-panel-header'>Scheme</span>
+                <span className='designer-panel-header'>{translation.get("Scheme")}</span>
                 <InputText value={schemeName} onChange={event => setSchemeName(event.target.value)} className='designer-panel-inputtext' />
               </div>
             </div>
             <div className='designer-panel-row'>
-              <Button className={uploadUrl ? 'designer-panel-button download-button' : 'designer-panel-button-solo'} tooltip='Download' icon='fas fa-file-download' onClick={handleDownload} />
-              {uploadUrl && <Button className='designer-panel-button upload-button' icon='fas fa-save' tooltip='Save' onClick={() => handleUpload(uploadUrl)} />}
+              <Button className={uploadUrl ? 'designer-panel-button download-button' : 'designer-panel-button-solo'} tooltip={translation.get("Download")} icon='fas fa-file-download' onClick={handleDownload} />
+              {uploadUrl && <Button className='designer-panel-button upload-button' icon='fas fa-save' tooltip={translation.get("Save")} onClick={() => handleUpload(uploadUrl)} />}
             </div>
             </div>
               <EditorManager

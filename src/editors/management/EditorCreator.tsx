@@ -21,6 +21,7 @@ import { Tooltip } from "primereact/tooltip";
 import { variableContext, VariableContextType } from "../../VariableProvider";
 import { DesignerSubscriptionManager } from "../../ReactUIDesigner";
 import ColorPicker from "../colorpicker/ColorPicker";
+import { translation } from "../../util/Translation";
 
 /** Type for EditorItems */
 export type EditorItem = {
@@ -205,12 +206,12 @@ function createEditors(editors: Map<string, EditorGroup>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
-                            tooltip="Show Text"
+                            tooltip={translation.get("Show Text")}
                             onClick={() => swapColorType(editorItem)} />
                         <Button
                             className="style-editor-button"
                             icon="fas fa-chess-board"
-                            tooltip="Transparent"
+                            tooltip={translation.get("Transparent")}
                             onClick={() => {
                                 setVariableState(key, editorItem, "transparent");
                                 document.documentElement.style.setProperty(editorItem.variable, "transparent");
@@ -234,7 +235,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                         <Button
                             className="style-editor-button"
                             icon="fas fa-exchange-alt"
-                            tooltip="Show Color"
+                            tooltip={translation.get("Show Color")}
                             onClick={() => swapColorType(editorItem)} />
                     </>
                 )
@@ -321,7 +322,7 @@ function createEditors(editors: Map<string, EditorGroup>,
                                     <Button
                                         className="style-editor-button"
                                         icon="fas fa-undo"
-                                        tooltip="Reset to Default"
+                                        tooltip={translation.get("Reset to Default")}
                                         onClick={() => {
                                             setVariableState(key, editorItem, defaultValues.get(editorItem.variable) as string);
                                             document.documentElement.style.setProperty(editorItem.variable, defaultValues.get(editorItem.variable) as string);
@@ -398,7 +399,7 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
                     className="designer-search-editor"
                     id="search"
                     autoComplete="search"
-                    placeholder="Search"
+                    placeholder={translation.get("Search")}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)} />
             </div>
             <Accordion className="designer-accordion">

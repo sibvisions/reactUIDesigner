@@ -4,12 +4,13 @@ import { Dialog } from "primereact/dialog"
 import { Dropdown } from "primereact/dropdown"
 import { InputText } from "primereact/inputtext"
 import { Tooltip } from "primereact/tooltip"
-import React, { FC, useContext, useEffect, useMemo, useRef, useState } from "react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import tinycolor from "tinycolor2"
 import ColorPicker from "./editors/colorpicker/ColorPicker"
 import { addCSSDynamically } from "./util/AddCSSDynamically"
 import { variableContext } from "./VariableProvider"
 import { storeValue } from "./editors/management/EditorCreator"
+import { translation } from "./util/Translation"
 
 /** The interface of the ExpressDialog */
 interface IExpressDialog {
@@ -188,45 +189,44 @@ const ExpressDialog:FC<IExpressDialog> = (props) => {
 
     const footer = 
     <div className="express-button-wrapper">
-        <Button className="express-button" label="Close" icon="pi pi-times" onClick={props.handleClose} />
-        <Button className="express-button" label="Apply" icon="pi pi-check" onClick={handleConfirm} />
+        <Button className="express-button" label={translation.get("Close")} icon="pi pi-times" onClick={props.handleClose} />
+        <Button className="express-button" label={translation.get("Apply")} icon="pi pi-check" onClick={handleConfirm} />
     </div>
 
     return (
-        <Dialog className="express-dialog" header="Express Mode" visible={props.visible} modal={false} onHide={props.handleClose} footer={footer}>
+        <Dialog className="express-dialog" header={translation.get("Express Mode")} visible={props.visible} modal={false} onHide={props.handleClose} footer={footer}>
             <div className="express-group-wrapper">
                 <div className="express-group">
                     <div className="express-group-header-wrapper">
                         <Tooltip target={"#express-preset-info"} />
-                        <span className="express-group-header">Select a Preset</span>
-                        <i id="express-preset-info" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="Select a color-scheme and theme to use as a base." />
+                        <span className="express-group-header">{translation.get("Select a Preset")}</span>
+                        <i id="express-preset-info" className="tooltip-icon pi pi-info-circle" data-pr-tooltip={translation.get("Select a color-scheme and theme to use as a base.")} />
                     </div>
                     <div className="express-preset-groups">
                         <div className="express-preset-group">
-                            <span className="express-preset-label">Theme</span>
+                            <span className="express-preset-label">{translation.get("Theme")}</span>
                             <Dropdown className="express-preset-editor" value={selectedTheme} options={themes} onChange={(e) => setSelectedTheme(e.value)} optionLabel="label" optionValue="value" />
                         </div>
                         <div className="express-preset-group">
-                            <span className="express-preset-label">Scheme</span>
+                            <span className="express-preset-label">{translation.get("Scheme")}</span>
                             <Dropdown className="express-preset-editor" value={selectedScheme} options={schemes} onChange={(e) => setSelectedScheme(e.value)} />
                         </div>
                         <div className="express-preset-group">
-                            <span className="express-preset-label">Primary Color</span>
+                            <span className="express-preset-label">{translation.get("Primary Color")}</span>
                             <div className="express-preset-colorpicker-group">
                                 <Tooltip target={"#express-preset-primary"} />
                                 <InputText className="express-preset-editor editor-color" value={schemeColor.initial === false ? schemeColor.color : ""} placeholder={schemeColor.initial ? schemeColor.color : ""} onChange={(event) => setSchemeColor({ color: event.target.value, initial: false })} />
                                 <ColorPicker color={schemeColor.color} handleOnChange={(color: string) => setSchemeColor({ color: color, initial: false })} />
-                                <i id="express-preset-primary" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="Create a custom scheme based on this color." />
+                                <i id="express-preset-primary" className="tooltip-icon pi pi-info-circle" data-pr-tooltip={translation.get("Create a custom scheme based on this color.")} />
                             </div>
                         </div>
                         <div className="express-preset-group dark-wrapper">
-                            <label htmlFor="dark-mode-cb">Dark Mode</label>
+                            <label htmlFor="dark-mode-cb">{translation.get("Dark Mode")}</label>
                             <div className="express-dark-checkbox-wrapper">
                                 <Tooltip target={"#express-preset-dark"} />
                                 <Checkbox className="express-dark-checkbox" inputId="dark-mode-cb" checked={isDarkMode} onChange={(e) => setIsDarkMode(e.checked === undefined ? false : e.checked)} />
-                                <i id="express-preset-dark" className="tooltip-icon pi pi-info-circle" data-pr-tooltip="If selected, the custom scheme will be in dark mode." />
+                                <i id="express-preset-dark" className="tooltip-icon pi pi-info-circle" data-pr-tooltip={translation.get("If selected, the custom scheme will be in dark mode.")} />
                             </div>
-                            
                         </div>
                     </div>
                 </div>
