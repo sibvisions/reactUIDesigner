@@ -349,7 +349,6 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       setReset(prevState => !prevState)
     }
 
-    console.log('test')
     confirmDialog({
       message: translation.get("Are you sure you want to reset to default?"),
       header: translation.get("Resetting Variables"),
