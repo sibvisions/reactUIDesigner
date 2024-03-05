@@ -483,6 +483,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
       const imgElem = document.getElementById(type + "-image") as HTMLImageElement;
       imgElem.src = tmppath;
       const formData = new FormData();
+      const fileNameTheme = context.themeName + ".css";
+      formData.set("theme-file-name", fileNameTheme);
       switch (type) {
         case "login":
           // @ts-ignore
