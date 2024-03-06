@@ -1,3 +1,4 @@
+import { translation } from "../util/Translation";
 import { EditorGroup } from "./management/EditorCreator";
 
 /** The current style of the root element */
@@ -23,7 +24,7 @@ export const loadingEditors: Map<string, EditorGroup> = new Map<string, EditorGr
             items: [
                 {
                     variable: "--loading-screen-left-background",
-                    label: "Left Background",
+                    label: translation.get("Left Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--loading-screen-left-background'),
@@ -33,16 +34,16 @@ export const loadingEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                             "background: -o-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);",
                             "background: -moz-radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);",
                             "background: radial-gradient(119% 190% at -6% -20%, var(--loading-screen-left-background) 70%, var(--loading-screen-right-background) 70%);"]),
-                    tooltip: "The background-color for the left part of the loading-screen."
+                    tooltip: translation.get("The background-color for the left part of the loading-screen.")
                 },
                 {
                     variable: "--loading-screen-right-background",
-                    label: "Right Background",
+                    label: translation.get("Right Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--loading-screen-right-background'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The background-color for the right part of the loading-screen."
+                    tooltip: translation.get("The background-color for the right part of the loading-screen.")
                 }
             ]
         }

@@ -1,3 +1,4 @@
+import { translation } from "../util/Translation";
 import { EditorGroup } from "./management/EditorCreator";
 
 /** The current style of the root element */
@@ -23,77 +24,77 @@ export const tabsetEditors: Map<string, EditorGroup> = new Map<string, EditorGro
             items: [
                 {
                     variable: "--tab-padding",
-                    label: "Padding",
+                    label: translation.get("Padding"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--tab-padding'),
                     usage: new Map<string, string[]>().set(".basti .p-tabview .p-tabview-nav li .p-tabview-nav-link", ["padding: var(--tab-padding);"]),
-                    tooltip: "The padding of the tab in the tab-navigation."
+                    tooltip: translation.get("The padding of the tab in the tab-navigation.")
                 },
                 {
                     variable: "--tab-navbar-background",
-                    label: "Background",
+                    label: translation.get("Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-navbar-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav", ["background: var(--tab-navbar-background);"])
                         .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li .p-tabview-nav-link", ["background: var(--tab-navbar-background);"]),
-                    tooltip: "The background-color of the navigation-bar."
+                    tooltip: translation.get("The background-color of the navigation-bar.")
                 },
                 {
                     variable: "--tab-border-color",
-                    label: "Border Color",
+                    label: translation.get("Border Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-border-color'),
                     usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li:not(.p-highlight) .p-tabview-nav-link", ["border-color: transparent transparent var(--tab-border-color) transparent;"]),
-                    tooltip: "The border color of the navigation-bar."
+                    tooltip: translation.get("The border color of the navigation-bar.")
                 },
                 {
                     variable: "--tab-selected-color",
-                    label: "Selected Color",
+                    label: translation.get("Selected Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-selected-color'),
                     usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li.p-highlight .p-tabview-nav-link", ["color: var(--tab-selected-color);", "border-color: var(--tab-selected-color);"]),
-                    tooltip: "The text and border color of the selected tab."
+                    tooltip: translation.get("The text and border color of the selected tab.")
                 },
                 {
                     variable: "--tab-hover-background",
-                    label: "Hover Background",
+                    label: translation.get("Hover Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-hover-background'),
                     usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["background: var(--tab-hover-background);"]),
-                    tooltip: "The hover background-color of a tab."
+                    tooltip: translation.get("The hover background-color of a tab.")
                 },
                 {
                     variable: "--tab-close-color",
-                    label: "Close Color",
+                    label: translation.get("Close Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-close-color'),
                     usage: new Map<string, string[]>().set(".p-tabview-close", ["color: var(--tab-close-color);"]),
-                    tooltip: "The color of the 'x' to close the tab."
+                    tooltip: translation.get("The color of the 'x' to close the tab.")
                 },
                 {
                     variable: "--tab-close-hover-color",
-                    label: "Close Hover Color",
+                    label: translation.get("Close Hover Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-close-hover-color'),
                     usage: new Map<string, string[]>().set(".p-tabview-close:hover", ["color: var(--tab-close-hover-color);"]),
-                    tooltip: "The hover color of the 'x' to close the tab"
+                    tooltip: translation.get("The hover color of the 'x' to close the tab")
                 },
                 {
                     variable: "--tab-border-radius",
-                    label: "Border-Radius",
+                    label: translation.get("Border-Radius"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tab-border-radius'),
                     usage: new Map<string, string[]>().set(".p-tabview:not(.designer-tab-view) .p-tabview-nav", ["border-radius: var(--tab-border-radius);", "padding: 0 var(--tab-border-radius);"]),
-                    tooltip: "The border-radius of the navigation-bar (rounds borders)."
+                    tooltip: translation.get("The border-radius of the navigation-bar (rounds borders).")
                 }
             ]
         }

@@ -13,6 +13,7 @@
  * the License.
  */
 
+import { translation } from "../util/Translation";
 import { EditorGroup } from "./management/EditorCreator";
 
 
@@ -39,72 +40,72 @@ export const loginEditors: Map<string, EditorGroup> =
                 items: [
                     {
                         variable: "--login-logo-background",
-                        label: "Logo Background",
+                        label: translation.get("Logo Background"),
                         type: "color",
                         cssType: "scheme",
                         value: docStyle.getPropertyValue('--login-logo-background'),
                         usage: new Map<string, string[]>().set(".login-logo-wrapper", ["background: var(--login-logo-background);"]),
-                        tooltip: "The background-color of the login view where the logo is displayed."
+                        tooltip: translation.get("The background-color of the login view where the logo is displayed.")
                     },
                     {
                         variable: "--login-mask-background",
-                        label: "Background",
+                        label: translation.get("Background"),
                         type: "color",
                         cssType: "scheme",
                         value: docStyle.getPropertyValue('--login-mask-background'),
                         usage: new Map<string, string[]>().set(".login-form", ["background: var(--login-mask-background);"]),
-                        tooltip: "The background-color of the login view where the fields are displayed."
+                        tooltip: translation.get("The background-color of the login view where the fields are displayed.")
                     },
                     {
                         variable: "--login-shadow",
-                        label: "Shadow",
+                        label: translation.get("Shadow"),
                         type: "text",
                         cssType: "scheme",
                         value: docStyle.getPropertyValue('--login-shadow'),
                         usage: new Map<string, string[]>()
                             .set(".login-form", ["box-shadow: var(--login-shadow);"])
                             .set(".login-form-position-wrapper", ["box-shadow: var(--login-shadow);"]),
-                        tooltip: "The shadow of the login view."
+                        tooltip: translation.get("The shadow of the login view.")
                     },
                     {
                         variable: "--login-form-top-bottom-padding",
-                        label: "Top Bottom Padding",
+                        label: translation.get("Top Bottom Padding"),
                         type: "text",
                         cssType: "theme",
                         value: docStyle.getPropertyValue('--login-form-top-bottom-padding'),
                         usage: new Map<string, string[]>()
                             .set(".login-form .p-fluid", ["padding: 20px var(--login-form-left-right-padding) var(--login-form-top-bottom-padding);"])
                             .set(".login-form .login-logo-wrapper", ["padding: var(--login-form-top-bottom-padding) var(--login-form-left-right-padding) 20px;"]),
-                        tooltip: "The top and bottom padding of the login view (changes size)."
+                        tooltip: translation.get("The top and bottom padding of the login view (changes size).")
                     },
                     {
                         variable: "--login-form-left-right-padding",
-                        label: "Left Right Padding",
+                        label: translation.get("Left Right Padding"),
                         type: "text",
                         cssType: "theme",
                         value: docStyle.getPropertyValue('--login-form-left-right-padding'),
                         usage: new Map<string, string[]>(),
-                        tooltip: "The left and right padding of the login view (changes size)."
+                        tooltip: translation.get("The left and right padding of the login view (changes size).")
                     },
                     {
                         variable: "--login-form-field-margin",
-                        label: "Field Margin",
+                        label: translation.get("Field Margin"),
                         type: "text",
                         cssType: "theme",
                         value: docStyle.getPropertyValue('--login-form-field-margin'),
                         usage: new Map<string, string[]>().set(".login-form .p-fluid .p-field", ["margin-bottom: var(--login-form-field-margin);"]),
-                        tooltip: "The margin between fields in the login view."
+                        tooltip: translation.get("The margin between fields in the login view.")
                     },
                     {
                         variable: "--login-border-radius",
-                        label: "Border Radius",
+                        label: translation.get("Border Radius"),
                         type: "text",
                         cssType: "scheme",
                         value: docStyle.getPropertyValue('--login-border-radius'),
                         usage: new Map<string, string[]>()
                             .set(".login-form", ["border-radius: var(--login-border-radius);"])
                             .set(".login-form-position-wrapper", ["border-radius: var(--login-border-radius);"]),
-                        tooltip: "The border-radius of the login-view."
+                        tooltip: translation.get("The border-radius of the login-view.")
                     }
                 ]
             }

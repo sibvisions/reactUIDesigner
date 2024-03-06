@@ -1,3 +1,4 @@
+import { translation } from "../util/Translation";
 import { EditorGroup } from "./management/EditorCreator";
 
 /** The current style of the root element */
@@ -23,66 +24,66 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--dialog-header-background",
-                    label: "Header Background",
+                    label: translation.get("Header Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-background'),
                     usage: new Map<string, string[]>()
                         .set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["background: var(--dialog-header-background);"])
                         .set(".rc-message-dialog .p-dialog-header", ["background: var(--dialog-header-background);"]),
-                    tooltip: "The background-color of the header."
+                    tooltip: translation.get("The background-color of the header.")
                 },
                 {
                     variable: "--dialog-header-text-color",
-                    label: "Header Color",
+                    label: translation.get("Header Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-text-color'),
                     usage: new Map<string, string[]>()
                         .set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["color: var(--dialog-header-text-color);"])
                         .set(".rc-popup .p-dialog-header .p-dialog-header-icon", ["color: var(--dialog-header-text-color);"]),
-                    tooltip: "The text-color of the header."
+                    tooltip: translation.get("The text-color of the header.")
                 },
                 {
                     variable: "--dialog-header-close-hover-background",
-                    label: "Close Hover Background",
+                    label: translation.get("Close Hover Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-close-hover-background'),
                     usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--dialog-header-close-hover-background);"]),
-                    tooltip: "The hover background-color of the 'x' to close the popup."
+                    tooltip: translation.get("The hover background-color of the 'x' to close the popup.")
                 },
                 {
                     variable: "--dialog-header-close-hover-color",
-                    label: "Close Hover Color",
+                    label: translation.get("Close Hover Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-close-hover-color'),
                     usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header .p-dialog-header-icon:enabled:hover", ["color: var(--dialog-header-close-hover-color);"]),
-                    tooltip: "The hover text-color of the 'x' to close the popup."
+                    tooltip: translation.get("The hover text-color of the 'x' to close the popup.")
                     
                 },
                 {
                     variable: "--dialog-header-border",
-                    label: "Header Border",
+                    label: translation.get("Header Border"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-header-border'),
                     usage: new Map<string, string[]>().set(".rc-popup .p-dialog-header, .error-dialog .p-dialog-header", ["border-bottom: var(--dialog-header-border);"]),
-                    tooltip: "The border which seperates header and content of a popup."
+                    tooltip: translation.get("The border which seperates header and content of a popup.")
                 },
                 {
                     variable: "--dialog-header-padding",
-                    label: "Header Padding",
+                    label: translation.get("Header Padding"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--dialog-header-padding'),
                     usage: new Map<string, string[]>().set(".p-dialog .p-dialog-header", ["padding: var(--dialog-header-padding);"]),
-                    tooltip: "The padding of the header."
+                    tooltip: translation.get("The padding of the header.")
                 },
                 {
                     variable: "--dialog-content-background",
-                    label: "Content Background",
+                    label: translation.get("Content Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-content-background'),
@@ -91,11 +92,11 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".error-dialog .p-dialog-footer", ["background: var(--dialog-content-background);"])
                         .set(".rc-message-dialog .p-dialog-content, .rc-message-dialog .p-dialog-footer", ["background: var(--dialog-content-background);"])
                         .set("#toast-info .p-toast-message", ["background: var(--dialog-content-background);"]),
-                    tooltip: "The background-color of the popup-content."
+                    tooltip: translation.get("The background-color of the popup-content.")
                 },
                 {
                     variable: "--dialog-border-radius",
-                    label: "Border-Radius",
+                    label: translation.get("Border-Radius"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--dialog-border-radius'),
@@ -106,7 +107,7 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-message-dialog .p-dialog-header", ["border-top-left-radius: var(--dialog-border-radius);", "border-top-right-radius: var(--dialog-border-radius);"])
                         .set(".rc-message-dialog .p-dialog-footer", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"])
                         .set(".rc-message-dialog.message-dialog-no-footer .p-dialog-content", ["border-bottom-left-radius: var(--dialog-border-radius);", "border-bottom-right-radius: var(--dialog-border-radius);"]),
-                    tooltip: "The border-radius of the popup (rounds corners)."
+                    tooltip: translation.get("The border-radius of the popup (rounds corners).")
                 }
             ]
         }
@@ -118,17 +119,17 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--message-error-header-background",
-                    label: "Header Background",
+                    label: translation.get("Header Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--message-error-header-background'),
                     usage: new Map<string, string[]>()
                         .set(".error-dialog .p-dialog-header", ["background: var(--message-error-header-background);"]),
-                    tooltip: "The header background-color of the error-popup."
+                    tooltip: translation.get("The header background-color of the error-popup.")
                 },
                 {
                     variable: "--message-error-header-color",
-                    label: "Header Color",
+                    label: translation.get("Header Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--message-error-header-color'),
@@ -136,35 +137,35 @@ export const popupEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".error-dialog .p-dialog-header", ["color: var(--message-error-header-color);"])
                         .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled", ["color: var(--message-error-header-color);"])
                         .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover", ["color: var(--message-error-header-color);"]),
-                    tooltip: "The header text-color of the error-popup."
+                    tooltip: translation.get("The header text-color of the error-popup.")
                 },
                 {
                     variable: "--message-error-header-close-hover",
-                    label: "Header Close Background",
+                    label: translation.get("Header Close Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--message-error-header-close-hover'),
                     usage: new Map<string, string[]>()
                         .set(".error-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover", ["background: var(--message-error-header-close-hover);"]),
-                    tooltip: "The hover background-color of the 'x' to close the error-popup."
+                    tooltip: translation.get("The hover background-color of the 'x' to close the error-popup.")
                 },
                 {
                     variable: "--error-dialog-textarea-height",
-                    label: "TextArea Height",
+                    label: translation.get("TextArea Height"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--error-dialog-textarea-height'),
                     usage: new Map<string, string[]>().set(".error-dialog .error-dialog-textarea", ["height: var(--error-dialog-textarea-height);"]),
-                    tooltip: "The height of the error-popup's textarea."
+                    tooltip: translation.get("The height of the error-popup's textarea.")
                 },
                 {
                     variable: "--error-dialog-icon-size",
-                    label: "Icon Size",
+                    label: translation.get("Icon Size"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--error-dialog-icon-size'),
                     usage: new Map<string, string[]>().set(".error-dialog .error-dialog-icon", ["min-width: var(--error-dialog-icon-size);", "font-size: var(--error-dialog-icon-size);"]),
-                    tooltip: "The icon size of the error-popup."
+                    tooltip: translation.get("The icon size of the error-popup.")
                 }
             ]
         }

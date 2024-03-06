@@ -525,6 +525,8 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
     }
   }
 
+  console.log(translation.size, translation.get("Theme"))
+
   return (
     <VariableProvider>
       <Toast ref={toastRef} />

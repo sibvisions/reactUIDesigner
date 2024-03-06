@@ -1,3 +1,4 @@
+import { translation } from "../util/Translation";
 import { EditorGroup } from "./management/EditorCreator";
 
 /** The current style of the root element */
@@ -23,16 +24,16 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--table-border",
-                    label: "Border",
+                    label: translation.get("Border"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-border'),
                     usage: new Map<string, string[]>().set(".rc-table", ["border: var(--table-border);"]),
-                    tooltip: "The border of the table."
+                    tooltip: translation.get("The border of the table.")
                 },
                 {
                     variable: "--table-text-color",
-                    label: "Color",
+                    label: translation.get("Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-text-color'),
@@ -42,11 +43,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-table .p-datatable-tbody > tr.p-highlight", ["color: var(--table-text-color);"])
                         .set(".rc-table .p-datatable-tbody > tr.p-highlight > td .open-cell-editor", ["color: var(--table-text-color);"])
                         .set(".rc-table.p-datatable-selectable-cell .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["color: var(--table-text-color);"]),
-                    tooltip: "The text-color of the table cells."
+                    tooltip: translation.get("The text-color of the table cells.")
                 },
                 {
                     variable: "--table-cell-hover-color",
-                    label: "Hover Color",
+                    label: translation.get("Hover Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-cell-hover-color'),
@@ -57,11 +58,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight):hover", ["color: var(--table-cell-hover-color);"])
                         .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-required:hover", ["color: var(--table-cell-hover-color);"])
                         .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-readonly:hover", ["color: var(--table-cell-hover-color);"]),
-                    tooltip: "The hover text-color of the table cells."
+                    tooltip: translation.get("The hover text-color of the table cells.")
                 },
                 {
                     variable: "--table-sort-color",
-                    label: "Sort Color",
+                    label: translation.get("Sort Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-sort-color'),
@@ -70,11 +71,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th .p-sortable-column-icon", ["color: var(--table-sort-color);"])
                         .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des", ["color: var(--table-sort-color);"])
                         .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-asc .p-sortable-column-icon, .rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover.sort-des .p-sortable-column-icon", ["color: var(--table-sort-color);"]),
-                    tooltip: "The color of the sort indicator."
+                    tooltip: translation.get("The color of the sort indicator.")
                 },
                 {
                     variable: "--table-border-radius",
-                    label: "Border-Radius",
+                    label: translation.get("Border-Radius"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-border-radius'),
@@ -102,7 +103,7 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-toolbar.navbar-east", ["border-top-right-radius: var(--table-border-radius);", "border-bottom-right-radius: var(--table-border-radius);"])
                         .set(".rc-toolbar.navbar-south", ["border-bottom-left-radius: var(--table-border-radius);", "border-bottom-right-radius: var(--table-border-radius);"])
                         .set(".p-tree", ["border-radius: var(--table-border-radius);"]),
-                    tooltip: "The border-radius of the table (rounds corners)."
+                    tooltip: translation.get("The border-radius of the table (rounds corners).")
                 }
             ]
         }
@@ -114,65 +115,65 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--table-header-background",
-                    label: "Background",
+                    label: translation.get("Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-header-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item-group > *", ["background: var(--table-header-background);"])
                         .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th", ["background: var(--table-header-background);"]),
-                    tooltip: "The background-color of the table header."
+                    tooltip: translation.get("The background-color of the table header.")
                 },
                 {
                     variable: "--table-header-border",
-                    label: "Border Color",
+                    label: translation.get("Border Color"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-header-border'),
                     usage: new Map<string, string[]>()
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item-group > *", ["border-bottom: var(--table-header-border);"])
                         .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th", ["border: var(--table-header-border);"]),
-                    tooltip: "The border of the table header."
+                    tooltip: translation.get("The border of the table header.")
                 },
                 {
                     variable: "--table-header-hover-background",
-                    label: "Hover Background",
+                    label: translation.get("Hover Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-header-hover-background'),
                     usage: new Map<string, string[]>()
                         .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover", ["background: var(--table-header-hover-background);"]),
-                    tooltip: "The hover background-color of the table header."
+                    tooltip: translation.get("The hover background-color of the table header.")
                 },
                 {
                     variable: "--table-header-color",
-                    label: "Color",
+                    label: translation.get("Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-header-color'),
                     usage: new Map<string, string[]>()
                         .set(".rc-table.p-datatable-selectable-cell .p-datatable-thead > tr > th", ["color: var(--table-header-color);"]),
-                    tooltip: "The text-color of the table header."
+                    tooltip: translation.get("The text-color of the table header.")
                 },
                 {
                     variable: "--table-header-hover-color",
-                    label: "Hover Color",
+                    label: translation.get("Hover Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-header-hover-color'),
                     usage: new Map<string, string[]>()
                         .set(".rc-table .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover", ["color: var(--table-header-hover-color);"]),
-                    tooltip: "The hover text-color of the table header."
+                    tooltip: translation.get("The hover text-color of the table header.")
                 },
                 {
                     variable: "--table-header-padding",
-                    label: "Padding",
+                    label: translation.get("Padding"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--table-header-padding'),
                     usage: new Map<string, string[]>()
                         .set(".basti .rc-table .p-datatable-thead > tr > th", ["padding: var(--table-header-padding);"]),
-                    tooltip: "The padding of the table header."
+                    tooltip: translation.get("The padding of the table header.")
                 },
             ]
         }
@@ -184,7 +185,7 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--table-row-border",
-                    label: "Row Border Color",
+                    label: translation.get("Row Border Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-row-border'),
@@ -194,22 +195,22 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-table table", ["border-bottom: var(--table-row-border);"])
                         .set(".rc-table .p-datatable-tbody > tr > td", ["border-bottom: var(--table-row-border);"])
                         .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item", ["border-bottom: var(--table-row-border);"]),
-                    tooltip: "The border of table rows."
+                    tooltip: translation.get("The border of table rows.")
                 },
                 {
                     variable: "--table-selected-row-background",
-                    label: "Selected Row Background",
+                    label: translation.get("Selected Row Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-selected-row-background'),
                     usage: new Map<string, string[]>()
                         .set(".rc-table .p-datatable-tbody > tr.p-highlight", ["background: var(--table-selected-row-background) !important;"])
                         .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item.p-highlight", ["background: var(--table-selected-row-background);"]),
-                    tooltip: "The background-color of the selected row."
+                    tooltip: translation.get("The background-color of the selected row.")
                 },
                 {
                     variable: "--table-row-odd-background",
-                    label: "Odd Rows Background",
+                    label: translation.get("Odd Rows Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-row-odd-background'),
@@ -217,11 +218,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-items li:nth-child(even)", ["background: var(--table-row-odd-background);"])
                         .set(".rc-table .p-datatable-tbody > tr.p-row-odd", ["background: var(--table-row-odd-background);"])
                         .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item:nth-child(odd)", ["background: var(--table-row-odd-background);"]),
-                    tooltip: "The background-color of odd rows."
+                    tooltip: translation.get("The background-color of odd rows.")
                 },
                 {
                     variable: "--table-row-even-background",
-                    label: "Even Rows Background",
+                    label: translation.get("Even Rows Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-row-even-background'),
@@ -229,11 +230,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-items li:nth-child(odd)", ["background: var(--table-row-even-background);"])
                         .set(".rc-table .p-datatable-tbody > tr", ["background: var(--table-row-even-background);"])
                         .set(".error-dialog .p-listbox .p-listbox-list .p-listbox-item:nth-child(even)", ["background: var(--table-row-even-background);"]),
-                    tooltip: "The background-color of even rows."
+                    tooltip: translation.get("The background-color of even rows.")
                 },
                 {
                     variable: "--table-row-hover-background",
-                    label: "Rows Hover Background",
+                    label: translation.get("Rows Hover Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-row-hover-background'),
@@ -243,11 +244,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-items li:nth-child(even):hover", ["background: var(--table-row-hover-background);"])
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-items li:nth-child(even).p-highlight:hover", ["background: var(--table-row-hover-background);"])
                         .set(".rc-table.p-datatable-selectable-cell .p-datatable-tbody > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover", ["background: var(--table-row-hover-background);"]),
-                    tooltip: "The hover background-color for rows."
+                    tooltip: translation.get("The hover background-color for rows.")
                 },
                 {
                     variable: "--table-required-odd-background",
-                    label: "Rows Required Odd Background",
+                    label: translation.get("Rows Required Odd Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-required-odd-background'),
@@ -255,11 +256,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-table .p-datatable-tbody > tr.p-row-odd > td.cell-required", ["background: var(--table-required-odd-background);"])
                         .set(".rc-table .p-datatable-tbody > tr.p-row-odd.p-highlight td.cell-required", ["background: var(--table-required-odd-background);"])
                         .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight).cell-required:hover", ["background: var(--table-required-odd-background);"]),
-                    tooltip: "The background-color for required/mandatory columns in odd rows."
+                    tooltip: translation.get("The background-color for required/mandatory columns in odd rows.")
                 },
                 {
                     variable: "--table-required-even-background",
-                    label: "Rows Required Even Background",
+                    label: translation.get("Rows Required Even Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-required-even-background'),
@@ -267,11 +268,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-table .p-datatable-tbody > tr > td.cell-required", ["background: var(--table-required-even-background);"])
                         .set(".rc-table .p-datatable-tbody > tr.p-highlight > td.cell-required", ["background: var(--table-required-even-background);"])
                         .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-required:hover", ["background: var(--table-required-even-background);"]),
-                    tooltip: "The background-color for required/mandatory columns in even rows."
+                    tooltip: translation.get("The background-color for required/mandatory columns in even rows.")
                 },
                 {
                     variable: "--table-required-color",
-                    label: "Required Color",
+                    label: translation.get("Required Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-required-color'),
@@ -280,11 +281,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-editor-linked.required-field .p-inputtext", ["color: var(--table-required-color);"])
                         .set(".rc-table .p-datatable-tbody > tr > td.cell-required", ["color: var(--table-required-color);"])
                         .set(".rc-table .p-datatable-tbody > tr.p-row-odd > td.cell-required", ["color: var(--table-required-color);"]),
-                    tooltip: "The text-color for required/mandatory columns."
+                    tooltip: translation.get("The text-color for required/mandatory columns.")
                 },
                 {
                     variable: "--table-readonly-odd-background",
-                    label: "Rows Readonly Odd Background",
+                    label: translation.get("Rows Readonly Odd Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-readonly-odd-background'),
@@ -292,11 +293,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-table .p-datatable-tbody > tr.p-row-odd > td.cell-readonly", ["background: var(--table-readonly-odd-background);"])
                         .set(".rc-table .p-datatable-tbody > tr.p-row-odd.p-highlight td.cell-readonly", ["background: var(--table-readonly-odd-background);"])
                         .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-row-odd > td.p-selectable-cell:not(.p-highlight).cell-readonly:hover", ["background: var(--table-readonly-odd-background);"]),
-                    tooltip: "The background-color for readonly columns in odd rows."
+                    tooltip: translation.get("The background-color for readonly columns in odd rows.")
                 },
                 {
                     variable: "--table-readonly-even-background",
-                    label: "Rows Readonly Even Background",
+                    label: translation.get("Rows Readonly Even Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-readonly-even-background'),
@@ -304,21 +305,21 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-table .p-datatable-tbody > tr > td.cell-readonly", ["background: var(--table-readonly-even-background);"])
                         .set(".rc-table .p-datatable-tbody > tr.p-highlight > td.cell-readonly", ["background: var(--table-readonly-even-background);"])
                         .set(".p-datatable.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:not(.p-highlight).cell-readonly:hover", ["background: var(--table-readonly-even-background);"]),
-                    tooltip: "The background-color for readonly columns in even rows."
+                    tooltip: translation.get("The background-color for readonly columns in even rows.")
                 },
                 {
                     variable: "--table-readonly-color",
-                    label: "Readonly Color",
+                    label: translation.get("Readonly Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-readonly-color'),
                     usage: new Map<string, string[]>()
                         .set(".rc-table .p-datatable-tbody > tr > td.cell-readonly", ["color: var(--table-readonly-color);"]),
-                    tooltip: "The text-color for readonly columns."
+                    tooltip: translation.get("The text-color for readonly columns.")
                 },
                 {
                     variable: "--table-data-height",
-                    label: "Row Height",
+                    label: translation.get("Row Height"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--table-data-height'),
@@ -326,7 +327,7 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".basti .rc-table .p-datatable-tbody > tr > td", ["height: calc(8px + var(--table-data-height));"])
                         .set(".error-dialog .error-dialog-listbox .p-listbox-item", ["height: calc(8px + var(--table-data-height));", "line-height: var(--table-data-height);"])
                         .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-item", ["height: calc(8px + var(--table-data-height));"]),
-                    tooltip: "The height of table rows. Note: minimum height is 16px!"
+                    tooltip: translation.get("The height of table rows. Note: minimum height is 16px!")
                 }
             ]
         }
@@ -338,34 +339,34 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--toolbar-background",
-                    label: "Background",
+                    label: translation.get("Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--toolbar-background'),
                     usage: new Map<string, string[]>().set(".rc-toolbar", ["background: var(--toolbar-background);"]),
-                    tooltip: "The background-color of the toolbar"
+                    tooltip: translation.get("The background-color of the toolbar")
                 },
                 {
                     variable: "--toolbar-border-color",
-                    label: "Border Color",
+                    label: translation.get("Border Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--toolbar-border-color'),
                     usage: new Map<string, string[]>().set(".rc-toolbar", ["border-color: var(--toolbar-border-color);"]),
-                    tooltip: "The border color of the toolbar"
+                    tooltip: translation.get("The border color of the toolbar")
                 },
                 {
                     variable: "--toolbar-color",
-                    label: "Color",
+                    label: translation.get("Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--toolbar-color'),
                     usage: new Map<string, string[]>().set(".rc-toolbar .rc-button.mouse-border, .rc-toolbar .rc-togglebutton.mouse-border", ["color: var(--toolbar-color);"]),
-                    tooltip: "The icon-color of the toolbar"
+                    tooltip: translation.get("The icon-color of the toolbar")
                 },
                 {
                     variable: "--toolbar-separator",
-                    label: "Separator",
+                    label: translation.get("Separator"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--toolbar-separator'),
@@ -376,11 +377,11 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".mobile-launcher-menu .rc-frame-toolbar .rc-toolbar-border-bottom", ["border-bottom: var(--toolbar-separator);"])
                         .set(".rc-frame .rc-frame-toolbar .rc-toolbar-border-right", ["border-right: var(--toolbar-separator);"])
                         .set(".rc-frame .rc-frame-toolbar .rc-toolbar-border-bottom", ["border-bottom: var(--toolbar-separator);"]),
-                    tooltip: "The seperator between parts of the toolbar."
+                    tooltip: translation.get("The seperator between parts of the toolbar.")
                 },
                 {
                     variable: "--toolbar-border-radius",
-                    label: "Border-Radius",
+                    label: translation.get("Border-Radius"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--toolbar-border-radius'),
@@ -389,7 +390,7 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".rc-toolbar.toolbar-west", ["border-top-left-radius: var(--toolbar-border-radius);", "border-bottom-left-radius: var(--toolbar-border-radius);"])
                         .set(".rc-toolbar.toolbar-east", ["border-top-right-radius: var(--toolbar-border-radius);", "border-bottom-right-radius: var(--toolbar-border-radius);"])
                         .set(".rc-toolbar.toolbar-south", ["border-bottom-left-radius: var(--toolbar-border-radius);", "border-bottom-right-radius: var(--toolbar-border-radius);"]),
-                    tooltip: "The border-radius of the toolbar (rounds corners)."
+                    tooltip: translation.get("The border-radius of the toolbar (rounds corners).")
                 }
             ]
         }
@@ -401,26 +402,26 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--tree-background",
-                    label: "Background",
+                    label: translation.get("Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-tree", ["background: var(--tree-background);"]),
-                    tooltip: "The background-color of the tree."
+                    tooltip: translation.get("The background-color of the tree.")
                 },
                 {
                     variable: "--tree-border",
-                    label: "Border",
+                    label: translation.get("Border"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-border'),
                     usage: new Map<string, string[]>().set(".p-tree", ["border: var(--tree-border);"]),
-                    tooltip: "The border of the tree."
+                    tooltip: translation.get("The border of the tree.")
                 },
                 {
                     variable: "--tree-color",
-                    label: "Color",
+                    label: translation.get("Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-color'),
@@ -428,21 +429,21 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".p-tree", ["color: var(--tree-color);"])
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler", ["color: var(--tree-color);"])
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content .p-tree-toggler:enabled", ["color: var(--tree-color);"]),
-                    tooltip: "The text-color of the tree."
+                    tooltip: translation.get("The text-color of the tree.")
                 },
                 {
                     variable: "--tree-item-hover-background",
-                    label: "Hover Background",
+                    label: translation.get("Hover Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-item-hover-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover", ["background: var(--tree-item-hover-background);"]),
-                    tooltip: "The hover background of tree-nodes."
+                    tooltip: translation.get("The hover background of tree-nodes.")
                 },
                 {
                     variable: "--tree-item-hover-color",
-                    label: "Hover Color",
+                    label: translation.get("Hover Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-item-hover-color'),
@@ -451,50 +452,50 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover .p-tree-toggler, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover .p-tree-toggler:enabled, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-treenode-selectable:not(.p-highlight):hover .p-treenode-icon", ["color: var(--tree-item-hover-color);"])
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover", ["color: var(--tree-item-hover-color);"])
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover .p-tree-toggler, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover .p-tree-toggler:enabled, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight:hover .p-treenode-icon", ["color: var(--tree-item-hover-color);"]),
-                    tooltip: "The hover text-color of tree-nodes."
+                    tooltip: translation.get("The hover text-color of tree-nodes.")
                 },
                 {
                     variable: "--tree-selected-item-background",
-                    label: "Selected Background",
+                    label: translation.get("Selected Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-selected-item-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight", ["background: var(--tree-selected-item-background);"]),
-                    tooltip: "The background-color of the selected tree-node."
+                    tooltip: translation.get("The background-color of the selected tree-node.")
                 },
                 {
                     variable: "--tree-selected-item-color",
-                    label: "Selected Color",
+                    label: translation.get("Selected Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-selected-item-color'),
                     usage: new Map<string, string[]>()
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight", ["color: var(--tree-selected-item-color);"])
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-tree-toggler, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-tree-toggler:enabled, .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight .p-treenode-icon", ["color: var(--tree-selected-item-color);"]),
-                    tooltip: "The text-color of the selected tree-node."
+                    tooltip: translation.get("The text-color of the selected tree-node.")
                 },
                 {
                     variable: "--tree-odd-background",
-                    label: "Odd Nodes Background",
+                    label: translation.get("Odd Nodes Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-odd-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-tree .p-tree-container > .p-treenode:nth-child(odd)", ["background: var(--tree-odd-background);"])
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(odd)", ["background: var(--tree-odd-background);"]),
-                    tooltip: "The background-color of odd tree-nodes."
+                    tooltip: translation.get("The background-color of odd tree-nodes.")
                 },
                 {
                     variable: "--tree-even-background",
-                    label: "Even Nodes Background",
+                    label: translation.get("Even Nodes Background"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--tree-even-background'),
                     usage: new Map<string, string[]>()
                         .set(".p-tree .p-tree-container > .p-treenode:nth-child(even)", ["background: var(--tree-even-background);"])
                         .set(".p-tree .p-tree-container .p-treenode .p-treenode-children .p-treenode:nth-child(even)", ["background: var(--tree-even-background);"]),
-                    tooltip: "The background-color of even tree-nodes."
+                    tooltip: translation.get("The background-color of even tree-nodes.")
                 }
             ]
         }
@@ -519,23 +520,23 @@ export const cellEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
         items: [
             {
                 variable: "--table-cell-padding-top-bottom",
-                label: "Cell Padding Top Bottom",
+                label: translation.get("Cell Padding Top Bottom"),
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--table-cell-padding-top-bottom'),
                 usage: new Map<string, string[]>()
                     .set(".basti .rc-table .p-datatable-tbody > tr > td", ["padding: var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right) var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right);"])
                     .set(".error-dialog .error-dialog-listbox .p-listbox-item", ["padding: var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right) var(--table-cell-padding-top-bottom) var(--table-cell-padding-left-right);"]),
-                tooltip: "The top, bottom padding for cells."
+                tooltip: translation.get("The top, bottom padding for cells.")
             },
             {
                 variable: "--table-cell-padding-left-right",
-                label: "Cell Padding Left Right",
+                label: translation.get("Cell Padding Left Right"),
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--table-cell-padding-left-right'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The left, right padding for cells."
+                tooltip: translation.get("The left, right padding for cells.")
             }
         ]
     }

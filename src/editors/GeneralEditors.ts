@@ -13,6 +13,7 @@
  * the License.
  */
 
+import { translation } from "../util/Translation";
 import { EditorGroup } from "./management/EditorCreator";
 
 /** The current style of the root element */
@@ -37,16 +38,16 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
         items: [
             {
                 variable: "--font-family",
-                label: "Font Family",
+                label: translation.get("Font Family"),
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--font-family'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The font-family used for the application"
+                tooltip: translation.get("The font-family used for the application")
             },
             {
                 variable: "--font-size",
-                label: "Font Size",
+                label: translation.get("Font Size"),
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--font-size'),
@@ -54,20 +55,20 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set("body", ["font-size: var(--font-size);"])
                     .set(".basti .p-component, .basti .rc-label", ["font-size: var(--font-size);"])
                     .set(".p-autocomplete-panel.dropdown-table .p-autocomplete-items", ["font-size: var(--font-size);"]),
-                tooltip: "The font-size used for components and labels."
+                tooltip: translation.get("The font-size used for components and labels.")
             },
             {
                 variable: "--screen-background",
-                label: "Screen Background",
+                label: translation.get("Screen Background"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--screen-background'),
                 usage: new Map<string, string[]>().set("body", ["background: var(--screen-background);"]).set(".reactUI:not(.designer-content)", ["background: var(--screen-background);"]),
-                tooltip: "The background for workscreens."
+                tooltip: translation.get("The background for workscreens.")
             },
             {
                 variable: "--text-color",
-                label: "Color",
+                label: translation.get("Color"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--text-color'),
@@ -89,11 +90,11 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set(".p-tabview:not(.designer-tab-view) .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link", ["color: var(--text-color);", "border-color: var(--text-color);"])
                     .set(".rc-frame .rc-frame-header .rc-frame-header-close-button", ["color: var(--text-color);"]),
                 usage960: new Map<string, string[]>().set(".rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-text, .rc-frame .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-submenu-list .p-menuitem .p-menuitem-link .p-menuitem-icon", ["color: var(--text-color);"]),
-                tooltip: "The text-color used for most of the application."
+                tooltip: translation.get("The text-color used for most of the application.")
             },
             {
                 variable: "--focus-box-shadow",
-                label: "Focus Border",
+                label: translation.get("Focus Border"),
                 type: "text",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--focus-box-shadow'),
@@ -109,7 +110,7 @@ export const generalEditors: Map<string, EditorGroup> = new Map<string, EditorGr
                     .set(".p-datepicker .p-datepicker-header .p-datepicker-title select:focus", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".rc-editor-image:focus img, .rc-icon:focus img, .rc-validator:focus img", ["box-shadow: var(--focus-box-shadow);"])
                     .set(".rc-editor-linked:focus-within", ["box-shadow: var(--focus-box-shadow);"]),
-                tooltip: "The focus-box highlights a focused component."
+                tooltip: translation.get("The focus-box highlights a focused component.")
             }
         ]
     });
@@ -133,30 +134,30 @@ export const imageEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
         items: [
             {
                 variable: "",
-                label: "Login",
+                label: translation.get("Login"),
                 type: "image",
                 cssType: "image",
                 value: "",
                 usage: new Map<string, string[]>(),
-                tooltip: "This image will be displayed during login."
+                tooltip: translation.get("This image will be displayed during login.")
             },
             {
                 variable: "",
-                label: "Menu",
+                label: translation.get("Menu"),
                 type: "image",
                 cssType: "image",
                 value: "",
                 usage: new Map<string, string[]>(),
-                tooltip: "This image will be displayed in the menu."
+                tooltip: translation.get("This image will be displayed in the menu.")
             },
             {
                 variable: "",
-                label: "Collapsed Menu",
+                label: translation.get("Collapsed Menu"),
                 type: "image",
                 cssType: "image",
                 value: "",
                 usage: new Map<string, string[]>(),
-                tooltip: "This image will be displayed in the collapsed menu."
+                tooltip: translation.get("This image will be displayed in the collapsed menu.")
             },
         ]
     })
@@ -180,103 +181,103 @@ export const expressEditors: Map<string, EditorGroup> = new Map<string, EditorGr
         items: [
             {
                 variable: "--primary-color",
-                label: "Primary Color",
+                label: translation.get("Primary Color"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--primary-color'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The primary color of the application."
+                tooltip: translation.get("The primary color of the application.")
             },
             {
                 variable: "--frame-hover-backgrounds",
-                label: "Topbar Hover Backgrounds",
+                label: translation.get("Topbar Hover Backgrounds"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--frame-hover-backgrounds'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The hover background-color of elements in the topbar."
+                tooltip: translation.get("The hover background-color of elements in the topbar.")
             },
             {
                 variable: "--checkbox-radio-selected-hover-background",
-                label: "Checkbox-Radiobutton Hover Background",
+                label: translation.get("Checkbox-Radiobutton Hover Background"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--checkbox-radio-selected-hover-background'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The hover background-color of checkboxes and radiobuttons."
+                tooltip: translation.get("The hover background-color of checkboxes and radiobuttons.")
             },
             {
                 variable: "--frame-text-color",
-                label: "Topbar Text Color",
+                label: translation.get("Topbar Text Color"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--frame-text-color'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The text-color of elements in the topbar."
+                tooltip: translation.get("The text-color of elements in the topbar.")
             },
             {
                 variable: "--backgrounds",
-                label: "Backgrounds",
+                label: translation.get("Backgrounds"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--backgrounds'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The background-color of multiple components."
+                tooltip: translation.get("The background-color of multiple components.")
 
             },
             {
                 variable: "--hover-backgrounds",
-                label: "Hover Backgrounds",
+                label: translation.get("Hover Backgrounds"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--hover-backgrounds'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The hover background-color of multiple components."
+                tooltip: translation.get("The hover background-color of multiple components.")
             },
             {
                 variable: "--border-colors",
-                label: "Borders Color",
+                label: translation.get("Borders Color"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--border-colors'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The border-color of multiple components."
+                tooltip: translation.get("The border-color of multiple components.")
             },
             {
                 variable: "--text-color",
-                label: "Text Color",
+                label: translation.get("Text Color"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--text-color'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The text-color used in the application."
+                tooltip: translation.get("The text-color used in the application.")
             },
             {
                 variable: "--hover-text-color",
-                label: "Hover Text Color",
+                label: translation.get("Hover Text Color"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--hover-text-color'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The hover text-color used in the application."
+                tooltip: translation.get("The hover text-color used in the application.")
             },
             {
                 variable: "--selected-background",
-                label: "Selected Background",
+                label: translation.get("Selected Background"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--selected-background'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The background-color for components where items can be selected."
+                tooltip: translation.get("The background-color for components where items can be selected.")
             },
             {
                 variable: "--frame-toolbar-borders",
-                label: "Toolbar Border Color (V2)",
+                label: translation.get("Toolbar Border Color (V2)"),
                 type: "color",
                 cssType: "scheme",
                 value: docStyle.getPropertyValue('--frame-toolbar-borders'),
                 usage: new Map<string, string[]>(),
-                tooltip: "The toolbar border-color for V2 frames."
+                tooltip: translation.get("The toolbar border-color for V2 frames.")
             }
         ]
     })
@@ -300,21 +301,21 @@ export const crashEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
         items: [
             {
                 variable: "--crash-message-size",
-                label: "Message Size",
+                label: translation.get("Message Size"),
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--crash-message-size'),
                 usage: new Map<string, string[]>().set(".crash-message-icon", ["font-size: var(--crash-message-size);"]).set(".crash-message-text", ["font-size: var(--crash-message-size);"]),
-                tooltip: "The font-size of the crash message."
+                tooltip: translation.get("The font-size of the crash message.")
             },
             {
                 variable: "--crash-stack-height",
-                label: "Stack Height",
+                label: translation.get("Stack Height"),
                 type: "text",
                 cssType: "theme",
                 value: docStyle.getPropertyValue('--crash-stack-height'),
                 usage: new Map<string, string[]>().set(".crash-input-stack.show-crash-details", ["max-height: var(--crash-stack-height);"]).set(".crash-input-stack-textarea", ["height: var(--crash-stack-height);"]),
-                tooltip: "The maximum-stack height of the crash message."
+                tooltip: translation.get("The maximum-stack height of the crash message.")
             }
         ]
     })

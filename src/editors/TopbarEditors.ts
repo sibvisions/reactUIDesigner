@@ -1,3 +1,4 @@
+import { translation } from "../util/Translation";
 import { EditorGroup } from "./management/EditorCreator";
 
 /** The current style of the root element */
@@ -23,57 +24,57 @@ export const topbarEditors: Map<string, EditorGroup> = new Map<string, EditorGro
             items: [
                 {
                     variable: "--topbar-colors",
-                    label: "Color",
+                    label: translation.get("Color"),
                     type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-colors'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The color of the progressbar when sending requests."
+                    tooltip: translation.get("The color of the progressbar when sending requests.")
                 },
                 {
                     variable: "--topbar-position",
-                    label: "Position",
+                    label: translation.get("Position"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--topbar-position'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The position of the progressbar, valid values are 'top' or 'bottom'."
+                    tooltip: translation.get("The position of the progressbar, valid values are 'top' or 'bottom'.")
                 },
                 {
                     variable: "--topbar-medium-interval",
-                    label: "Medium Interval",
+                    label: translation.get("Medium Interval"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--topbar-medium-interval'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The interval when a response roundtrip is considered medium."
+                    tooltip: translation.get("The interval when a response roundtrip is considered medium.")
                 },
                 {
                     variable: "--topbar-medium-interval-colors",
-                    label: "Medium Interval Color",
+                    label: translation.get("Medium Interval Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-medium-interval-colors'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The color of the topbar for medium response times."
+                    tooltip: translation.get("The color of the topbar for medium response times.")
                 },
                 {
                     variable: "--topbar-long-interval",
-                    label: "Long Interval",
+                    label: translation.get("Long Interval"),
                     type: "text",
                     cssType: "theme",
                     value: docStyle.getPropertyValue('--topbar-long-interval'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The interval when a response roundtrip is considered long."
+                    tooltip: translation.get("The interval when a response roundtrip is considered long.")
                 },
                 {
                     variable: "--topbar-long-interval-colors",
-                    label: "Long Interval Color",
+                    label: translation.get("Long Interval Color"),
                     type: "color",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--topbar-long-interval-colors'),
                     usage: new Map<string, string[]>(),
-                    tooltip: "The color of the topbar for long response times."
+                    tooltip: translation.get("The color of the topbar for long response times.")
                 },
             ]
         }
