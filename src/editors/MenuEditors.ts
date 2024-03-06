@@ -333,7 +333,7 @@ export const menuEditors: Map<string, EditorGroup> = new Map<string, EditorGroup
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--std-menu-activeitem-color'),
                     usage: new Map<string, string[]>()
-                        .set(".p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link .p-menuitem-text, .p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link .p-menuitem-icon", ["color: var(--std-menu-activeitem-color);"]),
+                        .set(".p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link .p-menuitem-text, .p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link .p-menuitem-icon, .p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, .p-panelmenu .p-panelmenu-content .p-menuitem.p-menuitem--active .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon", ["color: var(--std-menu-activeitem-color);"]),
                     tooltip: translation.get("The text-color of a selected menu-item in the sidebar menu.")
                 },
                 {
