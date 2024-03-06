@@ -504,6 +504,4 @@ for (const line of lines) {
     translation.set(line, line);
 }
 
-console.log(translation);
-
 /** A map which stores the translations set by the server, also contains default values */

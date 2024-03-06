@@ -298,7 +298,6 @@ function createEditors(editors: Map<string, EditorGroup>,
         editors.forEach((editorGroup, key) => {
             if (editorGroup.visible) {
                 let editorElements = editorGroup.items.map(editorItem => {
-                    console.log(editorItem)
                     const tooltipId = editorItem.label.toLowerCase().replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "") + "-tooltip";
                     if (editorItem.type === "image") {
                         return (
