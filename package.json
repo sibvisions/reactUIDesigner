@@ -1,6 +1,6 @@
 {
   "name": "@sibvisions/reactui-designer",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "moduleIndex.js",
   "types": "moduleIndex.d.ts",
   "license": "Apache-2.0 license",
@@ -34,12 +34,16 @@
     "typescript": "^4.7.4",
     "underscore": "^1.13.6",
     "web-vitals": "^2.1.4",
-    "webpack": "^5.73.0"
+    "webpack": "^5.73.0",
+    "run-script-os": "^1.1.6",
+    "rmdir": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "clean": "if exist dist rmdir /S /Q dist",
+    "clean": "run-script-os",
+    "clean:windows": "if exist dist rmdir /S /Q dist",
+    "clean:default": "test -d dist/ && rm -rf dist/; exit 0",
     "pre-package": "npm run build && npm run clean && npm run bundle && node dist/SetupPackage.js",
     "build-patch": "npm run pre-package && npm version patch && cd dist && npm version patch && npm publish --access=public",
     "build-minor": "npm run pre-package && npm version minor && cd dist && npm version minor && npm publish",
