@@ -182,7 +182,7 @@ export const buttonEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--checkbox-border-hover-color'),
                     usage: new Map<string, string[]>()
-                        .set(".rc-editor-checkbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover, .rc-checkbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover", ["border-color: var(--checkbox-border-hover-color);"]),
+                        .set(".rc-editor-checkbox .p-checkbox:hover:not(.p-disabled) .p-checkbox-box, .rc-checkbox .p-checkbox:hover:not(.p-disabled) .p-checkbox-box", ["border-color: var(--checkbox-border-hover-color);"]),
                     tooltip: translation.get("The hover border color of the checkbox.")
                 },
                 {
@@ -192,7 +192,7 @@ export const buttonEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--checkbox-selected-background'),
                     usage: new Map<string, string[]>()
-                        .set(".rc-editor-checkbox .p-checkbox .p-checkbox-box.p-highlight, .rc-checkbox .p-checkbox .p-checkbox-box.p-highlight", ["background: var(--checkbox-selected-background);", "border-color: var(--checkbox-selected-background);"]),
+                        .set(".rc-editor-checkbox .p-checkbox.p-highlight .p-checkbox-box, .rc-checkbox .p-checkbox.p-highlight .p-checkbox-box", ["background: var(--checkbox-selected-background);", "border-color: var(--checkbox-selected-background);"]),
                     tooltip: translation.get("The selected background-color of the checkbox.")
                 },
                 {
@@ -202,7 +202,7 @@ export const buttonEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--checkbox-selected-hover-background'),
                     usage: new Map<string, string[]>()
-                        .set(".rc-editor-checkbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover, .rc-checkbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover", ["background: var(--checkbox-selected-hover-background);", "border-color: var(--checkbox-selected-hover-background);"]),
+                        .set(".rc-editor-checkbox .p-checkbox.p-highlight:hover:not(.p-disabled) .p-checkbox-box, .rc-checkbox .p-checkbox.p-highlight:hover:not(.p-disabled) .p-checkbox-box", ["background: var(--checkbox-selected-hover-background);", "border-color: var(--checkbox-selected-hover-background);"]),
                     tooltip: translation.get("The selected hover background-color of the checkbox.")
                 },
                 {
@@ -212,7 +212,7 @@ export const buttonEditors: Map<string, EditorGroup> = new Map<string, EditorGro
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--checkbox-color'),
                     usage: new Map<string, string[]>()
-                        .set(".rc-editor-checkbox .p-checkbox-box.p-highlight .p-checkbox-icon, .rc-checkbox .p-checkbox-box.p-highlight .p-checkbox-icon", ["color: var(--checkbox-color);"]),
+                        .set(".rc-editor-checkbox .p-checkbox.p-highlight .p-checkbox-box .p-checkbox-icon, .rc-checkbox .p-checkbox.p-highlight .p-checkbox-box .p-checkbox-icon", ["color: var(--checkbox-color);"]),
                     tooltip: translation.get("The color of the checkmark in the checkbox.")
                 },
                 {
