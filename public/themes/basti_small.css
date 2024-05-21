@@ -62,9 +62,9 @@
   --checkbox-size:14px;
   --radiobutton-size:14px;
   --tab-padding:0rem 0.5rem;
-  --table-header-padding:0.3rem 0.5rem;
+  --table-header-padding:0.3rem 0.375rem;
   --table-cell-padding-top-bottom:0.1rem;
-  --table-cell-padding-left-right:0.2rem;
+  --table-cell-padding-left-right:0.375rem;
   --table-data-height:18px;
   --label-padding:4px;
   --menubar-height:40px;
