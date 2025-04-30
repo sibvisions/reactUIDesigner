@@ -191,7 +191,7 @@ const TableTree:FC = () => {
                     selectionMode="single"
                     cellSelection
                     columnResizeMode='fit'
-                    onSelectionChange={(event) => setSelectedTableItem(event.value)}
+                    onSelectionChange={(event: any) => setSelectedTableItem(event.value)}
                     rowClassName={(data) => {
                         let cn: any = {}
                         if (selectedTableItem && _.isEqual(selectedTableItem.rowData, data)) {

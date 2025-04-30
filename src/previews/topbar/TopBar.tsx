@@ -13,7 +13,7 @@
  * the License.
  */
 
-import React, { FC, useState, createContext, useMemo, useEffect, useContext } from "react";
+import React, { FC, useState, createContext, useMemo, useEffect, useContext, ReactNode } from "react";
 import TopBarProgress from "react-topbar-progress-indicator";
 import { variableContext } from "../../VariableProvider";
 import getSettingsFromCSSVar from "./GetSettingsFromCSSVar";
@@ -41,8 +41,12 @@ export function showTopBar(promise: Promise<any>, topbar: TopBarContextType) {
     return promise.finally(() => topbar.hide());
 };
 
+interface TopBarProps {
+    children: ReactNode;
+}
+
 // Shows a topbar at the top of the browser when a promise is being processed.
-const TopBar:FC = ({children}) => {
+const TopBar:FC<TopBarProps> = ({children}) => {
     /** The context to gain access to the variables, defaultValues and more. */
     const context = useContext(variableContext);
 
