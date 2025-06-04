@@ -494,6 +494,9 @@ The interval when a response roundtrip is considered long.
 Long Interval Color
 The color of the topbar for long response times.
 Border Radius
+Header Padding
+Header Close Background
+Close Hover Background
 `;
 
 const lines = text.split("\n").filter(line => line.trim() !== "");

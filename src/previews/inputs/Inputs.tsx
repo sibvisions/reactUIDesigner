@@ -86,7 +86,7 @@ const Inputs: FC = () => {
 
         for(let i = 0; i < items.length; i++) {
             let item = items[i];
-            if (item.label.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+            if (item.label?.toLowerCase().indexOf(query?.toLowerCase()) === 0) {
                 _filteredItems.push(item);
             }
         }

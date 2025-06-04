@@ -40,7 +40,7 @@ const LoginForm:FC<any> = () => {
                     <img className="login-logo" src={process.env.PUBLIC_URL + '/assets/basti/logo_login.png'} alt="logo" />
                 </div>
                 <div className="p-fluid">
-                        <div className="p-field p-float-label p-input-icon-left">
+                        <div className="p-field p-float-label p-icon-field-left">
                             <i className="pi pi-user" />
                             <InputText
                                 value={username}
@@ -50,7 +50,7 @@ const LoginForm:FC<any> = () => {
                                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)} />
                             <label htmlFor="username">Username</label>
                         </div>
-                        <div className="p-field p-float-label p-input-icon-left">
+                        <div className="p-field p-float-label p-icon-field-left">
                             <i className="pi pi-key" />
                             <InputText
                                 value={password}

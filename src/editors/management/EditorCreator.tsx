@@ -298,10 +298,10 @@ function createEditors(editors: Map<string, EditorGroup>,
         editors.forEach((editorGroup, key) => {
             if (editorGroup.visible) {
                 let editorElements = editorGroup.items.map(editorItem => {
-                    const tooltipId = editorItem.label.toLowerCase().replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "") + "-tooltip";
+                    const tooltipId = editorItem.label?.toLowerCase().replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "") + "-tooltip";
                     if (editorItem.type === "image") {
                         return (
-                            <div className='designer-panel-row designer-panel-image-upload'>
+                            <div key={editorItem.label} className='designer-panel-row designer-panel-image-upload'>
                                 <div className="style-editor-label-wrapper">
                                     <span className="style-editor-label">{editorItem.label}</span>
                                 </div>
@@ -337,7 +337,9 @@ function createEditors(editors: Map<string, EditorGroup>,
                         )
                     }
                 })
-                let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={editorGroup.name}><div key={key} className={editorGroup.name === "Images" ? "designer-panel-options" : "style-editor-group"}>{editorElements}</div></AccordionTab>);
+                let groupElement = (<AccordionTab key={"accordion-tab-" + key} header={editorGroup.name}>
+                                       <div key={key} className={editorGroup.name === "Images" ? "designer-panel-options" : "style-editor-group"}>{editorElements}</div>
+                                    </AccordionTab>);
                 groupElements.push(groupElement)
             }
         });
@@ -392,7 +394,7 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
 
     return (
         <>
-            <div className="p-field p-input-icon-left designer-panel-row">
+            <div className="p-field p-icon-field-left designer-panel-row">
                 <i className="pi pi-search" />
                 <InputText
                     value={search}
