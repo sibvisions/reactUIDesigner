@@ -14,6 +14,9 @@
  */
 
 import React, { CSSProperties, FC, useState } from "react";
+import { FloatLabel } from "primereact/floatlabel";
+import { IconField } from "primereact/iconfield";
+import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
@@ -40,26 +43,34 @@ const LoginForm:FC<any> = () => {
                     <img className="login-logo" src={process.env.PUBLIC_URL + '/assets/basti/logo_login.png'} alt="logo" />
                 </div>
                 <div className="p-fluid">
-                        <div className="p-field p-float-label p-icon-field-left">
-                            <i className="pi pi-user" />
-                            <InputText
-                                value={username}
-                                id="username"
-                                type="text"
-                                autoComplete="username"
-                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)} />
+                        <FloatLabel>
+                            <IconField iconPosition="left">
+                                <InputIcon className="pi pi-user" />
+                                <InputText
+                                    value={username}
+                                    className="login-inputtext"
+                                    id="username"
+                                    type="text"
+                                    autoComplete="username"
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)}
+                                    autoFocus={!username} />
+                            </IconField>
                             <label htmlFor="username">Username</label>
-                        </div>
-                        <div className="p-field p-float-label p-icon-field-left">
-                            <i className="pi pi-key" />
-                            <InputText
-                                value={password}
-                                id="password"
-                                type="password"
-                                autoComplete="current-password"
-                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
+                        </FloatLabel>
+                        <FloatLabel>
+                            <IconField iconPosition="left">
+                                <InputIcon className="pi pi-key" />
+                                <InputText
+                                    value={password}
+                                    className="login-inputtext"
+                                    id="password"
+                                    type="password"
+                                    autoComplete="current-password"
+                                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} 
+                                    autoFocus={!!username && !password} />
+                            </IconField>
                             <label htmlFor="password">Password</label>
-                        </div>
+                        </FloatLabel>
                         <div className="login-extra-options lost-password-enabled">
                             <div className="login-cbx-container rc-checkbox">
                                 <Checkbox

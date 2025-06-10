@@ -24,15 +24,33 @@
 }
 
 .login-form .p-fluid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.675rem;
+
   .lost-password-button {
     width: unset;
     padding: 0.5rem;
   }
-
-  .p-float-label label {
-    line-height: unset;
-  }
 } 
+
+.p-float-label {
+  &:first-child {
+    margin-top: .5rem;
+  }
+
+  &:not(:has(input:focus)):has(input[value=""]) {
+    label {
+      left: 2rem;
+    }
+  }
+
+  label {
+    margin: 0;
+    transform: translateY(-50%);
+    font-size: var(--font-size);
+  }
+}
 
 .login-logo-wrapper {
   border-top-left-radius: inherit;

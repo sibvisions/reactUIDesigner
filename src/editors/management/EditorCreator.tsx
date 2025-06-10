@@ -16,6 +16,8 @@
 import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Button } from "primereact/button";
+import { IconField } from "primereact/iconfield";
+import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import { Tooltip } from "primereact/tooltip";
 import { variableContext, VariableContextType } from "../../VariableProvider";
@@ -394,16 +396,17 @@ const EditorCreator: FC<IEditorCreator> = (props) => {
 
     return (
         <>
-            <div className="p-field p-icon-field-left designer-panel-row">
-                <i className="pi pi-search" />
+            <IconField iconPosition="left" className="designer-panel-row">
+                <InputIcon className="pi pi-search" />
                 <InputText
                     value={search}
                     className="designer-search-editor"
                     id="search"
+                    type="text"
                     autoComplete="search"
                     placeholder={translation.get("Search")}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)} />
-            </div>
+            </IconField>
             <Accordion className="designer-accordion">
                 {createEditors(editorTest.current, setRenderFlag, context.defaultValues, context, props)}
             </Accordion>
