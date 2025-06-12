@@ -46,6 +46,9 @@ The image could not be uploaded. Because the Upload-URL is not set!
 Invalid Color!
 This color is invalid please use a valid color.
 Reset to Factory Default
+Express-Mode
+Style-Designer
+Close Style-Designer
 Download
 Save
 Button

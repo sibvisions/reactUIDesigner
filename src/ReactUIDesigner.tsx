@@ -552,15 +552,16 @@ const ReactUIDesigner: FC<IReactUIDesigner> = (props) => {
           <div className='designer-frame' style={{ zIndex: props.isLogin ? "1003" : "" }}>
             <div className='designer-topbar'>
               <div className='designer-topbar-left'>
-                {isPreviewMode && <Button className='designer-topbar-buttons' icon='fas fa-palette' onClick={() => props.setShowDesigner()} />}
+                {isPreviewMode && <Tooltip target={"#close-designer-button"} />}
+                {isPreviewMode && <Button id={"close-designer-button"} className='designer-topbar-buttons' icon='fas fa-palette' onClick={() => props.setShowDesigner()} data-pr-tooltip={translation.get("Close Style-Designer")} />}
                 <Tooltip target={"#reset-default-button"} />
-                <Tooltip target={"#reset-factory-button"} />
-                <Tooltip target={"#express-mode-button"} />
                 <Button id={"reset-default-button"} className='designer-topbar-buttons' icon='fas fa-undo' onClick={resetToDefault} data-pr-tooltip={translation.get("Reset to Default")} />
+                <Tooltip target={"#reset-factory-button"} />
                 <Button id={"reset-factory-button"} className='designer-topbar-buttons' icon='fas fa-industry' onClick={resetToFactory} data-pr-tooltip={translation.get("Reset to Factory Default")} />
+                <Tooltip target={"#express-mode-button"} />
                 <Button id={"express-mode-button"} className='designer-topbar-buttons' icon='fas fa-fast-forward' onClick={() => setExpressVisible(true)} data-pr-tooltip={translation.get("Express-Mode")} />
               </div>
-              <span className='designer-topbar-header'>App-Designer</span>
+              <span className='designer-topbar-header'>{translation.get("Style-Designer")}</span>
             </div>
             <div className='designer-panel-wrapper'>
             <div className='designer-panel-options'>
