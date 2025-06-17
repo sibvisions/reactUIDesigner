@@ -28,9 +28,9 @@ export default root.render(
     isCorporation={false} 
     changeImages={() => {}}
     isLogin={false} 
-    logoLogin={process.env.PUBLIC_URL + '/assets/basti/logo_login.png'} 
-    logoBig={process.env.PUBLIC_URL + '/assets/basti/logo_big.png'}
-    logoSmall={process.env.PUBLIC_URL + '/assets/basti/logo_small.png'}
+    logoLogin={'./assets/basti/logo_login.png'} 
+    logoBig={'./assets/basti/logo_big.png'}
+    logoSmall={'./assets/basti/logo_small.png'}
     designerSubscription={undefined}
     appName="demo"
     setShowDesigner={() => {}}

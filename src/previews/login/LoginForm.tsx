@@ -40,7 +40,7 @@ const LoginForm:FC<any> = () => {
         <div className="login-container">
             <form className="login-form">
                 <div className="login-logo-wrapper">
-                    <img className="login-logo" src={process.env.PUBLIC_URL + '/assets/basti/logo_login.png'} alt="logo" />
+                    <img className="login-logo" src={'./assets/basti/logo_login.png'} alt="logo" />
                 </div>
                 <div className="p-fluid">
                         <FloatLabel>

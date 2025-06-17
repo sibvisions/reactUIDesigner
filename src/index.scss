@@ -13,30 +13,30 @@
  * the License.
  */
 
-@import 'primereact/resources/themes/saga-blue/theme.css';
-@import 'primereact/resources/primereact.css';
-@import 'primeicons/primeicons.css';
-@import '@fortawesome/fontawesome-free/css/all.css';
-@import './previews/buttons/UIButton.scss';
-@import './previews/buttons/UICheckBox.scss';
-@import './previews/buttons/UIMenuButton.scss';
-@import './previews/buttons/UIRadioButton.scss';
-@import './previews/buttons/UIToggleButton.scss';
-@import './previews/inputs/UIEditorText.scss';
-@import './previews/inputs/UIEditorDate.scss';
-@import './previews/inputs/UIEditorLinked.scss';
-@import './previews/tabletree/UITable.scss';
-@import './previews/tabletree/UITree.scss';
-@import './previews/tabletree/UIToolBarPanel.scss';
-@import './previews/tabset/UITabsetPanel.scss';
-@import './previews/popup/ErrorDialog.scss';
-@import './previews/loading/Loadingscreen.scss';
-@import './previews/error-bar/ErrorBar.scss';
-@import './previews/full/UIFrame.scss';
-@import './previews/topbar/TopBar.scss';
-@import './previews/login/Login.scss';
-@import './previews/menu/CorporateMenu.scss';
-@import './previews/menu/Menu.scss';
+@use 'primereact/resources/themes/saga-blue/theme.css';
+@use 'primereact/resources/primereact.css';
+@use 'primeicons/primeicons.css';
+@use '@fortawesome/fontawesome-free/css/all.css';
+@use './previews/buttons/UIButton.scss';
+@use './previews/buttons/UICheckBox.scss';
+@use './previews/buttons/UIMenuButton.scss';
+@use './previews/buttons/UIRadioButton.scss';
+@use './previews/buttons/UIToggleButton.scss';
+@use './previews/inputs/UIEditorText.scss';
+@use './previews/inputs/UIEditorDate.scss';
+@use './previews/inputs/UIEditorLinked.scss';
+@use './previews/tabletree/UITable.scss';
+@use './previews/tabletree/UITree.scss';
+@use './previews/tabletree/UIToolBarPanel.scss';
+@use './previews/tabset/UITabsetPanel.scss';
+@use './previews/popup/ErrorDialog.scss';
+@use './previews/loading/Loadingscreen.scss';
+@use './previews/error-bar/ErrorBar.scss';
+@use './previews/full/UIFrame.scss';
+@use './previews/topbar/TopBar.scss';
+@use './previews/login/Login.scss';
+@use './previews/menu/CorporateMenu.scss';
+@use './previews/menu/Menu.scss';
 //@import './styles/basti.scss';
 //@import './styles/default.scss';
 

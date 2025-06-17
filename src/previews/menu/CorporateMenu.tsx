@@ -42,7 +42,7 @@ const CorporateMenu: FC = () => {
                         <img
                             className="menu-logo"
                             draggable="false"
-                            src={process.env.PUBLIC_URL + '/assets/basti/logo_big.png'} alt="logo" />
+                            src={'./assets/basti/logo_big.png'} alt="logo" />
                     </div>
                     <span className="menu-screen-title">Designer-Menu-Mock</span>
                     <div className="menu-topbar-right">

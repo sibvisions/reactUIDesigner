@@ -13,16 +13,16 @@
  * the License.
  */
 
-@import './ReactUIDesigner.scss';
-@import './editors/Editor.scss';
-@import './previews/buttons/Buttons.scss';
-@import './previews/inputs/Inputs.scss';
-@import './previews/tabletree/TableTree.scss';
-@import './previews/popup/Popup.scss';
-@import './previews/messages/Messages.scss';
-@import './previews/TabSelection.scss';
-@import './ExpressDialog.scss';
-@import './editors/colorpicker/ColorPicker.scss';
+@use './ReactUIDesigner.scss';
+@use './editors/Editor.scss';
+@use './previews/buttons/Buttons.scss';
+@use './previews/inputs/Inputs.scss';
+@use './previews/tabletree/TableTree.scss';
+@use './previews/popup/Popup.scss';
+@use './previews/messages/Messages.scss';
+@use './previews/TabSelection.scss';
+@use './ExpressDialog.scss';
+@use './editors/colorpicker/ColorPicker.scss';
 
 :root {
     --designer-topbar-height:70px;

@@ -13,7 +13,7 @@
  * the License.
  */
 
-@import './buttonColors.scss';
+@use './buttonColors.scss';
 
 .rc-togglebutton {
     --btnJustify: center;
@@ -38,5 +38,5 @@
         border-color: transparent;
     }
 
-    @include toggleBtnHover;
+    @include buttonColors.toggleBtnHover;
 }
