@@ -12,6 +12,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
+    assetsDir: 'static',
     sourcemap: true,
     cssCodeSplit: true,
     minify: 'esbuild',
