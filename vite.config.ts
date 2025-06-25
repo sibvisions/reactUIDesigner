@@ -18,9 +18,29 @@ export default defineConfig({
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom']
+        entryFileNames: (chunkInfo) => {
+          if (chunkInfo.name === 'index') { // change index-hash.js to main.hash.js
+            return 'static/js/main.[hash].js';
+          }
+          return 'static/js/[name].[hash].js';
+        },
+        chunkFileNames: 'static/js/[name].[hash].js',
+        assetFileNames: (assetInfo) => {
+          const ext = assetInfo.name?.split('.').pop();
+          if (ext === 'css') {
+            return 'static/css/[name]-[hash][extname]';
+          }
+          return 'static/media/[name]-[hash][extname]';
+        },
+        manualChunks: (id: string) => {
+          if (id.includes('node_modules')) {
+            return 'vendor'; // avoid extra auto.esm.*.js
+          }
         }
+        // default generation
+//        manualChunks: {
+//          vendor: ['react', 'react-dom']
+//        }
       }
     }
   }

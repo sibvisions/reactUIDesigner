@@ -1,14 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import dts from 'vite-plugin-dts';
 import path from 'path';
 import copy from 'rollup-plugin-copy';
 
 export default defineConfig({
   plugins: [
     react(),
+    dts({ include: ['./src'] }),
     copy({
       targets: [
-        { src: 'src/SetupPackage.js', dest: 'dist' }
+        { src: 'src/SetupPackage.cjs', dest: 'dist' }
       ],
       hook: 'writeBundle'
     })],
