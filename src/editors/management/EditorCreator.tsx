@@ -295,7 +295,7 @@ function createEditors(editors: Map<string, EditorGroup>,
     }
 
     // Adds every group to an accordion.
-    let groupElements: JSX.Element[] = []
+    let groupElements: React.JSX.Element[] = []
     if (editors.size) {
         editors.forEach((editorGroup, key) => {
             if (editorGroup.visible) {
