@@ -15,17 +15,18 @@ export default defineConfig({
       hook: 'writeBundle'
     })],
   base: './',
-  resolve: {
+  resolve: { // solves the problem with link modules and different react instances
     alias: {
-      '@components': path.resolve(__dirname, 'src/components'),
+      react: path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom')
     }
   },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/moduleIndex.ts'),
-      name: 'ReactUIDesigner',
+      name: '@sibvisions/reactui-designer',
       fileName: 'moduleIndex',
-      formats: ['es', 'cjs', 'umd'] // UMD zusätzlich für Kompatibilität
+      formats: ['es', 'umd', 'cjs'] // Order is essential as umd build uses structures of previous cjs build, which can cause problems
     },
     outDir: 'dist',
     sourcemap: true,
@@ -47,7 +48,9 @@ export default defineConfig({
             return 'resources/fonts/[name][extname]';
           }
           return 'resources/assets/[name][extname]';
-        }
+        },
+        inlineDynamicImports: true, // prevent extra auto.esm*.js due to chart.js
+        manualChunks: undefined,  
       }
     }
   }

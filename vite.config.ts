@@ -5,10 +5,11 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   base: './',
-  resolve: {
+  resolve: { // solves the problem with link modules and different react instances
     alias: {
-      '@components': path.resolve(__dirname, 'src/components'),
-    },
+      react: path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom')
+    }
   },
   build: {
     outDir: 'build',
@@ -34,7 +35,7 @@ export default defineConfig({
         },
         manualChunks: (id: string) => {
           if (id.includes('node_modules')) {
-            return 'vendor'; // avoid extra auto.esm.*.js
+            return 'vendor'; // avoid extra auto.esm.*.js and pack all modules into vendor
           }
         }
         // default generation

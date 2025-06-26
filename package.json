@@ -12,9 +12,9 @@
     "preview": "vite preview",
     "bundle": "vite build -c vite.library.config.ts",
     "clean": "rimraf dist",
-    "link": "cd dist && npm link && cd .. && npm link ../reactUI/node_modules/react",
-    "dev-package": "npm run clean && npm run bundle && node dist/SetupPackage.cjs",
-    "pre-package": "npm run build && npm run dev-package",
+    "link": "cd dist && npm link",
+    "package": "npm run clean && npm run bundle && node dist/SetupPackage.cjs",
+    "pre-package": "npm run build && npm run package",
     "build-patch": "npm run pre-package && npm version patch && cd dist && npm version patch && npm publish --access=public",
     "build-minor": "npm run pre-package && npm version minor && cd dist && npm version minor && npm publish --access=public",
     "build-major": "npm run pre-package && npm version major && cd dist && npm version major && npm publish --access=public"
