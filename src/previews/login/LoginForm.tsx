@@ -25,10 +25,10 @@ import tinycolor from "tinycolor2";
 /** A preview for the login component to see changes live */
 const LoginForm:FC<any> = () => {
     /** The username in the login view */
-    const [username, setUsername] = useState<string>();
+    const [username, setUsername] = useState<string>("");
 
     /** The password in the login view */
-    const [password, setPassword] = useState<string>();
+    const [password, setPassword] = useState<string>("");
 
     /** True, if autologin should be on */
     const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -43,6 +43,7 @@ const LoginForm:FC<any> = () => {
                     <img className="login-logo" src={'./assets/basti/logo_login.png'} alt="logo" />
                 </div>
                 <div className="p-fluid">
+                        {/*@ts-ignore*/}
                         <FloatLabel>
                             <IconField iconPosition="left">
                                 <InputIcon className="pi pi-user" />
@@ -57,6 +58,7 @@ const LoginForm:FC<any> = () => {
                             </IconField>
                             <label htmlFor="username">Username</label>
                         </FloatLabel>
+                        {/*@ts-ignore*/}
                         <FloatLabel>
                             <IconField iconPosition="left">
                                 <InputIcon className="pi pi-key" />

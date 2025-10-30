@@ -62,16 +62,6 @@
   display: block;
 }
 
-.p-float-label {
-  /// Position and Size of floatlabel placeholder
-  input:focus ~label, input.p-filled ~label, 
-  textarea:focus ~label, textarea.p-filled ~label,
-  .p-inputwrapper-focus ~label, .p-inputwrapper-filled ~label{
-    top: 10px;
-    font-size: 8px;
-  }
-}
-
 .login-button {
   padding: 0.5rem;
   justify-content: center;
