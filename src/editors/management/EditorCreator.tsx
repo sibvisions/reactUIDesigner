@@ -113,6 +113,7 @@ function createEditors(editors: Map<string, EditorGroup>,
         .set("--input-button-padding", () => props.designerSubscription!.notifyInputButtonPaddingChanged())
         .set("--menubtn-leftbtn-padding", () => props.designerSubscription!.notifyMenuButtonPaddingChanged())
         .set("--menubtn-rightbtn-padding", () => props.designerSubscription!.notifyMenuButtonPaddingChanged())
+        .set("--input-border-width", () => props.designerSubscription!.notifyInputTBPaddingChanged())
         .set("--input-padding-lr", () => props.designerSubscription!.notifyInputLRPaddingChanged())
         .set("--input-padding-tb", () => props.designerSubscription!.notifyInputTBPaddingChanged())
         .set("--tab-padding", () => props.designerSubscription!.notifyTabPaddingChanged())
