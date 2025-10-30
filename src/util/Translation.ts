@@ -223,6 +223,7 @@ The text-color used for most of the application.
 Focus Border
 The focus-box highlights a focused component.
 Images
+Choose Image
 Login
 This image will be displayed during login.
 Menu

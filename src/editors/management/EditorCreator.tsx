@@ -308,8 +308,13 @@ function createEditors(editors: Map<string, EditorGroup>,
                                     <span className="style-editor-label">{editorItem.label}</span>
                                 </div>
                                 <img alt={editorItem.label} id={editorItem.label !== "Collapsed Menu" ? editorItem.label.toLowerCase() + '-image' : 'small-image'} className='designer-panel-image' src={editorItem.label === "Login" ? props.logoLogin : editorItem.label === "Menu" ? props.logoBig : props.logoSmall} />
-                                <Button className='designer-panel-image-button' icon='fas fa-file-upload' onClick={() => props.uploadImage(editorItem.label === "Login" ? "login" : editorItem.label === "Menu" ? "menu" : "small")} />
-                                <i className="tooltip-icon pi pi-info-circle" />
+                                <Button 
+                                    className='designer-panel-image-button' 
+                                    icon='fas fa-file-upload' 
+                                    tooltip={translation.get("Choose Image")}
+                                    onClick={() => props.uploadImage(editorItem.label === "Login" ? "login" : editorItem.label === "Menu" ? "menu" : "small")} />
+                                <Tooltip target={"#" + tooltipId} position="right" />
+                                <i id={tooltipId} className="tooltip-icon pi pi-info-circle" data-pr-tooltip={editorItem.tooltip ? editorItem.tooltip : ""} />
                             </div>
                         )
                     }
