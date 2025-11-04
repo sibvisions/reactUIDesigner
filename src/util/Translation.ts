@@ -419,6 +419,8 @@ The text-color of the table cells.
 The hover text-color of the table cells.
 Sort Color
 The color of the sort indicator.
+Selected Cell Color
+The color of the selected cell border.
 The border-radius of the table (rounds corners).
 Table Header
 The background-color of the table header.

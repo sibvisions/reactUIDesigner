@@ -74,6 +74,16 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
                     tooltip: translation.get("The color of the sort indicator.")
                 },
                 {
+                    variable: "--table-selectedcellborder-color",
+                    label: translation.get("Selected Cell Color"),
+                    type: "color",
+                    cssType: "scheme",
+                    value: docStyle.getPropertyValue('--table-selectedcellborder-color'),
+                    usage: new Map<string, string[]>()
+                        .set(".rc-table.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row.p-highlight > td.p-selectable-cell.p-highlight, .rc-table.p-datatable-selectable-cell .p-datatable-tbody > tr.p-selectable-row > td.p-selectable-cell:focus", ["outline: 2px solid var(--table-selectedcellborder-color);", "outline-offset: -2px;"]),
+                    tooltip: translation.get("The color of the selected cell border.")
+                },
+                {
                     variable: "--table-border-radius",
                     label: translation.get("Border-Radius"),
                     type: "text",
@@ -185,8 +195,8 @@ export const tableEditors: Map<string, EditorGroup> = new Map<string, EditorGrou
             items: [
                 {
                     variable: "--table-row-border",
-                    label: translation.get("Row Border Color"),
-                    type: "color",
+                    label: translation.get("Row Border"),
+                    type: "text",
                     cssType: "scheme",
                     value: docStyle.getPropertyValue('--table-row-border'),
                     usage: new Map<string, string[]>()
