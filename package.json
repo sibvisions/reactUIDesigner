@@ -43,7 +43,7 @@
     "sass": "^1.57.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@types/node": "^24.0.4",
+    "@types/node": "^25.2.3",
     "@types/quill": "^2.0.14",
     "@types/react-color": "^3.0.6",
     "@types/underscore": "^1.11.4",
