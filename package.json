@@ -23,7 +23,7 @@
     "@fortawesome/fontawesome-free": "^7.0.0",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.4",
-    "quill": "^2.0.3",
+    "quill": "2.0.2",
     "react-color": "^2.19.3",
     "react-rnd": "^10.3.7",
     "react-topbar-progress-indicator": "^4.1.1",
@@ -52,6 +52,7 @@
     "rollup-plugin-copy": "^3.4.0"
   },
   "overrides": {
-    "glob": "^11.1.0"
+    "glob": "^11.1.0",
+    "ajv": "^8.18.0"
   }
 }
