@@ -11,6 +11,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "bundle": "vite build -c vite.library.config.ts",
+    "audit": "npm audit --omit=dev", 
     "clean": "rimraf dist",
     "link": "npm run package && cd dist && npm link",
     "package": "npm run clean && npm run bundle && node dist/SetupPackage.cjs",
@@ -53,7 +54,6 @@
   },
   "overrides": {
     "glob": "^11.1.0",
-    "ajv": "^8.18.0",
-    "minimatch": "^10.2.1"
+    "ajv": "^8.18.0"
   }
 }
