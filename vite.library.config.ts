@@ -3,6 +3,18 @@ import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import path from 'path';
 import copy from 'rollup-plugin-copy';
+import { dependencies } from './package.json';
+
+const formatGlobalName = (name: string) => name.replace(/-/g, '_').replace(/\//g, '_');
+
+const externalDeps = Object.keys(dependencies || {});
+
+const externalPatterns = [
+  'react',
+  'react-dom',
+  'react/jsx-runtime',
+  ...externalDeps.map(dep => new RegExp(`^${dep}(/.*)?$`))
+];
 
 export default defineConfig({
   plugins: [
@@ -28,11 +40,18 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: externalPatterns,
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
+        globals: (id) => {
+          if (id === 'react') return 'React';
+          if (id === 'react-dom') return 'ReactDOM';
+          if (id === 'react/jsx-runtime') return 'jsxRuntime';
+
+          const isDep = externalDeps.some(dep => id.startsWith(dep));
+          if (isDep) {
+            return formatGlobalName(id); // Macht aus 'a/b' -> 'a_b'
+          }
+          return id;
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.names?.[0] ?? '';
