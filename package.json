@@ -1,6 +1,6 @@
 {
   "name": "@sibvisions/reactui-designer",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "type": "module",
   "main": "moduleIndex.cjs",
   "module": "moduleIndex.js",
