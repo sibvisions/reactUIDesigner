@@ -22,7 +22,12 @@ export default defineConfig({
           }
           return 'static/js/[name].[hash].js';
         },
-        chunkFileNames: 'static/js/[name].[hash].js',
+        chunkFileNames: (chunkInfo) => {
+          if (chunkInfo.name.includes('rolldown-runtime')) {
+            return 'static/js/vendor-runtime.[hash].js';
+          }
+          return 'static/js/[name].[hash].js';
+        },        
         assetFileNames: (assetInfo) => {
           const name = assetInfo.names?.[0] ?? '';
           const ext = name.split('.').pop();
