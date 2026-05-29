@@ -19,7 +19,11 @@ const externalPatterns = [
 export default defineConfig({
   plugins: [
     react(),
-    dts({ include: ['./src'] }),
+    dts({
+      include: ['src'],
+      entryRoot: 'src',
+      outDirs: 'dist'
+    }),
     copy({
       targets: [
         { src: 'src/SetupPackage.cjs', dest: 'dist' }
