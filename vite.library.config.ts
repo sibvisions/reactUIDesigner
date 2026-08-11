@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import path from 'path';
 import copy from 'rollup-plugin-copy';
-import { dependencies } from './package.json';
+import { dependencies } from './package.json' with { type: 'json' };
 
 const formatGlobalName = (name: string) => name.replace(/-/g, '_').replace(/\//g, '_');
 
@@ -36,7 +36,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/moduleIndex.ts'),
+      entry: path.resolve(import.meta.dirname, 'src/moduleIndex.ts'),
       name: '@sibvisions/reactui-designer',
       fileName: 'moduleIndex',
       formats: ['es', 'umd', 'cjs'] // Order is essential as umd build uses structures of previous cjs build, which can cause problems
