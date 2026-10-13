@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import path from 'path';
-import copy from 'rollup-plugin-copy';
+import fs from 'fs-extra';
 import { dependencies } from './package.json' with { type: 'json' };
 
 const formatGlobalName = (name: string) => name.replace(/-/g, '_').replace(/\//g, '_');
@@ -24,12 +24,12 @@ export default defineConfig({
       entryRoot: 'src',
       outDirs: 'dist'
     }),
-    copy({
-      targets: [
-        { src: 'src/SetupPackage.cjs', dest: 'dist' }
-      ],
-      hook: 'writeBundle'
-    })],
+    {
+        name: 'copy-resources',
+        writeBundle() {
+          fs.copySync('src/SetupPackage.cjs', 'dist/SetupPackage.cjs');
+        }
+      }],
   base: './',
   resolve: { // solves the problem with link modules and different react instances
     dedupe: ['react', 'react-dom']
